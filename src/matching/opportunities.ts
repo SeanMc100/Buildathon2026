@@ -87,11 +87,18 @@ export function isVisible(opportunity: Opportunity, now: Date): boolean {
  * Only constraints an opportunity actually has a field for are applied: an
  * event with no salary is not dropped by a pay floor. Commute is not checked
  * because the catalog has no distances.
+ *
+ * Events skip the arrangement check. That question is about how someone wants
+ * to work, and an event is a one-off they can choose to attend, so a remote-only
+ * person should still see local events. Without this, real (in-person) events
+ * vanish for anyone who did not pick "on site".
  */
 export function passesHardConstraints(opportunity: Opportunity, profile: CareerProfile): boolean {
   const constraints = profile.hardConstraints;
 
-  if (!constraints.arrangements.includes(opportunity.arrangement)) return false;
+  if (opportunity.kind !== 'event' && !constraints.arrangements.includes(opportunity.arrangement)) {
+    return false;
+  }
   if (opportunity.demands.some((demand) => constraints.exclusions.includes(demand))) return false;
 
   if (opportunity.kind === 'job') {
