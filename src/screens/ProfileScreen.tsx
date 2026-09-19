@@ -42,6 +42,10 @@ const PREPARATION_TEXT = {
   5: 'Advanced degree level',
 };
 
+/** The generated summary runs long; clamp it so the sections below stay in view. */
+const NARRATIVE_LINES = 4;
+const NARRATIVE_CLAMP_CHARS = 200;
+
 function outcomeSummary(outcome: MatchOutcome): { text: string; isError: boolean } {
   if (outcome.status === 'sent') {
     return { text: `${outcome.response.recommendations?.length ?? 0} opportunities returned`, isError: false };
@@ -57,6 +61,7 @@ export function ProfileScreen() {
   const insets = useSafeAreaInsets();
   const { profile } = useIntake();
 
+  const [showFullNarrative, setShowFullNarrative] = useState(false);
   const [showTeam, setShowTeam] = useState(false);
   const [showPayload, setShowPayload] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -89,6 +94,7 @@ export function ProfileScreen() {
 
   const style = profile.workStyle;
   const status = outcome ? outcomeSummary(outcome) : null;
+  const longNarrative = profile.narrativeSummary.length > NARRATIVE_CLAMP_CHARS;
 
   return (
     <View style={styles.screen}>
@@ -101,7 +107,17 @@ export function ProfileScreen() {
         </View>
 
         <Card style={styles.narrativeCard}>
-          <Text style={styles.narrative}>{profile.narrativeSummary}</Text>
+          <Text
+            style={styles.narrative}
+            numberOfLines={showFullNarrative || !longNarrative ? undefined : NARRATIVE_LINES}
+          >
+            {profile.narrativeSummary}
+          </Text>
+          {longNarrative ? (
+            <Pressable onPress={() => setShowFullNarrative((current) => !current)} hitSlop={8}>
+              <Text style={styles.link}>{showFullNarrative ? 'Show less' : 'Read more'}</Text>
+            </Pressable>
+          ) : null}
         </Card>
         <Text style={styles.hint}>Tap any row below to see why we think it.</Text>
 
@@ -233,24 +249,16 @@ export function ProfileScreen() {
         {status ? (
           <Text style={[styles.status, status.isError && styles.statusError]}>{status.text}</Text>
         ) : null}
-        <View style={styles.barActions}>
-          <View style={styles.barSecondary}>
-            <Button
-              label={RESULT_COPY.retake}
-              variant="ghost"
-              onPress={() =>
-                navigation.replace('IntakeQuestion', { questionId: QUESTION_BANK[0].id })
-              }
-            />
-          </View>
-          <View style={styles.barPrimary}>
-            <Button
-              label={sending ? 'Sending…' : RESULT_COPY.send}
-              onPress={send}
-              disabled={sending}
-            />
-          </View>
-        </View>
+        <Button
+          label={sending ? 'Sending…' : RESULT_COPY.send}
+          onPress={send}
+          disabled={sending}
+        />
+        <Button
+          label={RESULT_COPY.retake}
+          variant="ghost"
+          onPress={() => navigation.replace('IntakeQuestion', { questionId: QUESTION_BANK[0].id })}
+        />
       </View>
     </View>
   );
@@ -264,7 +272,7 @@ const styles = StyleSheet.create({
   title: { ...typography.display, color: colors.text },
   coverage: { ...typography.caption, color: colors.textMuted },
 
-  narrativeCard: { backgroundColor: colors.primarySoft, borderColor: colors.primarySoft },
+  narrativeCard: { backgroundColor: colors.primarySoft, borderColor: colors.primarySoft, gap: spacing.sm },
   narrative: { ...typography.body, color: colors.text, lineHeight: 24 },
   hint: { ...typography.caption, color: colors.textMuted, marginTop: -spacing.sm },
 
@@ -304,9 +312,6 @@ const styles = StyleSheet.create({
   },
   status: { ...typography.caption, color: colors.textMuted, textAlign: 'center' },
   statusError: { color: colors.danger },
-  barActions: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
-  barSecondary: { flex: 2 },
-  barPrimary: { flex: 3 },
 
   empty: {
     flex: 1,

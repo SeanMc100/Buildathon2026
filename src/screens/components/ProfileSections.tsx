@@ -37,8 +37,6 @@ const EXCLUSION_LABELS: Record<string, string> = {
 };
 
 const TOP_PRIORITIES = 3;
-/** Below this we flag the row so the user knows it is a soft read. */
-const WEAK_CONFIDENCE = 0.45;
 
 /** 'EarlyCareer' -> 'Early career', 'night_shifts' -> 'Night shifts'. */
 export function humanize(value: string): string {
@@ -95,8 +93,6 @@ function Explainable({
     return <View style={styles.row}>{children}</View>;
   }
 
-  const weak = confidence !== undefined && confidence < WEAK_CONFIDENCE;
-
   return (
     <Pressable
       onPress={() => setOpen((current) => !current)}
@@ -106,7 +102,6 @@ function Explainable({
       style={styles.row}
     >
       {children}
-      {weak && !open ? <Text style={styles.weak}>Not sure yet · tap to see why</Text> : null}
       {open ? (
         <View style={styles.why}>
           {confidence !== undefined ? <ConfidenceDot value={confidence} /> : null}
@@ -285,7 +280,6 @@ const styles = StyleSheet.create({
   label: { ...typography.body, color: colors.text, fontWeight: '600' },
   link: { ...typography.caption, color: colors.primary, fontWeight: '600' },
 
-  weak: { ...typography.caption, color: colors.warning, fontSize: 12 },
   why: {
     gap: spacing.xs,
     padding: spacing.sm,
