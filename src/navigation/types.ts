@@ -2,6 +2,10 @@
 // `undefined` means the route takes no params.
 export type RootStackParamList = {
   Home: undefined;
+  IntakeIntro: undefined;
+  /** One question per screen. The id keys into the content question bank. */
+  IntakeQuestion: { questionId: string };
+  Profile: undefined;
 };
 
 declare global {

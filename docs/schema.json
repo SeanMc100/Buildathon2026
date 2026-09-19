@@ -2,5 +2,194 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Buildathon App data contracts",
   "description": "Source of truth for data shapes shared across slices. Changes must be announced to the team. Mirror in src/models.",
-  "definitions": {}
+  "definitions": {
+    "AnswerMap": {
+      "type": "object",
+      "description": "questionId -> answer. single:string, multi/rank:string[], scale:number(1..n), allocate:{optionValue:points}, text:string.",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "number" },
+          { "type": "array", "items": { "type": "string" } },
+          { "type": "object", "additionalProperties": { "type": "number" } }
+        ]
+      }
+    },
+    "Inference": {
+      "type": "object",
+      "description": "Any value the app derived rather than was told. Never emit one without provenance.",
+      "required": ["value", "confidence", "sourceQuestionIds"],
+      "properties": {
+        "value": {},
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceQuestionIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "HardConstraints": {
+      "type": "object",
+      "description": "Must-satisfy filters. Applied before anything is ranked.",
+      "required": ["arrangements", "employmentTypes", "payStance", "exclusions"],
+      "properties": {
+        "arrangements": {
+          "type": "array",
+          "items": { "enum": ["Remote", "Hybrid", "Onsite"] }
+        },
+        "employmentTypes": {
+          "type": "array",
+          "items": {
+            "enum": ["FullTime", "PartTime", "Contract", "Freelance", "Internship", "Apprenticeship"]
+          }
+        },
+        "maxCommuteMinutes": { "type": ["number", "null"] },
+        "openToRelocation": { "type": "boolean" },
+        "payStance": { "enum": ["flexible", "market", "top_of_market", "has_floor"] },
+        "minSalaryUsd": { "type": ["number", "null"] },
+        "exclusions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "PreferenceWeight": {
+      "type": "object",
+      "description": "Soft preference. Weights across the list sum to ~100.",
+      "required": ["trait", "label", "weight", "confidence", "sourceQuestionIds"],
+      "properties": {
+        "trait": {
+          "enum": [
+            "pay_and_security",
+            "flexibility_and_balance",
+            "growth_and_learning",
+            "mission_and_impact",
+            "people_and_team",
+            "manager_support",
+            "autonomy"
+          ]
+        },
+        "label": { "type": "string" },
+        "weight": { "type": "number", "minimum": 0, "maximum": 100 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceQuestionIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "CareerProfile": {
+      "type": "object",
+      "description": "Output of src/matching/scoring.ts. Shown to the user and folded into MatchRequest.",
+      "required": [
+        "profileId",
+        "generatedAt",
+        "version",
+        "narrativeSummary",
+        "stage",
+        "experienceBand",
+        "educationLevel",
+        "jobZone",
+        "interests",
+        "workStyle",
+        "priorities",
+        "workValues",
+        "hardConstraints",
+        "completeness"
+      ],
+      "properties": {
+        "profileId": { "type": "string" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "version": { "type": "number" },
+        "narrativeSummary": { "type": "string" },
+        "stage": { "$ref": "#/definitions/Inference" },
+        "experienceBand": { "enum": ["none", "under_1", "1_3", "3_6", "6_10", "10_plus"] },
+        "educationLevel": {
+          "enum": ["none_required", "secondary", "certificate", "associate", "bachelor", "postgraduate"]
+        },
+        "jobZone": { "$ref": "#/definitions/Inference" },
+        "focusArea": { "type": ["string", "null"] },
+        "interests": {
+          "type": "object",
+          "properties": {
+            "scores": { "type": "object", "additionalProperties": { "type": "number" } },
+            "hollandCode": { "type": "array", "items": { "enum": ["R", "I", "A", "S", "E", "C"] } },
+            "confidence": { "type": "number" },
+            "sourceQuestionIds": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "workStyle": {
+          "type": "object",
+          "properties": {
+            "autonomy": { "$ref": "#/definitions/Inference" },
+            "variety": { "$ref": "#/definitions/Inference" },
+            "pace": { "$ref": "#/definitions/Inference" },
+            "challengeAppetite": { "$ref": "#/definitions/Inference" },
+            "teamShape": { "$ref": "#/definitions/Inference" }
+          }
+        },
+        "priorities": { "type": "array", "items": { "$ref": "#/definitions/PreferenceWeight" } },
+        "workValues": { "$ref": "#/definitions/Inference" },
+        "hardConstraints": { "$ref": "#/definitions/HardConstraints" },
+        "extraContext": { "type": ["string", "null"] },
+        "skippedQuestionIds": { "type": "array", "items": { "type": "string" } },
+        "completeness": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "MatchRequest": {
+      "type": "object",
+      "description": "POST body for expo.extra.matchingEndpoint. Built by src/matching/payload.ts.",
+      "required": [
+        "schemaVersion",
+        "profileId",
+        "narrativeSummary",
+        "candidateContext",
+        "hardConstraints",
+        "softPreferences",
+        "responseContract",
+        "excludedAttributes"
+      ],
+      "properties": {
+        "schemaVersion": { "type": "string" },
+        "profileId": { "type": "string" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "narrativeSummary": { "type": "string" },
+        "candidateContext": { "type": "object" },
+        "hardConstraints": { "$ref": "#/definitions/HardConstraints" },
+        "softPreferences": { "type": "array" },
+        "workStyle": { "type": "array" },
+        "interests": { "type": "object" },
+        "derivedWorkValues": { "type": "object" },
+        "freeText": { "type": ["string", "null"] },
+        "responseContract": {
+          "type": "object",
+          "properties": {
+            "max_recommendations": { "type": "number" },
+            "must_cite_source_question_ids": { "type": "boolean" },
+            "must_explain_tradeoffs": { "type": "boolean" },
+            "must_flag_unmet_hard_constraints": { "type": "boolean" }
+          }
+        },
+        "excludedAttributes": {
+          "type": "array",
+          "description": "Protected or restricted attributes deliberately absent. The model is told not to infer them.",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "MatchResponse": {
+      "type": "object",
+      "description": "Expected response from the matching endpoint.",
+      "required": ["recommendations"],
+      "properties": {
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "summary", "matchScore", "whyItFits", "citedQuestionIds"],
+            "properties": {
+              "title": { "type": "string" },
+              "summary": { "type": "string" },
+              "matchScore": { "type": "number", "minimum": 0, "maximum": 100 },
+              "whyItFits": { "type": "array", "items": { "type": "string" } },
+              "gaps": { "type": "array", "items": { "type": "string" } },
+              "citedQuestionIds": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "unmetConstraints": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
 }

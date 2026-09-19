@@ -27,7 +27,8 @@
 
 ## Where each slice lives
 - Sean: `App.tsx`, `index.ts`, `src/navigation/`, `src/models/`,
-  `src/theme/`, `app.json`, `package.json`, `tsconfig.json`, `docs/`
+  `src/intake/`, `src/theme/`, `app.json`, `package.json`,
+  `tsconfig.json`, `docs/`
 - Matching engine: `src/matching/`
 - Screens: `src/screens/`
 - Content + pitch: `src/content/`, `pitch/`
