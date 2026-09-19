@@ -5,12 +5,10 @@
 
 import { readFileSync } from 'node:fs';
 
-import { isVisible, passesHardConstraints, scoreOpportunity } from '../../src/matching/opportunities';
+import { matchOpportunities, rankKind } from '../../src/matching/opportunities';
 import { buildProfile } from '../../src/matching/scoring';
 import type { AnswerMap, EventOpportunity } from '../../src/models';
 import { OUTPUT_PATH } from './paths';
-
-const TOP_N = 10;
 
 type Persona = { name: string; answers: AnswerMap };
 
@@ -79,17 +77,14 @@ function main() {
 
   for (const persona of PERSONAS) {
     const profile = buildProfile(persona.answers);
-    const live = events.filter((event) => isVisible(event, now));
-    const eligible = live.filter((event) => passesHardConstraints(event, profile));
-    const top = eligible
-      .map((event) => scoreOpportunity(event, profile))
-      .sort((a, b) => b.matchScore - a.matchScore)
-      .slice(0, TOP_N);
+    // The same two calls the app makes: the top section, and the full listing.
+    const top = matchOpportunities(profile, events, now).byKind.event;
+    const all = rankKind('event', profile, events, now);
 
     rankings[persona.name] = top.map((match) => match.opportunityId);
 
     console.log(`■ ${persona.name}`);
-    console.log(`  interests ${profile.interests.hollandCode.join('') || '—'} · ${eligible.length}/${live.length} events pass hard filters`);
+    console.log(`  interests ${profile.interests.hollandCode.join('') || '—'} · top ${top.length} of ${all.length} events (one per recurring series)`);
     for (const match of top) {
       const event = byId.get(match.opportunityId)!;
       console.log(`  ${String(match.matchScore).padStart(3)}  ${event.startsAt.slice(5, 10)}  ${event.title.slice(0, 50).padEnd(50)}  ${match.whyItFits[0] ?? ''}`);

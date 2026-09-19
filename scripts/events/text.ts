@@ -21,3 +21,17 @@ export function htmlToText(html: string): string {
     .replace(/\n\s*\n+/g, '\n')
     .trim();
 }
+
+/** Meetup and some hosts write descriptions in markdown; this leaves just the words. */
+export function stripMarkdown(text: string): string {
+  return text
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // images
+    .replace(/\[([^\]]+)\]\((?:[^)]*)\)/g, '$1') // [label](url) -> label
+    .replace(/https?:\/\/\S+/g, '') // bare links
+    .replace(/(\*\*|__|\*|`)/g, '')
+    .replace(/^\s{0,3}#{1,6}\s*/gm, '')
+    .replace(/^\s*[-*]\s+/gm, '')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n\s*\n+/g, '\n')
+    .trim();
+}

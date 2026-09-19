@@ -16,8 +16,10 @@ import { metroCity } from './region';
 import { SOURCES } from './sources';
 import type { RawEvent } from './types';
 
-function inRegion(event: RawEvent): boolean {
-  return event.isOnline || metroCity(event.city) !== null;
+function inRegion(event: RawEvent, localOrganizer: boolean): boolean {
+  if (event.isOnline || metroCity(event.city) !== null) return true;
+  // No address at all: trust a Detroit-based organiser, but not an unknown one.
+  return localOrganizer && !event.city;
 }
 
 /** The same event listed by two sources (a Luma page and the organiser's own feed). */
@@ -38,7 +40,7 @@ async function main() {
 
   console.log(`Ingesting events at ${now.toISOString()}\n`);
 
-  for (const { source, mayBeEmpty } of SOURCES) {
+  for (const { source, mayBeEmpty, localOrganizer = false } of SOURCES) {
     let raw: RawEvent[];
     try {
       raw = await source.fetch();
@@ -53,7 +55,7 @@ async function main() {
     for (const event of raw) {
       const drop = (reason: string) => dropped.push({ title: event.title, source: source.name, reason });
 
-      if (!inRegion(event)) {
+      if (!inRegion(event, localOrganizer)) {
         drop(`outside metro Detroit (${event.city ?? 'unknown'})`);
         continue;
       }

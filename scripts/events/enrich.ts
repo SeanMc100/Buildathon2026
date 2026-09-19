@@ -30,7 +30,7 @@ const CAREER_SIGNALS: Record<string, RegExp> = {
 };
 
 /** Social or entertainment events. Not career-relevant unless other signals outweigh this. */
-const ENTERTAINMENT = /release party|runway|fashion show|concert|\bdj\b|album|gallery opening|brunch|comedy|nightclub|birthday|wedding|\bparty\b|photo ?walk|foto walk/i;
+const ENTERTAINMENT = /release party|runway|fashion show|concert|\bdj\b|album|gallery opening|brunch|comedy|nightclub|birthday|wedding|\bparty\b|photo ?walk|foto walk|open house|\b5k\b|\bgala\b|golf|fundrais|auction/i;
 
 const HOLLAND_KEYWORDS: Record<RiasecCode, RegExp> = {
   R: /hardware|manufactur|mobility|automotive|maker|robotic|engineer|trades|construction|\bbuild/i,
@@ -97,7 +97,7 @@ function chooseTraits(signals: string[], format: EventFormat, text: string, isOn
 const SCHEDULE_LINE = /^(?:[A-Za-z]+day,?\s+)?[A-Za-z.]+\s+\d{1,2}(?:,\s*\d{4})?\s*(?:[|–-].*)?$|^\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?)/i;
 
 /** Where-and-how notes ("This session will be held in-person at…") say nothing about the event. */
-const LOGISTICS_LINE = /^this (session|event|workshop|program) (will be|is) (held|hosted)|^registration (opens|is)|^doors open/i;
+const LOGISTICS_LINE = /^this (session|event|workshop|program) (will be|is) (held|hosted)|^registration (opens|is)|^doors open|^hosted by\b/i;
 
 function summarize(raw: RawEvent, format: EventFormat): string {
   // Work paragraph by paragraph, so a schedule line does not become the summary.
@@ -109,7 +109,8 @@ function summarize(raw: RawEvent, format: EventFormat): string {
     .find((line) => line.length >= 30 && !SCHEDULE_LINE.test(line) && !LOGISTICS_LINE.test(line));
 
   if (body) {
-    const sentence = /^(.{30,220}?[.!?])(\s|$)/.exec(body)?.[1];
+    // A period after an abbreviation (U.S., Inc.) does not end the sentence.
+    const sentence = /^(.{30,220}?(?<!\bU\.S|\bSept|\bInc|\bDr|\bMr|\bMs|\bSt|\bvs)[.!?])(\s|$)/.exec(body)?.[1];
     if (sentence) return sentence;
     return body.length > 200 ? `${body.slice(0, 200).trimEnd()}…` : body;
   }

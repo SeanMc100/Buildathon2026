@@ -16,7 +16,7 @@ import { readFileSync } from 'node:fs';
 
 import { parseIcs } from './ics';
 import { MANUAL_EVENTS_PATH } from './paths';
-import { decodeEntities, htmlToText } from './text';
+import { decodeEntities, htmlToText, stripMarkdown } from './text';
 import type { EventSource, RawEvent } from './types';
 
 const USER_AGENT = 'BuildathonApp-EventIngest/0.1 (career-matching prototype)';
@@ -91,7 +91,8 @@ function tribeSource(name: string, base: string, organizer: string): EventSource
           endsAt: event.utc_end_date ? tribeUtc(event.utc_end_date) : null,
           location: place || null,
           city: city || null,
-          isOnline: !venue || ONLINE_HINT.test(`${title} ${place} ${city}`),
+          // No venue means unknown, not online: only say online when the listing does.
+          isOnline: ONLINE_HINT.test(`${title} ${place} ${city}`),
           costUsd: tribeCost(event),
           organizer: decodeEntities(String(organizerName)),
         };
@@ -114,7 +115,7 @@ function icsSource(name: string, url: string, organizer: string): EventSource {
           sourceId: event.uid || `${event.summary}|${event.startsAt}`,
           // Some feeds double-encode, so "&#8211;" arrives as literal text.
           title: decodeEntities(event.summary),
-          description: decodeEntities(event.description),
+          description: stripMarkdown(decodeEntities(event.description)),
           url: event.url || url,
           startsAt: event.startsAt,
           endsAt: event.endsAt,
@@ -122,7 +123,7 @@ function icsSource(name: string, url: string, organizer: string): EventSource {
           // A feed gives one address string, so keep it whole and let the region
           // filter look for a metro city inside it.
           city: location,
-          isOnline: !location || ONLINE_HINT.test(`${event.summary} ${location}`),
+          isOnline: ONLINE_HINT.test(`${event.summary} ${location ?? ''}`),
           costUsd: null,
           organizer: event.organizer || organizer,
         };
@@ -254,18 +255,27 @@ const manual: EventSource = {
 
 // ---- The list ------------------------------------------------------------------
 
-export type SourceEntry = { source: EventSource; /** True when having no events right now is normal. */ mayBeEmpty?: boolean };
+export type SourceEntry = {
+  source: EventSource;
+  /** True when having no events right now is normal. */
+  mayBeEmpty?: boolean;
+  /**
+   * The organiser is based in metro Detroit, so an event with no listed venue is
+   * kept as local. Without this an event that omits its address would be dropped.
+   */
+  localOrganizer?: boolean;
+};
 
 export const SOURCES: SourceEntry[] = [
   // Home of Build 313's Build Nights and the Venture 313 events.
-  { source: tribeSource('techtown', 'https://techtowndetroit.org', 'TechTown Detroit') },
-  { source: tribeSource('detroit-chamber', 'https://detroitchamber.com', 'Detroit Regional Chamber') },
-  { source: tribeSource('detroit-future-city', 'https://detroitfuturecity.com', 'Detroit Future City'), mayBeEmpty: true },
-  { source: icsSource('automation-alley', 'https://automationalley.com/events/feed.ics', 'Automation Alley') },
-  { source: meetup('itinthed', 'IT in the D') },
-  { source: meetup('detroit-women-in-tech', 'Detroit Women in Tech') },
-  { source: meetup('startup-detroit', 'Startup Detroit'), mayBeEmpty: true },
-  { source: meetup('dnewtech', 'Detroit New Tech'), mayBeEmpty: true },
+  { source: tribeSource('techtown', 'https://techtowndetroit.org', 'TechTown Detroit'), localOrganizer: true },
+  { source: tribeSource('detroit-chamber', 'https://detroitchamber.com', 'Detroit Regional Chamber'), localOrganizer: true },
+  { source: tribeSource('detroit-future-city', 'https://detroitfuturecity.com', 'Detroit Future City'), mayBeEmpty: true, localOrganizer: true },
+  { source: icsSource('automation-alley', 'https://automationalley.com/events/feed.ics', 'Automation Alley'), localOrganizer: true },
+  { source: meetup('itinthed', 'IT in the D'), localOrganizer: true },
+  { source: meetup('detroit-women-in-tech', 'Detroit Women in Tech'), localOrganizer: true },
+  { source: meetup('startup-detroit', 'Startup Detroit'), mayBeEmpty: true, localOrganizer: true },
+  { source: meetup('dnewtech', 'Detroit New Tech'), mayBeEmpty: true, localOrganizer: true },
   { source: lumaSource('detroit') },
   { source: manual, mayBeEmpty: true },
 ];
