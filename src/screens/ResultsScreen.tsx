@@ -76,6 +76,15 @@ function deadlineLine(item: Opportunity): string | null {
   return 'applyBy' in item && item.applyBy ? `Apply by ${formatDate(item.applyBy)}` : null;
 }
 
+/** Events read best as a calendar: the top matches, soonest first. */
+function inDateOrder(matches: OpportunityMatch[]): OpportunityMatch[] {
+  const start = (match: OpportunityMatch) => {
+    const item = CATALOG_BY_ID.get(match.opportunityId);
+    return item?.kind === 'event' ? Date.parse(item.startsAt) : 0;
+  };
+  return [...matches].sort((a, b) => start(a) - start(b));
+}
+
 /** Leaves the next card peeking in so it is obvious the row scrolls. */
 const CARD_PEEK = spacing.xl;
 const CARD_GAP = spacing.sm + 4;
@@ -190,7 +199,7 @@ export function ResultsScreen() {
               decelerationRate="fast"
               contentContainerStyle={styles.carousel}
             >
-              {matches.map((match) => {
+              {(kind === 'event' ? inDateOrder(matches) : matches).map((match) => {
                 const item = CATALOG_BY_ID.get(match.opportunityId);
                 return item ? (
                   <MatchCard key={match.opportunityId} match={match} item={item} width={cardWidth} />

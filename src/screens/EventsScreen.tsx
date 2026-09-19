@@ -1,5 +1,5 @@
 // Every upcoming event we have, not just the top matches. Screens slice.
-// Best match puts the events that fit this profile first; Soonest is a plain calendar.
+// Soonest (the default) is a plain calendar; Best match puts the events that fit this profile first.
 
 import { useMemo, useState } from 'react';
 import { FlatList, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -77,7 +77,7 @@ function EventRow({ event, match }: Row) {
 
 export function EventsScreen() {
   const { profile } = useIntake();
-  const [sort, setSort] = useState<SortMode>('match');
+  const [sort, setSort] = useState<SortMode>('date');
 
   const rows = useMemo<Row[]>(() => {
     const byId = new Map(CATALOG.map((item) => [item.id, item]));
@@ -125,7 +125,7 @@ export function EventsScreen() {
 
           {profile ? (
             <View style={styles.toggle} accessibilityRole="tablist">
-              {(['match', 'date'] as const).map((mode) => (
+              {(['date', 'match'] as const).map((mode) => (
                 <Pressable
                   key={mode}
                   onPress={() => setSort(mode)}
