@@ -23,7 +23,8 @@ import { PRIORITY_LABELS } from './scoring';
 
 export const OPPORTUNITY_KINDS: OpportunityKind[] = ['job', 'program', 'event', 'research'];
 
-const MAX_PER_KIND = 3;
+/** How many matches each section on the results screen shows. */
+const MAX_PER_KIND = 10;
 
 const EDUCATION_RANK: Record<EducationLevel, number> = {
   none_required: 0,
@@ -250,6 +251,55 @@ export function scoreOpportunity(opportunity: Opportunity, profile: CareerProfil
   };
 }
 
+function startMs(opportunity: Opportunity): number {
+  return 'startsAt' in opportunity && opportunity.startsAt ? Date.parse(opportunity.startsAt) : 0;
+}
+
+/** Best match first; among equal scores, the event that happens soonest. */
+function rank(items: Opportunity[], profile: CareerProfile): OpportunityMatch[] {
+  return items
+    .map((item) => ({ item, match: scoreOpportunity(item, profile) }))
+    .sort((a, b) => b.match.matchScore - a.match.matchScore || startMs(a.item) - startMs(b.item))
+    .map(({ match }) => match);
+}
+
+/**
+ * A recurring event (a monthly meetup) is one opportunity, not one per date.
+ * Keeps the soonest occurrence so the top of the list is not four copies of the
+ * same thing. The full listing still shows every date.
+ */
+function nextPerSeries(items: Opportunity[]): Opportunity[] {
+  // "IT Networking @ Royal Oak" and "IT Networking @ Ann Arbor" are one series:
+  // only the part before an @, | or : names it.
+  const seriesKey = (item: Opportunity) =>
+    `${item.organization}|${item.title.split(/\s@\s|\s\|\s|:\s/)[0].toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()}`;
+
+  const soonest = new Map<string, Opportunity>();
+  for (const item of items) {
+    const current = soonest.get(seriesKey(item));
+    if (!current || startMs(item) < startMs(current)) soonest.set(seriesKey(item), item);
+  }
+  return items.filter((item) => soonest.get(seriesKey(item)) === item);
+}
+
+/**
+ * Every visible opportunity of one kind that passes the hard constraints, best
+ * match first, with nothing capped or merged. Backs the "see all" screens.
+ */
+export function rankKind(
+  kind: OpportunityKind,
+  profile: CareerProfile,
+  catalog: Opportunity[],
+  now: Date = new Date(),
+): OpportunityMatch[] {
+  return rank(
+    catalog.filter(
+      (item) => item.kind === kind && isVisible(item, now) && passesHardConstraints(item, profile),
+    ),
+    profile,
+  );
+}
+
 export function matchOpportunities(
   profile: CareerProfile,
   catalog: Opportunity[],
@@ -263,11 +313,9 @@ export function matchOpportunities(
   for (const kind of OPPORTUNITY_KINDS) {
     const ofKind = live.filter((item) => item.kind === kind);
     const eligible = ofKind.filter((item) => passesHardConstraints(item, profile));
+    const candidates = kind === 'event' ? nextPerSeries(eligible) : eligible;
 
-    byKind[kind] = eligible
-      .map((item) => scoreOpportunity(item, profile))
-      .sort((a, b) => b.matchScore - a.matchScore)
-      .slice(0, MAX_PER_KIND);
+    byKind[kind] = rank(candidates, profile).slice(0, MAX_PER_KIND);
 
     if (ofKind.length > 0 && eligible.length === 0) unmetConstraints.push(KIND_EMPTY_NOTE[kind]);
   }
