@@ -6,6 +6,12 @@ export type RootStackParamList = {
   /** One question per screen. The id keys into the content question bank. */
   IntakeQuestion: { questionId: string };
   Profile: undefined;
+  Results: undefined;
+  /** Directory of Metro Detroit boards to join or leave. */
+  Boards: undefined;
+  Board: { boardId: string };
+  /** Share an outside opportunity to one board. */
+  BoardSubmit: { boardId: string };
 };
 
 declare global {

@@ -214,7 +214,7 @@ export function InterestRow({ profile }: { profile: CareerProfile }) {
     <Explainable
       confidence={interests.confidence}
       sources={interests.sourceQuestionIds}
-      note="This comes from a single question, not a full interest inventory. It is sent as a hint and the model is told to treat it as one."
+      note="From one question, sent to the model as a hint."
     >
       <Text style={styles.label}>What pulls you in</Text>
       <View style={styles.chipWrap}>

@@ -74,7 +74,7 @@ export function ProfileScreen() {
   if (!profile || !request) {
     return (
       <View style={styles.empty}>
-        <Text style={styles.emptyText}>Answer a few questions first and your profile appears here.</Text>
+        <Text style={styles.emptyText}>Answer a few questions to see your profile.</Text>
         <Button label="Start the questionnaire" onPress={() => navigation.replace('IntakeIntro')} />
       </View>
     );
@@ -102,7 +102,7 @@ export function ProfileScreen() {
         <View style={styles.header}>
           <Text style={styles.title}>{RESULT_COPY.title}</Text>
           <Text style={styles.coverage}>
-            Based on {Math.round(profile.completeness * 100)}% of the questions
+            {Math.round(profile.completeness * 100)}% complete
           </Text>
         </View>
 
@@ -119,7 +119,7 @@ export function ProfileScreen() {
             </Pressable>
           ) : null}
         </Card>
-        <Text style={styles.hint}>Tap any row below to see why we think it.</Text>
+        <Text style={styles.hint}>Tap a row to see why.</Text>
 
         <ProfileBlock title="What matters most">
           <PriorityList priorities={profile.priorities} />
@@ -227,10 +227,10 @@ export function ProfileScreen() {
                   <Text style={styles.outcomeTitle}>{status?.text}</Text>
                   <Text style={styles.teamText}>
                     {outcome.status === 'not_configured'
-                      ? 'Set expo.extra.matchingEndpoint in app.json. Until then the request is built but not sent.'
+                      ? 'Set expo.extra.matchingEndpoint in app.json to send.'
                       : outcome.status === 'error'
                         ? outcome.message
-                        : 'Recommendations are on the response, each citing the questions that drove it.'}
+                        : 'Each recommendation cites the questions behind it.'}
                   </Text>
                 </View>
               ) : null}
@@ -249,8 +249,10 @@ export function ProfileScreen() {
         {status ? (
           <Text style={[styles.status, status.isError && styles.statusError]}>{status.text}</Text>
         ) : null}
+        <Button label="See my matches" onPress={() => navigation.navigate('Results')} />
         <Button
           label={sending ? 'Sending…' : RESULT_COPY.send}
+          variant="secondary"
           onPress={send}
           disabled={sending}
         />
