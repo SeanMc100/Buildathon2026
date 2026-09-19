@@ -9,10 +9,12 @@
 import { createHash } from 'node:crypto';
 
 import type { EventFormat, EventOpportunity, PreferenceTrait, RiasecCode } from '../../src/models';
+import { metroCity } from './region';
 import type { RawEvent } from './types';
 
 export type Assessment =
-  | { keep: true; opportunity: EventOpportunity; signals: string[] }
+  /** Every event that has not ended is kept; relevance only decides how it is tagged and ranked. */
+  | { keep: true; opportunity: EventOpportunity; careerRelevant: boolean }
   | { keep: false; reason: string };
 
 // ---- Signals ----------------------------------------------------------------
@@ -27,7 +29,7 @@ const CAREER_SIGNALS: Record<string, RegExp> = {
   tech: /\bai\b|artificial intelligence|software|\bdata\b|engineer|developer|cyber|mobility|hardware|robotic|manufactur|biotech|research|\bstem\b|\btech\b/i,
 };
 
-/** Social or entertainment events. These are dropped unless career signals outweigh them. */
+/** Social or entertainment events. Not career-relevant unless other signals outweigh this. */
 const ENTERTAINMENT = /release party|runway|fashion show|concert|\bdj\b|album|gallery opening|brunch|comedy|nightclub|birthday|wedding|\bparty\b|photo ?walk|foto walk/i;
 
 const HOLLAND_KEYWORDS: Record<RiasecCode, RegExp> = {
@@ -53,7 +55,7 @@ function detectSignals(text: string): string[] {
 }
 
 function chooseFormat(signals: string[], text: string): EventFormat {
-  if (signals.includes('hiring') && /fair|recruit/i.test(text)) return 'career_fair';
+  if (/\b(career|job|hiring|recruiting) (fair|expo|event)\b/i.test(text)) return 'career_fair';
   if (/summit|conference|symposium/i.test(text)) return 'conference';
   if (signals.includes('learning')) return 'workshop';
   if (signals.includes('talk')) return 'talk';
@@ -61,7 +63,7 @@ function chooseFormat(signals: string[], text: string): EventFormat {
   return 'networking';
 }
 
-function chooseHolland(text: string, format: EventFormat): RiasecCode[] {
+function chooseHolland(text: string): RiasecCode[] {
   const hits = (Object.keys(HOLLAND_KEYWORDS) as RiasecCode[])
     .map((code) => ({ code, count: (text.match(new RegExp(HOLLAND_KEYWORDS[code], 'gi')) ?? []).length }))
     .filter((entry) => entry.count > 0)
@@ -70,7 +72,8 @@ function chooseHolland(text: string, format: EventFormat): RiasecCode[] {
     .map((entry) => entry.code);
 
   if (hits.length > 0) return hits;
-  return format === 'networking' ? ['E', 'S'] : ['S'];
+  // No interest signal at all: claim none, so the event does not drift up for anyone.
+  return [];
 }
 
 function chooseTraits(signals: string[], format: EventFormat, text: string, isOnline: boolean): Record<PreferenceTrait, number> {
@@ -119,7 +122,7 @@ function shortLocation(raw: RawEvent): string | null {
   if (raw.isOnline) return null;
   // Street addresses are noisy on a card: keep the venue name and the city.
   const venue = raw.location?.split(',')[0]?.trim();
-  const city = /\b(Detroit|Dearborn|Ann Arbor|Southfield|Royal Oak|Ferndale|Hamtramck|Warren|Troy)\b/.exec(raw.city ?? '')?.[1];
+  const city = metroCity(raw.city);
   return [venue, city].filter(Boolean).join(', ') || null;
 }
 
@@ -130,11 +133,13 @@ export function assessEvent(raw: RawEvent, now: Date): Assessment {
   if (endMs < now.getTime()) return { keep: false, reason: 'already ended' };
 
   const text = `${raw.title} ${raw.description} ${raw.organizer}`;
-  const signals = detectSignals(text);
+  const found = detectSignals(text);
   const social = ENTERTAINMENT.test(raw.title);
 
-  if (signals.length === 0) return { keep: false, reason: 'no career signal' };
-  if (social && signals.length < 2) return { keep: false, reason: 'social or entertainment event' };
+  // Events with nothing career-related about them are still listed, but tagged
+  // neutrally, so they sit at the bottom of every ranking instead of vanishing.
+  const careerRelevant = found.length > 0 && !(social && found.length < 2);
+  const signals = careerRelevant ? found : [];
 
   const format = chooseFormat(signals, text);
   const digest = createHash('sha1').update(`${raw.source}:${raw.sourceId}`).digest('hex').slice(0, 10);
@@ -148,7 +153,7 @@ export function assessEvent(raw: RawEvent, now: Date): Assessment {
     url: raw.url,
     location: shortLocation(raw),
     arrangement: raw.isOnline ? 'Remote' : 'Onsite',
-    hollandCode: chooseHolland(text, format),
+    hollandCode: careerRelevant ? chooseHolland(text) : [],
     traits: chooseTraits(signals, format, text, raw.isOnline),
     jobZone: null,
     minEducation: 'none_required',
@@ -162,5 +167,5 @@ export function assessEvent(raw: RawEvent, now: Date): Assessment {
     costUsd: raw.costUsd,
   };
 
-  return { keep: true, opportunity, signals };
+  return { keep: true, opportunity, careerRelevant };
 }

@@ -1,10 +1,22 @@
 // Event sources. Each one reads something the organiser publishes for the public:
-// a calendar feed, or the page data behind a public listing. Nothing here logs in,
-// and nothing touches Facebook or Eventbrite, whose terms restrict automated reads.
+// a calendar API or feed, or the page data behind a public listing. Nothing here
+// logs in, and nothing touches Facebook or Eventbrite, whose terms restrict
+// automated reads.
 //
-// To add a source, write one more EventSource and append it to SOURCES.
+// Four kinds of adapter cover almost everything:
+//   tribeSource  WordPress sites running "The Events Calendar" (public REST API)
+//   icsSource    any calendar feed (.ics), including every Meetup group
+//   lumaSource   a Luma city page, which lists events from many hosts
+//   manualSource events typed into data/manual-events.json, for organisers with no
+//                feed at all (Facebook-only groups, one-off events)
+//
+// To add a source, add one line to SOURCES.
+
+import { readFileSync } from 'node:fs';
 
 import { parseIcs } from './ics';
+import { MANUAL_EVENTS_PATH } from './paths';
+import { decodeEntities, htmlToText } from './text';
 import type { EventSource, RawEvent } from './types';
 
 const USER_AGENT = 'BuildathonApp-EventIngest/0.1 (career-matching prototype)';
@@ -21,40 +33,109 @@ async function get(url: string): Promise<string> {
 
 const ONLINE_HINT = /\b(virtual|online|zoom|webinar|teams meeting|livestream)\b/i;
 
-// ---- TechTown Detroit: a standard "The Events Calendar" WordPress feed ---------
+// ---- WordPress "The Events Calendar" -----------------------------------------
 
-const TECHTOWN_FEED = 'https://techtowndetroit.org/?post_type=tribe_events&ical=1&eventDisplay=list';
-
-const techtown: EventSource = {
-  name: 'techtown',
-  endpoint: TECHTOWN_FEED,
-  async fetch() {
-    const events = parseIcs(await get(TECHTOWN_FEED));
-    return events.map((event): RawEvent => {
-      const location = event.location || null;
-      return {
-        source: 'techtown',
-        sourceId: event.uid,
-        title: event.summary,
-        description: event.description,
-        url: event.url,
-        startsAt: event.startsAt,
-        endsAt: event.endsAt,
-        location,
-        // The feed gives a full address, so keep the whole string and let the
-        // region filter look for a metro city inside it.
-        city: location,
-        isOnline: !location || ONLINE_HINT.test(`${event.summary} ${location}`),
-        costUsd: null,
-        organizer: event.organizer || 'TechTown Detroit',
-      };
-    });
-  },
+type TribeEvent = {
+  id: number;
+  url: string;
+  title: string;
+  description: string;
+  utc_start_date: string;
+  utc_end_date: string;
+  cost?: string;
+  cost_details?: { values?: string[] };
+  venue?: { venue?: string; address?: string; city?: string; state?: string } | unknown[];
+  organizer?: Array<{ organizer?: string }>;
 };
 
-// ---- Luma Detroit: the public city page lists upcoming events from many hosts ---
+type TribePage = { events?: TribeEvent[]; total_pages?: number };
 
-const LUMA_DETROIT = 'https://luma.com/detroit';
+/** "Free" is 0, "$275 – $550" is 275 (the cheapest ticket), anything else is unknown. */
+function tribeCost(event: TribeEvent): number | null {
+  const values = (event.cost_details?.values ?? []).map(Number).filter((value) => Number.isFinite(value));
+  if (values.length > 0) return Math.min(...values);
+  return /free/i.test(event.cost ?? '') ? 0 : null;
+}
+
+/** The API sends UTC as "2026-09-22 22:00:00". */
+const tribeUtc = (value: string) => `${value.replace(' ', 'T')}Z`;
+
+function tribeSource(name: string, base: string, organizer: string): EventSource {
+  const endpoint = `${base}/wp-json/tribe/events/v1/events`;
+  return {
+    name,
+    endpoint,
+    async fetch() {
+      const events: TribeEvent[] = [];
+      for (let page = 1, pages = 1; page <= pages; page += 1) {
+        const body = JSON.parse(await get(`${endpoint}?per_page=50&page=${page}&start_date=now`)) as TribePage;
+        events.push(...(body.events ?? []));
+        pages = body.total_pages ?? 1;
+      }
+
+      return events.map((event): RawEvent => {
+        // With no venue the API sends an empty array instead of an object.
+        const venue = Array.isArray(event.venue) ? null : (event.venue ?? null);
+        const organizerName = event.organizer?.[0]?.organizer || organizer;
+        const title = decodeEntities(event.title);
+        const place = [venue?.venue, venue?.address].filter(Boolean).join(', ');
+        const city = [venue?.city, venue?.state].filter(Boolean).join(', ');
+
+        return {
+          source: name,
+          sourceId: String(event.id),
+          title,
+          description: htmlToText(event.description ?? ''),
+          url: event.url,
+          startsAt: tribeUtc(event.utc_start_date),
+          endsAt: event.utc_end_date ? tribeUtc(event.utc_end_date) : null,
+          location: place || null,
+          city: city || null,
+          isOnline: !venue || ONLINE_HINT.test(`${title} ${place} ${city}`),
+          costUsd: tribeCost(event),
+          organizer: decodeEntities(String(organizerName)),
+        };
+      });
+    },
+  };
+}
+
+// ---- Calendar feeds (.ics) ---------------------------------------------------
+
+function icsSource(name: string, url: string, organizer: string): EventSource {
+  return {
+    name,
+    endpoint: url,
+    async fetch() {
+      return parseIcs(await get(url)).map((event): RawEvent => {
+        const location = event.location || null;
+        return {
+          source: name,
+          sourceId: event.uid || `${event.summary}|${event.startsAt}`,
+          // Some feeds double-encode, so "&#8211;" arrives as literal text.
+          title: decodeEntities(event.summary),
+          description: decodeEntities(event.description),
+          url: event.url || url,
+          startsAt: event.startsAt,
+          endsAt: event.endsAt,
+          location,
+          // A feed gives one address string, so keep it whole and let the region
+          // filter look for a metro city inside it.
+          city: location,
+          isOnline: !location || ONLINE_HINT.test(`${event.summary} ${location}`),
+          costUsd: null,
+          organizer: event.organizer || organizer,
+        };
+      });
+    },
+  };
+}
+
+/** Every Meetup group publishes its upcoming events as a calendar feed. */
+const meetup = (group: string, organizer: string) =>
+  icsSource(`meetup-${group}`, `https://www.meetup.com/${group}/events/ical/`, organizer);
+
+// ---- Luma city pages ---------------------------------------------------------
 
 type LumaEntry = {
   event: {
@@ -71,61 +152,120 @@ type LumaEntry = {
   ticket_info?: { is_free?: boolean } | null;
 };
 
-const luma: EventSource = {
-  name: 'luma-detroit',
-  endpoint: LUMA_DETROIT,
+/** Reads the page's own <meta name="description">, the summary the host wrote for link previews. */
+function metaDescription(html: string): string {
+  return decodeEntities(/<meta name="description" content="([^"]*)"/i.exec(html)?.[1] ?? '').trim();
+}
+
+function lumaSource(place: string): EventSource {
+  const page = `https://luma.com/${place}`;
+  return {
+    name: `luma-${place}`,
+    endpoint: page,
+    async fetch() {
+      const html = await get(page);
+      const match = /<script id="__NEXT_DATA__"[^>]*>(.*?)<\/script>/s.exec(html);
+      if (!match) throw new Error('Luma page no longer carries __NEXT_DATA__; the adapter needs updating.');
+
+      const entries = (JSON.parse(match[1]) as { props?: { pageProps?: { initialData?: { data?: { events?: LumaEntry[] } } } } })
+        .props?.pageProps?.initialData?.data?.events;
+      if (!Array.isArray(entries)) throw new Error('Luma page data has a new shape; the adapter needs updating.');
+
+      const raw = entries.map(({ event, hosts, calendar, ticket_info }): RawEvent => {
+        const geo = event.geo_address_info ?? null;
+        return {
+          source: `luma-${place}`,
+          sourceId: event.api_id,
+          title: event.name,
+          // The listing has no description; it is filled in from each event page below.
+          description: '',
+          url: `https://luma.com/${event.url}`,
+          startsAt: event.start_at,
+          endsAt: event.end_at,
+          // Hosts can hide the exact address until you register; fall back to the area.
+          location: geo?.address ?? geo?.sublocality ?? null,
+          city: geo?.city_state ?? null,
+          isOnline: event.location_type === 'online',
+          // Paid tickets carry a price we have not verified the units of, so leave those unknown.
+          costUsd: ticket_info?.is_free ? 0 : null,
+          organizer: hosts?.[0]?.name ?? calendar?.name ?? 'Luma host',
+        };
+      });
+
+      // One polite request per event, in sequence. A miss just leaves the description empty.
+      for (const event of raw) {
+        try {
+          event.description = metaDescription(await get(event.url));
+        } catch {
+          // Keep the event; tagging falls back to the title alone.
+        }
+      }
+      return raw;
+    },
+  };
+}
+
+// ---- Manual entries ----------------------------------------------------------
+
+type ManualEvent = {
+  title: string;
+  url: string;
+  startsAt: string;
+  endsAt?: string | null;
+  organizer: string;
+  location?: string | null;
+  city?: string | null;
+  description?: string;
+  isOnline?: boolean;
+  costUsd?: number | null;
+};
+
+/**
+ * For anyone who posts only on Facebook, or who has no feed at all. Add the
+ * event to data/manual-events.json by hand; it goes through the same filters
+ * and tagging as everything else.
+ */
+const manual: EventSource = {
+  name: 'manual',
+  endpoint: MANUAL_EVENTS_PATH,
   async fetch() {
-    const html = await get(LUMA_DETROIT);
-    const match = /<script id="__NEXT_DATA__"[^>]*>(.*?)<\/script>/s.exec(html);
-    if (!match) throw new Error('Luma page no longer carries __NEXT_DATA__; the adapter needs updating.');
-
-    const entries = (JSON.parse(match[1]) as { props?: { pageProps?: { initialData?: { data?: { events?: LumaEntry[] } } } } })
-      .props?.pageProps?.initialData?.data?.events;
-    if (!Array.isArray(entries)) throw new Error('Luma page data has a new shape; the adapter needs updating.');
-
-    const raw = entries.map(({ event, hosts, calendar, ticket_info }): RawEvent => {
-      const geo = event.geo_address_info ?? null;
+    const file = JSON.parse(readFileSync(MANUAL_EVENTS_PATH, 'utf8')) as { events?: ManualEvent[] };
+    return (file.events ?? []).map((event, index): RawEvent => {
+      if (!event.title || !event.url || !event.startsAt || Number.isNaN(Date.parse(event.startsAt))) {
+        throw new Error(`manual-events.json entry ${index + 1} needs a title, url and a valid startsAt.`);
+      }
       return {
-        source: 'luma-detroit',
-        sourceId: event.api_id,
-        title: event.name,
-        // The listing has no description; it is filled in from each event page below.
-        description: '',
-        url: `https://luma.com/${event.url}`,
-        startsAt: event.start_at,
-        endsAt: event.end_at,
-        // Hosts can hide the exact address until you register; fall back to the area.
-        location: geo?.address ?? geo?.sublocality ?? null,
-        city: geo?.city_state ?? null,
-        isOnline: event.location_type === 'online',
-        // Paid tickets carry a price we have not verified the units of, so leave those unknown.
-        costUsd: ticket_info?.is_free ? 0 : null,
-        organizer: hosts?.[0]?.name ?? calendar?.name ?? 'Luma host',
+        source: 'manual',
+        sourceId: event.url,
+        title: event.title,
+        description: event.description ?? '',
+        url: event.url,
+        startsAt: new Date(event.startsAt).toISOString(),
+        endsAt: event.endsAt ? new Date(event.endsAt).toISOString() : null,
+        location: event.location ?? null,
+        city: event.city ?? event.location ?? null,
+        isOnline: event.isOnline ?? false,
+        costUsd: event.costUsd ?? null,
+        organizer: event.organizer,
       };
     });
-
-    // One polite request per event, in sequence. A miss just leaves the description empty.
-    for (const event of raw) {
-      try {
-        event.description = metaDescription(await get(event.url));
-      } catch {
-        // Keep the event; tagging falls back to the title alone.
-      }
-    }
-    return raw;
   },
 };
 
-const ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
+// ---- The list ------------------------------------------------------------------
 
-/** Reads the page's own <meta name="description">, the summary the host wrote for link previews. */
-function metaDescription(html: string): string {
-  const raw = /<meta name="description" content="([^"]*)"/i.exec(html)?.[1] ?? '';
-  return raw
-    .replace(/&#x([0-9a-f]+);/gi, (_, hex: string) => String.fromCodePoint(parseInt(hex, 16)))
-    .replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code)))
-    .replace(/&([a-z]+);/gi, (whole, name: string) => ENTITIES[name.toLowerCase()] ?? whole)
-    .trim();
-}
+export type SourceEntry = { source: EventSource; /** True when having no events right now is normal. */ mayBeEmpty?: boolean };
 
-export const SOURCES: EventSource[] = [techtown, luma];
+export const SOURCES: SourceEntry[] = [
+  // Home of Build 313's Build Nights and the Venture 313 events.
+  { source: tribeSource('techtown', 'https://techtowndetroit.org', 'TechTown Detroit') },
+  { source: tribeSource('detroit-chamber', 'https://detroitchamber.com', 'Detroit Regional Chamber') },
+  { source: tribeSource('detroit-future-city', 'https://detroitfuturecity.com', 'Detroit Future City'), mayBeEmpty: true },
+  { source: icsSource('automation-alley', 'https://automationalley.com/events/feed.ics', 'Automation Alley') },
+  { source: meetup('itinthed', 'IT in the D') },
+  { source: meetup('detroit-women-in-tech', 'Detroit Women in Tech') },
+  { source: meetup('startup-detroit', 'Startup Detroit'), mayBeEmpty: true },
+  { source: meetup('dnewtech', 'Detroit New Tech'), mayBeEmpty: true },
+  { source: lumaSource('detroit') },
+  { source: manual, mayBeEmpty: true },
+];
