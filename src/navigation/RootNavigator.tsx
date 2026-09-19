@@ -24,7 +24,8 @@ export function RootNavigator() {
         component={IntakeQuestionScreen}
         options={{ title: '', headerBackTitle: 'Exit' }}
       />
-      <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'Your profile' }} />
+      {/* The screen renders its own large title, so the header stays blank. */}
+      <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: '' }} />
     </Stack.Navigator>
   );
 }
