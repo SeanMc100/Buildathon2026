@@ -1,12 +1,12 @@
 // Ranked opportunities for the current profile, grouped by kind. Screens slice.
-// Scoring runs locally against the sample catalog; see src/matching/opportunities.ts.
+// Scoring runs locally against the catalog (live events plus samples); see src/matching/opportunities.ts.
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMemo } from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
-import { OPPORTUNITIES } from '../content';
+import { CATALOG } from '../content';
 import { useIntake } from '../intake';
 import { OPPORTUNITY_KINDS, matchOpportunities } from '../matching';
 import type { Opportunity, OpportunityKind, OpportunityMatch } from '../models';
@@ -24,7 +24,7 @@ const KIND_TITLES: Record<OpportunityKind, string> = {
   research: 'Research programs',
 };
 
-const CATALOG_BY_ID = new Map<string, Opportunity>(OPPORTUNITIES.map((item) => [item.id, item]));
+const CATALOG_BY_ID = new Map<string, Opportunity>(CATALOG.map((item) => [item.id, item]));
 
 const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
 
@@ -138,7 +138,7 @@ export function ResultsScreen() {
   const cardWidth = screenWidth - spacing.lg * 2 - CARD_PEEK;
 
   const results = useMemo(
-    () => (profile ? matchOpportunities(profile, OPPORTUNITIES) : null),
+    () => (profile ? matchOpportunities(profile, CATALOG) : null),
     [profile],
   );
 
@@ -158,7 +158,7 @@ export function ResultsScreen() {
       <View style={[styles.header, styles.inset]}>
         <Text style={styles.title}>Your matches</Text>
         <Text style={styles.subtitle}>
-          {total} matches. Sample listings for the demo.
+          {total} matches. Events are live Detroit listings; the rest are samples for the demo.
         </Text>
       </View>
 

@@ -2,4 +2,5 @@
 export * from './questionnaire';
 export * from './copy';
 export * from './opportunities';
+export * from './catalog';
 export * from './boards';
