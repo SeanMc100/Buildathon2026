@@ -1,0 +1,6 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Buildathon App data contracts",
+  "description": "Source of truth for data shapes shared across slices. Changes must be announced to the team. Mirror in src/models.",
+  "definitions": {}
+}
