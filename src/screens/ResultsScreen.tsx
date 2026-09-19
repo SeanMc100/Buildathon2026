@@ -8,7 +8,7 @@ import { Linking, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimens
 
 import { CATALOG } from '../content';
 import { useIntake } from '../intake';
-import { OPPORTUNITY_KINDS, matchOpportunities } from '../matching';
+import { OPPORTUNITY_KINDS, matchOpportunities, rankKind } from '../matching';
 import type { Opportunity, OpportunityKind, OpportunityMatch } from '../models';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, radius, spacing, typography } from '../theme';
@@ -141,6 +141,11 @@ export function ResultsScreen() {
     () => (profile ? matchOpportunities(profile, CATALOG) : null),
     [profile],
   );
+  // The section shows the top matches; this is how many events exist in all.
+  const totalEvents = useMemo(
+    () => (profile ? rankKind('event', profile, CATALOG).length : 0),
+    [profile],
+  );
 
   if (!profile || !results) {
     return (
@@ -192,6 +197,15 @@ export function ResultsScreen() {
                 ) : null;
               })}
             </ScrollView>
+            {kind === 'event' && totalEvents > matches.length ? (
+              <View style={styles.inset}>
+                <Button
+                  label={`See all ${totalEvents} Detroit events`}
+                  variant="ghost"
+                  onPress={() => navigation.navigate('Events')}
+                />
+              </View>
+            ) : null}
           </View>
         );
       })}
