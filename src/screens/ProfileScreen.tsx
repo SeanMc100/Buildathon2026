@@ -19,10 +19,11 @@ import {
   DialRow,
   FactRow,
   InterestRow,
-  PriorityBars,
+  PriorityList,
   ProfileBlock,
+  humanize,
 } from './components/ProfileSections';
-import { Button, Card, Pill, ProgressBar } from './components/ui';
+import { Button, Card } from './components/ui';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -33,12 +34,30 @@ const CHALLENGE_TEXT = {
   Drained: 'Deadlines wear them down',
 };
 const TEAM_TEXT = { Solo: 'Heads-down alone', SmallTeam: 'Small close team', LargeOrg: 'Large organisation' };
+const PREPARATION_TEXT = {
+  1: 'Little preparation needed',
+  2: 'Some preparation',
+  3: 'Training or an associate degree',
+  4: "Bachelor's degree level",
+  5: 'Advanced degree level',
+};
+
+function outcomeSummary(outcome: MatchOutcome): { text: string; isError: boolean } {
+  if (outcome.status === 'sent') {
+    return { text: `${outcome.response.recommendations?.length ?? 0} opportunities returned`, isError: false };
+  }
+  if (outcome.status === 'not_configured') {
+    return { text: "Matching isn't connected yet", isError: false };
+  }
+  return { text: "Couldn't reach the matching service", isError: true };
+}
 
 export function ProfileScreen() {
   const navigation = useNavigation<Nav>();
   const insets = useSafeAreaInsets();
   const { profile } = useIntake();
 
+  const [showTeam, setShowTeam] = useState(false);
   const [showPayload, setShowPayload] = useState(false);
   const [copied, setCopied] = useState(false);
   const [sending, setSending] = useState(false);
@@ -69,164 +88,198 @@ export function ProfileScreen() {
   };
 
   const style = profile.workStyle;
+  const status = outcome ? outcomeSummary(outcome) : null;
 
   return (
-    <ScrollView
-      style={styles.screen}
-      contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + spacing.xl }]}
-    >
-      <Pill text={`${Math.round(profile.completeness * 100)}% answered`} tone="accent" />
-      <Text style={styles.title}>{RESULT_COPY.title}</Text>
-      <Text style={styles.subtitle}>{RESULT_COPY.subtitle}</Text>
-      <ProgressBar ratio={profile.completeness} />
-
-      <Card style={styles.narrativeCard}>
-        <Text style={styles.narrative}>{profile.narrativeSummary}</Text>
-      </Card>
-
-      <ProfileBlock title="What you would trade">
-        <PriorityBars priorities={profile.priorities} />
-      </ProfileBlock>
-
-      <ProfileBlock title="How you work">
-        <DialRow
-          label="Autonomy"
-          lowLabel="Clear direction"
-          highLabel="My own call"
-          inference={style.autonomy}
-        />
-        <DialRow
-          label="Range"
-          lowLabel="Deep on one thing"
-          highLabel="A bit of everything"
-          inference={style.variety}
-        />
-        <FactRow
-          label="Pace"
-          value={PACE_TEXT[style.pace.value]}
-          confidence={style.pace.confidence}
-          sources={style.pace.sourceQuestionIds}
-        />
-        <FactRow
-          label="Pressure"
-          value={CHALLENGE_TEXT[style.challengeAppetite.value]}
-          confidence={style.challengeAppetite.confidence}
-          sources={style.challengeAppetite.sourceQuestionIds}
-        />
-        <FactRow
-          label="People"
-          value={TEAM_TEXT[style.teamShape.value]}
-          confidence={style.teamShape.confidence}
-          sources={style.teamShape.sourceQuestionIds}
-        />
-      </ProfileBlock>
-
-      <ProfileBlock title="What pulls you in">
-        <InterestRow profile={profile} />
-      </ProfileBlock>
-
-      <ProfileBlock title="Where you are">
-        <FactRow
-          label="Stage"
-          value={profile.stage.value}
-          confidence={profile.stage.confidence}
-          sources={profile.stage.sourceQuestionIds}
-        />
-        <FactRow
-          label="Preparation level"
-          value={`Job Zone ${profile.jobZone.value} of 5`}
-          confidence={profile.jobZone.confidence}
-          sources={profile.jobZone.sourceQuestionIds}
-        />
-        {profile.focusArea ? <FactRow label="Focus" value={profile.focusArea} /> : null}
-        {profile.workValues.value.length > 0 ? (
-          <FactRow
-            label="Work values"
-            value={profile.workValues.value.join(', ')}
-            confidence={profile.workValues.confidence}
-            sources={profile.workValues.sourceQuestionIds}
-          />
-        ) : null}
-      </ProfileBlock>
-
-      <ProfileBlock title="Hard lines">
-        <ConstraintList profile={profile} />
-      </ProfileBlock>
-
-      {profile.extraContext ? (
-        <ProfileBlock title="In your words">
-          <Text style={styles.quote}>{profile.extraContext}</Text>
-        </ProfileBlock>
-      ) : null}
-
-      <ProfileBlock title={RESULT_COPY.payloadHeading}>
-        <Text style={styles.payloadBody}>{RESULT_COPY.payloadBody}</Text>
-        <Pressable onPress={() => setShowPayload((current) => !current)} hitSlop={8}>
-          <Text style={styles.link}>{showPayload ? 'Hide JSON' : 'Show JSON'}</Text>
-        </Pressable>
-        {showPayload ? (
-          <View style={styles.codeBox}>
-            <Text style={styles.code}>{payloadText}</Text>
-          </View>
-        ) : null}
-        <Button label={copied ? 'Copied' : 'Copy request'} variant="secondary" onPress={copy} />
-      </ProfileBlock>
-
-      {outcome ? (
-        <Card style={styles.outcomeCard}>
-          <Text style={styles.outcomeTitle}>
-            {outcome.status === 'sent'
-              ? `${outcome.response.recommendations?.length ?? 0} opportunities returned`
-              : outcome.status === 'not_configured'
-                ? 'No matching endpoint configured yet'
-                : 'Could not reach the matching service'}
+    <View style={styles.screen}>
+      <ScrollView contentContainerStyle={styles.content}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{RESULT_COPY.title}</Text>
+          <Text style={styles.coverage}>
+            Based on {Math.round(profile.completeness * 100)}% of the questions
           </Text>
-          <Text style={styles.outcomeBody}>
-            {outcome.status === 'not_configured'
-              ? 'Set expo.extra.matchingEndpoint in app.json. Until then the request above is built and shown but not sent.'
-              : outcome.status === 'error'
-                ? outcome.message
-                : 'Recommendations are on the response, each citing the questions that drove it.'}
-          </Text>
+        </View>
+
+        <Card style={styles.narrativeCard}>
+          <Text style={styles.narrative}>{profile.narrativeSummary}</Text>
         </Card>
-      ) : null}
+        <Text style={styles.hint}>Tap any row below to see why we think it.</Text>
 
-      <View style={styles.actions}>
-        <Button
-          label={sending ? 'Sending…' : RESULT_COPY.send}
-          onPress={send}
-          disabled={sending}
-        />
-        <Button
-          label={RESULT_COPY.retake}
-          variant="secondary"
-          onPress={() =>
-            navigation.replace('IntakeQuestion', { questionId: QUESTION_BANK[0].id })
-          }
-        />
-      </View>
+        <ProfileBlock title="What matters most">
+          <PriorityList priorities={profile.priorities} />
+        </ProfileBlock>
 
-      <View style={styles.legal}>
-        <Text style={styles.legalTitle}>Not collected, not inferred, not sent</Text>
-        <Text style={styles.legalBody}>{EXCLUDED_ATTRIBUTES.join(' · ').replace(/_/g, ' ')}</Text>
-        <Text style={styles.legalBody}>{ONET_ATTRIBUTION}</Text>
+        <ProfileBlock title="How you work">
+          <DialRow
+            label="Autonomy"
+            lowLabel="Clear direction"
+            highLabel="My own call"
+            inference={style.autonomy}
+          />
+          <DialRow
+            label="Range"
+            lowLabel="Deep on one thing"
+            highLabel="A bit of everything"
+            inference={style.variety}
+          />
+          <FactRow
+            label="Pace"
+            value={PACE_TEXT[style.pace.value]}
+            confidence={style.pace.confidence}
+            sources={style.pace.sourceQuestionIds}
+          />
+          <FactRow
+            label="Pressure"
+            value={CHALLENGE_TEXT[style.challengeAppetite.value]}
+            confidence={style.challengeAppetite.confidence}
+            sources={style.challengeAppetite.sourceQuestionIds}
+          />
+          <FactRow
+            label="People"
+            value={TEAM_TEXT[style.teamShape.value]}
+            confidence={style.teamShape.confidence}
+            sources={style.teamShape.sourceQuestionIds}
+          />
+          <InterestRow profile={profile} />
+        </ProfileBlock>
+
+        <ProfileBlock title="Where you are">
+          <FactRow
+            label="Stage"
+            value={humanize(profile.stage.value)}
+            confidence={profile.stage.confidence}
+            sources={profile.stage.sourceQuestionIds}
+          />
+          <FactRow
+            label="Preparation"
+            value={PREPARATION_TEXT[profile.jobZone.value]}
+            confidence={profile.jobZone.confidence}
+            sources={profile.jobZone.sourceQuestionIds}
+          />
+          {profile.focusArea ? <FactRow label="Focus" value={profile.focusArea} /> : null}
+          {profile.workValues.value.length > 0 ? (
+            <FactRow
+              label="Work values"
+              value={profile.workValues.value.map(humanize).join(', ')}
+              confidence={profile.workValues.confidence}
+              sources={profile.workValues.sourceQuestionIds}
+            />
+          ) : null}
+        </ProfileBlock>
+
+        <ProfileBlock title="Your deal-breakers">
+          <ConstraintList profile={profile} />
+        </ProfileBlock>
+
+        {profile.extraContext ? (
+          <ProfileBlock title="In your words">
+            <Text style={styles.quote}>{profile.extraContext}</Text>
+          </ProfileBlock>
+        ) : null}
+
+        <View style={styles.team}>
+          <Pressable
+            onPress={() => setShowTeam((current) => !current)}
+            hitSlop={8}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: showTeam }}
+            style={styles.teamHeader}
+          >
+            <Text style={styles.teamTitle}>For the team</Text>
+            <Text style={styles.link}>{showTeam ? 'Hide' : 'Show'}</Text>
+          </Pressable>
+
+          {showTeam ? (
+            <View style={styles.teamBody}>
+              <Text style={styles.teamText}>{RESULT_COPY.payloadBody}</Text>
+              <Pressable onPress={() => setShowPayload((current) => !current)} hitSlop={8}>
+                <Text style={styles.link}>{showPayload ? 'Hide JSON' : 'Show JSON'}</Text>
+              </Pressable>
+              {showPayload ? (
+                <View style={styles.codeBox}>
+                  <Text style={styles.code}>{payloadText}</Text>
+                </View>
+              ) : null}
+              <Button
+                label={copied ? 'Copied' : 'Copy request'}
+                variant="secondary"
+                onPress={copy}
+              />
+
+              {outcome ? (
+                <View style={styles.outcome}>
+                  <Text style={styles.outcomeTitle}>{status?.text}</Text>
+                  <Text style={styles.teamText}>
+                    {outcome.status === 'not_configured'
+                      ? 'Set expo.extra.matchingEndpoint in app.json. Until then the request is built but not sent.'
+                      : outcome.status === 'error'
+                        ? outcome.message
+                        : 'Recommendations are on the response, each citing the questions that drove it.'}
+                  </Text>
+                </View>
+              ) : null}
+
+              <Text style={styles.legalTitle}>Not collected, not inferred, not sent</Text>
+              <Text style={styles.legalBody}>
+                {EXCLUDED_ATTRIBUTES.join(' · ').replace(/_/g, ' ')}
+              </Text>
+              <Text style={styles.legalBody}>{ONET_ATTRIBUTION}</Text>
+            </View>
+          ) : null}
+        </View>
+      </ScrollView>
+
+      <View style={[styles.bar, { paddingBottom: Math.max(insets.bottom, spacing.md) }]}>
+        {status ? (
+          <Text style={[styles.status, status.isError && styles.statusError]}>{status.text}</Text>
+        ) : null}
+        <View style={styles.barActions}>
+          <View style={styles.barSecondary}>
+            <Button
+              label={RESULT_COPY.retake}
+              variant="ghost"
+              onPress={() =>
+                navigation.replace('IntakeQuestion', { questionId: QUESTION_BANK[0].id })
+              }
+            />
+          </View>
+          <View style={styles.barPrimary}>
+            <Button
+              label={sending ? 'Sending…' : RESULT_COPY.send}
+              onPress={send}
+              disabled={sending}
+            />
+          </View>
+        </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.lg, gap: spacing.lg },
+  content: { padding: spacing.lg, gap: spacing.lg + 4 },
+
+  header: { gap: spacing.xs },
   title: { ...typography.display, color: colors.text },
-  subtitle: { ...typography.body, color: colors.textMuted, marginTop: -spacing.md + 2 },
+  coverage: { ...typography.caption, color: colors.textMuted },
 
   narrativeCard: { backgroundColor: colors.primarySoft, borderColor: colors.primarySoft },
-  narrative: { ...typography.body, color: colors.text, lineHeight: 23 },
+  narrative: { ...typography.body, color: colors.text, lineHeight: 24 },
+  hint: { ...typography.caption, color: colors.textMuted, marginTop: -spacing.sm },
 
   quote: { ...typography.body, color: colors.text, fontStyle: 'italic', lineHeight: 22 },
 
-  payloadBody: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
+  team: {
+    gap: spacing.sm,
+    paddingTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  teamHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  teamTitle: { ...typography.body, color: colors.textMuted, fontWeight: '600' },
+  teamBody: { gap: spacing.sm },
+  teamText: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
   link: { ...typography.caption, color: colors.primary, fontWeight: '600' },
   codeBox: {
     backgroundColor: colors.surface,
@@ -236,16 +289,24 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   code: { fontFamily: 'Courier', fontSize: 10, lineHeight: 14, color: colors.text },
-
-  outcomeCard: { gap: spacing.xs },
-  outcomeTitle: { ...typography.heading, color: colors.text },
-  outcomeBody: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
-
-  actions: { gap: spacing.sm },
-
-  legal: { gap: spacing.xs, marginTop: spacing.sm },
-  legalTitle: { ...typography.label, color: colors.textMuted, letterSpacing: 0.6 },
+  outcome: { gap: spacing.xs },
+  outcomeTitle: { ...typography.body, color: colors.text, fontWeight: '600' },
+  legalTitle: { ...typography.label, color: colors.textMuted, letterSpacing: 0.6, marginTop: spacing.sm },
   legalBody: { ...typography.caption, color: colors.textMuted, fontSize: 11, lineHeight: 16 },
+
+  bar: {
+    gap: spacing.xs,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    backgroundColor: colors.background,
+  },
+  status: { ...typography.caption, color: colors.textMuted, textAlign: 'center' },
+  statusError: { color: colors.danger },
+  barActions: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  barSecondary: { flex: 2 },
+  barPrimary: { flex: 3 },
 
   empty: {
     flex: 1,
