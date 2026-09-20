@@ -8,6 +8,7 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { IntakeIntroScreen } from '../screens/IntakeIntroScreen';
 import { IntakeQuestionScreen } from '../screens/IntakeQuestionScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
+import { OpportunityListScreen } from '../screens/OpportunityListScreen';
 import { ResultsScreen } from '../screens/ResultsScreen';
 import type { RootStackParamList } from './types';
 
@@ -33,6 +34,7 @@ export function RootNavigator() {
       <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: '' }} />
       <Stack.Screen name="Results" component={ResultsScreen} options={{ title: '' }} />
       <Stack.Screen name="Events" component={EventsScreen} options={{ title: '' }} />
+      <Stack.Screen name="OpportunityList" component={OpportunityListScreen} options={{ title: '' }} />
       <Stack.Screen name="Boards" component={BoardsScreen} options={{ title: '' }} />
       {/* BoardScreen sets its own title from the board name. */}
       <Stack.Screen name="Board" component={BoardScreen} options={{ title: '' }} />

@@ -4,77 +4,22 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMemo } from 'react';
-import { Linking, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 import { CATALOG } from '../content';
 import { useIntake } from '../intake';
 import { OPPORTUNITY_KINDS, matchOpportunities, rankKind } from '../matching';
 import type { Opportunity, OpportunityKind, OpportunityMatch } from '../models';
 import type { RootStackParamList } from '../navigation/types';
-import { colors, radius, spacing, typography } from '../theme';
+import { colors, spacing, typography } from '../theme';
 import { BulletinBoardSection } from './components/BulletinBoardSection';
-import { Button, Card } from './components/ui';
+import { OpportunityCard } from './components/OpportunityCard';
+import { Button } from './components/ui';
+import { KIND_TITLES } from './OpportunityListScreen';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
-const KIND_TITLES: Record<OpportunityKind, string> = {
-  job: 'Jobs and internships',
-  program: 'Programs',
-  event: 'Events',
-  research: 'Research programs',
-};
-
 const CATALOG_BY_ID = new Map<string, Opportunity>(CATALOG.map((item) => [item.id, item]));
-
-const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
-
-function formatDate(iso: string): string {
-  return dateFormat.format(new Date(iso));
-}
-
-function money(value: number): string {
-  return `$${value.toLocaleString('en-US')}`;
-}
-
-/** One short line of the facts that differ by kind. */
-function factLine(item: Opportunity): string {
-  switch (item.kind) {
-    case 'job': {
-      const pay =
-        item.payMinUsd !== null && item.payMaxUsd !== null
-          ? `${money(item.payMinUsd)}–${money(item.payMaxUsd)}`
-          : null;
-      return [humanize(item.employmentType), pay].filter(Boolean).join(' · ');
-    }
-    case 'program': {
-      const cost = item.costUsd === 0 ? 'Free' : item.costUsd !== null ? money(item.costUsd) : null;
-      const weeks = item.durationWeeks ? `${item.durationWeeks} weeks` : null;
-      const stipend = item.stipendUsd ? `${money(item.stipendUsd)} stipend` : null;
-      return [cost, weeks, stipend].filter(Boolean).join(' · ');
-    }
-    case 'event': {
-      const cost = item.costUsd === 0 ? 'Free' : item.costUsd !== null ? money(item.costUsd) : null;
-      return [formatDate(item.startsAt), humanize(item.format), cost].filter(Boolean).join(' · ');
-    }
-    case 'research': {
-      const weeks = item.durationWeeks ? `${item.durationWeeks} weeks` : null;
-      const stipend = item.stipendUsd ? `${money(item.stipendUsd)} stipend` : null;
-      return [item.field, weeks, stipend].filter(Boolean).join(' · ');
-    }
-  }
-}
-
-function humanize(value: string): string {
-  return value
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/_/g, ' ')
-    .toLowerCase()
-    .replace(/^./, (first) => first.toUpperCase());
-}
-
-function deadlineLine(item: Opportunity): string | null {
-  return 'applyBy' in item && item.applyBy ? `Apply by ${formatDate(item.applyBy)}` : null;
-}
 
 /** Events read best as a calendar: the top matches, soonest first. */
 function inDateOrder(matches: OpportunityMatch[]): OpportunityMatch[] {
@@ -89,57 +34,6 @@ function inDateOrder(matches: OpportunityMatch[]): OpportunityMatch[] {
 const CARD_PEEK = spacing.xl;
 const CARD_GAP = spacing.sm + 4;
 
-function MatchCard({
-  match,
-  item,
-  width,
-}: {
-  match: OpportunityMatch;
-  item: Opportunity;
-  width: number;
-}) {
-  const deadline = deadlineLine(item);
-  const where = [item.location, item.arrangement].filter(Boolean).join(' · ');
-
-  return (
-    <Card style={[styles.card, { width }]}>
-      <View style={styles.cardTop}>
-        <View style={styles.cardTitleBlock}>
-          <Text style={styles.cardTitle}>{item.title}</Text>
-          <Text style={styles.org}>{item.organization}</Text>
-          <Text style={styles.org}>{where}</Text>
-        </View>
-        <View style={styles.score}>
-          <Text style={styles.scoreValue}>{match.matchScore}</Text>
-          <Text style={styles.scoreLabel}>match</Text>
-        </View>
-      </View>
-
-      <Text style={styles.summary} numberOfLines={2}>
-        {item.summary}
-      </Text>
-      <Text style={styles.facts}>{[factLine(item), deadline].filter(Boolean).join(' · ')}</Text>
-
-      <View style={styles.reasons}>
-        {match.whyItFits.slice(0, 1).map((line) => (
-          <Text key={line} style={styles.fit}>
-            ✓ {line}
-          </Text>
-        ))}
-        {match.gaps.slice(0, 1).map((line) => (
-          <Text key={line} style={styles.gap}>
-            – {line}
-          </Text>
-        ))}
-      </View>
-
-      <Pressable onPress={() => Linking.openURL(item.url)} hitSlop={8} accessibilityRole="link">
-        <Text style={styles.link}>View details</Text>
-      </Pressable>
-    </Card>
-  );
-}
-
 export function ResultsScreen() {
   const navigation = useNavigation<Nav>();
   const { profile } = useIntake();
@@ -150,9 +44,12 @@ export function ResultsScreen() {
     () => (profile ? matchOpportunities(profile, CATALOG) : null),
     [profile],
   );
-  // The section shows the top matches; this is how many events exist in all.
-  const totalEvents = useMemo(
-    () => (profile ? rankKind('event', profile, CATALOG).length : 0),
+  // Each section shows only the top matches; this is how many exist in all.
+  const totals = useMemo(
+    () =>
+      Object.fromEntries(
+        OPPORTUNITY_KINDS.map((kind) => [kind, profile ? rankKind(kind, profile, CATALOG).length : 0]),
+      ) as Record<OpportunityKind, number>,
     [profile],
   );
 
@@ -202,16 +99,24 @@ export function ResultsScreen() {
               {(kind === 'event' ? inDateOrder(matches) : matches).map((match) => {
                 const item = CATALOG_BY_ID.get(match.opportunityId);
                 return item ? (
-                  <MatchCard key={match.opportunityId} match={match} item={item} width={cardWidth} />
+                  <OpportunityCard key={match.opportunityId} match={match} item={item} width={cardWidth} />
                 ) : null;
               })}
             </ScrollView>
-            {kind === 'event' && totalEvents > matches.length ? (
+            {totals[kind] > matches.length ? (
               <View style={styles.inset}>
                 <Button
-                  label={`See all ${totalEvents} Detroit events`}
+                  label={
+                    kind === 'event'
+                      ? `See all ${totals.event} Detroit events`
+                      : `See all ${totals[kind]} ${KIND_TITLES[kind].toLowerCase()}`
+                  }
                   variant="ghost"
-                  onPress={() => navigation.navigate('Events')}
+                  onPress={() =>
+                    kind === 'event'
+                      ? navigation.navigate('Events')
+                      : navigation.navigate('OpportunityList', { kind })
+                  }
                 />
               </View>
             ) : null}
@@ -241,30 +146,6 @@ const styles = StyleSheet.create({
 
   section: { gap: spacing.sm },
   sectionTitle: { ...typography.title, color: colors.text },
-
-  card: { gap: spacing.sm },
-  cardTop: { flexDirection: 'row', justifyContent: 'space-between', gap: spacing.md },
-  cardTitleBlock: { flex: 1, gap: 2 },
-  cardTitle: { ...typography.heading, color: colors.text },
-  org: { ...typography.caption, color: colors.textMuted },
-  score: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: 56,
-    paddingVertical: spacing.xs,
-    borderRadius: radius.md,
-    backgroundColor: colors.primarySoft,
-  },
-  scoreValue: { ...typography.title, color: colors.primary },
-  scoreLabel: { ...typography.label, color: colors.primary },
-
-  summary: { ...typography.body, color: colors.text, lineHeight: 21 },
-  facts: { ...typography.caption, color: colors.textMuted },
-
-  reasons: { gap: spacing.xs, marginTop: spacing.xs },
-  fit: { ...typography.caption, color: colors.success, lineHeight: 18 },
-  gap: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
-  link: { ...typography.caption, color: colors.primary, fontWeight: '600' },
 
   empty: {
     flex: 1,

@@ -1,3 +1,5 @@
+import type { OpportunityKind } from '../models';
+
 // Every screen registered in RootNavigator needs an entry here.
 // `undefined` means the route takes no params.
 export type RootStackParamList = {
@@ -9,6 +11,8 @@ export type RootStackParamList = {
   Results: undefined;
   /** Every upcoming Detroit event, not just the top matches. */
   Events: undefined;
+  /** Every match of one kind (job, program or research), not just the top few. */
+  OpportunityList: { kind: Exclude<OpportunityKind, 'event'> };
   /** Directory of Metro Detroit boards to join or leave. */
   Boards: undefined;
   Board: { boardId: string };
