@@ -233,13 +233,22 @@ function AllocationInput({
     return Object.fromEntries(question.options.map((option) => [option.value, 0]));
   }, [value, question.options]);
 
-  const spent = Object.values(allocation).reduce((sum, amount) => sum + amount, 0);
+  const spent = Object.values(allocation).reduce(
+    (sum, amount) => sum + (typeof amount === 'number' && Number.isFinite(amount) ? amount : 0),
+    0,
+  );
   const remaining = question.total - spent;
   // Measured once per meter so a tap can be read as a share of the bar.
   const trackWidths = useRef<Record<string, number>>({});
 
+  /** Reads a stored amount defensively, so one bad write cannot poison the row. */
+  const amountOf = (optionValue: string) => {
+    const value = allocation[optionValue];
+    return typeof value === 'number' && Number.isFinite(value) ? value : 0;
+  };
+
   const adjust = (optionValue: string, delta: number) => {
-    const current = allocation[optionValue] ?? 0;
+    const current = amountOf(optionValue);
     const next = Math.max(0, Math.min(question.total, current + delta));
     // Never let the total run over the budget - that is the whole point of
     // the format.
@@ -255,10 +264,17 @@ function AllocationInput({
   const setFromTap = (optionValue: string, event: GestureResponderEvent) => {
     const width = trackWidths.current[optionValue];
     if (!width) return;
-    const share = Math.max(0, Math.min(1, event.nativeEvent.locationX / width));
+
+    // React Native reports the tap as locationX. A mouse click on the web
+    // arrives without it, so fall back to the DOM's offsetX; both are measured
+    // from the left edge of an element that spans the full width of the bar.
+    const native = event.nativeEvent as { locationX?: number; offsetX?: number };
+    const x = [native.locationX, native.offsetX].find((value) => Number.isFinite(value));
+    if (x === undefined) return;
+
+    const share = Math.max(0, Math.min(1, x / width));
     const raw = Math.round((share * question.total) / question.step) * question.step;
-    const current = allocation[optionValue] ?? 0;
-    const ceiling = current + remaining;
+    const ceiling = amountOf(optionValue) + remaining;
     onChange({ ...allocation, [optionValue]: Math.max(0, Math.min(ceiling, raw)) });
   };
 
@@ -308,7 +324,7 @@ function AllocationInput({
       </View>
 
       {question.options.map((option) => {
-        const amount = allocation[option.value] ?? 0;
+        const amount = amountOf(option.value);
         return (
           <View key={option.value} style={[styles.allocRow, amount > 0 && styles.rowSelected]}>
             <View style={styles.rowTextWrap}>
