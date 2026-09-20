@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { BoardScreen } from '../screens/BoardScreen';
 import { BoardSubmitScreen } from '../screens/BoardSubmitScreen';
 import { BoardsScreen } from '../screens/BoardsScreen';
+import { EventsScreen } from '../screens/EventsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { IntakeIntroScreen } from '../screens/IntakeIntroScreen';
 import { IntakeQuestionScreen } from '../screens/IntakeQuestionScreen';
@@ -31,6 +32,7 @@ export function RootNavigator() {
       {/* The screen renders its own large title, so the header stays blank. */}
       <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: '' }} />
       <Stack.Screen name="Results" component={ResultsScreen} options={{ title: '' }} />
+      <Stack.Screen name="Events" component={EventsScreen} options={{ title: '' }} />
       <Stack.Screen name="Boards" component={BoardsScreen} options={{ title: '' }} />
       {/* BoardScreen sets its own title from the board name. */}
       <Stack.Screen name="Board" component={BoardScreen} options={{ title: '' }} />

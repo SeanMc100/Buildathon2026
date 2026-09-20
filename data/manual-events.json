@@ -1,0 +1,4 @@
+{
+  "about": "Events with no feed to read: Facebook-only groups, one-offs, anything an organiser told you about. Add one object per event to 'events' and run `npm run ingest:events`. Required: title, url, startsAt (ISO, with a time zone, e.g. 2026-10-06T18:00:00-04:00), organizer. Optional: endsAt, location, city, description, isOnline, costUsd (0 = free).",
+  "events": []
+}

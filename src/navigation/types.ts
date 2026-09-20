@@ -7,6 +7,8 @@ export type RootStackParamList = {
   IntakeQuestion: { questionId: string };
   Profile: undefined;
   Results: undefined;
+  /** Every upcoming Detroit event, not just the top matches. */
+  Events: undefined;
   /** Directory of Metro Detroit boards to join or leave. */
   Boards: undefined;
   Board: { boardId: string };

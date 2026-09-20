@@ -1,14 +1,14 @@
 // Ranked opportunities for the current profile, grouped by kind. Screens slice.
-// Scoring runs locally against the sample catalog; see src/matching/opportunities.ts.
+// Scoring runs locally against the catalog (live events plus samples); see src/matching/opportunities.ts.
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMemo } from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
-import { OPPORTUNITIES } from '../content';
+import { CATALOG } from '../content';
 import { useIntake } from '../intake';
-import { OPPORTUNITY_KINDS, matchOpportunities } from '../matching';
+import { OPPORTUNITY_KINDS, matchOpportunities, rankKind } from '../matching';
 import type { Opportunity, OpportunityKind, OpportunityMatch } from '../models';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, radius, spacing, typography } from '../theme';
@@ -24,7 +24,7 @@ const KIND_TITLES: Record<OpportunityKind, string> = {
   research: 'Research programs',
 };
 
-const CATALOG_BY_ID = new Map<string, Opportunity>(OPPORTUNITIES.map((item) => [item.id, item]));
+const CATALOG_BY_ID = new Map<string, Opportunity>(CATALOG.map((item) => [item.id, item]));
 
 const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
 
@@ -74,6 +74,15 @@ function humanize(value: string): string {
 
 function deadlineLine(item: Opportunity): string | null {
   return 'applyBy' in item && item.applyBy ? `Apply by ${formatDate(item.applyBy)}` : null;
+}
+
+/** Events read best as a calendar: the top matches, soonest first. */
+function inDateOrder(matches: OpportunityMatch[]): OpportunityMatch[] {
+  const start = (match: OpportunityMatch) => {
+    const item = CATALOG_BY_ID.get(match.opportunityId);
+    return item?.kind === 'event' ? Date.parse(item.startsAt) : 0;
+  };
+  return [...matches].sort((a, b) => start(a) - start(b));
 }
 
 /** Leaves the next card peeking in so it is obvious the row scrolls. */
@@ -138,7 +147,12 @@ export function ResultsScreen() {
   const cardWidth = screenWidth - spacing.lg * 2 - CARD_PEEK;
 
   const results = useMemo(
-    () => (profile ? matchOpportunities(profile, OPPORTUNITIES) : null),
+    () => (profile ? matchOpportunities(profile, CATALOG) : null),
+    [profile],
+  );
+  // The section shows the top matches; this is how many events exist in all.
+  const totalEvents = useMemo(
+    () => (profile ? rankKind('event', profile, CATALOG).length : 0),
     [profile],
   );
 
@@ -158,7 +172,7 @@ export function ResultsScreen() {
       <View style={[styles.header, styles.inset]}>
         <Text style={styles.title}>Your matches</Text>
         <Text style={styles.subtitle}>
-          {total} matches. Sample listings for the demo.
+          {total} matches. Events are live Detroit listings; the rest are samples for the demo.
         </Text>
       </View>
 
@@ -185,13 +199,22 @@ export function ResultsScreen() {
               decelerationRate="fast"
               contentContainerStyle={styles.carousel}
             >
-              {matches.map((match) => {
+              {(kind === 'event' ? inDateOrder(matches) : matches).map((match) => {
                 const item = CATALOG_BY_ID.get(match.opportunityId);
                 return item ? (
                   <MatchCard key={match.opportunityId} match={match} item={item} width={cardWidth} />
                 ) : null;
               })}
             </ScrollView>
+            {kind === 'event' && totalEvents > matches.length ? (
+              <View style={styles.inset}>
+                <Button
+                  label={`See all ${totalEvents} Detroit events`}
+                  variant="ghost"
+                  onPress={() => navigation.navigate('Events')}
+                />
+              </View>
+            ) : null}
           </View>
         );
       })}
