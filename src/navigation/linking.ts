@@ -1,7 +1,7 @@
 import type { LinkingOptions } from '@react-navigation/native';
 import { Platform } from 'react-native';
 
-import type { ListKind, RootStackParamList } from './types';
+import type { BrowseKind, RootStackParamList } from './types';
 
 // Gives every screen a real URL on the web, so refresh, back/forward and
 // shared links work. Native builds have no URL prefixes, so this stays off there.
@@ -15,7 +15,9 @@ export const linking: LinkingOptions<RootStackParamList> = {
       IntakeQuestion: 'intake/:questionId',
       Profile: 'profile',
       Results: 'matches',
-      OpportunityList: 'browse/:kind',
+      OpportunityList: 'browse/:kind?',
+      OpportunityDetail: 'opportunity/:id',
+      Saved: 'saved',
       Events: 'events',
       Boards: 'boards',
       Board: 'boards/:boardId',
@@ -33,7 +35,9 @@ const PAGE_TITLES: Record<keyof RootStackParamList, string> = {
   IntakeQuestion: 'Career intake',
   Profile: 'Your profile',
   Results: 'Your matches',
-  OpportunityList: 'Your matches',
+  OpportunityList: 'Browse',
+  OpportunityDetail: 'Opportunity',
+  Saved: 'Saved',
   Events: 'Detroit events',
   Boards: 'Bulletin boards',
   Board: 'Bulletin boards',
@@ -42,18 +46,18 @@ const PAGE_TITLES: Record<keyof RootStackParamList, string> = {
   Support: 'Support',
 };
 
-const LIST_PAGE_TITLES: Record<ListKind, string> = {
+const LIST_PAGE_TITLES: Record<BrowseKind, string> = {
+  all: 'Browse',
   job: 'Jobs',
   internship: 'Internships',
   program: 'Programs',
   research: 'Research programs',
 };
 
-export function documentTitle(
-  route: { name: string; params?: object } | undefined,
-): string {
+export function documentTitle(route: { name: string; params?: object } | undefined): string {
   const name = route?.name as keyof RootStackParamList | undefined;
-  const kind = (route?.params as { kind?: ListKind } | undefined)?.kind;
-  const page = name === 'OpportunityList' && kind ? LIST_PAGE_TITLES[kind] : name && PAGE_TITLES[name];
+  const kind = (route?.params as { kind?: BrowseKind } | undefined)?.kind;
+  const page =
+    name === 'OpportunityList' && kind ? LIST_PAGE_TITLES[kind] : name && PAGE_TITLES[name];
   return !page || page === 'Buildathon App' ? 'Buildathon App' : `${page} · Buildathon App`;
 }

@@ -1,82 +1,114 @@
-// Every listing of one kind (jobs, internships, programs or research), not just the top few. Screens slice.
-// Ranked best fit first once there is a profile; the plain catalog until then.
-// Events have their own screen because they add a date sort; see EventsScreen.tsx.
+// Browse: the whole catalog, searchable, filterable and sortable. Screens slice.
+//
+// One screen covers jobs, internships, programs and research, because they are
+// the same list with a different type filter, and four separate pages meant
+// four places to look and no way to search across them. Events keep their own
+// screen, where a date sort and a calendar reading order earn the separation.
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
+import {
+  DEFAULT_FILTERS,
+  activeFilterCount,
+  belongsToKind,
+  matchesFilters,
+  sortRows,
+  type BrowseFilters,
+} from '../catalog';
 import { CATALOG } from '../content';
 import { useIntake } from '../intake';
 import { isVisible, rankKind } from '../matching';
-import type { Opportunity, OpportunityKind, OpportunityMatch } from '../models';
-import type { ListKind, RootStackParamList } from '../navigation/types';
+import type { Opportunity, OpportunityMatch } from '../models';
+import type { BrowseKind, RootStackParamList } from '../navigation/types';
 import { colors, spacing, typography } from '../theme';
 import { GRID_GAP, useLayout } from '../web/layout';
+import { ChipGroup, SearchField, Segmented, type ChipOption } from './components/filters';
 import { OpportunityCard } from './components/OpportunityCard';
-import { Button } from './components/ui';
+import { SCORE_HELP } from './components/opportunityFacts';
+import { Button, EmptyState, LinkButton } from './components/ui';
 
-export const KIND_TITLES: Record<OpportunityKind, string> = {
-  job: 'Jobs and internships',
-  program: 'Programs',
-  event: 'Events',
-  research: 'Research programs',
-};
+type Nav = NativeStackNavigationProp<RootStackParamList>;
+type Row = { match: OpportunityMatch | null; item: Opportunity };
 
-const LIST_TITLES: Record<ListKind, string> = {
+export const KIND_TITLES: Record<BrowseKind, string> = {
+  all: 'Everything',
   job: 'Jobs',
   internship: 'Internships',
   program: 'Programs',
-  research: 'Research programs',
+  research: 'Research',
 };
 
-const CATALOG_BY_ID = new Map<string, Opportunity>(CATALOG.map((item) => [item.id, item]));
+const KIND_ORDER: BrowseKind[] = ['all', 'job', 'internship', 'program', 'research'];
 
-export function isInternship(item: Opportunity): boolean {
-  return item.kind === 'job' && item.employmentType === 'Internship';
+/**
+ * Every listing, always. The profile changes the order and adds a score; it
+ * never decides what exists. Hiding whatever clashed with a deal-breaker meant
+ * Browse silently dropped most of the catalog and left people staring at a
+ * short list with no way to find out what was missing.
+ */
+function useRows(): Row[] {
+  const { profile } = useIntake();
+  return useMemo(() => {
+    const now = new Date();
+    const live = CATALOG.filter((item) => item.kind !== 'event' && isVisible(item, now));
+    if (!profile) return live.map((item) => ({ match: null, item }));
+
+    // The matcher only scores what clears the hard constraints, so anything
+    // missing from this map is shown unscored rather than dropped.
+    const scores = new Map<string, OpportunityMatch>();
+    for (const kind of ['job', 'program', 'research'] as const) {
+      for (const match of rankKind(kind, profile, CATALOG)) scores.set(match.opportunityId, match);
+    }
+
+    return live
+      .map((item) => ({ item, match: scores.get(item.id) ?? null }))
+      .sort((a, b) => (b.match?.matchScore ?? -1) - (a.match?.matchScore ?? -1));
+  }, [profile]);
 }
-
-/** Whether a listing belongs on the given list. Internships are carved out of the jobs. */
-function belongsTo(kind: ListKind, item: Opportunity): boolean {
-  if (kind === 'internship') return isInternship(item);
-  if (kind === 'job') return item.kind === 'job' && !isInternship(item);
-  return item.kind === kind;
-}
-
-/** The catalog kind a list draws from, which is what the matcher ranks. */
-function catalogKind(kind: ListKind): Exclude<OpportunityKind, 'event'> {
-  return kind === 'internship' ? 'job' : kind;
-}
-
-type Row = { match: OpportunityMatch | null; item: Opportunity };
 
 export function OpportunityListScreen() {
   const { params } = useRoute<NativeStackScreenProps<RootStackParamList, 'OpportunityList'>['route']>();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<Nav>();
   const { profile } = useIntake();
-  const { columns, cardWidth } = useLayout();
-  const { kind } = params;
+  const { columns, cardWidth, isCompact } = useLayout();
 
-  // With a profile the matches come first, best fit first. Anything the matcher
-  // ruled out (a hard line such as work arrangement or pay) follows, unscored, so
-  // a menu link never lands on an empty page.
-  const { rows, matched } = useMemo(() => {
-    const now = new Date();
-    const everything = CATALOG.filter((item) => belongsTo(kind, item) && isVisible(item, now));
-    if (!profile) {
-      return { rows: everything.map((item): Row => ({ match: null, item })), matched: 0 };
-    }
+  const rows = useRows();
+  const [filters, setFilters] = useState<BrowseFilters>({
+    ...DEFAULT_FILTERS,
+    kind: params?.kind ?? 'all',
+    sort: profile ? 'match' : 'az',
+  });
 
-    const ranked = rankKind(catalogKind(kind), profile, CATALOG).flatMap((match): Row[] => {
-      const item = CATALOG_BY_ID.get(match.opportunityId);
-      return item && belongsTo(kind, item) ? [{ match, item }] : [];
-    });
-    const rankedIds = new Set(ranked.map((row) => row.item.id));
-    const rest = everything.filter((item) => !rankedIds.has(item.id)).map((item): Row => ({ match: null, item }));
-    return { rows: [...ranked, ...rest], matched: ranked.length };
-  }, [profile, kind]);
-  const unmatched = rows.length - matched;
+  const set = <K extends keyof BrowseFilters>(key: K, value: BrowseFilters[K]) =>
+    setFilters((current) => ({ ...current, [key]: value }));
+
+  // Counts are of what the other filters allow, so a chip never promises rows
+  // that the current search would hide.
+  const kindOptions = useMemo<ChipOption<BrowseKind>[]>(() => {
+    const withoutKind = { ...filters, kind: 'all' as BrowseKind };
+    const allowed = rows.filter((row) => matchesFilters(row.item, withoutKind, row.match !== null));
+    return KIND_ORDER.map((kind) => ({
+      value: kind,
+      label: KIND_TITLES[kind],
+      count: allowed.filter((row) => belongsToKind(kind, row.item)).length,
+    }));
+  }, [rows, filters.query, filters.arrangement, filters.money, filters.entry, filters.fit]);
+
+  const visible = useMemo(
+    () =>
+      sortRows(
+        rows.filter((row) => matchesFilters(row.item, filters, row.match !== null)),
+        filters.sort,
+      ),
+    [rows, filters],
+  );
+
+  const active = activeFilterCount(filters);
+  const clearAll = () =>
+    setFilters({ ...DEFAULT_FILTERS, sort: profile ? 'match' : 'az', kind: 'all' });
 
   return (
     <FlatList
@@ -84,34 +116,137 @@ export function OpportunityListScreen() {
       key={columns}
       style={styles.screen}
       contentContainerStyle={styles.content}
-      data={rows}
+      data={visible}
       numColumns={columns}
       columnWrapperStyle={columns > 1 ? styles.gridRow : undefined}
       keyExtractor={(row) => row.item.id}
       renderItem={({ item }) => (
-        <OpportunityCard match={item.match} item={item.item} width={columns > 1 ? cardWidth : undefined} />
+        <OpportunityCard
+          match={item.match}
+          item={item.item}
+          clash={profile !== null && item.match === null}
+          width={columns > 1 ? cardWidth : undefined}
+        />
       )}
-      initialNumToRender={8}
-      ListEmptyComponent={<Text style={styles.emptyText}>Nothing here yet.</Text>}
+      initialNumToRender={12}
+      keyboardShouldPersistTaps="handled"
+      ListEmptyComponent={
+        <EmptyState
+          title="Nothing matches those filters"
+          body="Try a shorter search, or widen one of the filters above."
+          action={{ label: 'Clear filters', onPress: clearAll }}
+        />
+      }
       ListHeaderComponent={
         <View style={styles.header}>
-          <Text style={styles.title}>{LIST_TITLES[kind]}</Text>
-          <Text style={styles.subtitle}>
-            {!profile
-              ? `${rows.length} listings.`
-              : unmatched === 0
-                ? `${matched} matches, best fit first.`
-                : matched === 0
-                  ? `None of these meet your requirements, so they are shown without a score.`
-                  : `${matched} ${matched === 1 ? 'match' : 'matches'}, best fit first. The ${unmatched} without a score do not meet your requirements.`}
-          </Text>
+          <View style={styles.intro}>
+            <Text style={styles.title} accessibilityRole="header">
+              Browse opportunities
+            </Text>
+            <Text style={styles.subtitle}>
+              {rows.length} jobs, internships, programs and research places across metro Detroit.
+              {profile ? ` ${SCORE_HELP} Anything that clashes with a deal-breaker is shown without a score.` : ''}
+            </Text>
+          </View>
+
+          <SearchField
+            value={filters.query}
+            onChange={(next) => set('query', next)}
+            placeholder="Search by title, employer or place"
+            accessibilityLabel="Search opportunities"
+          />
+
+          <ChipGroup
+            label="Type"
+            options={kindOptions}
+            value={filters.kind}
+            onChange={(next) => set('kind', next)}
+          />
+
+          <View style={[styles.controls, isCompact && styles.controlsStacked]}>
+            <Segmented
+              label="Where"
+              value={filters.arrangement}
+              onChange={(next) => set('arrangement', next)}
+              options={[
+                { value: 'any', label: 'Any' },
+                { value: 'Remote', label: 'Remote' },
+                { value: 'Hybrid', label: 'Hybrid' },
+                { value: 'Onsite', label: 'On site' },
+              ]}
+            />
+            <Segmented
+              label="Money"
+              value={filters.money}
+              onChange={(next) => set('money', next)}
+              options={[
+                { value: 'any', label: 'Any' },
+                { value: 'paid', label: 'Pays me' },
+                { value: 'free', label: 'Costs nothing' },
+              ]}
+            />
+            <Segmented
+              label="Entry"
+              value={filters.entry}
+              onChange={(next) => set('entry', next)}
+              options={[
+                { value: 'any', label: 'Any' },
+                { value: 'no_degree', label: 'No degree needed' },
+              ]}
+            />
+            {profile ? (
+              <Segmented
+                label="Deal-breakers"
+                value={filters.fit}
+                onChange={(next) => set('fit', next)}
+                options={[
+                  { value: 'any', label: 'Show everything' },
+                  { value: 'fits', label: 'Only what fits' },
+                ]}
+              />
+            ) : null}
+            <Segmented
+              label="Sort by"
+              value={filters.sort}
+              onChange={(next) => set('sort', next)}
+              options={[
+                ...(profile ? ([{ value: 'match', label: 'Best fit' }] as const) : []),
+                { value: 'az', label: 'A–Z' },
+                { value: 'pay', label: 'Highest paid' },
+              ]}
+            />
+          </View>
+
+          <View style={styles.resultBar}>
+            <Text style={styles.resultCount}>
+              {visible.length === rows.length
+                ? `Showing all ${rows.length}`
+                : `${visible.length} of ${rows.length}`}
+              {profile && filters.sort === 'match' ? ', best fit first' : ''}
+            </Text>
+            {active > 0 ? <LinkButton label="Clear filters" onPress={clearAll} /> : null}
+          </View>
+
           {profile ? null : (
             <View style={styles.prompt}>
-              <Text style={styles.promptText}>Answer a few questions to rank these by how well they fit you.</Text>
-              <Button label="Build my profile" onPress={() => navigation.navigate('IntakeIntro')} />
+              <Text style={styles.promptText}>
+                Answer a few questions and every listing here gets a fit score, best first.
+              </Text>
+              <Button
+                label="Build my profile"
+                onPress={() => navigation.navigate('IntakeIntro')}
+              />
             </View>
           )}
         </View>
+      }
+      ListFooterComponent={
+        visible.length > 0 ? (
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Looking for something happening soon?</Text>
+            <LinkButton label="See Detroit events →" onPress={() => navigation.navigate('Events')} />
+          </View>
+        ) : null
       }
     />
   );
@@ -120,13 +255,42 @@ export function OpportunityListScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
-  gridRow: { gap: GRID_GAP },
+  gridRow: { gap: GRID_GAP, alignItems: 'stretch' },
 
-  header: { gap: spacing.xs, marginBottom: spacing.sm },
+  header: { gap: spacing.lg, marginBottom: spacing.sm },
+  intro: { gap: spacing.xs },
   title: { ...typography.display, color: colors.text },
-  subtitle: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
-  prompt: { gap: spacing.sm, marginTop: spacing.sm, maxWidth: 360 },
-  promptText: { ...typography.body, color: colors.textMuted, lineHeight: 21 },
+  subtitle: { ...typography.caption, color: colors.textMuted, lineHeight: 21, maxWidth: 680 },
 
-  emptyText: { ...typography.body, color: colors.textMuted, textAlign: 'center', padding: spacing.lg },
+  controls: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.lg },
+  controlsStacked: { flexDirection: 'column', gap: spacing.md },
+
+  resultBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  resultCount: { ...typography.caption, fontWeight: '600', color: colors.text },
+
+  prompt: {
+    gap: spacing.sm,
+    padding: spacing.md,
+    borderRadius: 12,
+    backgroundColor: colors.primarySoft,
+  },
+  promptText: { ...typography.caption, color: colors.text, lineHeight: 21 },
+
+  footer: {
+    alignItems: 'center',
+    gap: spacing.xs,
+    marginTop: spacing.lg,
+    paddingTop: spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  footerText: { ...typography.caption, color: colors.textMuted },
 });

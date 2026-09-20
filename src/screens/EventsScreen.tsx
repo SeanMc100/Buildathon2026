@@ -196,6 +196,6 @@ const styles = StyleSheet.create({
 
   summary: { ...typography.body, color: colors.text, lineHeight: 21 },
   facts: { ...typography.caption, color: colors.textMuted },
-  fit: { ...typography.caption, color: colors.success, lineHeight: 18 },
+  fit: { ...typography.caption, color: colors.positive, lineHeight: 18 },
   link: { ...typography.caption, color: colors.primary, fontWeight: '600' },
 });

@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { BoardProvider, useBoard } from './src/board';
 import { IntakeProvider, useIntake } from './src/intake';
+import { SavedProvider, useSaved } from './src/saved';
 import { documentTitle, linking } from './src/navigation/linking';
 import { RootNavigator } from './src/navigation/RootNavigator';
 
@@ -13,7 +14,8 @@ import { RootNavigator } from './src/navigation/RootNavigator';
 function HydrationGate({ children }: { children: React.ReactNode }) {
   const intake = useIntake();
   const board = useBoard();
-  if (Platform.OS === 'web' && !(intake.hydrated && board.hydrated)) return null;
+  const saved = useSaved();
+  if (Platform.OS === 'web' && !(intake.hydrated && board.hydrated && saved.hydrated)) return null;
   return <>{children}</>;
 }
 
@@ -22,14 +24,16 @@ export default function App() {
     <SafeAreaProvider>
       <IntakeProvider>
         <BoardProvider>
-          <HydrationGate>
-            <NavigationContainer
-              linking={linking}
-              documentTitle={{ formatter: (_options, route) => documentTitle(route) }}
-            >
-              <RootNavigator />
-            </NavigationContainer>
-          </HydrationGate>
+          <SavedProvider>
+            <HydrationGate>
+              <NavigationContainer
+                linking={linking}
+                documentTitle={{ formatter: (_options, route) => documentTitle(route) }}
+              >
+                <RootNavigator />
+              </NavigationContainer>
+            </HydrationGate>
+          </SavedProvider>
         </BoardProvider>
       </IntakeProvider>
       <StatusBar style="auto" />

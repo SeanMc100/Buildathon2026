@@ -1,90 +1,126 @@
-// One ranked opportunity as a card. Shared by the results carousels and the "see all" lists. Screens slice.
+// One opportunity as a card. Shared by the matches page, Browse, Events and the
+// shortlist. Screens slice.
+//
+// The whole card is the target, because a 400px card whose only action is a
+// 14px link is a card people fail to open. It goes to the detail screen rather
+// than straight off-site, so there is somewhere to read the full listing, see
+// why it scored what it did, and save it.
 
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { Opportunity, OpportunityMatch } from '../../models';
+import type { RootStackParamList } from '../../navigation/types';
+import { useSaved } from '../../saved';
 import { colors, radius, spacing, typography } from '../../theme';
-import { openExternal } from '../../web/links';
-import { Card } from './ui';
+import { focusRing, isFocused } from '../../web/focus';
+import { isHovered } from '../../web/hover';
+import {
+  deadlineLine,
+  headlineFact,
+  isDeadlineSoon,
+  kindLabel,
+  placeLine,
+  scoreBand,
+  supportingFacts,
+} from './opportunityFacts';
+import { PressableCard } from './ui';
 
-const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+type Nav = NativeStackNavigationProp<RootStackParamList>;
 
-function formatDate(iso: string): string {
-  return dateFormat.format(new Date(iso));
+/** The fit badge: the number, and the word that says what the number means. */
+export function ScoreBadge({ score, compact }: { score: number; compact?: boolean }) {
+  const band = scoreBand(score);
+  return (
+    <View style={[styles.score, BADGE_FILL[band.tone], compact && styles.scoreCompact]}>
+      <Text style={[styles.scoreValue, BADGE_TEXT[band.tone]]}>{score}</Text>
+      <Text style={[styles.scoreLabel, BADGE_TEXT[band.tone]]} numberOfLines={1}>
+        {band.label}
+      </Text>
+    </View>
+  );
 }
 
-function money(value: number): string {
-  return `$${value.toLocaleString('en-US')}`;
-}
+/** Save and unsave, without opening the card it sits on. */
+export function SaveButton({ id, title }: { id: string; title: string }) {
+  const { isSaved, toggle } = useSaved();
+  const saved = isSaved(id);
 
-function humanize(value: string): string {
-  return value
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/_/g, ' ')
-    .toLowerCase()
-    .replace(/^./, (first) => first.toUpperCase());
-}
-
-/** One short line of the facts that differ by kind. */
-function factLine(item: Opportunity): string {
-  switch (item.kind) {
-    case 'job': {
-      const pay =
-        item.payMinUsd !== null && item.payMaxUsd !== null
-          ? `${money(item.payMinUsd)}–${money(item.payMaxUsd)}`
-          : null;
-      return [humanize(item.employmentType), pay].filter(Boolean).join(' · ');
-    }
-    case 'program': {
-      const cost = item.costUsd === 0 ? 'Free' : item.costUsd !== null ? money(item.costUsd) : null;
-      const weeks = item.durationWeeks ? `${item.durationWeeks} weeks` : null;
-      const stipend = item.stipendUsd ? `${money(item.stipendUsd)} stipend` : null;
-      return [cost, weeks, stipend].filter(Boolean).join(' · ');
-    }
-    case 'event': {
-      const cost = item.costUsd === 0 ? 'Free' : item.costUsd !== null ? money(item.costUsd) : null;
-      return [formatDate(item.startsAt), humanize(item.format), cost].filter(Boolean).join(' · ');
-    }
-    case 'research': {
-      const weeks = item.durationWeeks ? `${item.durationWeeks} weeks` : null;
-      const stipend = item.stipendUsd ? `${money(item.stipendUsd)} stipend` : null;
-      return [item.field, weeks, stipend].filter(Boolean).join(' · ');
-    }
-  }
-}
-
-function deadlineLine(item: Opportunity): string | null {
-  return 'applyBy' in item && item.applyBy ? `Apply by ${formatDate(item.applyBy)}` : null;
+  return (
+    <Pressable
+      onPress={() => toggle(id)}
+      hitSlop={10}
+      accessibilityRole="button"
+      accessibilityState={{ selected: saved }}
+      accessibilityLabel={saved ? `Remove ${title} from saved` : `Save ${title}`}
+      style={(state) => [
+        styles.save,
+        saved && styles.saveOn,
+        isHovered(state) && styles.saveHover,
+        isFocused(state) && focusRing,
+      ]}
+    >
+      <Text style={[styles.saveGlyph, saved && styles.saveGlyphOn]}>{saved ? '★' : '☆'}</Text>
+      <Text style={[styles.saveText, saved && styles.saveTextOn]}>{saved ? 'Saved' : 'Save'}</Text>
+    </Pressable>
+  );
 }
 
 /**
- * Pass `width` inside a horizontal carousel or a grid; leave it off to fill a vertical list.
+ * Pass `width` inside a grid; leave it off to fill a vertical list.
  * Without a `match` (no profile yet) the card shows the listing alone, unscored.
  */
 export function OpportunityCard({
   match,
   item,
   width,
+  clash,
 }: {
   match: OpportunityMatch | null;
   item: Opportunity;
   width?: number;
+  /** There is a profile, but this listing sits outside one of its deal-breakers. */
+  clash?: boolean;
 }) {
+  const navigation = useNavigation<Nav>();
+  const headline = headlineFact(item);
   const deadline = deadlineLine(item);
-  const where = [item.location, item.arrangement].filter(Boolean).join(' · ');
+  const soon = isDeadlineSoon(item);
+  const where = placeLine(item);
+  const facts = supportingFacts(item);
 
   return (
-    <Card style={[styles.card, width !== undefined && { width }]}>
-      <View style={styles.cardTop}>
-        <View style={styles.cardTitleBlock}>
-          <Text style={styles.cardTitle}>{item.title}</Text>
-          <Text style={styles.org}>{item.organization}</Text>
-          <Text style={styles.org}>{where}</Text>
+    <PressableCard
+      onPress={() => navigation.navigate('OpportunityDetail', { id: item.id })}
+      accessibilityLabel={`${item.title} at ${item.organization}${
+        match ? `, ${scoreBand(match.matchScore).label}, ${match.matchScore} out of 100` : ''
+      }`}
+      style={[styles.card, width !== undefined && { width }]}
+    >
+      <View style={styles.top}>
+        <View style={styles.titleBlock}>
+          <View style={styles.tags}>
+            <Text style={styles.kind}>{kindLabel(item).toUpperCase()}</Text>
+            {item.isSample ? <Text style={styles.sample}>SAMPLE</Text> : null}
+          </View>
+          <Text style={styles.title} numberOfLines={2}>
+            {item.title}
+          </Text>
+          <Text style={styles.org} numberOfLines={1}>
+            {item.organization}
+          </Text>
+          {where ? (
+            <Text style={styles.place} numberOfLines={1}>
+              {where}
+            </Text>
+          ) : null}
         </View>
         {match ? (
-          <View style={styles.score}>
-            <Text style={styles.scoreValue}>{match.matchScore}</Text>
-            <Text style={styles.scoreLabel}>match</Text>
+          <ScoreBadge score={match.matchScore} />
+        ) : clash ? (
+          <View style={styles.clash}>
+            <Text style={styles.clashText}>Outside your limits</Text>
           </View>
         ) : null}
       </View>
@@ -92,52 +128,115 @@ export function OpportunityCard({
       <Text style={styles.summary} numberOfLines={2}>
         {item.summary}
       </Text>
-      <Text style={styles.facts}>{[factLine(item), deadline].filter(Boolean).join(' · ')}</Text>
 
-      {match ? (
-        <View style={styles.reasons}>
-          {match.whyItFits.slice(0, 1).map((line) => (
-            <Text key={line} style={styles.fit}>
-              ✓ {line}
-            </Text>
-          ))}
-          {match.gaps.slice(0, 1).map((line) => (
-            <Text key={line} style={styles.gap}>
-              – {line}
-            </Text>
-          ))}
+      {/* Pushed to the bottom so cards in a row line their footers up. */}
+      <View style={styles.foot}>
+        {headline ? <Text style={styles.headline}>{headline}</Text> : null}
+        {facts.length > 0 ? (
+          <Text style={styles.facts} numberOfLines={1}>
+            {facts.join(' · ')}
+          </Text>
+        ) : null}
+
+        {match?.whyItFits[0] ? (
+          <Text style={styles.fit} numberOfLines={1}>
+            ✓ {match.whyItFits[0]}
+          </Text>
+        ) : null}
+
+        <View style={styles.actions}>
+          <SaveButton id={item.id} title={item.title} />
+          {deadline ? (
+            <Text style={[styles.deadline, soon && styles.deadlineSoon]}>{deadline}</Text>
+          ) : null}
         </View>
-      ) : null}
-
-      <Pressable onPress={() => openExternal(item.url)} hitSlop={8} accessibilityRole="link">
-        <Text style={styles.link}>View details</Text>
-      </Pressable>
-    </Card>
+      </View>
+    </PressableCard>
   );
 }
 
+const BADGE_FILL = {
+  positive: { backgroundColor: colors.positiveSoft },
+  accent: { backgroundColor: colors.primarySoft },
+  neutral: { backgroundColor: colors.neutralSoft },
+} as const;
+
+const BADGE_TEXT = {
+  positive: { color: colors.positive },
+  accent: { color: colors.primary },
+  neutral: { color: colors.textMuted },
+} as const;
+
 const styles = StyleSheet.create({
-  card: { gap: spacing.sm },
-  cardTop: { flexDirection: 'row', justifyContent: 'space-between', gap: spacing.md },
-  cardTitleBlock: { flex: 1, gap: 2 },
-  cardTitle: { ...typography.heading, color: colors.text },
-  org: { ...typography.caption, color: colors.textMuted },
+  card: { gap: spacing.sm, padding: spacing.md },
+
+  top: { flexDirection: 'row', justifyContent: 'space-between', gap: spacing.md },
+  titleBlock: { flex: 1, gap: 2 },
+  tags: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginBottom: 2 },
+  kind: { ...typography.label, color: colors.textMuted, letterSpacing: 0.8 },
+  sample: { ...typography.label, color: colors.caution, letterSpacing: 0.8 },
+  title: { ...typography.heading, color: colors.text, lineHeight: 24 },
+  org: { ...typography.caption, color: colors.text },
+  place: { ...typography.caption, color: colors.textMuted },
+
   score: {
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 56,
-    paddingVertical: spacing.xs,
+    alignSelf: 'flex-start',
+    minWidth: 82,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.sm,
     borderRadius: radius.md,
-    backgroundColor: colors.primarySoft,
   },
-  scoreValue: { ...typography.title, color: colors.primary },
-  scoreLabel: { ...typography.label, color: colors.primary },
+  scoreCompact: { minWidth: 70, paddingVertical: spacing.xs },
+  scoreValue: { ...typography.title },
+  scoreLabel: { ...typography.label },
 
-  summary: { ...typography.body, color: colors.text, lineHeight: 21 },
+  clash: {
+    alignSelf: 'flex-start',
+    maxWidth: 96,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.sm,
+    borderRadius: radius.md,
+    backgroundColor: colors.neutralSoft,
+  },
+  clashText: { ...typography.label, color: colors.textMuted, textAlign: 'center' },
+
+  summary: { ...typography.caption, color: colors.textMuted, lineHeight: 21 },
+
+  // `marginTop: auto` makes the footer sit on the bottom edge whatever the
+  // title wrapped to, so a row of cards lines up.
+  foot: { marginTop: 'auto', gap: spacing.xs, paddingTop: spacing.xs },
+  headline: { ...typography.subheading, color: colors.text },
   facts: { ...typography.caption, color: colors.textMuted },
+  fit: { ...typography.caption, color: colors.positive, lineHeight: 20 },
 
-  reasons: { gap: spacing.xs, marginTop: spacing.xs },
-  fit: { ...typography.caption, color: colors.success, lineHeight: 18 },
-  gap: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
-  link: { ...typography.caption, color: colors.primary, fontWeight: '600' },
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+    marginTop: spacing.xs,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  deadline: { ...typography.caption, color: colors.textMuted },
+  deadlineSoon: { color: colors.caution, fontWeight: '600' },
+
+  save: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    minHeight: 32,
+    paddingHorizontal: spacing.sm,
+    marginLeft: -spacing.sm,
+    borderRadius: radius.pill,
+  },
+  saveOn: {},
+  saveHover: { backgroundColor: colors.surface },
+  saveGlyph: { fontSize: 16, lineHeight: 20, color: colors.textMuted },
+  saveGlyphOn: { color: colors.primary },
+  saveText: { ...typography.caption, fontWeight: '600', color: colors.textMuted },
+  saveTextOn: { color: colors.primary },
 });

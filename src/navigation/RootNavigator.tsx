@@ -8,10 +8,12 @@ import { EventsScreen } from '../screens/EventsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { IntakeIntroScreen } from '../screens/IntakeIntroScreen';
 import { IntakeQuestionScreen } from '../screens/IntakeQuestionScreen';
-import { ProfileScreen } from '../screens/ProfileScreen';
+import { OpportunityDetailScreen } from '../screens/OpportunityDetailScreen';
 import { OpportunityListScreen } from '../screens/OpportunityListScreen';
+import { ProfileScreen } from '../screens/ProfileScreen';
 import { ResultsScreen } from '../screens/ResultsScreen';
 import { ResumesScreen } from '../screens/ResumesScreen';
+import { SavedScreen } from '../screens/SavedScreen';
 import { SupportScreen } from '../screens/SupportScreen';
 import { TopBar } from '../web/TopBar';
 import { withFrame } from '../web/layout';
@@ -19,8 +21,9 @@ import type { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// Forms, the profile and chat read best in a narrow column; card lists use the
-// full width and turn into a grid; Home centres itself. See src/web/layout.tsx.
+// Forms, the profile, a detail page and chat read best in a narrow column; card
+// lists use the full width and turn into a grid; Home centres itself.
+// See src/web/layout.tsx.
 const Home = withFrame(HomeScreen, 'full');
 const IntakeIntro = withFrame(IntakeIntroScreen, 'reading');
 const IntakeQuestion = withFrame(IntakeQuestionScreen, 'reading');
@@ -28,6 +31,8 @@ const Profile = withFrame(ProfileScreen, 'reading');
 const Results = withFrame(ResultsScreen, 'browse');
 const Events = withFrame(EventsScreen, 'browse');
 const OpportunityList = withFrame(OpportunityListScreen, 'browse');
+const OpportunityDetail = withFrame(OpportunityDetailScreen, 'reading');
+const Saved = withFrame(SavedScreen, 'browse');
 const Boards = withFrame(BoardsScreen, 'reading');
 const Board = withFrame(BoardScreen, 'reading');
 const BoardSubmit = withFrame(BoardSubmitScreen, 'reading');
@@ -54,11 +59,17 @@ export function RootNavigator() {
         component={IntakeQuestion}
         options={{ title: '', headerBackTitle: 'Exit' }}
       />
-      {/* The screen renders its own large title, so the header stays blank. */}
+      {/* The screens render their own large titles, so the header stays blank. */}
       <Stack.Screen name="Profile" component={Profile} options={{ title: '' }} />
       <Stack.Screen name="Results" component={Results} options={{ title: '' }} />
       <Stack.Screen name="Events" component={Events} options={{ title: '' }} />
       <Stack.Screen name="OpportunityList" component={OpportunityList} options={{ title: '' }} />
+      <Stack.Screen
+        name="OpportunityDetail"
+        component={OpportunityDetail}
+        options={{ title: '' }}
+      />
+      <Stack.Screen name="Saved" component={Saved} options={{ title: '' }} />
       <Stack.Screen name="Boards" component={Boards} options={{ title: '' }} />
       {/* BoardScreen sets its own title from the board name. */}
       <Stack.Screen name="Board" component={Board} options={{ title: '' }} />

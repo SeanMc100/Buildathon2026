@@ -1,59 +1,263 @@
+// The front door. Screens slice.
+//
+// It used to be a wordmark, a one-line tagline and two buttons on an otherwise
+// empty page, which told a first-time visitor nothing about what the app is or
+// what is inside it. It now says what this is, shows the size of the catalog,
+// and gives three ways in: answer the questions, browse everything, or look at
+// what is on this week.
+
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { useMemo } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { CATALOG, EVENTS_PULLED_AT } from '../content';
 import { useIntake } from '../intake';
+import { isVisible } from '../matching';
 import type { RootStackParamList } from '../navigation/types';
-import { colors, spacing, typography } from '../theme';
+import { useSaved } from '../saved';
+import { colors, radius, shadow, spacing, typography } from '../theme';
+import { focusRing, isFocused } from '../web/focus';
+import { isHovered } from '../web/hover';
 import { useIsCompact } from '../web/layout';
-import { Button } from './components/ui';
+import { isInternship } from '../catalog';
+import { formatDay } from './components/opportunityFacts';
+import { Button, Pill } from './components/ui';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
+
+type Destination = {
+  title: string;
+  body: string;
+  count: string;
+  onPress: () => void;
+  soon?: boolean;
+};
+
+/** One way into the app: what is behind it, and how much of it there is. */
+function DestinationCard({ destination }: { destination: Destination }) {
+  const { title, body, count, onPress, soon } = destination;
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${title}. ${count}. ${body}`}
+      style={(state) => [
+        styles.destination,
+        isHovered(state) && styles.destinationHover,
+        state.pressed && styles.destinationPressed,
+        isFocused(state) && focusRing,
+      ]}
+    >
+      <View style={styles.destinationHead}>
+        <Text style={styles.destinationTitle}>{title}</Text>
+        {soon ? <Pill text="Coming soon" tone="caution" /> : null}
+      </View>
+      <Text style={styles.destinationCount}>{count}</Text>
+      <Text style={styles.destinationBody}>{body}</Text>
+    </Pressable>
+  );
+}
 
 export function HomeScreen() {
   const navigation = useNavigation<Nav>();
   const { profile, state } = useIntake();
-  // Phones keep the left-aligned stack; wider windows get a centred hero.
-  const hero = !useIsCompact();
+  const { count: savedCount } = useSaved();
+  const compact = useIsCompact();
+
+  const counts = useMemo(() => {
+    const now = new Date();
+    const live = CATALOG.filter((item) => isVisible(item, now));
+    const jobs = live.filter((item) => item.kind === 'job');
+    return {
+      jobs: jobs.filter((item) => !isInternship(item)).length,
+      internships: jobs.filter(isInternship).length,
+      programs: live.filter((item) => item.kind === 'program').length,
+      research: live.filter((item) => item.kind === 'research').length,
+      events: live.filter((item) => item.kind === 'event').length,
+      total: live.length,
+    };
+  }, []);
+
+  const started = state.status !== 'not_started';
+
+  const destinations: Destination[] = [
+    {
+      title: 'Browse everything',
+      count: `${counts.jobs + counts.internships + counts.programs + counts.research} openings`,
+      body: `${counts.jobs} job types, ${counts.internships} internships, ${counts.programs} training programs and ${counts.research} research places. Search and filter the lot.`,
+      onPress: () => navigation.navigate('OpportunityList'),
+    },
+    {
+      title: 'Detroit events',
+      count: `${counts.events} coming up`,
+      body: EVENTS_PULLED_AT
+        ? `Career fairs, workshops and meetups, pulled from live listings on ${formatDay(EVENTS_PULLED_AT)}.`
+        : 'Career fairs, workshops and meetups happening near you.',
+      onPress: () => navigation.navigate('Events'),
+    },
+    {
+      title: 'Bulletin boards',
+      count: 'By age group and field',
+      body: 'Talk to people at the same stage as you, and share leads you come across.',
+      onPress: () => navigation.navigate('Boards'),
+    },
+    {
+      title: 'Resume help',
+      count: 'Not ready yet',
+      body: 'A guided way to put a resume together. We are still building it.',
+      onPress: () => navigation.navigate('Resumes'),
+      soon: true,
+    },
+  ];
 
   return (
-    <View style={[styles.container, hero && styles.containerHero]}>
-      <Text style={[styles.title, hero && styles.titleHero]}>Buildathon App</Text>
-      <Text style={[styles.subtitle, hero && styles.subtitleHero]}>
-        Tell us what you would actually trade, and we point a model at the rest.
-      </Text>
-      <View style={[styles.actions, hero && styles.actionsHero]}>
-        <View style={hero && styles.action}>
+    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
+      <View style={[styles.hero, !compact && styles.heroWide]}>
+        <Text style={styles.eyebrow}>METRO DETROIT</Text>
+        <Text style={[styles.title, !compact && styles.titleWide]}>
+          Work that fits what you actually want
+        </Text>
+        <Text style={[styles.lede, !compact && styles.ledeWide]}>
+          Answer a few short questions about what you would trade and what you would not. We score
+          every job, program, internship and research place we know of in metro Detroit against
+          your answers, and show you why each one fits.
+        </Text>
+
+        <View style={[styles.actions, !compact && styles.actionsWide]}>
           <Button
-            label={state.status === 'not_started' ? 'Build my profile' : 'Continue my profile'}
-            onPress={() => navigation.navigate('IntakeIntro')}
+            label={profile ? 'See my matches' : started ? 'Pick up where I left off' : 'Find my matches'}
+            size="lg"
+            onPress={() => navigation.navigate(profile ? 'Results' : 'IntakeIntro')}
+          />
+          <Button
+            label="Browse without answering"
+            variant="secondary"
+            size="lg"
+            onPress={() => navigation.navigate('OpportunityList')}
           />
         </View>
-        {profile ? (
-          <View style={hero && styles.action}>
-            <Button label="View my profile" variant="secondary" onPress={() => navigation.navigate('Profile')} />
-          </View>
-        ) : null}
+
+        <Text style={styles.reassurance}>
+          About four minutes · skip anything · your answers stay on this device
+        </Text>
       </View>
-    </View>
+
+      <View style={styles.sectionWrap}>
+        <View style={styles.sectionInner}>
+          <Text style={styles.sectionTitle}>What is in here</Text>
+          <View style={styles.destinations}>
+            {destinations.map((destination) => (
+              <View key={destination.title} style={compact ? styles.cellFull : styles.cellHalf}>
+                <DestinationCard destination={destination} />
+              </View>
+            ))}
+          </View>
+
+          {profile || savedCount > 0 ? (
+            <View style={styles.returning}>
+              <Text style={styles.returningText}>
+                {savedCount > 0
+                  ? `You have ${savedCount} saved ${savedCount === 1 ? 'opportunity' : 'opportunities'}.`
+                  : 'Your profile is saved on this device.'}
+              </Text>
+              <View style={styles.returningActions}>
+                {savedCount > 0 ? (
+                  <Button
+                    label="Open my shortlist"
+                    variant="secondary"
+                    onPress={() => navigation.navigate('Saved')}
+                  />
+                ) : null}
+                {profile ? (
+                  <Button
+                    label="View my profile"
+                    variant="ghost"
+                    onPress={() => navigation.navigate('Profile')}
+                  />
+                ) : null}
+              </View>
+            </View>
+          ) : null}
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-    justifyContent: 'center',
-    padding: spacing.lg,
-    gap: spacing.sm,
-  },
-  title: { ...typography.display, color: colors.text },
-  subtitle: { ...typography.body, color: colors.textMuted, lineHeight: 22 },
-  actions: { gap: spacing.sm, marginTop: spacing.lg },
+const MAX_WIDTH = 1120;
 
-  containerHero: { alignItems: 'center', paddingBottom: spacing.xxl * 2 },
-  titleHero: { fontSize: 48, lineHeight: 56, textAlign: 'center' },
-  subtitleHero: { fontSize: 19, lineHeight: 28, textAlign: 'center', maxWidth: 560 },
-  actionsHero: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: spacing.md },
-  action: { minWidth: 220 },
+const styles = StyleSheet.create({
+  screen: { flex: 1, backgroundColor: colors.background },
+  content: { paddingBottom: spacing.xxl },
+
+  hero: {
+    width: '100%',
+    maxWidth: MAX_WIDTH,
+    alignSelf: 'center',
+    gap: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.xl,
+    paddingBottom: spacing.xl,
+  },
+  heroWide: { alignItems: 'center', paddingTop: spacing.xxl, paddingBottom: spacing.xxl },
+  eyebrow: { ...typography.label, color: colors.primary, letterSpacing: 1.2 },
+  title: { ...typography.display, color: colors.text, lineHeight: 38 },
+  titleWide: { fontSize: 46, lineHeight: 54, textAlign: 'center', maxWidth: 760 },
+  lede: { ...typography.body, color: colors.textMuted, lineHeight: 26, marginTop: spacing.xs },
+  ledeWide: { fontSize: 18, lineHeight: 30, textAlign: 'center', maxWidth: 680 },
+  actions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.lg },
+  actionsWide: { justifyContent: 'center', gap: spacing.md },
+  reassurance: { ...typography.caption, color: colors.textMuted, marginTop: spacing.md },
+
+  sectionWrap: {
+    width: '100%',
+    alignItems: 'center',
+    paddingVertical: spacing.xl,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  sectionInner: {
+    width: '100%',
+    maxWidth: MAX_WIDTH,
+    paddingHorizontal: spacing.lg,
+    gap: spacing.md,
+  },
+  sectionTitle: { ...typography.title, color: colors.text },
+
+  destinations: { flexDirection: 'row', flexWrap: 'wrap', margin: -spacing.sm },
+  cellFull: { width: '100%', padding: spacing.sm },
+  cellHalf: { width: '50%', padding: spacing.sm },
+
+  destination: {
+    flex: 1,
+    gap: spacing.xs,
+    padding: spacing.md,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.background,
+    ...shadow.sm,
+  },
+  destinationHover: { borderColor: colors.primaryBorder, ...shadow.md },
+  destinationPressed: { backgroundColor: colors.surface },
+  destinationHead: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  destinationTitle: { ...typography.heading, color: colors.text },
+  destinationCount: { ...typography.subheading, color: colors.primary },
+  destinationBody: { ...typography.caption, color: colors.textMuted, lineHeight: 21 },
+
+  returning: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+    marginTop: spacing.md,
+    padding: spacing.md,
+    borderRadius: radius.lg,
+    backgroundColor: colors.primarySoft,
+  },
+  returningText: { ...typography.caption, color: colors.text, fontWeight: '600' },
+  returningActions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
 });

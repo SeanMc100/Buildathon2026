@@ -120,7 +120,7 @@ export function withFrame<P extends object>(Screen: ComponentType<P>, frame: Fra
 const styles = StyleSheet.create({
   // The gutters either side of the column are a shade darker than the column
   // itself, so a wide window reads as a page rather than as stretched content.
-  page: { flex: 1, alignItems: 'center', backgroundColor: colors.surface },
+  page: { flex: 1, alignItems: 'center', backgroundColor: colors.surfaceSunken },
   column: { flex: 1, width: '100%', backgroundColor: colors.background },
   columnFramed: { borderLeftWidth: 1, borderRightWidth: 1, borderColor: colors.border },
 });
