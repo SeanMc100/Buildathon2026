@@ -8,49 +8,124 @@
       "description": "questionId -> answer. single:string, multi/rank:string[], scale:number(1..n), allocate:{optionValue:points}, text:string.",
       "additionalProperties": {
         "oneOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "array", "items": { "type": "string" } },
-          { "type": "object", "additionalProperties": { "type": "number" } }
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "Inference": {
       "type": "object",
       "description": "Any value the app derived rather than was told. Never emit one without provenance.",
-      "required": ["value", "confidence", "sourceQuestionIds"],
+      "required": [
+        "value",
+        "confidence",
+        "sourceQuestionIds"
+      ],
       "properties": {
         "value": {},
-        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-        "sourceQuestionIds": { "type": "array", "items": { "type": "string" } }
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sourceQuestionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "HardConstraints": {
       "type": "object",
       "description": "Must-satisfy filters. Applied before anything is ranked.",
-      "required": ["arrangements", "employmentTypes", "payStance", "exclusions"],
+      "required": [
+        "arrangements",
+        "employmentTypes",
+        "payStance",
+        "exclusions"
+      ],
       "properties": {
         "arrangements": {
           "type": "array",
-          "items": { "enum": ["Remote", "Hybrid", "Onsite"] }
+          "items": {
+            "enum": [
+              "Remote",
+              "Hybrid",
+              "Onsite"
+            ]
+          }
         },
         "employmentTypes": {
           "type": "array",
           "items": {
-            "enum": ["FullTime", "PartTime", "Contract", "Freelance", "Internship", "Apprenticeship"]
+            "enum": [
+              "FullTime",
+              "PartTime",
+              "Contract",
+              "Freelance",
+              "Internship",
+              "Apprenticeship"
+            ]
           }
         },
-        "maxCommuteMinutes": { "type": ["number", "null"] },
-        "openToRelocation": { "type": "boolean" },
-        "payStance": { "enum": ["flexible", "market", "top_of_market", "has_floor"] },
-        "minSalaryUsd": { "type": ["number", "null"] },
-        "exclusions": { "type": "array", "items": { "type": "string" } }
+        "maxCommuteMinutes": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "openToRelocation": {
+          "type": "boolean"
+        },
+        "payStance": {
+          "enum": [
+            "flexible",
+            "market",
+            "top_of_market",
+            "has_floor"
+          ]
+        },
+        "minSalaryUsd": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "PreferenceWeight": {
       "type": "object",
       "description": "Soft preference. Weights across the list sum to ~100.",
-      "required": ["trait", "label", "weight", "confidence", "sourceQuestionIds"],
+      "required": [
+        "trait",
+        "label",
+        "weight",
+        "confidence",
+        "sourceQuestionIds"
+      ],
       "properties": {
         "trait": {
           "enum": [
@@ -63,10 +138,25 @@
             "autonomy"
           ]
         },
-        "label": { "type": "string" },
-        "weight": { "type": "number", "minimum": 0, "maximum": 100 },
-        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
-        "sourceQuestionIds": { "type": "array", "items": { "type": "string" } }
+        "label": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sourceQuestionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "CareerProfile": {
@@ -89,42 +179,133 @@
         "completeness"
       ],
       "properties": {
-        "profileId": { "type": "string" },
-        "generatedAt": { "type": "string", "format": "date-time" },
-        "version": { "type": "number" },
-        "narrativeSummary": { "type": "string" },
-        "stage": { "$ref": "#/definitions/Inference" },
-        "experienceBand": { "enum": ["none", "under_1", "1_3", "3_6", "6_10", "10_plus"] },
-        "educationLevel": {
-          "enum": ["none_required", "secondary", "certificate", "associate", "bachelor", "postgraduate"]
+        "profileId": {
+          "type": "string"
         },
-        "jobZone": { "$ref": "#/definitions/Inference" },
-        "focusArea": { "type": ["string", "null"] },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "number"
+        },
+        "narrativeSummary": {
+          "type": "string"
+        },
+        "stage": {
+          "$ref": "#/definitions/Inference"
+        },
+        "experienceBand": {
+          "enum": [
+            "none",
+            "under_1",
+            "1_3",
+            "3_6",
+            "6_10",
+            "10_plus"
+          ]
+        },
+        "educationLevel": {
+          "enum": [
+            "none_required",
+            "secondary",
+            "certificate",
+            "associate",
+            "bachelor",
+            "postgraduate"
+          ]
+        },
+        "jobZone": {
+          "$ref": "#/definitions/Inference"
+        },
+        "focusArea": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "interests": {
           "type": "object",
           "properties": {
-            "scores": { "type": "object", "additionalProperties": { "type": "number" } },
-            "hollandCode": { "type": "array", "items": { "enum": ["R", "I", "A", "S", "E", "C"] } },
-            "confidence": { "type": "number" },
-            "sourceQuestionIds": { "type": "array", "items": { "type": "string" } }
+            "scores": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "hollandCode": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "R",
+                  "I",
+                  "A",
+                  "S",
+                  "E",
+                  "C"
+                ]
+              }
+            },
+            "confidence": {
+              "type": "number"
+            },
+            "sourceQuestionIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         },
         "workStyle": {
           "type": "object",
           "properties": {
-            "autonomy": { "$ref": "#/definitions/Inference" },
-            "variety": { "$ref": "#/definitions/Inference" },
-            "pace": { "$ref": "#/definitions/Inference" },
-            "challengeAppetite": { "$ref": "#/definitions/Inference" },
-            "teamShape": { "$ref": "#/definitions/Inference" }
+            "autonomy": {
+              "$ref": "#/definitions/Inference"
+            },
+            "variety": {
+              "$ref": "#/definitions/Inference"
+            },
+            "pace": {
+              "$ref": "#/definitions/Inference"
+            },
+            "challengeAppetite": {
+              "$ref": "#/definitions/Inference"
+            },
+            "teamShape": {
+              "$ref": "#/definitions/Inference"
+            }
           }
         },
-        "priorities": { "type": "array", "items": { "$ref": "#/definitions/PreferenceWeight" } },
-        "workValues": { "$ref": "#/definitions/Inference" },
-        "hardConstraints": { "$ref": "#/definitions/HardConstraints" },
-        "extraContext": { "type": ["string", "null"] },
-        "skippedQuestionIds": { "type": "array", "items": { "type": "string" } },
-        "completeness": { "type": "number", "minimum": 0, "maximum": 1 }
+        "priorities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PreferenceWeight"
+          }
+        },
+        "workValues": {
+          "$ref": "#/definitions/Inference"
+        },
+        "hardConstraints": {
+          "$ref": "#/definitions/HardConstraints"
+        },
+        "extraContext": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skippedQuestionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "completeness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
       }
     },
     "MatchRequest": {
@@ -141,184 +322,512 @@
         "excludedAttributes"
       ],
       "properties": {
-        "schemaVersion": { "type": "string" },
-        "profileId": { "type": "string" },
-        "generatedAt": { "type": "string", "format": "date-time" },
-        "narrativeSummary": { "type": "string" },
-        "candidateContext": { "type": "object" },
-        "hardConstraints": { "$ref": "#/definitions/HardConstraints" },
-        "softPreferences": { "type": "array" },
-        "workStyle": { "type": "array" },
-        "interests": { "type": "object" },
-        "derivedWorkValues": { "type": "object" },
-        "freeText": { "type": ["string", "null"] },
+        "schemaVersion": {
+          "type": "string"
+        },
+        "profileId": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "narrativeSummary": {
+          "type": "string"
+        },
+        "candidateContext": {
+          "type": "object"
+        },
+        "hardConstraints": {
+          "$ref": "#/definitions/HardConstraints"
+        },
+        "softPreferences": {
+          "type": "array"
+        },
+        "workStyle": {
+          "type": "array"
+        },
+        "interests": {
+          "type": "object"
+        },
+        "derivedWorkValues": {
+          "type": "object"
+        },
+        "freeText": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "responseContract": {
           "type": "object",
           "properties": {
-            "max_recommendations": { "type": "number" },
-            "must_cite_source_question_ids": { "type": "boolean" },
-            "must_explain_tradeoffs": { "type": "boolean" },
-            "must_flag_unmet_hard_constraints": { "type": "boolean" }
+            "max_recommendations": {
+              "type": "number"
+            },
+            "must_cite_source_question_ids": {
+              "type": "boolean"
+            },
+            "must_explain_tradeoffs": {
+              "type": "boolean"
+            },
+            "must_flag_unmet_hard_constraints": {
+              "type": "boolean"
+            }
           }
         },
         "excludedAttributes": {
           "type": "array",
           "description": "Protected or restricted attributes deliberately absent. The model is told not to infer them.",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
     "MatchResponse": {
       "type": "object",
       "description": "Expected response from the matching endpoint.",
-      "required": ["recommendations"],
+      "required": [
+        "recommendations"
+      ],
       "properties": {
         "recommendations": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["title", "summary", "matchScore", "whyItFits", "citedQuestionIds"],
+            "required": [
+              "title",
+              "summary",
+              "matchScore",
+              "whyItFits",
+              "citedQuestionIds"
+            ],
             "properties": {
-              "title": { "type": "string" },
-              "summary": { "type": "string" },
-              "matchScore": { "type": "number", "minimum": 0, "maximum": 100 },
-              "whyItFits": { "type": "array", "items": { "type": "string" } },
-              "gaps": { "type": "array", "items": { "type": "string" } },
-              "citedQuestionIds": { "type": "array", "items": { "type": "string" } }
+              "title": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              },
+              "matchScore": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "whyItFits": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "gaps": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "citedQuestionIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
             }
           }
         },
-        "unmetConstraints": { "type": "array", "items": { "type": "string" } }
+        "unmetConstraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "OpportunityBase": {
       "type": "object",
       "description": "Fields shared by every kind of opportunity. Tags use the same vocabulary as CareerProfile so one scorer can compare them.",
       "required": [
-        "id", "kind", "title", "organization", "summary", "url", "location", "arrangement",
-        "hollandCode", "traits", "jobZone", "minEducation", "suitableStages", "demands",
-        "verifiedOn", "isSample"
+        "id",
+        "kind",
+        "title",
+        "organization",
+        "summary",
+        "url",
+        "location",
+        "arrangement",
+        "hollandCode",
+        "traits",
+        "jobZone",
+        "minEducation",
+        "suitableStages",
+        "demands",
+        "verifiedOn",
+        "isSample"
       ],
       "properties": {
-        "id": { "type": "string", "description": "Stable slug, unique across the catalog." },
-        "kind": { "enum": ["job", "program", "event", "research"] },
-        "title": { "type": "string" },
-        "organization": { "type": "string" },
-        "summary": { "type": "string" },
-        "url": { "type": "string" },
-        "location": { "type": ["string", "null"] },
-        "arrangement": { "enum": ["Remote", "Hybrid", "Onsite"] },
+        "id": {
+          "type": "string",
+          "description": "Stable slug, unique across the catalog."
+        },
+        "kind": {
+          "enum": [
+            "job",
+            "program",
+            "event",
+            "research"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "arrangement": {
+          "enum": [
+            "Remote",
+            "Hybrid",
+            "Onsite"
+          ]
+        },
         "hollandCode": {
           "type": "array",
           "description": "Top one to three RIASEC codes, ranked.",
           "minItems": 1,
           "maxItems": 3,
-          "items": { "enum": ["R", "I", "A", "S", "E", "C"] }
+          "items": {
+            "enum": [
+              "R",
+              "I",
+              "A",
+              "S",
+              "E",
+              "C"
+            ]
+          }
         },
         "traits": {
           "type": "object",
           "description": "0-100 per PreferenceWeight.trait: how strongly the opportunity delivers it. Not a sum-to-100.",
           "required": [
-            "pay_and_security", "flexibility_and_balance", "growth_and_learning",
-            "mission_and_impact", "people_and_team", "manager_support", "autonomy"
+            "pay_and_security",
+            "flexibility_and_balance",
+            "growth_and_learning",
+            "mission_and_impact",
+            "people_and_team",
+            "manager_support",
+            "autonomy"
           ],
-          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 100 }
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          }
         },
         "jobZone": {
-          "enum": [1, 2, 3, 4, 5, null],
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            null
+          ],
           "description": "Preparation level assumed. Null = open to any level, skip level distance."
         },
         "minEducation": {
-          "enum": ["none_required", "secondary", "certificate", "associate", "bachelor", "postgraduate"]
+          "enum": [
+            "none_required",
+            "secondary",
+            "certificate",
+            "associate",
+            "bachelor",
+            "postgraduate"
+          ]
         },
         "suitableStages": {
           "type": "array",
           "description": "CareerProfile.stage values it is aimed at. Empty = all.",
-          "items": { "enum": ["FirstRole", "EarlyCareer", "MidCareer", "Pivot", "Returner", "SteppingUp"] }
+          "items": {
+            "enum": [
+              "FirstRole",
+              "EarlyCareer",
+              "MidCareer",
+              "Pivot",
+              "Returner",
+              "SteppingUp"
+            ]
+          }
         },
         "demands": {
           "type": "array",
           "description": "Checked against HardConstraints.exclusions. Same keys as the dealbreakers question.",
           "items": {
             "enum": [
-              "night_shifts", "heavy_travel", "on_call", "sales_targets",
-              "managing_people", "physical_work", "high_stakes"
+              "night_shifts",
+              "heavy_travel",
+              "on_call",
+              "sales_targets",
+              "managing_people",
+              "physical_work",
+              "high_stakes"
             ]
           }
         },
-        "verifiedOn": { "type": "string", "format": "date", "description": "Last date someone confirmed the listing is real and current." },
-        "isSample": { "type": "boolean", "description": "True for placeholders. The UI must label these as samples." }
+        "verifiedOn": {
+          "type": "string",
+          "format": "date",
+          "description": "Last date someone confirmed the listing is real and current."
+        },
+        "isSample": {
+          "type": "boolean",
+          "description": "True for placeholders. The UI must label these as samples."
+        }
       }
     },
     "Opportunity": {
-      "description": "A job or internship, program, event or research program. Discriminated on `kind`. Visibility rules: an event is hidden once its endsAt (or startsAt when endsAt is null) has passed; any opportunity whose applyBy has passed is also hidden. Rule is applied by the matching slice before ranking.",
+      "description": "A job or internship, program, event or research program. Discriminated on `kind`. Visibility rules: an event is hidden once its endsAt (or startsAt when endsAt is null) has passed; any opportunity whose applyBy has passed is also hidden. Rule is applied by the matching slice before ranking. Ingested items carry an extra per-kind context block (detroit / program / research); these are optional because the hand-written samples do not have them.",
       "oneOf": [
         {
           "allOf": [
-            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "$ref": "#/definitions/OpportunityBase"
+            },
             {
               "type": "object",
-              "required": ["kind", "employmentType", "payMinUsd", "payMaxUsd", "applyBy"],
+              "required": [
+                "kind",
+                "employmentType",
+                "payMinUsd",
+                "payMaxUsd",
+                "applyBy"
+              ],
               "properties": {
-                "kind": { "const": "job" },
-                "employmentType": {
-                  "enum": ["FullTime", "PartTime", "Contract", "Freelance", "Internship", "Apprenticeship"]
+                "kind": {
+                  "const": "job"
                 },
-                "payMinUsd": { "type": ["number", "null"] },
-                "payMaxUsd": { "type": ["number", "null"] },
-                "applyBy": { "type": ["string", "null"], "format": "date", "description": "Null = rolling or unknown." }
+                "employmentType": {
+                  "enum": [
+                    "FullTime",
+                    "PartTime",
+                    "Contract",
+                    "Freelance",
+                    "Internship",
+                    "Apprenticeship"
+                  ]
+                },
+                "payMinUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "payMaxUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "applyBy": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date",
+                  "description": "Null = rolling or unknown."
+                },
+                "detroit": {
+                  "$ref": "#/definitions/DetroitJobContext"
+                }
               }
             }
           ]
         },
         {
           "allOf": [
-            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "$ref": "#/definitions/OpportunityBase"
+            },
             {
               "type": "object",
-              "required": ["kind", "costUsd", "stipendUsd", "durationWeeks", "startsAt", "applyBy", "eligibility"],
+              "required": [
+                "kind",
+                "costUsd",
+                "stipendUsd",
+                "durationWeeks",
+                "startsAt",
+                "applyBy",
+                "eligibility"
+              ],
               "properties": {
-                "kind": { "const": "program" },
-                "costUsd": { "type": ["number", "null"], "description": "0 = free." },
-                "stipendUsd": { "type": ["number", "null"] },
-                "durationWeeks": { "type": ["number", "null"] },
-                "startsAt": { "type": ["string", "null"], "format": "date" },
-                "applyBy": { "type": ["string", "null"], "format": "date" },
-                "eligibility": { "type": "array", "items": { "type": "string" } }
+                "kind": {
+                  "const": "program"
+                },
+                "costUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "0 = free."
+                },
+                "stipendUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "durationWeeks": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "startsAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "applyBy": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "eligibility": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "program": {
+                  "$ref": "#/definitions/ProgramContext"
+                }
               }
             }
           ]
         },
         {
           "allOf": [
-            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "$ref": "#/definitions/OpportunityBase"
+            },
             {
               "type": "object",
-              "required": ["kind", "format", "startsAt", "endsAt", "costUsd"],
+              "required": [
+                "kind",
+                "format",
+                "startsAt",
+                "endsAt",
+                "costUsd"
+              ],
               "properties": {
-                "kind": { "const": "event" },
-                "format": { "enum": ["workshop", "networking", "talk", "career_fair", "conference"] },
-                "startsAt": { "type": "string", "format": "date-time" },
-                "endsAt": { "type": ["string", "null"], "format": "date-time" },
-                "costUsd": { "type": ["number", "null"] }
+                "kind": {
+                  "const": "event"
+                },
+                "format": {
+                  "enum": [
+                    "workshop",
+                    "networking",
+                    "talk",
+                    "career_fair",
+                    "conference"
+                  ]
+                },
+                "startsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endsAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                },
+                "costUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
               }
             }
           ]
         },
         {
           "allOf": [
-            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "$ref": "#/definitions/OpportunityBase"
+            },
             {
               "type": "object",
-              "required": ["kind", "field", "stipendUsd", "durationWeeks", "startsAt", "applyBy", "eligibility"],
+              "required": [
+                "kind",
+                "field",
+                "stipendUsd",
+                "durationWeeks",
+                "startsAt",
+                "applyBy",
+                "eligibility"
+              ],
               "properties": {
-                "kind": { "const": "research" },
-                "field": { "type": "string" },
-                "stipendUsd": { "type": ["number", "null"] },
-                "durationWeeks": { "type": ["number", "null"] },
-                "startsAt": { "type": ["string", "null"], "format": "date" },
-                "applyBy": { "type": ["string", "null"], "format": "date" },
-                "eligibility": { "type": "array", "items": { "type": "string" } }
+                "kind": {
+                  "const": "research"
+                },
+                "field": {
+                  "type": "string"
+                },
+                "stipendUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "durationWeeks": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "startsAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "applyBy": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "eligibility": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "research": {
+                  "$ref": "#/definitions/ResearchContext"
+                }
               }
             }
           ]
@@ -328,75 +837,853 @@
     "OpportunityMatch": {
       "type": "object",
       "description": "One scored result from the matching slice. References the catalog by id.",
-      "required": ["opportunityId", "kind", "matchScore", "whyItFits", "gaps", "citedQuestionIds"],
+      "required": [
+        "opportunityId",
+        "kind",
+        "matchScore",
+        "whyItFits",
+        "gaps",
+        "citedQuestionIds"
+      ],
       "properties": {
-        "opportunityId": { "type": "string" },
-        "kind": { "enum": ["job", "program", "event", "research"] },
-        "matchScore": { "type": "number", "minimum": 0, "maximum": 100 },
-        "whyItFits": { "type": "array", "items": { "type": "string" } },
-        "gaps": { "type": "array", "items": { "type": "string" } },
-        "citedQuestionIds": { "type": "array", "items": { "type": "string" } }
+        "opportunityId": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "job",
+            "program",
+            "event",
+            "research"
+          ]
+        },
+        "matchScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "whyItFits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "citedQuestionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "OpportunityResults": {
       "type": "object",
       "description": "Everything the results screen renders.",
-      "required": ["profileId", "generatedAt", "byKind", "unmetConstraints"],
+      "required": [
+        "profileId",
+        "generatedAt",
+        "byKind",
+        "unmetConstraints"
+      ],
       "properties": {
-        "profileId": { "type": "string" },
-        "generatedAt": { "type": "string", "format": "date-time" },
+        "profileId": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
         "byKind": {
           "type": "object",
           "description": "Best matches first within each kind.",
-          "required": ["job", "program", "event", "research"],
-          "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/OpportunityMatch" } }
+          "required": [
+            "job",
+            "program",
+            "event",
+            "research"
+          ],
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/OpportunityMatch"
+            }
+          }
         },
-        "unmetConstraints": { "type": "array", "items": { "type": "string" } }
+        "unmetConstraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "Board": {
       "type": "object",
       "description": "A Metro Detroit bulletin board. Age boards are one-of per member, job boards many-of. Membership is self-declared, not verified.",
-      "required": ["id", "category", "name", "blurb"],
+      "required": [
+        "id",
+        "category",
+        "name",
+        "blurb"
+      ],
       "properties": {
-        "id": { "type": "string" },
-        "category": { "enum": ["age", "job"] },
-        "name": { "type": "string" },
-        "blurb": { "type": "string" },
-        "ageBand": { "type": "string", "description": "Age boards only. The age_band questionnaire answer it lines up with; read locally, never sent." }
+        "id": {
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "age",
+            "job"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "blurb": {
+          "type": "string"
+        },
+        "ageBand": {
+          "type": "string",
+          "description": "Age boards only. The age_band questionnaire answer it lines up with; read locally, never sent."
+        }
       }
     },
     "BoardMessage": {
       "type": "object",
       "description": "One chat message on a board.",
-      "required": ["id", "boardId", "authorId", "authorHandle", "postedAt", "isSample", "body"],
+      "required": [
+        "id",
+        "boardId",
+        "authorId",
+        "authorHandle",
+        "postedAt",
+        "isSample",
+        "body"
+      ],
       "properties": {
-        "id": { "type": "string" },
-        "boardId": { "type": "string" },
-        "authorId": { "type": "string", "description": "Stable per-install id. Not a real identity." },
-        "authorHandle": { "type": "string", "description": "Anonymous display name, e.g. 'Member 4821'." },
-        "postedAt": { "type": "string", "format": "date-time" },
-        "isSample": { "type": "boolean", "description": "True for placeholders. The UI must label these." },
-        "body": { "type": "string", "maxLength": 500 }
+        "id": {
+          "type": "string"
+        },
+        "boardId": {
+          "type": "string"
+        },
+        "authorId": {
+          "type": "string",
+          "description": "Stable per-install id. Not a real identity."
+        },
+        "authorHandle": {
+          "type": "string",
+          "description": "Anonymous display name, e.g. 'Member 4821'."
+        },
+        "postedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isSample": {
+          "type": "boolean",
+          "description": "True for placeholders. The UI must label these."
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 500
+        }
       }
     },
     "BoardPost": {
       "type": "object",
       "description": "A member-shared opportunity that is not in the catalog.",
-      "required": ["id", "boardId", "authorId", "authorHandle", "postedAt", "isSample", "kind", "title", "organization", "city", "url", "details"],
+      "required": [
+        "id",
+        "boardId",
+        "authorId",
+        "authorHandle",
+        "postedAt",
+        "isSample",
+        "kind",
+        "title",
+        "organization",
+        "city",
+        "url",
+        "details"
+      ],
       "properties": {
-        "id": { "type": "string" },
-        "boardId": { "type": "string" },
-        "authorId": { "type": "string" },
-        "authorHandle": { "type": "string" },
-        "postedAt": { "type": "string", "format": "date-time" },
-        "isSample": { "type": "boolean" },
-        "kind": { "enum": ["job", "research", "program", "event", "other"] },
-        "title": { "type": "string", "maxLength": 80 },
-        "organization": { "type": "string", "maxLength": 60 },
-        "city": { "type": "string", "description": "A Metro Detroit city, or 'Remote'." },
-        "url": { "type": ["string", "null"], "description": "http(s) only." },
-        "details": { "type": "string", "maxLength": 600 }
+        "id": {
+          "type": "string"
+        },
+        "boardId": {
+          "type": "string"
+        },
+        "authorId": {
+          "type": "string"
+        },
+        "authorHandle": {
+          "type": "string"
+        },
+        "postedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isSample": {
+          "type": "boolean"
+        },
+        "kind": {
+          "enum": [
+            "job",
+            "research",
+            "program",
+            "event",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "organization": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "city": {
+          "type": "string",
+          "description": "A Metro Detroit city, or 'Remote'."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "http(s) only."
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 600
+        }
+      }
+    },
+    "WageBand": {
+      "type": "object",
+      "description": "Annual USD wage percentiles for one occupation in the Detroit MSA.",
+      "required": [
+        "pct10",
+        "pct25",
+        "median",
+        "pct75",
+        "pct90"
+      ],
+      "properties": {
+        "pct10": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "pct25": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "median": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "pct75": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "pct90": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "DetroitJobContext": {
+      "type": "object",
+      "description": "Local context on an occupation. Added by `npm run ingest:jobs`, absent on samples. Mixes measured data (O*NET, BLS) with curation; `provenance` says which is which and the UI must not present them as equally certain.",
+      "required": [
+        "socCode",
+        "onetSocCode",
+        "sector",
+        "localEmployment",
+        "locationQuotient",
+        "wage",
+        "wageVintage",
+        "wageTopCoded",
+        "outlook",
+        "entryRoutes",
+        "hiringHere",
+        "demandRank",
+        "provenance"
+      ],
+      "properties": {
+        "socCode": {
+          "type": "string",
+          "description": "6-digit SOC, e.g. '51-4041'. Join key across O*NET, BLS and projections."
+        },
+        "onetSocCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "8-digit O*NET-SOC the match tags came from. Null for cross-sector entry routes."
+        },
+        "sector": {
+          "type": "string",
+          "description": "Plain-language sector, e.g. 'Skilled trades'."
+        },
+        "localEmployment": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Jobs in the Detroit MSA. Null when BLS suppressed the cell."
+        },
+        "locationQuotient": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Local concentration against the national rate. 1.0 = the national rate."
+        },
+        "wage": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/WageBand"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wageVintage": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Which BLS release the wages came from, for the footnote."
+        },
+        "wageTopCoded": {
+          "type": "boolean",
+          "description": "True when the top of the band is BLS's cap rather than a real figure."
+        },
+        "outlook": {
+          "description": "Statewide, not MSA: there is no metro-level projection series.",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "area",
+                "baseYear",
+                "projectedYear",
+                "percentChange",
+                "annualOpenings"
+              ],
+              "properties": {
+                "area": {
+                  "type": "string"
+                },
+                "baseYear": {
+                  "type": "number"
+                },
+                "projectedYear": {
+                  "type": "number"
+                },
+                "percentChange": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "annualOpenings": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "entryRoutes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "How someone actually gets in, front door first."
+        },
+        "hiringHere": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Who employs this work locally. Curated, not sourced: label it as such in the UI."
+        },
+        "demandRank": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "1 = highest local demand in this snapshot."
+        },
+        "provenance": {
+          "type": "object",
+          "required": [
+            "wages",
+            "tags",
+            "outlook",
+            "hiringHere"
+          ],
+          "properties": {
+            "wages": {
+              "enum": [
+                "bls-oews-detroit-msa",
+                "sponsor-published",
+                "none"
+              ]
+            },
+            "tags": {
+              "enum": [
+                "onet-measured",
+                "onet-measured-via-related-soc",
+                "none"
+              ]
+            },
+            "outlook": {
+              "enum": [
+                "projections-central-michigan",
+                "none"
+              ]
+            },
+            "hiringHere": {
+              "enum": [
+                "curated-by-sector",
+                "curated-by-sponsor"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ProgramContext": {
+      "type": "object",
+      "description": "Extra detail on a career program. Added by `npm run ingest:programs`, absent on samples.",
+      "required": [
+        "sector",
+        "audiences",
+        "delivery",
+        "funding",
+        "credentials",
+        "supports",
+        "applicationMethod",
+        "cadence",
+        "scheduleNote",
+        "costNote",
+        "statewide",
+        "readAs",
+        "provenance",
+        "contentHash",
+        "sourcePage"
+      ],
+      "properties": {
+        "sector": {
+          "enum": [
+            "skilled_trades",
+            "healthcare",
+            "manufacturing",
+            "transport_logistics",
+            "tech",
+            "entrepreneurship",
+            "creative",
+            "adult_education",
+            "general_workforce"
+          ]
+        },
+        "audiences": {
+          "type": "array",
+          "description": "Who the provider says it is for. Empty = open generally.",
+          "items": {
+            "enum": [
+              "youth",
+              "young_adults",
+              "returning_citizens",
+              "women",
+              "immigrants",
+              "veterans",
+              "older_workers",
+              "detroit_residents",
+              "low_income",
+              "disability_support",
+              "spanish_speakers"
+            ]
+          }
+        },
+        "delivery": {
+          "enum": [
+            "in_person",
+            "online",
+            "hybrid",
+            "unknown"
+          ]
+        },
+        "funding": {
+          "enum": [
+            "free_to_participant",
+            "wioa_funded",
+            "employer_sponsored",
+            "paid_training",
+            "tuition",
+            "scholarship_available",
+            "unknown"
+          ]
+        },
+        "credentials": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Certificates or licences named on the page."
+        },
+        "supports": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "childcare",
+              "transport",
+              "stipend",
+              "tools_or_equipment",
+              "job_placement",
+              "housing",
+              "meals"
+            ]
+          }
+        },
+        "applicationMethod": {
+          "enum": [
+            "online_form",
+            "phone",
+            "email",
+            "in_person",
+            "info_session",
+            "unknown"
+          ]
+        },
+        "cadence": {
+          "enum": [
+            "rolling",
+            "cohort",
+            "continuous",
+            "annual",
+            "unknown"
+          ]
+        },
+        "scheduleNote": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The schedule in the page's own words, when no date could be parsed."
+        },
+        "costNote": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The cost in the page's own words ('sliding scale'), when no figure was read."
+        },
+        "statewide": {
+          "type": "boolean",
+          "description": "Open beyond metro Detroit."
+        },
+        "readAs": {
+          "enum": [
+            "wp_rest",
+            "html_table",
+            "html_page"
+          ]
+        },
+        "provenance": {
+          "type": "object",
+          "required": [
+            "costUsd",
+            "durationWeeks",
+            "startsAt",
+            "applyBy",
+            "stipendUsd",
+            "eligibility"
+          ],
+          "properties": {
+            "costUsd": {
+              "enum": [
+                "page",
+                "registry",
+                "absent"
+              ],
+              "description": "Where this fact came from. 'absent' = the page did not say, so the field is null."
+            },
+            "durationWeeks": {
+              "enum": [
+                "page",
+                "registry",
+                "absent"
+              ],
+              "description": "Where this fact came from. 'absent' = the page did not say, so the field is null."
+            },
+            "startsAt": {
+              "enum": [
+                "page",
+                "registry",
+                "absent"
+              ],
+              "description": "Where this fact came from. 'absent' = the page did not say, so the field is null."
+            },
+            "applyBy": {
+              "enum": [
+                "page",
+                "registry",
+                "absent"
+              ],
+              "description": "Where this fact came from. 'absent' = the page did not say, so the field is null."
+            },
+            "stipendUsd": {
+              "enum": [
+                "page",
+                "registry",
+                "absent"
+              ],
+              "description": "Where this fact came from. 'absent' = the page did not say, so the field is null."
+            },
+            "eligibility": {
+              "enum": [
+                "page",
+                "registry",
+                "absent"
+              ],
+              "description": "Where this fact came from. 'absent' = the page did not say, so the field is null."
+            }
+          }
+        },
+        "contentHash": {
+          "type": "string",
+          "description": "sha1 of the page text, so a re-run can report that the page changed."
+        },
+        "sourcePage": {
+          "type": "string",
+          "description": "The page the facts were read from, when that is not `url`."
+        }
+      }
+    },
+    "ResearchContext": {
+      "type": "object",
+      "description": "Extra detail on a research opportunity. Added by `npm run ingest:research`, absent on samples.",
+      "required": [
+        "institution",
+        "enrollmentRequired",
+        "citizenship",
+        "isPaid",
+        "mentorshipModel",
+        "disciplines",
+        "applicationMethod",
+        "recurrence",
+        "deadlinePassed",
+        "nextWindowOpens",
+        "annualDeadline",
+        "communityBased",
+        "lowBarrier",
+        "factsFrom",
+        "urlStatus",
+        "lastCheckedAt",
+        "curatorNotes",
+        "driftNotes"
+      ],
+      "properties": {
+        "institution": {
+          "type": "string"
+        },
+        "enrollmentRequired": {
+          "enum": [
+            "none",
+            "high_school",
+            "undergraduate",
+            "graduate",
+            "postdoc"
+          ]
+        },
+        "citizenship": {
+          "enum": [
+            "us_citizen_or_pr",
+            "us_work_authorized",
+            "open",
+            "unstated"
+          ]
+        },
+        "isPaid": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Null = the page did not say."
+        },
+        "mentorshipModel": {
+          "enum": [
+            "faculty_lab",
+            "cohort_program",
+            "clinical_team",
+            "community_partnership",
+            "self_directed"
+          ]
+        },
+        "disciplines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicationMethod": {
+          "enum": [
+            "online_form",
+            "email",
+            "job_board",
+            "nsf_etap",
+            "contact_program",
+            "unstated"
+          ]
+        },
+        "recurrence": {
+          "enum": [
+            "annual_summer",
+            "annual_academic_year",
+            "rolling",
+            "one_time",
+            "unknown"
+          ]
+        },
+        "deadlinePassed": {
+          "type": "boolean",
+          "description": "applyBy is in the past. The item is kept anyway when it recurs."
+        },
+        "nextWindowOpens": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "annualDeadline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "'MM-DD', for a deadline stated without a year. Never guess the year."
+        },
+        "communityBased": {
+          "type": "boolean",
+          "description": "Run with a community organisation, not only a university."
+        },
+        "lowBarrier": {
+          "type": "boolean",
+          "description": "Needs neither a degree nor current enrolment."
+        },
+        "factsFrom": {
+          "enum": [
+            "program_page",
+            "api",
+            "aggregator",
+            "unverified"
+          ]
+        },
+        "urlStatus": {
+          "enum": [
+            "ok",
+            "blocked",
+            "dead",
+            "unchecked"
+          ]
+        },
+        "lastCheckedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "curatorNotes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Standing context, stable across runs."
+        },
+        "driftNotes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "What this run found that disagrees with what we last read. Empty = clean."
+        }
+      }
+    },
+    "OpportunitySnapshot": {
+      "type": "object",
+      "description": "What each `npm run ingest:*` script writes to data/<kind>.json and src/content/catalog.ts reads. data/events.json is the one exception: it predates this envelope and still names its array 'events'.",
+      "required": [
+        "generatedAt",
+        "region",
+        "sources",
+        "items"
+      ],
+      "properties": {
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "region": {
+          "type": "string",
+          "description": "e.g. 'Detroit, MI'."
+        },
+        "sources": {
+          "type": "array",
+          "description": "One line per source in the run. A source that failed reports its error and zero items; it never blocks the others.",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "fetched",
+              "kept"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "fetched": {
+                "type": "number"
+              },
+              "kept": {
+                "type": "number"
+              },
+              "error": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Opportunity"
+          }
+        }
       }
     }
   }

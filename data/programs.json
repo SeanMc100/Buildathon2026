@@ -1,0 +1,5760 @@
+{
+  "generatedAt": "2026-09-20T01:39:05.494Z",
+  "region": "Detroit, MI",
+  "sources": [
+    {
+      "name": "techtown",
+      "fetched": 8,
+      "kept": 8,
+      "endpoint": "https://techtowndetroit.org/wp-json/wp/v2/pages",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "ser-metro",
+      "fetched": 7,
+      "kept": 7,
+      "endpoint": "https://sermetro.org/wp-json/wp/v2/program-service",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "focus-hope",
+      "fetched": 1,
+      "kept": 1,
+      "endpoint": "https://focushope.edu/wp-json/wp/v2/pages",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "per-scholas-detroit",
+      "fetched": 3,
+      "kept": 3,
+      "endpoint": "https://perscholas.org/wp-json/wp/v2/course",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "build-institute",
+      "fetched": 5,
+      "kept": 5,
+      "endpoint": "https://www.buildinstitute.org/wp-json/wp/v2/pages",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "prosperus-detroit",
+      "fetched": 4,
+      "kept": 4,
+      "endpoint": "https://prosperusdetroit.org/wp-json/wp/v2/pages",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "goodwill-detroit",
+      "fetched": 7,
+      "kept": 7,
+      "endpoint": "https://www.goodwilldetroit.org/wp-json/wp/v2/pages",
+      "fragility": "low",
+      "deadLinks": 0
+    },
+    {
+      "name": "detroit-at-work",
+      "fetched": 32,
+      "kept": 31,
+      "endpoint": "https://detroitatwork.com/training",
+      "fragility": "high",
+      "deadLinks": 0
+    },
+    {
+      "name": "registry",
+      "fetched": 22,
+      "kept": 22,
+      "endpoint": "scripts/programs/registry.ts",
+      "fragility": "medium",
+      "deadLinks": 0
+    }
+  ],
+  "drift": {
+    "added": [],
+    "removed": [],
+    "pageChanged": [],
+    "datesChanged": [],
+    "deadLinks": []
+  },
+  "items": [
+    {
+      "id": "program-registry-a95ad426ce",
+      "kind": "program",
+      "title": "Career Path / Self-Sufficiency Project",
+      "organization": "ACCESS",
+      "summary": "Case-managed employment and training support for people moving off public assistance, delivered in Arabic and English at ACCESS in Dearborn.",
+      "url": "https://www.accesscommunity.org/employment-services/access-career-path-self-sufficiency-project",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 50,
+        "flexibility_and_balance": 95,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 45,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [],
+      "demands": [
+        "night_shifts"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "immigrants",
+          "low_income"
+        ],
+        "delivery": "online",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "job_placement"
+        ],
+        "applicationMethod": "info_session",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "b590f47a2ba1",
+        "sourcePage": "https://www.accesscommunity.org/employment-services/access-career-path-self-sufficiency-project"
+      }
+    },
+    {
+      "id": "program-registry-6d99edbaf1",
+      "kind": "program",
+      "title": "Job Seeker Services",
+      "organization": "ACCESS",
+      "summary": "Training referrals, job placement and workplace English support for immigrant and Arab American job seekers in metro Detroit.",
+      "url": "https://www.accesscommunity.org/employment-services/job-seeker-resources",
+      "location": "ACCESS, Dearborn",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "S",
+        "A",
+        "E"
+      ],
+      "traits": {
+        "pay_and_security": 80,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 80,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Eligibility determination to funded programs",
+        "Must be registered for Selective Service, if applicable",
+        "Participants must be enrolled in the PATH program.",
+        "Eligibility is open to all job seekers.",
+        "Eligibility is open to all benefit claimant/applicants."
+      ],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "immigrants"
+        ],
+        "delivery": "hybrid",
+        "funding": "wioa_funded",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [
+          "job_placement"
+        ],
+        "applicationMethod": "info_session",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "cfd2b74656cc",
+        "sourcePage": "https://www.accesscommunity.org/employment-services/job-seeker-resources"
+      }
+    },
+    {
+      "id": "program-registry-9c1acaa35f",
+      "kind": "program",
+      "title": "Ada Core",
+      "organization": "Ada Developers Academy",
+      "summary": "A tuition-free software development programme for women and gender-expansive adults: six months of virtual classroom followed by the option to interview for a five-month paid fellowship at a partner company.",
+      "url": "https://adadevelopersacademy.org/ada-core/",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "I",
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 75,
+        "flexibility_and_balance": 95,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 80,
+        "manager_support": 70,
+        "autonomy": 65
+      },
+      "jobZone": 3,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": 26,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Be 21 or older",
+        "Live in the United States for the full duration of the programme",
+        "Have permanent work authorisation (DACA recipients are eligible; OPT and CPT are not)",
+        "Have foundational coding knowledge and access to a Mac"
+      ],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "women",
+          "low_income"
+        ],
+        "delivery": "online",
+        "funding": "free_to_participant",
+        "credentials": [],
+        "supports": [
+          "stipend"
+        ],
+        "applicationMethod": "online_form",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": true,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "registry",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "registry"
+        },
+        "contentHash": "c4994ba825ae",
+        "sourcePage": "https://adadevelopersacademy.org/ada-core/"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-a8731ef138",
+      "kind": "program",
+      "title": "CDL-A",
+      "organization": "All Star Truck Driving School Inc.",
+      "summary": "CDL-A, offered by All Star Truck Driving School Inc. and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/All%20Stars%20Truck%20Driving%20School%20-%20CDL%20A_0.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "transport_logistics",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "CDL-A"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-registry-d16070d7a7",
+      "kind": "program",
+      "title": "Apprenti tech apprenticeship",
+      "organization": "Apprenti",
+      "summary": "A registered apprenticeship into tech roles: unpaid-tuition classroom training followed by a paid apprenticeship with a partner employer, aimed at people with no tech background.",
+      "url": "https://apprenticareers.org/career-seeker/",
+      "location": "Employer sites across Michigan",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "I",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 95,
+        "mission_and_impact": 30,
+        "people_and_team": 65,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [],
+        "delivery": "hybrid",
+        "funding": "paid_training",
+        "credentials": [
+          "Registered apprenticeship"
+        ],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": true,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "page",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "94ae993ca7e0",
+        "sourcePage": "https://apprenticareers.org/career-seeker/"
+      }
+    },
+    {
+      "id": "program-build-institute-0eabada7ed",
+      "kind": "program",
+      "title": "Build Alumni Program",
+      "organization": "Build Institute",
+      "summary": "From ongoing educational workshops to alumni networking events, we know that learning doesn’t stop in the classroom.",
+      "url": "https://www.buildinstitute.org/connect/build-alumni-program/",
+      "location": "Build Institute, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 75,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "women"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "continuous",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "d0b132bc17e0",
+        "sourcePage": "https://www.buildinstitute.org/connect/build-alumni-program/"
+      }
+    },
+    {
+      "id": "program-build-institute-cf47d6aa02",
+      "kind": "program",
+      "title": "BUILD Basics",
+      "organization": "Build Institute",
+      "summary": "Our core 8-week business and project planning class is designed for aspiring and established entrepreneurs.",
+      "url": "https://www.buildinstitute.org/learn/build-basics/",
+      "location": "Build Institute, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 80,
+        "mission_and_impact": 60,
+        "people_and_team": 75,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "women"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "6063c0646ccc",
+        "sourcePage": "https://www.buildinstitute.org/learn/build-basics/"
+      }
+    },
+    {
+      "id": "program-build-institute-0dd2a9dead",
+      "kind": "program",
+      "title": "BUILD Grow",
+      "organization": "Build Institute",
+      "summary": "is designed specifically to meet the unique needs of established business owners looking to grow and scale.",
+      "url": "https://www.buildinstitute.org/learn/build-grow/",
+      "location": "Build Institute, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "women"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "202fb67d7430",
+        "sourcePage": "https://www.buildinstitute.org/learn/build-grow/"
+      }
+    },
+    {
+      "id": "program-build-institute-2c7b85658a",
+      "kind": "program",
+      "title": "BUILD Master Class",
+      "organization": "Build Institute",
+      "summary": "Running a business requires a broad array of expertise in all aspects of your business.",
+      "url": "https://www.buildinstitute.org/learn/build-master-class/",
+      "location": "Build Institute, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 75,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "women"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "e6f910734e7b",
+        "sourcePage": "https://www.buildinstitute.org/learn/build-master-class/"
+      }
+    },
+    {
+      "id": "program-build-institute-ceea7d2413",
+      "kind": "program",
+      "title": "BUILD Social Impact",
+      "organization": "Build Institute",
+      "summary": "trains, develops, and coaches social entrepreneurs in Detroit’s small business community.",
+      "url": "https://www.buildinstitute.org/learn/build-social-impact/",
+      "location": "Build Institute, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "women"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "33d9a839347a",
+        "sourcePage": "https://www.buildinstitute.org/learn/build-social-impact/"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-07649262b2",
+      "kind": "program",
+      "title": "Customer Service and Call Center Training Program",
+      "organization": "Call Center for Hire",
+      "summary": "Customer Service and Call Center Training Program, offered by Call Center for Hire and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Call%20For%20Hire%20-%20Call%20Center%20For%20Hire%27s%20Customer%20Service%20and%20Call%20Center.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-c726a5323b",
+      "kind": "program",
+      "title": "Carpenter Apprenticeship",
+      "organization": "Carpenter & Millwright Union",
+      "summary": "Carpenter Apprenticeship, offered by Carpenter & Millwright Union and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-11/Carpenters%20and%20Millwrights%20Joint%20Apprenticeship%20%28%20Carpenter%29.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-bf1734bb2b",
+      "kind": "program",
+      "title": "Pre Apprenticeship (Solar)",
+      "organization": "Carpenter & Millwright Union",
+      "summary": "Pre Apprenticeship (Solar), offered by Carpenter & Millwright Union and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-11/Carpenters%20and%20Millwrights%20Joint%20Apprenticeship%20%28%20Build%20MI%20Future%20-%20Solar%29.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-registry-497ffc4d82",
+      "kind": "program",
+      "title": "Motor City Match",
+      "organization": "City of Detroit / Detroit Economic Growth Corporation",
+      "summary": "A competitive round-based programme that matches Detroit businesses with buildings, design and business-plan help, and cash grants toward a bricks-and-mortar space.",
+      "url": "https://www.motorcitymatch.com/",
+      "location": "Detroit",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "E",
+        "A",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 50,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "hybrid",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "b33dfa4ab070",
+        "sourcePage": "https://www.motorcitymatch.com/"
+      }
+    },
+    {
+      "id": "program-registry-f81b977a2b",
+      "kind": "program",
+      "title": "Detroit Promise",
+      "organization": "Detroit Regional Chamber",
+      "summary": "A last-dollar scholarship that gives eligible Detroit residents a tuition-free path to an associate degree, a bachelor’s degree or a technical certificate at participating institutions.",
+      "url": "https://detroitpromise.com/about/",
+      "location": "Participating Michigan colleges and universities",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "C",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 80,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "adult_education",
+        "audiences": [
+          "detroit_residents",
+          "young_adults"
+        ],
+        "delivery": "unknown",
+        "funding": "free_to_participant",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "annual",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "44ba2dabc402",
+        "sourcePage": "https://detroitpromise.com/about/"
+      }
+    },
+    {
+      "id": "program-registry-4128d785db",
+      "kind": "program",
+      "title": "Heavy Equipment Operator Training",
+      "organization": "Detroit Training Center",
+      "summary": "Operator training on excavators, backhoes, skid steers and other heavy equipment, with seat time on real machines.",
+      "url": "https://detroittraining.com/heavy-equipment",
+      "location": "Detroit Training Center, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "C",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 45,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "OSHA 30",
+          "Forklift"
+        ],
+        "supports": [
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "23f8ddcbb789",
+        "sourcePage": "https://detroittraining.com/heavy-equipment"
+      }
+    },
+    {
+      "id": "program-registry-39fa762025",
+      "kind": "program",
+      "title": "Michigan Builders License Preparation",
+      "organization": "Detroit Training Center",
+      "summary": "The 60-hour pre-licensure course Michigan requires before you can sit the residential builders licence exam, run live and in the classroom.",
+      "url": "https://detroittraining.com/mibuilders",
+      "location": "Detroit Training Center, Detroit",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "R",
+        "C",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 750,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "You must take this class on a laptop or computer, not a cell phone"
+      ],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "hybrid",
+        "funding": "tuition",
+        "credentials": [
+          "Michigan Builders License"
+        ],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "registry",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "cce11605765f",
+        "sourcePage": "https://detroittraining.com/mibuilders"
+      }
+    },
+    {
+      "id": "program-registry-76a308b450",
+      "kind": "program",
+      "title": "Welding Training",
+      "organization": "Detroit Training Center",
+      "summary": "Hands-on welding training at the Detroit Training Center shop, covering the processes employers hire for.",
+      "url": "https://detroittraining.com/welding",
+      "location": "Detroit Training Center, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "A",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 30,
+        "people_and_team": 65,
+        "manager_support": 45,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "OSHA 10",
+          "Welding (MIG/TIG/Arc)",
+          "Forklift"
+        ],
+        "supports": [
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "ead267e19783",
+        "sourcePage": "https://detroittraining.com/welding"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-057d82be07",
+      "kind": "program",
+      "title": "Framing and Structural Carpentry",
+      "organization": "Emerging Industries Technology Institute",
+      "summary": "Framing and Structural Carpentry, offered by Emerging Industries Technology Institute and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/EITI%20-%20Framing%20and%20Structural%20Carpentry%20Bio.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-653f93ba0c",
+      "kind": "program",
+      "title": "Renewable Energy (Solar Technician)",
+      "organization": "Emerging Industries Technology Institute",
+      "summary": "Renewable Energy (Solar Technician), offered by Emerging Industries Technology Institute and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-01/EITI%20-%20Training%20Bio%20%281%29%20%281%29.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-efa3bfe840",
+      "kind": "program",
+      "title": "Residential Electrical",
+      "organization": "Emerging Industries Technology Institute",
+      "summary": "Residential Electrical, offered by Emerging Industries Technology Institute and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/EITI%20-%20Residential%20Electrical%20Bio.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-a58f0bcb2d",
+      "kind": "program",
+      "title": "Multiple Skilled Trades",
+      "organization": "Fast TRACC",
+      "summary": "Multiple Skilled Trades, offered by Fast TRACC and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/detroit-at-work-fast-tracc",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-7cd3d7fdbd",
+      "kind": "program",
+      "title": "Construction Training Pathways",
+      "organization": "Focus Hope",
+      "summary": "Construction Training Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Construction%20Training%20Pathways.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-31213fa39a",
+      "kind": "program",
+      "title": "Industrial Manufacturing Training Pathways",
+      "organization": "Focus Hope",
+      "summary": "Industrial Manufacturing Training Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Industrial%20Manufacturing%20Training%20Pathways.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "manufacturing",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-a3177a603a",
+      "kind": "program",
+      "title": "Information Technology Pathways",
+      "organization": "Focus Hope",
+      "summary": "Information Technology Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Information%20Technology%20Pathways.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-acf6536e39",
+      "kind": "program",
+      "title": "IT Developer (Information Technology Pathway-Plus)",
+      "organization": "Focus Hope",
+      "summary": "IT Developer (Information Technology Pathway-Plus), offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Information%20Training%20Pathways%20-Plus%20Developer.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-eb660cd6c9",
+      "kind": "program",
+      "title": "IT Python Developer 2",
+      "organization": "Focus Hope",
+      "summary": "IT Python Developer 2, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5056",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-dd33f0ea50",
+      "kind": "program",
+      "title": "Logistics and Transportation Pathways",
+      "organization": "Focus Hope",
+      "summary": "Logistics and Transportation Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Logistics%20%26%20Transportation.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "transport_logistics",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-focus-hope-b25ba8af2a",
+      "kind": "program",
+      "title": "DTE Tree Trim Academy",
+      "organization": "Focus: HOPE",
+      "summary": "DTE Tree Trim Academy, run by Focus: HOPE.",
+      "url": "https://www.focushope.edu/programs/job-training/dte-tree-trim-academy/",
+      "location": "Focus: HOPE, 1400 Oakman Blvd, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [
+          "detroit_residents",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://www.focushope.edu/programs/job-training/dte-tree-trim-academy/"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-cee3afaa60",
+      "kind": "program",
+      "title": "Nurse Aide Training Program",
+      "organization": "Gentle Hands of Integrity",
+      "summary": "Nurse Aide Training Program, offered by Gentle Hands of Integrity and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Gentle%20Hands%20of%20Integrity%20-%20Nurse%20Aid.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "CNA / Nurse Aide"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-db67abfc5f",
+      "kind": "program",
+      "title": "A Place Of Our Own",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "At A Place of Our Own Clubhouse, we are dedicated to supporting the recovery and well-being of individuals living with mental illness.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/a-place-of-our-own/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "must be at least 18 years old"
+      ],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "5da20719a534",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/a-place-of-our-own/"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-948a79d0d3",
+      "kind": "program",
+      "title": "Career Academy",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "At the Goodwill of Greater Detroit Career Academy, we recognize the increasing need for high demand careers in southeast Michigan and the crucial role they play in fueling economic mobility for individuals and families.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/career-academy/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 40,
+        "manager_support": 45,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "18 years of age or older",
+        "High school diploma or GED certificate Sixth-grade math & reading"
+      ],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [
+          "transport",
+          "job_placement"
+        ],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "2d1176badd8c",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/career-academy/"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-d539f35440",
+      "kind": "program",
+      "title": "Flip The Script",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "For 23 years, Goodwill of Greater Detroit’s award winning Flip the Script program has been dedicated to fostering second chances for individuals who are or have been justice-involved.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/flip-the-script/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Eligibility Criteria: 18 years of age or older and a Detroit resident under active;",
+        "Eligibility Criteria: Wayne County Resident age 16 years or older",
+        "Eligibility Criteria: 16 – 39 year old probationers under MDOC supervision"
+      ],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [
+          "transport",
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "66b1ddf2d60a",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/flip-the-script/"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-38efd0edb5",
+      "kind": "program",
+      "title": "Green Works",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "Green Works, run by Goodwill Industries of Greater Detroit.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/green-works/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/green-works/"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-bcb411867e",
+      "kind": "program",
+      "title": "Life Skills",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "Goodwill of Greater Detroit’s Life Skills program empowers adults with intellectual and developmental disabilities through a comprehensive range of supportive services that promote growth and independence.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/life-skills/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Must be at least 18 years old.",
+        "Must be a resident of Wayne County."
+      ],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "1ed89b4bf681",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/life-skills/"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-1013c37a09",
+      "kind": "program",
+      "title": "Supported Employment",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "Goodwill offers additional services to help prepare for a job.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/supported-employment/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 50,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "manufacturing",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "childcare",
+          "transport",
+          "job_placement"
+        ],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "df8eff2632d6",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/supported-employment/"
+      }
+    },
+    {
+      "id": "program-goodwill-detroit-3d391e5a31",
+      "kind": "program",
+      "title": "Surge Center",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "Reaching peak performance during work hours is critical to your company’s productivity and profitability.",
+      "url": "https://www.goodwilldetroit.org/the-good-we-do/surge-center/",
+      "location": "Goodwill Industries of Greater Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "A",
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "creative",
+        "audiences": [
+          "returning_citizens",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "childcare"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "continuous",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "d724f269ab4c",
+        "sourcePage": "https://www.goodwilldetroit.org/the-good-we-do/surge-center/"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-47ac22d704",
+      "kind": "program",
+      "title": "Welding Skills Trades",
+      "organization": "Goodwill Industries of Greater Detroit",
+      "summary": "Welding Skills Trades, offered by Goodwill Industries of Greater Detroit and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/Training%20Bio%20-%20Goodwill%202025%20Welding%201.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-registry-fa2d1e86f1",
+      "kind": "program",
+      "title": "Grow Detroit's Young Talent",
+      "organization": "Grow Detroit's Young Talent",
+      "summary": "Detroit's citywide summer jobs programme: six weeks of paid work experience with a local employer for residents aged 14 to 24, with far more applicants than places.",
+      "url": "https://gdyt.org/youth",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 80,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "youth",
+          "young_adults",
+          "detroit_residents"
+        ],
+        "delivery": "online",
+        "funding": "paid_training",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "annual",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "9bb6f4566257",
+        "sourcePage": "https://gdyt.org/youth"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-5331097296",
+      "kind": "program",
+      "title": "Operation Next CNC Machining Program",
+      "organization": "LIFT Learning Lab",
+      "summary": "Operation Next CNC Machining Program, offered by LIFT Learning Lab and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5146",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "manufacturing",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "CNC machining"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-7c67a4fe30",
+      "kind": "program",
+      "title": "Operation Next Robotics Program",
+      "organization": "LIFT Learning Lab",
+      "summary": "Operation Next Robotics Program, offered by LIFT Learning Lab and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5141",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "manufacturing",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-4839ca1589",
+      "kind": "program",
+      "title": "Operation Next Welding Program",
+      "organization": "LIFT Learning Lab",
+      "summary": "Operation Next Welding Program, offered by LIFT Learning Lab and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5161",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-registry-4bb807b82c",
+      "kind": "program",
+      "title": "LISC Detroit small business and workforce programmes",
+      "organization": "LISC Detroit",
+      "summary": "LISC Detroit runs funding rounds, business coaching and construction workforce initiatives for Detroit neighbourhoods.",
+      "url": "https://www.lisc.org/detroit/",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 50,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "1c332d00cd5b",
+        "sourcePage": "https://www.lisc.org/detroit/"
+      }
+    },
+    {
+      "id": "program-registry-6de6786577",
+      "kind": "program",
+      "title": "Michigan Central community programmes",
+      "organization": "Michigan Central",
+      "summary": "Michigan Central runs mobility and technology programming out of Corktown, including community training, fellowships and studio residencies.",
+      "url": "https://michigancentral.com/community/",
+      "location": "Michigan Central, Corktown, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "detroit_residents",
+          "young_adults"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "annual",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "174ea33de449",
+        "sourcePage": "https://michigancentral.com/community/"
+      }
+    },
+    {
+      "id": "program-registry-0fdbf45d21",
+      "kind": "program",
+      "title": "Going PRO Talent Fund",
+      "organization": "Michigan Department of Labor and Economic Opportunity",
+      "summary": "State grants that pay for employees to be trained on the job. Employers apply through their local Michigan Works! agency, so ask your employer rather than applying yourself.",
+      "url": "https://www.michigan.gov/leo/bureaus-agencies/wd/programs-services/going-pro-talent-fund",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "E",
+        "A",
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 80,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [],
+        "delivery": "online",
+        "funding": "employer_sponsored",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "annual",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": true,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "61f8aaea52ca",
+        "sourcePage": "https://www.michigan.gov/leo/bureaus-agencies/wd/programs-services/going-pro-talent-fund"
+      }
+    },
+    {
+      "id": "program-registry-61d999e3fe",
+      "kind": "program",
+      "title": "Michigan Registered Apprenticeships",
+      "organization": "Michigan Department of Labor and Economic Opportunity",
+      "summary": "The state's directory of registered apprenticeships: paid, employer-sponsored training that combines on-the-job hours with classroom instruction and ends in a nationally recognised credential.",
+      "url": "https://www.michigan.gov/leo/bureaus-agencies/wd/apprenticeships",
+      "location": "Sponsors across Michigan",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 30,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work",
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "paid_training",
+        "credentials": [
+          "Registered apprenticeship"
+        ],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "rolling",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": true,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "a4998fa80f83",
+        "sourcePage": "https://www.michigan.gov/leo/bureaus-agencies/wd/apprenticeships"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-2716635022",
+      "kind": "program",
+      "title": "Pre-Apprentice Pharmacy Tech Program",
+      "organization": "Michigan Technology & Trade Institute",
+      "summary": "Pre-Apprentice Pharmacy Tech Program, offered by Michigan Technology & Trade Institute and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/Training%20Bio_TEMPLATE%20MTTI%20PRE%20APPRENTICESHIP%20PHARMACY%20TECH%20%281%29.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "Pharmacy Technician (PTCB)"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-8a26882c65",
+      "kind": "program",
+      "title": "Pre-Apprenticeship Carpentry",
+      "organization": "Michigan Technology & Trade Institute",
+      "summary": "Pre-Apprenticeship Carpentry, offered by Michigan Technology & Trade Institute and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/MTTI%20-%20Pre-Apprenticeship%20Carpentry.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-6c87f00066",
+      "kind": "program",
+      "title": "Healthcare Foundations for Pharmacy Tech",
+      "organization": "Michigan Technology and Trades Institute",
+      "summary": "Healthcare Foundations for Pharmacy Tech, offered by Michigan Technology and Trades Institute and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/MTTI%20-%20Healthcare%20Foundations%20for%20Pharmacy%20Tech.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "Pharmacy Technician (PTCB)"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-abc9805fff",
+      "kind": "program",
+      "title": "Tech Fundamentals I",
+      "organization": "NPower Michigan",
+      "summary": "Tech Fundamentals I, offered by NPower Michigan and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/NPower%20-%20Tech%20Fundamentals.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-per-scholas-detroit-8025f36799",
+      "kind": "program",
+      "title": "AI-Enabled Healthcare IT Technician Training in Detroit",
+      "organization": "Per Scholas Detroit",
+      "summary": "AI-Enabled Healthcare IT Technician Training in Detroit, run by Per Scholas Detroit.",
+      "url": "https://perscholas.org/courses/ai-enabled-healthcare-it-technician/ai-enabled-healthcare-it-technician-detroit/",
+      "location": "Per Scholas Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://perscholas.org/courses/ai-enabled-healthcare-it-technician/ai-enabled-healthcare-it-technician-detroit/"
+      }
+    },
+    {
+      "id": "program-per-scholas-detroit-b7183a5f67",
+      "kind": "program",
+      "title": "AI-Enabled IT Support Training In Detroit",
+      "organization": "Per Scholas Detroit",
+      "summary": "AI-Enabled IT Support Training In Detroit, run by Per Scholas Detroit.",
+      "url": "https://perscholas.org/courses/it-support/it-support-detroit/",
+      "location": "Per Scholas Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://perscholas.org/courses/it-support/it-support-detroit/"
+      }
+    },
+    {
+      "id": "program-per-scholas-detroit-4820dcbf6f",
+      "kind": "program",
+      "title": "Cybersecurity with AI Tools Training in Detroit",
+      "organization": "Per Scholas Detroit",
+      "summary": "Cybersecurity with AI Tools Training in Detroit, run by Per Scholas Detroit.",
+      "url": "https://perscholas.org/courses/cybersecurity-ai-tools/cybersecurity-detroit/",
+      "location": "Per Scholas Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://perscholas.org/courses/cybersecurity-ai-tools/cybersecurity-detroit/"
+      }
+    },
+    {
+      "id": "program-prosperus-detroit-8d12c33bc4",
+      "kind": "program",
+      "title": "Amanah Financing",
+      "organization": "ProsperUS Detroit",
+      "summary": "This opportunity is made possible through our partnership with the City of Hamtramck and support from the National League of Cities.",
+      "url": "https://prosperusdetroit.org/amanah/",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "E",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to all who qualify, whatever your faith may be"
+      ],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "immigrants",
+          "low_income"
+        ],
+        "delivery": "online",
+        "funding": "unknown",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [
+          "childcare"
+        ],
+        "applicationMethod": "online_form",
+        "cadence": "continuous",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "3bb50f72e91d",
+        "sourcePage": "https://prosperusdetroit.org/amanah/"
+      }
+    },
+    {
+      "id": "program-prosperus-detroit-478b4328ac",
+      "kind": "program",
+      "title": "Detroit Creative Futures",
+      "organization": "ProsperUS Detroit",
+      "summary": "A business growth program for Detroit’s creative entrepreneurs.",
+      "url": "https://prosperusdetroit.org/detroit-creative-futures/",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "E",
+        "A",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 75,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2026-09-27",
+      "eligibility": [
+        "open to the public, but we ask that you register in advance so we can ensure we’re prepar"
+      ],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "immigrants",
+          "low_income"
+        ],
+        "delivery": "online",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "childcare"
+        ],
+        "applicationMethod": "info_session",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "page",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "22bb8448950a",
+        "sourcePage": "https://prosperusdetroit.org/detroit-creative-futures/"
+      }
+    },
+    {
+      "id": "program-prosperus-detroit-571aa83c80",
+      "kind": "program",
+      "title": "Financial Coaching",
+      "organization": "ProsperUS Detroit",
+      "summary": "We build trusted relationships that strengthen financial health, build readiness, and expand access to opportunity.",
+      "url": "https://prosperusdetroit.org/financial-coaching/",
+      "location": "ProsperUS Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "immigrants",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "free_to_participant",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "annual",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "page",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "9186a6b00fe2",
+        "sourcePage": "https://prosperusdetroit.org/financial-coaching/"
+      }
+    },
+    {
+      "id": "program-prosperus-detroit-d62a6a5fc0",
+      "kind": "program",
+      "title": "Training",
+      "organization": "ProsperUS Detroit",
+      "summary": "We will be accepting applications for the Spring 2027 Entrepreneur Training Program soon!",
+      "url": "https://prosperusdetroit.org/training/",
+      "location": "ProsperUS Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Requirements: Strong applicants have a single, focused, for-profit business idea and have taken some steps to making their idea reality."
+      ],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents",
+          "immigrants",
+          "low_income"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "annual",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "d8bb227a2a95",
+        "sourcePage": "https://prosperusdetroit.org/training/"
+      }
+    },
+    {
+      "id": "program-ser-metro-1a2094a3f6",
+      "kind": "program",
+      "title": "Adult Education Services",
+      "organization": "SER Metro-Detroit",
+      "summary": "SER Metro provides adult education services to residents 18 years old+, in partnership with Ford Philanthropy, to community members at SER’s Main Office on Michigan Avenue and the Ford Community Center on the east side of Detroit.",
+      "url": "https://sermetro.org/program-service/adult-programs-services/adult-education-services/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "I",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "hybrid",
+        "funding": "unknown",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "5533c94e716d",
+        "sourcePage": "https://sermetro.org/program-service/adult-programs-services/adult-education-services/"
+      }
+    },
+    {
+      "id": "program-ser-metro-c839953bf3",
+      "kind": "program",
+      "title": "Center for Working Families",
+      "organization": "SER Metro-Detroit",
+      "summary": "SER Center for Working Families: A Holistic Approach to Empowering Detroit’s Workforce",
+      "url": "https://sermetro.org/program-service/adult-programs-services/center-for-working-families/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "OSHA 30"
+        ],
+        "supports": [
+          "childcare"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "80871d3e8e36",
+        "sourcePage": "https://sermetro.org/program-service/adult-programs-services/center-for-working-families/"
+      }
+    },
+    {
+      "id": "program-ser-metro-ff57618a15",
+      "kind": "program",
+      "title": "Justice Impacted Services",
+      "organization": "SER Metro-Detroit",
+      "summary": "SER offers programs and services focused on helping the formerly incarcerated gain access to training and career services.",
+      "url": "https://sermetro.org/program-service/justice-impacted-services/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 50,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 80,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Participants must reside in the City of Detroit or Wayne County address outside of Detroit."
+      ],
+      "program": {
+        "sector": "transport_logistics",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "childcare",
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "9205f74e4ea4",
+        "sourcePage": "https://sermetro.org/program-service/justice-impacted-services/"
+      }
+    },
+    {
+      "id": "program-ser-metro-c1286925a2",
+      "kind": "program",
+      "title": "ReBuild Detroit – A SER Skilled",
+      "organization": "SER Metro-Detroit",
+      "summary": "Minimum 6th-grade reading/math level (assessed via CASAS test)",
+      "url": "https://sermetro.org/program-service/adult-programs-services/ser-construction-talent-hub/rebuild-detroit-a-ser-skilled/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 30,
+        "people_and_team": 65,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": 700,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "18 years old or older"
+      ],
+      "program": {
+        "sector": "skilled_trades",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [
+          "OSHA 30",
+          "GED / high school completion"
+        ],
+        "supports": [
+          "transport",
+          "stipend"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": "Next Cohort Starts: November 10,2025",
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "page",
+          "eligibility": "page"
+        },
+        "contentHash": "f5f214a223fa",
+        "sourcePage": "https://sermetro.org/program-service/adult-programs-services/ser-construction-talent-hub/rebuild-detroit-a-ser-skilled/"
+      }
+    },
+    {
+      "id": "program-ser-metro-cef9525a54",
+      "kind": "program",
+      "title": "SER YouthBuild Learning Academy (14-24)",
+      "organization": "SER Metro-Detroit",
+      "summary": "In partnership with Detroit Public Schools Community District (DPSCD), SER YouthBuild Learning Academy (SYLA) East & Southwest offers a chance for learners to gain the knowledge, skills, and self-discipline needed to succeed in the world.",
+      "url": "https://sermetro.org/program-service/youth-programs-services/ser-youthbuild-learning-academy/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 75,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "open to residents of any city, providing an inclusive educational opportunity for all"
+      ],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [
+          "CNA / Nurse Aide",
+          "Patient Care Technician",
+          "OSHA 10",
+          "GED / high school completion"
+        ],
+        "supports": [
+          "transport"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "continuous",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "e20f8aceacc6",
+        "sourcePage": "https://sermetro.org/program-service/youth-programs-services/ser-youthbuild-learning-academy/"
+      }
+    },
+    {
+      "id": "program-ser-metro-a7e4fdd545",
+      "kind": "program",
+      "title": "Year Round Youth (14-24)",
+      "organization": "SER Metro-Detroit",
+      "summary": "SER Metro–Detroit’s Year Round Youth Program is funded by DetroitAtWork under the Workforce Innovation and Opportunity Act (WIOA).",
+      "url": "https://sermetro.org/program-service/youth-programs-services/year-round-youth/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 70,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 80,
+        "mission_and_impact": 30,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Must be a Detroit Resident"
+      ],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "in_person",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "continuous",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "page",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "a7621eba261d",
+        "sourcePage": "https://sermetro.org/program-service/youth-programs-services/year-round-youth/"
+      }
+    },
+    {
+      "id": "program-ser-metro-b5c4ab10ed",
+      "kind": "program",
+      "title": "YouthBuild GED (18-24)",
+      "organization": "SER Metro-Detroit",
+      "summary": "SER’s YouthBuild program follows the established YouthBuild national model, combining personalized GED instruction with hands-on construction training to boost employability.",
+      "url": "https://sermetro.org/program-service/youth-programs-services/youthbuild-ged/",
+      "location": "SER Metro-Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 75,
+        "people_and_team": 65,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Must be 17-24 years old to apply"
+      ],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [
+          "spanish_speakers",
+          "low_income"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "Patient Care Technician",
+          "Phlebotomy",
+          "OSHA 10",
+          "GED / high school completion"
+        ],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "48cfdb5d7638",
+        "sourcePage": "https://sermetro.org/program-service/youth-programs-services/youthbuild-ged/"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-290589111b",
+      "kind": "program",
+      "title": "Medical Assistant",
+      "organization": "Skill Trade Inc",
+      "summary": "Medical Assistant, offered by Skill Trade Inc and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/Training%20Bio_TEMPLATE_Hybrid%20SS%20%28003%29.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "Medical Assistant"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-b57e7f6927",
+      "kind": "program",
+      "title": "Medical Assistant Hybrid Program",
+      "organization": "Skill Trade Inc",
+      "summary": "Medical Assistant Hybrid Program, offered by Skill Trade Inc and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5156",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "hybrid",
+        "funding": "wioa_funded",
+        "credentials": [
+          "Medical Assistant"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-registry-b94074ce6b",
+      "kind": "program",
+      "title": "Adult Literacy",
+      "organization": "Southwest Solutions",
+      "summary": "Adult basic education, high school completion and English language classes in southwest Detroit.",
+      "url": "https://swsol.org/economics/adult-literacy",
+      "location": "Southwest Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "C",
+        "I",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "must be at least 18 years old"
+      ],
+      "program": {
+        "sector": "adult_education",
+        "audiences": [
+          "spanish_speakers",
+          "immigrants"
+        ],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "ee66ad183c04",
+        "sourcePage": "https://swsol.org/economics/adult-literacy"
+      }
+    },
+    {
+      "id": "program-registry-2e2579d11b",
+      "kind": "program",
+      "title": "Career Center",
+      "organization": "Southwest Solutions",
+      "summary": "Job readiness coaching, placement help and training referrals for adults in southwest Detroit, offered in English and Spanish.",
+      "url": "https://swsol.org/economics/career-center",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 50,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "spanish_speakers",
+          "immigrants",
+          "low_income"
+        ],
+        "delivery": "online",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "childcare",
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "a16844e7f424",
+        "sourcePage": "https://swsol.org/economics/career-center"
+      }
+    },
+    {
+      "id": "program-registry-aa442c45f8",
+      "kind": "program",
+      "title": "Earn + Learn",
+      "organization": "Southwest Solutions",
+      "summary": "A programme that pairs paid work experience with classroom learning for adults in southwest Detroit.",
+      "url": "https://swsol.org/economics/earn-learn",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "S",
+        "A",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 100,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 80,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "open to low-income Detroiters and residents of Highland Park and Hamtramck, as well as ve"
+      ],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "low_income",
+          "spanish_speakers"
+        ],
+        "delivery": "online",
+        "funding": "wioa_funded",
+        "credentials": [
+          "CDL-A",
+          "GED / high school completion"
+        ],
+        "supports": [
+          "stipend",
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "continuous",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "cf9a126d8bfc",
+        "sourcePage": "https://swsol.org/economics/earn-learn"
+      }
+    },
+    {
+      "id": "program-registry-651a58ca2c",
+      "kind": "program",
+      "title": "Homeless Veterans' Reintegration Program",
+      "organization": "Southwest Solutions",
+      "summary": "Employment services, training and housing support for veterans in Detroit who are homeless or at risk of it.",
+      "url": "https://swsol.org/economics/homeless-veterans-reintegration-program-hvrp",
+      "location": "Southwest Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 50,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 40,
+        "manager_support": 45,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "veterans",
+          "low_income"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [
+          "transport",
+          "job_placement"
+        ],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "14fa884cdaeb",
+        "sourcePage": "https://swsol.org/economics/homeless-veterans-reintegration-program-hvrp"
+      }
+    },
+    {
+      "id": "program-registry-0ffd86b5dc",
+      "kind": "program",
+      "title": "Youth Programs",
+      "organization": "Southwest Solutions",
+      "summary": "Work readiness, education and employment support for young people in southwest Detroit.",
+      "url": "https://swsol.org/economics/youth-programs",
+      "location": "Southwest Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "High School Diploma or GED is required to enroll in Youth Programm"
+      ],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [
+          "youth",
+          "young_adults",
+          "spanish_speakers"
+        ],
+        "delivery": "in_person",
+        "funding": "unknown",
+        "credentials": [
+          "GED / high school completion"
+        ],
+        "supports": [
+          "stipend"
+        ],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "58ef8163afb1",
+        "sourcePage": "https://swsol.org/economics/youth-programs"
+      }
+    },
+    {
+      "id": "program-registry-3468168089",
+      "kind": "program",
+      "title": "Michigan Reconnect",
+      "organization": "State of Michigan (LEO)",
+      "summary": "A state scholarship that pays tuition for Michigan residents aged 25 and over to earn an associate degree or a skills certificate at their in-district community college.",
+      "url": "https://www.michigan.gov/reconnect",
+      "location": "Any participating Michigan community college",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "C",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 80,
+        "mission_and_impact": 60,
+        "people_and_team": 55,
+        "manager_support": 70,
+        "autonomy": 40
+      },
+      "jobZone": 2,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "Returner",
+        "Pivot"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Be at least 25 years old",
+        "Have lived in Michigan for at least a year",
+        "Have a high school diploma or equivalent",
+        "Have not already completed a college degree"
+      ],
+      "program": {
+        "sector": "adult_education",
+        "audiences": [
+          "older_workers"
+        ],
+        "delivery": "in_person",
+        "funding": "free_to_participant",
+        "credentials": [],
+        "supports": [
+          "childcare"
+        ],
+        "applicationMethod": "online_form",
+        "cadence": "rolling",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": true,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "registry",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "registry"
+        },
+        "contentHash": "01f66dc7e939",
+        "sourcePage": "https://www.michigan.gov/reconnect"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-a43c78103d",
+      "kind": "program",
+      "title": "CDL - A",
+      "organization": "Suburban Truck Driving Training School",
+      "summary": "CDL - A, offered by Suburban Truck Driving Training School and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Suburban%20Truck%20Driving%20Training%20School%20-%20%20CDL%20A.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "transport_logistics",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-cd3c71818d",
+      "kind": "program",
+      "title": "CDL - B",
+      "organization": "Suburban Truck Driving Training School",
+      "summary": "CDL - B, offered by Suburban Truck Driving Training School and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Suburban%20Truck%20Driver%20Training%20School%20-%20CDL%20B.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "transport_logistics",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-techtown-7e14645dd9",
+      "kind": "program",
+      "title": "Business Accelerator Fund (BAF)",
+      "organization": "TechTown Detroit",
+      "summary": "The Business Accelerator Fund (BAF) is available to participating business accelerators in Michigan’s statewide SmartZone network.",
+      "url": "https://techtowndetroit.org/what-we-do/tech-programs/baf/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 75,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "f9e996e924ea",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/tech-programs/baf/"
+      }
+    },
+    {
+      "id": "program-techtown-e5c3ffb7b9",
+      "kind": "program",
+      "title": "Coaching Up",
+      "organization": "TechTown Detroit",
+      "summary": "Whether you are navigating a grand opening, pivoting your strategy, or seeking long-term stability, Coaching Up provides the expert, one-on-one guidance you need to thrive.",
+      "url": "https://techtowndetroit.org/what-we-do/small-business-programs/coaching-up/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "open to working with our team on compliance You have access to a computer or tablet with"
+      ],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "info_session",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "page"
+        },
+        "contentHash": "83ffde9afec4",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/small-business-programs/coaching-up/"
+      }
+    },
+    {
+      "id": "program-techtown-4366b05b96",
+      "kind": "program",
+      "title": "Mobility Accelerator Innovation Network (MAIN)",
+      "organization": "TechTown Detroit",
+      "summary": "MAIN is one of the components of the Global Epicenter of Mobility (GEM), a $52.2M grant awarded to a broad coalition of partners.",
+      "url": "https://techtowndetroit.org/what-we-do/tech-programs/main/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 75,
+        "manager_support": 35,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "9064187490f2",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/tech-programs/main/"
+      }
+    },
+    {
+      "id": "program-techtown-db930d1fab",
+      "kind": "program",
+      "title": "Retail Boot Camp (RBC)",
+      "organization": "TechTown Detroit",
+      "summary": "Retail isn't just about selling — it's about surviving and scaling.",
+      "url": "https://techtowndetroit.org/what-we-do/small-business-programs/rbc/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "E",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 499,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "hybrid",
+        "funding": "tuition",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "info_session",
+        "cadence": "cohort",
+        "scheduleNote": "Applications Close: Oct",
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "page",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "83aa537fecde",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/small-business-programs/rbc/"
+      }
+    },
+    {
+      "id": "program-techtown-11da0fbee4",
+      "kind": "program",
+      "title": "Scale Studio",
+      "organization": "TechTown Detroit",
+      "summary": "Designed to help early-stage founders and small business leaders turn artificial intelligence into real business solutions.",
+      "url": "https://techtowndetroit.org/what-we-do/tech-programs/scale-studio/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "A",
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "234c125cab6e",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/tech-programs/scale-studio/"
+      }
+    },
+    {
+      "id": "program-techtown-d939d8ba48",
+      "kind": "program",
+      "title": "Small Business Support Hub (SBSH)",
+      "organization": "TechTown Detroit",
+      "summary": "Through the Small Business Support Hub Grant, funded by the Michigan Economic Development Corporation, TechTown Detroit, ProsperUs Detroit, Eastern Market Partnership, Michigan SBDC, and BUILD Institute have partnered to…",
+      "url": "https://techtowndetroit.org/what-we-do/business-support/sbsh/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "E",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": 3,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "hybrid",
+        "funding": "unknown",
+        "credentials": [
+          "ServSafe"
+        ],
+        "supports": [],
+        "applicationMethod": "unknown",
+        "cadence": "cohort",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "ad9f5c64a1cb",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/business-support/sbsh/"
+      }
+    },
+    {
+      "id": "program-techtown-48eff7eb12",
+      "kind": "program",
+      "title": "Start Studio",
+      "organization": "TechTown Detroit",
+      "summary": "helps aspiring founders test tech ideas through three tracks: ID (Ideation), MT (Market Testing), and IP (Initial Product).",
+      "url": "https://techtowndetroit.org/what-we-do/tech-programs/start-studio/",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "E",
+        "S",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 80,
+        "growth_and_learning": 70,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "online",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "info_session",
+        "cadence": "rolling",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "fce21ca1facf",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/tech-programs/start-studio/"
+      }
+    },
+    {
+      "id": "program-techtown-048b11dc15",
+      "kind": "program",
+      "title": "The SHOP",
+      "organization": "TechTown Detroit",
+      "summary": "is TechTown Detroit’s world-class pop-up that allows entrepreneurs at a variety of business stages to test their ideas in a retail environment while offering in-the-moment coaching from retail experts.",
+      "url": "https://techtowndetroit.org/what-we-do/small-business-programs/the-shop/",
+      "location": "TechTown, 440 Burroughs St, Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "S",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 80,
+        "mission_and_impact": 60,
+        "people_and_team": 90,
+        "manager_support": 70,
+        "autonomy": 80
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "Pivot",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "entrepreneurship",
+        "audiences": [
+          "detroit_residents"
+        ],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "info_session",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "wp_rest",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "4a9addb89ba6",
+        "sourcePage": "https://techtowndetroit.org/what-we-do/small-business-programs/the-shop/"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-bd0a6e84a8",
+      "kind": "program",
+      "title": "Walker - Miller Clean Energy Academy",
+      "organization": "Walker - Miller Energy Services",
+      "summary": "Walker - Miller Clean Energy Academy, offered by Walker - Miller Energy Services and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Walker-Miller%20Energy%20Services%20-%20Clean%20Energy%20Academy.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [],
+      "traits": {
+        "pay_and_security": 55,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 70,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-registry-a3f276c4bd",
+      "kind": "program",
+      "title": "Center for Workforce and Economic Development",
+      "organization": "Wayne County Community College District",
+      "summary": "WCCCD's workforce arm: short-cycle training and industry certifications built with local employers, sitting alongside the college's credit programmes.",
+      "url": "https://www.wcccd.edu/center-for-workforce-and-economic-development",
+      "location": "WCCCD campuses across Wayne County",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 95,
+        "mission_and_impact": 60,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "general_workforce",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "unknown",
+        "credentials": [
+          "EPA 608 / HVAC"
+        ],
+        "supports": [],
+        "applicationMethod": "online_form",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "b573f012dee5",
+        "sourcePage": "https://www.wcccd.edu/center-for-workforce-and-economic-development"
+      }
+    },
+    {
+      "id": "program-registry-ac85290814",
+      "kind": "program",
+      "title": "Continuing Education courses",
+      "organization": "Wayne County Community College District",
+      "summary": "Non-credit courses and certificate tracks for adults returning to study, including healthcare and trade certifications.",
+      "url": "https://www.wcccd.edu/continuing-education",
+      "location": "WCCCD campuses across Wayne County",
+      "arrangement": "Hybrid",
+      "hollandCode": [
+        "C",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 35,
+        "flexibility_and_balance": 65,
+        "growth_and_learning": 80,
+        "mission_and_impact": 60,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": null,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "adult_education",
+        "audiences": [],
+        "delivery": "hybrid",
+        "funding": "unknown",
+        "credentials": [],
+        "supports": [],
+        "applicationMethod": "info_session",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_page",
+        "provenance": {
+          "costUsd": "absent",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "3f17b3cabb5f",
+        "sourcePage": "https://www.wcccd.edu/continuing-education"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-c7b8db622a",
+      "kind": "program",
+      "title": "Dental Assisting",
+      "organization": "WCCCD-NW",
+      "summary": "Dental Assisting, offered by WCCCD-NW and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5201",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "Dental Assisting"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-53900824b5",
+      "kind": "program",
+      "title": "Pharmacy Technician",
+      "organization": "WCCCD-NW",
+      "summary": "Pharmacy Technician, offered by WCCCD-NW and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/media/5206",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "healthcare",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "Pharmacy Technician (PTCB)"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    },
+    {
+      "id": "program-detroit-at-work-9f07dcbab5",
+      "kind": "program",
+      "title": "CompTIA A+ IT Support Specialist",
+      "organization": "XA Talent",
+      "summary": "CompTIA A+ IT Support Specialist, offered by XA Talent and paid for by Detroit at Work for eligible Detroiters.",
+      "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/xa%20talent%20training%20bio%20corrected.pdf",
+      "location": "Through a Detroit at Work career center",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 65,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 30,
+        "people_and_team": 40,
+        "manager_support": 35,
+        "autonomy": 40
+      },
+      "jobZone": null,
+      "minEducation": "none_required",
+      "suitableStages": [],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "costUsd": 0,
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [],
+      "program": {
+        "sector": "tech",
+        "audiences": [],
+        "delivery": "unknown",
+        "funding": "wioa_funded",
+        "credentials": [
+          "CompTIA A+"
+        ],
+        "supports": [],
+        "applicationMethod": "phone",
+        "cadence": "unknown",
+        "scheduleNote": null,
+        "costNote": null,
+        "statewide": false,
+        "readAs": "html_table",
+        "provenance": {
+          "costUsd": "registry",
+          "durationWeeks": "absent",
+          "startsAt": "absent",
+          "applyBy": "absent",
+          "stipendUsd": "absent",
+          "eligibility": "absent"
+        },
+        "contentHash": "da39a3ee5e6b",
+        "sourcePage": "https://detroitatwork.com/training"
+      }
+    }
+  ]
+}

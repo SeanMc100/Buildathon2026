@@ -75,6 +75,8 @@ export type JobOpportunity = OpportunityBase & {
   payMaxUsd: number | null;
   /** ISO date. Null = rolling or unknown. */
   applyBy: string | null;
+  /** Detroit wage, demand and entry-route context. Added by `npm run ingest:jobs`. */
+  detroit?: DetroitJobContext;
 };
 
 export type ProgramOpportunity = OpportunityBase & {
@@ -89,6 +91,8 @@ export type ProgramOpportunity = OpportunityBase & {
   applyBy: string | null;
   /** Plain-language requirements, e.g. 'Open to women and gender-expansive adults'. */
   eligibility: string[];
+  /** Sector, audience, funding and per-fact provenance. Added by `npm run ingest:programs`. */
+  program?: ProgramContext;
 };
 
 export type EventOpportunity = OpportunityBase & {
@@ -110,6 +114,8 @@ export type ResearchOpportunity = OpportunityBase & {
   startsAt: string | null;
   applyBy: string | null;
   eligibility: string[];
+  /** Institution, barriers and drift notes. Added by `npm run ingest:research`. */
+  research?: ResearchContext;
 };
 
 /**
@@ -147,4 +153,136 @@ export type OpportunityResults = {
   byKind: Record<OpportunityKind, OpportunityMatch[]>;
   /** Hard-constraint conflicts worth telling the user about, e.g. an empty kind. */
   unmetConstraints: string[];
+};
+
+// ---------------------------------------------------------------------------
+// Ingestion extras
+//
+// What the ingestion scripts collect beyond the fields above. These are added
+// by `npm run ingest:*` and are absent on the hand-written samples, so every
+// block is optional — read it defensively.
+//
+// Each block carries its own provenance, because these pipelines mix measured
+// data (O*NET instrument scores, BLS wage percentiles) with facts a person read
+// off a page and with editorial curation. The UI should not present the three
+// as equally certain.
+// ---------------------------------------------------------------------------
+
+/** Annual USD wage percentiles for one occupation in the Detroit MSA. */
+export type WageBand = {
+  pct10: number | null;
+  pct25: number | null;
+  median: number | null;
+  pct75: number | null;
+  pct90: number | null;
+};
+
+/** Local context on an occupation. Present on ingested `job` items. */
+export type DetroitJobContext = {
+  /** 6-digit SOC, e.g. '51-4041'. The join key across O*NET, BLS and projections. */
+  socCode: string;
+  /** 8-digit O*NET-SOC the match tags came from. Null for cross-sector entry routes. */
+  onetSocCode: string | null;
+  /** Plain-language sector, e.g. 'Skilled trades'. */
+  sector: string;
+  /** Jobs in the Detroit MSA. Null when BLS suppressed the cell. */
+  localEmployment: number | null;
+  /** Local concentration against the national rate. 1.0 = the national rate. */
+  locationQuotient: number | null;
+  wage: WageBand | null;
+  /** Which BLS release the wages came from, for the footnote. */
+  wageVintage: string | null;
+  /** True when the top of the band is BLS's cap rather than a real figure. */
+  wageTopCoded: boolean;
+  /** Statewide, not MSA: there is no metro-level projection series. */
+  outlook: {
+    area: string;
+    baseYear: number;
+    projectedYear: number;
+    percentChange: number | null;
+    annualOpenings: number | null;
+  } | null;
+  /** How someone actually gets in, front door first. */
+  entryRoutes: string[];
+  /** Who employs this work locally. Curated, not sourced — label it as such. */
+  hiringHere: string[];
+  /** 1 = highest local demand in this snapshot. */
+  demandRank: number | null;
+  provenance: {
+    wages: 'bls-oews-detroit-msa' | 'sponsor-published' | 'none';
+    tags: 'onet-measured' | 'onet-measured-via-related-soc' | 'none';
+    outlook: 'projections-central-michigan' | 'none';
+    hiringHere: 'curated-by-sector' | 'curated-by-sponsor';
+  };
+};
+
+export type ProgramSector =
+  | 'skilled_trades' | 'healthcare' | 'manufacturing' | 'transport_logistics' | 'tech'
+  | 'entrepreneurship' | 'creative' | 'adult_education' | 'general_workforce';
+
+export type ProgramAudience =
+  | 'youth' | 'young_adults' | 'returning_citizens' | 'women' | 'immigrants' | 'veterans'
+  | 'older_workers' | 'detroit_residents' | 'low_income' | 'disability_support' | 'spanish_speakers';
+
+export type ProgramSupport =
+  | 'childcare' | 'transport' | 'stipend' | 'tools_or_equipment' | 'job_placement' | 'housing' | 'meals';
+
+/** Where one fact came from. 'absent' = the page did not say, so the field is null. */
+export type FactSource = 'page' | 'registry' | 'absent';
+
+/** Extra detail on a career program. Present on ingested `program` items. */
+export type ProgramContext = {
+  sector: ProgramSector;
+  /** Who the provider says it is for. Empty = open generally. */
+  audiences: ProgramAudience[];
+  delivery: 'in_person' | 'online' | 'hybrid' | 'unknown';
+  funding:
+    | 'free_to_participant' | 'wioa_funded' | 'employer_sponsored' | 'paid_training'
+    | 'tuition' | 'scholarship_available' | 'unknown';
+  /** Certificates or licences named on the page. */
+  credentials: string[];
+  supports: ProgramSupport[];
+  applicationMethod: 'online_form' | 'phone' | 'email' | 'in_person' | 'info_session' | 'unknown';
+  cadence: 'rolling' | 'cohort' | 'continuous' | 'annual' | 'unknown';
+  /** The schedule in the page's own words, when no date could be parsed. */
+  scheduleNote: string | null;
+  /** The cost in the page's own words ('sliding scale'), when no figure was read. */
+  costNote: string | null;
+  /** Open beyond metro Detroit. */
+  statewide: boolean;
+  readAs: 'wp_rest' | 'html_table' | 'html_page';
+  provenance: Record<'costUsd' | 'durationWeeks' | 'startsAt' | 'applyBy' | 'stipendUsd' | 'eligibility', FactSource>;
+  /** sha1 of the page text, so a re-run can report that the page changed. */
+  contentHash: string;
+  /** The page the facts were read from, when that is not `url`. */
+  sourcePage: string;
+};
+
+/** Extra detail on a research opportunity. Present on ingested `research` items. */
+export type ResearchContext = {
+  institution: string;
+  enrollmentRequired: 'none' | 'high_school' | 'undergraduate' | 'graduate' | 'postdoc';
+  citizenship: 'us_citizen_or_pr' | 'us_work_authorized' | 'open' | 'unstated';
+  /** Null = the page did not say. */
+  isPaid: boolean | null;
+  mentorshipModel: 'faculty_lab' | 'cohort_program' | 'clinical_team' | 'community_partnership' | 'self_directed';
+  disciplines: string[];
+  applicationMethod: 'online_form' | 'email' | 'job_board' | 'nsf_etap' | 'contact_program' | 'unstated';
+  recurrence: 'annual_summer' | 'annual_academic_year' | 'rolling' | 'one_time' | 'unknown';
+  /** applyBy is in the past. The item is kept anyway when it recurs. */
+  deadlinePassed: boolean;
+  nextWindowOpens: string | null;
+  /** 'MM-DD', for a deadline stated without a year. Never guess the year. */
+  annualDeadline: string | null;
+  /** Run with a community organisation, not only a university. */
+  communityBased: boolean;
+  /** Needs neither a degree nor current enrolment. */
+  lowBarrier: boolean;
+  factsFrom: 'program_page' | 'api' | 'aggregator' | 'unverified';
+  urlStatus: 'ok' | 'blocked' | 'dead' | 'unchecked';
+  lastCheckedAt: string;
+  /** Standing context, stable across runs. */
+  curatorNotes: string[];
+  /** What this run found that disagrees with what we last read. Empty = clean. */
+  driftNotes: string[];
 };
