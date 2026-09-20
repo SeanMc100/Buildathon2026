@@ -4,15 +4,15 @@ export const INTRO_COPY = {
   eyebrow: 'Career intake',
   title: 'Tell us what you would trade.',
   body:
-    'Answer a few short questions and we turn them into a profile that finds roles that fit.',
+    'Answer a few short questions about the work you want and the lines you will not cross. We turn them into a profile, score every opportunity we know of against it, and show you why each one fits.',
   bullets: [
     'About four minutes',
     'Skip anything, come back anytime',
-    'Nothing leaves your phone until you send it',
+    'Nothing leaves this device until you send it',
   ],
-  privacyHeading: 'Sensitive answers',
+  privacyHeading: 'Your answers stay here',
   privacyBody:
-    'Age and gender are optional and never affect your matches.',
+    'Everything is saved on this device and nothing is sent anywhere until you choose to. Age and gender are asked last, are optional, and never affect your matches.',
   start: 'Start',
   resume: 'Pick up where you left off',
   viewProfile: 'View my profile',

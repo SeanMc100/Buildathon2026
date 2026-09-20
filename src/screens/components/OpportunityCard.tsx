@@ -18,6 +18,7 @@ import { focusRing, isFocused } from '../../web/focus';
 import { isHovered } from '../../web/hover';
 import {
   deadlineLine,
+  eventWhen,
   headlineFact,
   isDeadlineSoon,
   kindLabel,
@@ -88,7 +89,10 @@ export function OpportunityCard({
   const deadline = deadlineLine(item);
   const soon = isDeadlineSoon(item);
   const where = placeLine(item);
-  const facts = supportingFacts(item);
+  const when = eventWhen(item);
+  // The date has moved to its own line above the title, so drop it from the
+  // supporting facts rather than printing it twice.
+  const facts = item.kind === 'event' ? supportingFacts(item).slice(1) : supportingFacts(item);
 
   return (
     <PressableCard
@@ -104,6 +108,8 @@ export function OpportunityCard({
             <Text style={styles.kind}>{kindLabel(item).toUpperCase()}</Text>
             {item.isSample ? <Text style={styles.sample}>SAMPLE</Text> : null}
           </View>
+          {/* An event is a date first and a title second. */}
+          {when ? <Text style={styles.when}>{when}</Text> : null}
           <Text style={styles.title} numberOfLines={2}>
             {item.title}
           </Text>
@@ -175,6 +181,7 @@ const styles = StyleSheet.create({
   tags: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginBottom: 2 },
   kind: { ...typography.label, color: colors.textMuted, letterSpacing: 0.8 },
   sample: { ...typography.label, color: colors.caution, letterSpacing: 0.8 },
+  when: { ...typography.label, color: colors.primary, marginBottom: 2 },
   title: { ...typography.heading, color: colors.text, lineHeight: 24 },
   org: { ...typography.caption, color: colors.text },
   place: { ...typography.caption, color: colors.textMuted },

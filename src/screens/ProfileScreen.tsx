@@ -100,9 +100,11 @@ export function ProfileScreen() {
     <View style={styles.screen}>
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.title}>{RESULT_COPY.title}</Text>
+          <Text style={styles.title} accessibilityRole="header">
+            {RESULT_COPY.title}
+          </Text>
           <Text style={styles.coverage}>
-            {Math.round(profile.completeness * 100)}% complete
+            Built from your answers · {Math.round(profile.completeness * 100)}% complete
           </Text>
         </View>
 
@@ -119,7 +121,7 @@ export function ProfileScreen() {
             </Pressable>
           ) : null}
         </Card>
-        <Text style={styles.hint}>Tap a row to see why.</Text>
+        <Text style={styles.hint}>Open a row to see which answer it came from.</Text>
 
         <ProfileBlock title="What matters most">
           <PriorityList priorities={profile.priorities} />
@@ -216,11 +218,24 @@ export function ProfileScreen() {
                   <Text style={styles.code}>{payloadText}</Text>
                 </View>
               ) : null}
-              <Button
-                label={copied ? 'Copied' : 'Copy request'}
-                variant="secondary"
-                onPress={copy}
-              />
+              <View style={styles.teamActions}>
+                <Button
+                  label={copied ? 'Copied' : 'Copy request'}
+                  variant="secondary"
+                  onPress={copy}
+                />
+                <Button
+                  label={sending ? 'Sending…' : RESULT_COPY.send}
+                  variant="secondary"
+                  onPress={send}
+                  disabled={sending}
+                />
+              </View>
+              {status ? (
+                <Text style={[styles.status, status.isError && styles.statusError]}>
+                  {status.text}
+                </Text>
+              ) : null}
 
               {outcome ? (
                 <View style={styles.outcome}>
@@ -246,16 +261,7 @@ export function ProfileScreen() {
       </ScrollView>
 
       <View style={[styles.bar, { paddingBottom: Math.max(insets.bottom, spacing.md) }]}>
-        {status ? (
-          <Text style={[styles.status, status.isError && styles.statusError]}>{status.text}</Text>
-        ) : null}
-        <Button label="See my matches" onPress={() => navigation.navigate('Results')} />
-        <Button
-          label={sending ? 'Sending…' : RESULT_COPY.send}
-          variant="secondary"
-          onPress={send}
-          disabled={sending}
-        />
+        <Button label="See my matches" size="lg" onPress={() => navigation.navigate('Results')} />
         <Button
           label={RESULT_COPY.retake}
           variant="ghost"
@@ -304,15 +310,20 @@ const styles = StyleSheet.create({
   legalTitle: { ...typography.label, color: colors.textMuted, letterSpacing: 0.6, marginTop: spacing.sm },
   legalBody: { ...typography.caption, color: colors.textMuted, fontSize: 11, lineHeight: 16 },
 
+  teamActions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+
   bar: {
-    gap: spacing.xs,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: spacing.sm,
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.sm,
     borderTopWidth: 1,
     borderTopColor: colors.border,
     backgroundColor: colors.background,
   },
-  status: { ...typography.caption, color: colors.textMuted, textAlign: 'center' },
+  status: { ...typography.caption, color: colors.textMuted },
   statusError: { color: colors.danger },
 
   empty: {

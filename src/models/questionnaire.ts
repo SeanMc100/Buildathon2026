@@ -10,7 +10,9 @@ export type SectionId =
   | 'work_style'
   | 'values'
   | 'constraints'
-  | 'narrative';
+  | 'narrative'
+  /** Optional, never scored. Asked last, once the profile already exists. */
+  | 'about_you';
 
 export type Section = {
   id: SectionId;
