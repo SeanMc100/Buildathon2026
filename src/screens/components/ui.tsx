@@ -3,6 +3,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, radius, spacing, typography } from '../../theme';
+import { isHovered } from '../../web/hover';
 
 export function ProgressBar({ ratio }: { ratio: number }) {
   const clamped = Math.min(1, Math.max(0, ratio));
@@ -30,13 +31,14 @@ export function Button({ label, onPress, disabled, variant = 'primary' }: Button
       disabled={disabled}
       accessibilityRole="button"
       accessibilityState={{ disabled: !!disabled }}
-      style={({ pressed }) => [
+      style={(state) => [
         styles.button,
         isPrimary && styles.buttonPrimary,
         variant === 'secondary' && styles.buttonSecondary,
         isGhost && styles.buttonGhost,
         disabled && styles.buttonDisabled,
-        pressed && !disabled && styles.buttonPressed,
+        isHovered(state) && !disabled && styles.buttonHover,
+        state.pressed && !disabled && styles.buttonPressed,
       ]}
     >
       <Text
@@ -108,6 +110,7 @@ const styles = StyleSheet.create({
   },
   buttonGhost: { backgroundColor: 'transparent', minHeight: 40 },
   buttonDisabled: { backgroundColor: colors.border },
+  buttonHover: { opacity: 0.9 },
   buttonPressed: { opacity: 0.75 },
   buttonLabel: { ...typography.heading, color: colors.text },
   buttonLabelPrimary: { color: colors.textInverse },

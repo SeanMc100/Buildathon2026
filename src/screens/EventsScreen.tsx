@@ -2,13 +2,15 @@
 // Soonest (the default) is a plain calendar; Best match puts the events that fit this profile first.
 
 import { useMemo, useState } from 'react';
-import { FlatList, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { CATALOG, EVENTS_PULLED_AT, EVENT_SOURCES } from '../content';
 import { useIntake } from '../intake';
 import { rankKind } from '../matching';
 import type { EventOpportunity, OpportunityMatch } from '../models';
 import { colors, radius, spacing, typography } from '../theme';
+import { GRID_GAP, useLayout } from '../web/layout';
+import { openExternal } from '../web/links';
 import { Card } from './components/ui';
 
 type SortMode = 'match' | 'date';
@@ -42,12 +44,12 @@ function costLine(event: EventOpportunity): string | null {
   return event.costUsd === 0 ? 'Free' : `$${event.costUsd.toLocaleString('en-US')}`;
 }
 
-function EventRow({ event, match }: Row) {
+function EventRow({ event, match, width }: Row & { width?: number }) {
   const where = event.location ?? (event.arrangement === 'Remote' ? 'Online' : null);
   const facts = [humanize(event.format), costLine(event)].filter(Boolean).join(' · ');
 
   return (
-    <Card style={styles.card}>
+    <Card style={[styles.card, width !== undefined && { width }]}>
       <View style={styles.cardTop}>
         <View style={styles.cardTitleBlock}>
           <Text style={styles.when}>{whenLine(event)}</Text>
@@ -68,7 +70,7 @@ function EventRow({ event, match }: Row) {
       <Text style={styles.facts}>{facts}</Text>
       {match?.whyItFits[0] ? <Text style={styles.fit}>✓ {match.whyItFits[0]}</Text> : null}
 
-      <Pressable onPress={() => Linking.openURL(event.url)} hitSlop={8} accessibilityRole="link">
+      <Pressable onPress={() => openExternal(event.url)} hitSlop={8} accessibilityRole="link">
         <Text style={styles.link}>View details</Text>
       </Pressable>
     </Card>
@@ -77,6 +79,7 @@ function EventRow({ event, match }: Row) {
 
 export function EventsScreen() {
   const { profile } = useIntake();
+  const { columns, cardWidth } = useLayout();
   const [sort, setSort] = useState<SortMode>('date');
 
   const rows = useMemo<Row[]>(() => {
@@ -108,11 +111,15 @@ export function EventsScreen() {
 
   return (
     <FlatList
+      // numColumns cannot change on a mounted list.
+      key={columns}
       style={styles.screen}
       contentContainerStyle={styles.content}
       data={rows}
+      numColumns={columns}
+      columnWrapperStyle={columns > 1 ? styles.gridRow : undefined}
       keyExtractor={(row) => row.event.id}
-      renderItem={({ item }) => <EventRow {...item} />}
+      renderItem={({ item }) => <EventRow {...item} width={columns > 1 ? cardWidth : undefined} />}
       initialNumToRender={8}
       ListHeaderComponent={
         <View style={styles.header}>
@@ -149,6 +156,8 @@ export function EventsScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xxl },
+
+  gridRow: { gap: GRID_GAP },
 
   header: { gap: spacing.xs, marginBottom: spacing.sm },
   title: { ...typography.display, color: colors.text },

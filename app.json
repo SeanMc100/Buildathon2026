@@ -19,7 +19,11 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Buildathon App",
+      "shortName": "Buildathon",
+      "themeColor": "#4f46e5",
+      "backgroundColor": "#ffffff"
     },
     "extra": {
       "matchingEndpoint": ""

@@ -7,7 +7,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   FlatList,
   KeyboardAvoidingView,
-  Linking,
   Platform,
   Pressable,
   StyleSheet,
@@ -22,6 +21,7 @@ import { BOARDS_BY_ID, BOARD_COPY, POST_KINDS } from '../content';
 import type { BoardMessage, BoardPost } from '../models';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, radius, spacing, typography } from '../theme';
+import { openExternal } from '../web/links';
 import { timeAgo } from './components/BoardParts';
 import { Button, Card, Pill } from './components/ui';
 
@@ -62,7 +62,7 @@ function PostCard({ post }: { post: BoardPost }) {
         </Text>
         {post.url ? (
           <Pressable
-            onPress={() => Linking.openURL(post.url as string)}
+            onPress={() => openExternal(post.url as string)}
             hitSlop={8}
             accessibilityRole="link"
           >

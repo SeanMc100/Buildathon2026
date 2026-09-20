@@ -4,7 +4,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Platform, Pressable, StyleSheet, type StyleProp, type ViewStyle, Text, View, useWindowDimensions } from 'react-native';
+import { Platform, Pressable, StyleSheet, type StyleProp, type ViewStyle, Text, View } from 'react-native';
 
 import { useBoard } from '../../board';
 import { BOARDS_BY_ID, BOARD_COPY } from '../../content';
@@ -12,6 +12,7 @@ import { useIntake } from '../../intake';
 import type { BoardPost, BoardPostKind } from '../../models';
 import type { RootStackParamList } from '../../navigation/types';
 import { colors, radius, spacing, typography } from '../../theme';
+import { useLayout } from '../../web/layout';
 import { chatBoardFor, timeAgo } from './BoardParts';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
@@ -52,6 +53,8 @@ const FRONT_NOTE = 2;
 const WALL_PAD = spacing.md;
 const WALL_BORDER = 6;
 const WALL_HEIGHT = 122 + 146 + WALL_PAD * 2 + WALL_BORDER * 2;
+/** On wide screens the wall stops growing here, or the notes turn into billboards. */
+const WALL_MAX_WIDTH = 640;
 
 function Pin() {
   return (
@@ -115,11 +118,11 @@ function StickyNote({
 
 export function BulletinBoardSection() {
   const navigation = useNavigation<Nav>();
-  const { width: screenWidth } = useWindowDimensions();
+  const { width: columnWidth } = useLayout();
   const { profile } = useIntake();
   const { joined, postsFor } = useBoard();
 
-  const wallWidth = screenWidth - spacing.lg * 2;
+  const wallWidth = Math.min(columnWidth - spacing.lg * 2, WALL_MAX_WIDTH);
   const innerWidth = wallWidth - WALL_BORDER * 2 - WALL_PAD * 2;
   const noteWidth = Math.round(innerWidth * 0.5);
 
@@ -146,13 +149,14 @@ export function BulletinBoardSection() {
   };
 
   return (
-    <View style={styles.section}>
+    // Header, wall and chat button share one width, so they line up when the wall is capped.
+    <View style={[styles.section, { width: wallWidth + spacing.lg * 2, maxWidth: '100%' }]}>
       <View style={styles.inset}>
         <Text style={styles.title}>{BOARD_COPY.sectionTitle}</Text>
         <Text style={styles.blurb}>{BOARD_COPY.sectionBlurb}</Text>
       </View>
 
-      <View style={[styles.wall, { marginHorizontal: spacing.lg, height: WALL_HEIGHT }]}>
+      <View style={[styles.wall, { marginHorizontal: spacing.lg, width: wallWidth, height: WALL_HEIGHT }]}>
         {NOTE_LAYOUT.map((slot, index) => {
           const post = posts[index] ?? null;
           const board = post ? BOARDS_BY_ID.get(post.boardId) : undefined;

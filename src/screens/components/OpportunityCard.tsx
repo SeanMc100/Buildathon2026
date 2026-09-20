@@ -1,9 +1,10 @@
 // One ranked opportunity as a card. Shared by the results carousels and the "see all" lists. Screens slice.
 
-import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { Opportunity, OpportunityMatch } from '../../models';
 import { colors, radius, spacing, typography } from '../../theme';
+import { openExternal } from '../../web/links';
 import { Card } from './ui';
 
 const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
@@ -56,13 +57,16 @@ function deadlineLine(item: Opportunity): string | null {
   return 'applyBy' in item && item.applyBy ? `Apply by ${formatDate(item.applyBy)}` : null;
 }
 
-/** Pass `width` inside a horizontal carousel; leave it off to fill a vertical list. */
+/**
+ * Pass `width` inside a horizontal carousel or a grid; leave it off to fill a vertical list.
+ * Without a `match` (no profile yet) the card shows the listing alone, unscored.
+ */
 export function OpportunityCard({
   match,
   item,
   width,
 }: {
-  match: OpportunityMatch;
+  match: OpportunityMatch | null;
   item: Opportunity;
   width?: number;
 }) {
@@ -77,10 +81,12 @@ export function OpportunityCard({
           <Text style={styles.org}>{item.organization}</Text>
           <Text style={styles.org}>{where}</Text>
         </View>
-        <View style={styles.score}>
-          <Text style={styles.scoreValue}>{match.matchScore}</Text>
-          <Text style={styles.scoreLabel}>match</Text>
-        </View>
+        {match ? (
+          <View style={styles.score}>
+            <Text style={styles.scoreValue}>{match.matchScore}</Text>
+            <Text style={styles.scoreLabel}>match</Text>
+          </View>
+        ) : null}
       </View>
 
       <Text style={styles.summary} numberOfLines={2}>
@@ -88,20 +94,22 @@ export function OpportunityCard({
       </Text>
       <Text style={styles.facts}>{[factLine(item), deadline].filter(Boolean).join(' · ')}</Text>
 
-      <View style={styles.reasons}>
-        {match.whyItFits.slice(0, 1).map((line) => (
-          <Text key={line} style={styles.fit}>
-            ✓ {line}
-          </Text>
-        ))}
-        {match.gaps.slice(0, 1).map((line) => (
-          <Text key={line} style={styles.gap}>
-            – {line}
-          </Text>
-        ))}
-      </View>
+      {match ? (
+        <View style={styles.reasons}>
+          {match.whyItFits.slice(0, 1).map((line) => (
+            <Text key={line} style={styles.fit}>
+              ✓ {line}
+            </Text>
+          ))}
+          {match.gaps.slice(0, 1).map((line) => (
+            <Text key={line} style={styles.gap}>
+              – {line}
+            </Text>
+          ))}
+        </View>
+      ) : null}
 
-      <Pressable onPress={() => Linking.openURL(item.url)} hitSlop={8} accessibilityRole="link">
+      <Pressable onPress={() => openExternal(item.url)} hitSlop={8} accessibilityRole="link">
         <Text style={styles.link}>View details</Text>
       </Pressable>
     </Card>
