@@ -1,0 +1,3507 @@
+{
+  "generatedAt": "2026-09-20T01:37:46.134Z",
+  "region": "Detroit, MI",
+  "sources": [
+    {
+      "name": "registry",
+      "fetched": 36,
+      "kept": 36
+    },
+    {
+      "name": "nsf-reu-sites",
+      "fetched": 11,
+      "kept": 9
+    },
+    {
+      "name": "nih-nrsa-fellowships",
+      "fetched": 5,
+      "kept": 5
+    },
+    {
+      "name": "nsf-awards-coverage",
+      "fetched": 13,
+      "kept": 0
+    },
+    {
+      "name": "nih-reporter-coverage",
+      "fetched": 22,
+      "kept": 0
+    }
+  ],
+  "items": [
+    {
+      "id": "research-registry-551aabbf37",
+      "kind": "research",
+      "title": "Summer Undergraduate Research Fellowship (SURF)",
+      "organization": "Wayne State University Department of Physiology",
+      "summary": "Full-time laboratory research training in physiology over 10 to 12 weeks of the summer, with a stipend and an introduction to graduate programs. Participants present their research at the end.",
+      "url": "https://physiology.med.wayne.edu/summer-research",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Physiology",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": "2026-02-15",
+      "eligibility": [
+        "Undergraduate with a 3.0 GPA or better",
+        "An interest in physiology",
+        "Selection weighs academic achievement, commitment to basic research and mentor availability",
+        "The program cannot accept international scholars at this time"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_work_authorized",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "physiology",
+          "biomedical science",
+          "life sciences"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": true,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page states a stipend but not an amount, so stipendUsd is null. Page says \"10-12 weeks\"; the low end is recorded."
+        ],
+        "driftNotes": [
+          "the 2026-02-15 deadline has passed; this programme runs again (annual summer)"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-b714bf636b",
+      "kind": "research",
+      "title": "NSF REU Site: Undergraduate Computer Research in Cybersecurity and AI (UnCoRe-CyberAI)",
+      "organization": "Oakland University Computer Science and Engineering",
+      "summary": "A ten-week full-time summer research programme in cybersecurity and AI, running for over a decade. Ten students a year work with faculty mentors on problems of national priority, with a stipend, meal allowance and travel subsidy.",
+      "url": "https://cse-reu.secs.oakland.edu/index.php?site=about",
+      "location": "Rochester",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Cybersecurity and artificial intelligence",
+      "stipendUsd": 7000,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": "2026-02-28",
+      "eligibility": [
+        "Open to all non-graduating undergraduate students",
+        "U.S. citizens and permanent residents only",
+        "An interest in computer science and engineering",
+        "Students cannot be working or taking classes at the same time",
+        "Housing subsidy provided for students staying on campus"
+      ],
+      "research": {
+        "institution": "Oakland University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "cybersecurity",
+          "artificial intelligence",
+          "computer science",
+          "computer engineering"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": true,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [],
+        "driftNotes": [
+          "the 2026-02-28 deadline has passed; this programme runs again (annual summer)"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-afa8d5c4f2",
+      "kind": "research",
+      "title": "Undergraduate Research and Creative Projects Award (UROP)",
+      "organization": "Wayne State University",
+      "summary": "A funded research or creative project carried out alongside a Wayne State faculty mentor. Open to undergraduates in any major or year of study, with two award cycles each academic year.",
+      "url": "https://urop.wayne.edu/award",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Any discipline",
+      "stipendUsd": 2300,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2026-12-01",
+      "eligibility": [
+        "Be an undergraduate enrolled at least half-time (except during the Spring/Summer term)",
+        "Any major or year of study",
+        "A faculty mentor must agree to supervise the project",
+        "Second cycle each year closes April 1 (Spring/Summer - Fall)",
+        "Students eligible for Federal Work-Study are encouraged to use it instead of the scholarship award"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "interdisciplinary",
+          "arts",
+          "sciences",
+          "humanities"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_academic_year",
+        "deadlinePassed": false,
+        "nextWindowOpens": "2026-10-01",
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Award is $2,300 for a full two-semester cycle, $1,150 for students graduating mid-cycle."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nih-nrsa-fellowships-0446fb92db",
+      "kind": "research",
+      "title": "Ruth L. Kirschstein National Research Service Award (NRSA) Individual Fellowship for Students at Institutions with NIH-Funded Institutional Predoctoral Dual-Degree Training Programs (Parent F30)",
+      "organization": "National Institutes of Health",
+      "summary": "A National Institutes of Health fellowship an individual applies for directly, through the institution where they will do the research. Detroit-area universities and health systems sponsor these every year.",
+      "url": "https://www.grants.gov/search-results-detail/358832",
+      "location": null,
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 4,
+      "minEducation": "postgraduate",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Biomedical and health research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2028-05-07",
+      "eligibility": [
+        "Doctoral or dual-degree students, applying with a sponsoring institution and mentor",
+        "A U.S. institution must sponsor the application",
+        "Funding opportunity number PA-25-426"
+      ],
+      "research": {
+        "institution": "National Institutes of Health",
+        "enrollmentRequired": "graduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "biomedical science",
+          "health research"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The close date is the expiry of the notice, not a single deadline; NIH runs standard receipt dates inside it."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nih-nrsa-fellowships-29cda9a8de",
+      "kind": "research",
+      "title": "Ruth L. Kirschstein National Research Service Award (NRSA) Individual Fellowship for Students at Institutions Without NIH-Funded Institutional Predoctoral Dual-Degree Training Programs (Parent F30)",
+      "organization": "National Institutes of Health",
+      "summary": "A National Institutes of Health fellowship an individual applies for directly, through the institution where they will do the research. Detroit-area universities and health systems sponsor these every year.",
+      "url": "https://www.grants.gov/search-results-detail/358831",
+      "location": null,
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 4,
+      "minEducation": "postgraduate",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Biomedical and health research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2028-05-07",
+      "eligibility": [
+        "Doctoral or dual-degree students, applying with a sponsoring institution and mentor",
+        "A U.S. institution must sponsor the application",
+        "Funding opportunity number PA-25-425"
+      ],
+      "research": {
+        "institution": "National Institutes of Health",
+        "enrollmentRequired": "graduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "biomedical science",
+          "health research"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The close date is the expiry of the notice, not a single deadline; NIH runs standard receipt dates inside it."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nih-nrsa-fellowships-2e70fff16c",
+      "kind": "research",
+      "title": "Ruth L. Kirschstein National Research Service Award (NRSA) Individual Postdoctoral Fellowship (Parent F32)",
+      "organization": "National Institutes of Health",
+      "summary": "A National Institutes of Health fellowship an individual applies for directly, through the institution where they will do the research. Detroit-area universities and health systems sponsor these every year.",
+      "url": "https://www.grants.gov/search-results-detail/358830",
+      "location": null,
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 5,
+      "minEducation": "postgraduate",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Biomedical and health research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2028-05-07",
+      "eligibility": [
+        "Postdoctoral researchers, applying with a sponsoring institution and mentor",
+        "A U.S. institution must sponsor the application",
+        "Funding opportunity number PA-25-423"
+      ],
+      "research": {
+        "institution": "National Institutes of Health",
+        "enrollmentRequired": "postdoc",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "biomedical science",
+          "health research"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The close date is the expiry of the notice, not a single deadline; NIH runs standard receipt dates inside it."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nih-nrsa-fellowships-b0b74115b5",
+      "kind": "research",
+      "title": "Ruth L. Kirschstein National Research Service Award (NRSA) Individual Predoctoral Fellowship (Parent F31)",
+      "organization": "National Institutes of Health",
+      "summary": "A National Institutes of Health fellowship an individual applies for directly, through the institution where they will do the research. Detroit-area universities and health systems sponsor these every year.",
+      "url": "https://www.grants.gov/search-results-detail/358848",
+      "location": null,
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 4,
+      "minEducation": "postgraduate",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Biomedical and health research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2028-05-07",
+      "eligibility": [
+        "Doctoral or dual-degree students, applying with a sponsoring institution and mentor",
+        "A U.S. institution must sponsor the application",
+        "Funding opportunity number PA-25-422"
+      ],
+      "research": {
+        "institution": "National Institutes of Health",
+        "enrollmentRequired": "graduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "biomedical science",
+          "health research"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The close date is the expiry of the notice, not a single deadline; NIH runs standard receipt dates inside it."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nih-nrsa-fellowships-f57ec31574",
+      "kind": "research",
+      "title": "Ruth L. Kirschstein National Research Service Award (NRSA) Individual Senior Fellowship (Parent F33)",
+      "organization": "National Institutes of Health",
+      "summary": "A National Institutes of Health fellowship an individual applies for directly, through the institution where they will do the research. Detroit-area universities and health systems sponsor these every year.",
+      "url": "https://www.grants.gov/search-results-detail/358833",
+      "location": null,
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 5,
+      "minEducation": "postgraduate",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Biomedical and health research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": "2028-05-07",
+      "eligibility": [
+        "Postdoctoral researchers, applying with a sponsoring institution and mentor",
+        "A U.S. institution must sponsor the application",
+        "Funding opportunity number PA-25-424"
+      ],
+      "research": {
+        "institution": "National Institutes of Health",
+        "enrollmentRequired": "postdoc",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "biomedical science",
+          "health research"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The close date is the expiry of the notice, not a single deadline; NIH runs standard receipt dates inside it."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-4f3560e404",
+      "kind": "research",
+      "title": "REU Site: Optics in the City of Light",
+      "organization": "Regents of the University of Michigan - Ann Arbor",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Ann Arbor, funded through 2029-07-31. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2547056",
+      "location": "ANN ARBOR",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Optics in the City of Light",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2547056 through 2029-07-31",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Ann Arbor",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "semiconductors and optics",
+          "physics"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-529cdb8255",
+      "kind": "research",
+      "title": "REU Site: Summer Intensive Research Experiences in Neuroscience (SIREN)",
+      "organization": "Regents of the University of Michigan - Ann Arbor",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Ann Arbor, funded through 2029-09-30. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2548105",
+      "location": "ANN ARBOR",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Summer Intensive Research Experiences in Neuroscience",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2548105 through 2029-09-30",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Ann Arbor",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "neuroscience"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-541f2a72dd",
+      "kind": "research",
+      "title": "REU Site: Interdisciplinary Research Experiences in Urban Watershed Science",
+      "organization": "Regents of the University of Michigan - Dearborn",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Dearborn, funded through 2028-12-31. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2445879",
+      "location": "Dearborn",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Interdisciplinary Research Experiences in Urban Watershed Science",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2445879 through 2028-12-31",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Dearborn",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "environmental science",
+          "computing",
+          "psychology",
+          "social science"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-59243ba09f",
+      "kind": "research",
+      "title": "REU Site: Applied Research Experience in Electrical and Computer Engineering (ApREECE)",
+      "organization": "Oakland University",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Oakland University, funded through 2027-09-30. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2348880",
+      "location": "ROCHESTER",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Applied Research Experience in Electrical and Computer Engineering",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2348880 through 2027-09-30",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Oakland University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "computing",
+          "engineering"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-65e07ed565",
+      "kind": "research",
+      "title": "REU Site: Michigan Semiconductor Hands-On Research Experience (M-SHORE)",
+      "organization": "Regents of the University of Michigan - Ann Arbor",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Ann Arbor, funded through 2031-09-30. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2548115",
+      "location": "ANN ARBOR",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Michigan Semiconductor Hands-On Research Experience",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2548115 through 2031-09-30",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Ann Arbor",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "semiconductors and optics"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-91cd9273b4",
+      "kind": "research",
+      "title": "REU Site: Program in Climate and Space Science Observation (PICASSO) at the University of Michigan",
+      "organization": "Regents of the University of Michigan - Ann Arbor",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Ann Arbor, funded through 2027-07-31. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2348598",
+      "location": "ANN ARBOR",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Program in Climate and Space Science Observation (PICASSO) at the University of Michigan",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2348598 through 2027-07-31",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Ann Arbor",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "chemistry",
+          "environmental science",
+          "computing",
+          "engineering"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-ca1a8677bf",
+      "kind": "research",
+      "title": "REU Site: Mathematical Analysis and Applications",
+      "organization": "Regents of the University of Michigan - Dearborn",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Dearborn, funded through 2029-08-31. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2548087",
+      "location": "Dearborn",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Mathematical Analysis and Applications",
+      "stipendUsd": null,
+      "durationWeeks": 8,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2548087 through 2029-08-31",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Dearborn",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "mathematics"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-ca2d25bc53",
+      "kind": "research",
+      "title": "REU Site: Michigan Summer Program in Cognition and Early Development (MSPICED)",
+      "organization": "Regents of the University of Michigan - Ann Arbor",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Ann Arbor, funded through 2028-09-30. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2445518",
+      "location": "ANN ARBOR",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Michigan Summer Program in Cognition and Early Development",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2445518 through 2028-09-30",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Ann Arbor",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "psychology"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-nsf-reu-sites-e9efbf0aa7",
+      "kind": "research",
+      "title": "Center: REU Site: Interdisciplinary Research Opportunities in Biophysics",
+      "organization": "Regents of the University of Michigan - Ann Arbor",
+      "summary": "An NSF-funded Research Experiences for Undergraduates site at Regents of the University of Michigan - Ann Arbor, funded through 2027-05-31. Undergraduates spend a paid summer on a research project with a faculty mentor.",
+      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2242779",
+      "location": "ANN ARBOR",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Interdisciplinary Research Opportunities in Biophysics",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students; REU sites are normally limited to U.S. citizens and permanent residents",
+        "Funded by NSF award 2242779 through 2027-05-31",
+        "Apply through the host department — the NSF award page names the principal investigator"
+      ],
+      "research": {
+        "institution": "Regents of the University of Michigan - Ann Arbor",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "physics",
+          "mathematics",
+          "biology",
+          "chemistry"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "api",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Discovered from the NSF award record, not from a programme page. The application page, stipend and deadline still need finding by hand."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-05fafdbf9a",
+      "kind": "research",
+      "title": "Center for Urban Studies research and evaluation projects",
+      "organization": "Wayne State University Center for Urban Studies",
+      "summary": "The university's hub for applied urban research in Detroit: early childhood and disabilities, urban safety, overdose prevention, and urban and community health. Projects hire research and outreach staff directly.",
+      "url": "https://cus.wayne.edu/research",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "E"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "night_shifts"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Urban studies",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Openings vary by project; contact the Center for current research and evaluation roles"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "none",
+        "citizenship": "us_work_authorized",
+        "isPaid": true,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "urban studies",
+          "public health",
+          "social policy",
+          "program evaluation"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "A hub page rather than a single opening. Requirements differ per project and must be checked with the Center."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-07bf5aecfb",
+      "kind": "research",
+      "title": "Environmental Technician workforce training",
+      "organization": "Green Door Initiative",
+      "summary": "Detroit's flagship route into environmental monitoring work: training towards licensed Environmental Technician credentials, with field sampling and data collection skills.",
+      "url": "https://www.greendoorinitiative.org/",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "I",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 80,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Environmental monitoring",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Students of all backgrounds are encouraged to apply",
+        "Returning citizens and applicants with felony and misdemeanour backgrounds are supported and not discriminated against",
+        "Graduates become licensed environmental technicians"
+      ],
+      "research": {
+        "institution": "Green Door Initiative",
+        "enrollmentRequired": "none",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "environmental science",
+          "environmental justice",
+          "field sampling",
+          "air quality"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "This is workforce training that leads into environmental data collection rather than a research post as such. Listed because environmental monitoring is the realistic entry point into environmental justice research in Detroit."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-0b3cdb1230",
+      "kind": "research",
+      "title": "Lawrence Tech research and student opportunities",
+      "organization": "Lawrence Technological University",
+      "summary": "Research across architecture and design, arts and sciences, business and IT, engineering and health sciences at Southfield's technological university, with routes in for graduate students and a high school summer programme.",
+      "url": "https://ltu.edu/research/",
+      "location": "Southfield",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R",
+        "A"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Engineering and applied science",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Routes differ by college; the page signposts graduate students and high school summer programmes"
+      ],
+      "research": {
+        "institution": "Lawrence Technological University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "engineering",
+          "biomedical engineering",
+          "computer science",
+          "architecture"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "A divisional hub rather than a single programme; the page lists no dates, stipends or deadlines. Added because the NIH coverage audit flagged Lawrence Tech as a funded institution with no way in listed."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-0cfd6b5b3f",
+      "kind": "research",
+      "title": "Henry Ford Health student internships and apprenticeships",
+      "organization": "Henry Ford Health",
+      "summary": "The health system's own board of student internships and apprenticeships, where its paid summer research, public health and cancer institute internships are posted as they open.",
+      "url": "https://henryford.referrals.selectminds.com/landingpages/student-internships-apprenticeships-12",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "E"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Health systems research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Requirements are set per posting; postings appear and close through the year"
+      ],
+      "research": {
+        "institution": "Henry Ford Health",
+        "enrollmentRequired": "none",
+        "citizenship": "us_work_authorized",
+        "isPaid": true,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "clinical research",
+          "public health",
+          "cancer research",
+          "health policy"
+        ],
+        "applicationMethod": "job_board",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "A board, not a single opening. Individual postings churn too fast to record here; the board URL is the stable thing."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-1684f333fd",
+      "kind": "research",
+      "title": "Oakland University engineering undergraduate research opportunities",
+      "organization": "Oakland University School of Engineering and Computer Science",
+      "summary": "The school's running list of undergraduate research routes: the NSF REU sites it hosts, hourly paid student research assistant positions, and paid undergraduate internships of around 20 hours a week.",
+      "url": "https://www.oakland.edu/secs/student-resources/research-opportunities/",
+      "location": "Rochester",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Engineering and computer science",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students in CS, IT, AI, cybersecurity, EE, CE or computing-related fields",
+        "Paid hourly student research assistant positions are listed alongside the REU sites",
+        "Undergraduate internships run about 20 hours a week at the university student rate"
+      ],
+      "research": {
+        "institution": "Oakland University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "computer science",
+          "cybersecurity",
+          "electrical engineering",
+          "mechanical engineering"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-20780355c3",
+      "kind": "research",
+      "title": "NSF REU Site: Automotive and Energy Research and Industrial Mentorship (AERIM)",
+      "organization": "Oakland University School of Engineering and Computer Science",
+      "summary": "Ten weeks of summer research on automotive and clean-energy projects, with one-to-one contact with faculty, industrial mentors and graduate students, plus field trips and outreach work.",
+      "url": "https://sites.google.com/oakland.edu/aerim-reu/home",
+      "location": "Rochester",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "high_stakes",
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Automotive and energy engineering",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate engineering, science or math students",
+        "Freshmen, undeclared majors and community college students are welcome to apply",
+        "An interest in automotive and clean-energy research topics"
+      ],
+      "research": {
+        "institution": "Oakland University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "mechanical engineering",
+          "automotive engineering",
+          "clean energy"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Community college students are explicitly welcome, which is rarer than it should be among REU sites.",
+          "Check whether the site is running a given summer before promoting it; it has skipped at least one year."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-3046c3a73a",
+      "kind": "research",
+      "title": "Citizen science projects needing volunteers",
+      "organization": "SciStarter",
+      "summary": "A searchable catalogue of active research projects that need members of the public to collect or classify data, filterable by topic and by whether the work is done outdoors or online. No qualification of any kind is required to join one.",
+      "url": "https://www.scistarter.org/",
+      "location": null,
+      "arrangement": "Remote",
+      "hollandCode": [
+        "I",
+        "S",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 100,
+        "growth_and_learning": 75,
+        "mission_and_impact": 80,
+        "people_and_team": 20,
+        "manager_support": 30,
+        "autonomy": 85
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Citizen science",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to anyone",
+        "Most projects are unpaid volunteer contributions to real research"
+      ],
+      "research": {
+        "institution": "SciStarter",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": false,
+        "mentorshipModel": "self_directed",
+        "disciplines": [
+          "citizen science",
+          "data collection",
+          "ecology",
+          "astronomy",
+          "public health"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "National rather than Detroit-specific, and unpaid. Included because it is the only route on this list with no barrier at all."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-310e7551ba",
+      "kind": "research",
+      "title": "Michigan Institute for Clinical and Health Research (MICHR)",
+      "organization": "University of Michigan",
+      "summary": "U-M's clinical and translational research institute, which runs training, pilot funding and community engagement programmes for people entering clinical research.",
+      "url": "https://michr.umich.edu/",
+      "location": "Ann Arbor",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "E"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 95,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Clinical and translational research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Programmes range from community partners through to faculty; each has its own requirements"
+      ],
+      "research": {
+        "institution": "University of Michigan",
+        "enrollmentRequired": "none",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "clinical research",
+          "translational research",
+          "community engagement"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "unverified",
+        "urlStatus": "blocked",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Cloudflare-challenged; no facts read off the page."
+        ],
+        "driftNotes": [
+          "the host would not serve an automated request (403); the page was not read this run"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-3776c39009",
+      "kind": "research",
+      "title": "Health Disparities Research Collaborative scholars and trainees",
+      "organization": "Henry Ford Health Public Health Sciences",
+      "summary": "Student placements in Henry Ford's Public Health Sciences department working on health disparities and epidemiology, including the NIH-funded BUILD undergraduate program run with the University of Detroit Mercy and Wayne State, and an HB…",
+      "url": "https://www.henryford.com/hcp/research/public-population-research/hdrc/hdrc-interns-and-trainees",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 95,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Public health and health disparities",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate and graduate students; routes differ by programme",
+        "BUILD is an NIH-funded undergraduate program aimed at increasing the number of underrepresented students on the path to becoming scientific researchers",
+        "The HFH and JSU partnership places students with Henry Ford physicians and researchers for four weeks"
+      ],
+      "research": {
+        "institution": "Henry Ford Health",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "public health",
+          "epidemiology",
+          "health disparities",
+          "population health"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page is mostly past trainee profiles; it names the programmes but gives no current dates, stipends or deadlines."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-380e54cd49",
+      "kind": "research",
+      "title": "K-RAISE Medical Student Research and Mentorship Program",
+      "organization": "Karmanos Cancer Institute",
+      "summary": "Medical students join oncology research with monthly journal clubs alongside oncology fellows, institutional didactics, a multidisciplinary team symposium and professional development workshops on research design and abstract writing.",
+      "url": "https://www.karmanos.org/karmanos/k-raise",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 4,
+      "minEducation": "bachelor",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Oncology",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Medical students",
+        "Includes journal clubs, institutional didactics and professional development workshops"
+      ],
+      "research": {
+        "institution": "Karmanos Cancer Institute",
+        "enrollmentRequired": "graduate",
+        "citizenship": "unstated",
+        "isPaid": true,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "oncology",
+          "clinical research",
+          "medical education"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page says \"Stipends for participants\" without an amount."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-3d80ee9550",
+      "kind": "research",
+      "title": "NextGen Oncology Scholars Fellowship",
+      "organization": "Cancer Biology Graduate Program, Wayne State University and Karmanos Cancer Institute",
+      "summary": "A 10-week paid summer fellowship in cancer biology. Each scholar is assigned to a faculty member, carries out a specific research project, attends a weekly course and presents a poster on Summer Research Poster Day.",
+      "url": "https://cancerbiologyprogram.med.wayne.edu/nextgenonc-application",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Cancer biology",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduates interested in a career in biomedical research",
+        "All supporting materials must reach the program office by February 15",
+        "Online application form, letter of interest, two letters of recommendation, resume and unofficial transcripts",
+        "Students must work the entire 10-week period, late May to early August"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": true,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "cancer biology",
+          "oncology",
+          "biomedical science"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": "02-15",
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page says fellows \"will be paid a stipend\" without an amount, and states February 15 with no year, so applyBy is null and annualDeadline carries the date.",
+          "Some housing support may be available."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-41b2ed47bd",
+      "kind": "research",
+      "title": "Research Advisor Program (RAP) community member",
+      "organization": "Karmanos Cancer Institute",
+      "summary": "Community members are built into Karmanos' three research programs — Molecular Therapeutics, Tumor Biology and the Microenvironment, and Population Studies — each paired with a \"science buddy\" who helps them take part, including reviewin…",
+      "url": "https://www.karmanos.org/karmanos/research-advisor-program",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community-engaged cancer research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to community stakeholders; no research background is required",
+        "Each member is assigned a research programme member as a science buddy",
+        "Members review lay abstracts and specific aims for their assigned research programme"
+      ],
+      "research": {
+        "institution": "Karmanos Cancer Institute",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "cancer research",
+          "community engagement",
+          "research review"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The programme began in 2025. The page does not say whether members are paid."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-4430857d73",
+      "kind": "research",
+      "title": "Community-Based Air Monitoring Network",
+      "organization": "Ecology Center",
+      "summary": "Residents and schools run low-cost air monitors across Detroit and Wayne County and read the data themselves, through the Air Sensor Learning Collaborative of community, government and academic partners.",
+      "url": "https://www.ecocenter.org/our-work/community-based-science/community-based-air-monitoring-network",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Environmental health",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to residents, schools and community organisations in Detroit and Wayne County",
+        "No scientific background required",
+        "Current Detroit school partners include the Grace Lee Boggs School, University Prep Academy High School and Clippert Multicultural Magnet Honors Academy"
+      ],
+      "research": {
+        "institution": "Ecology Center",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "air quality",
+          "environmental justice",
+          "community science",
+          "data collection"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page does not say whether participants are paid; treat as unpaid community science until confirmed."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-4d7ddcdaea",
+      "kind": "research",
+      "title": "Karmanos education and research training programs",
+      "organization": "Karmanos Cancer Institute",
+      "summary": "The index of every Karmanos research training route, from middle and high school programs through undergraduate fellowships to graduate and fellow-level training. The place to start if none of the individual listings fit.",
+      "url": "https://www.karmanos.org/karmanos/education-and-research-training-karmanos",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Cancer research training",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Programs range from grade 10 through postdoctoral fellows; each has its own requirements"
+      ],
+      "research": {
+        "institution": "Karmanos Cancer Institute",
+        "enrollmentRequired": "none",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "cancer research",
+          "biomedical science",
+          "medical physics"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-500cebdaef",
+      "kind": "research",
+      "title": "Community Health Worker certification pathway",
+      "organization": "Michigan Community Health Worker Alliance",
+      "summary": "The statewide body that sets and recognises Community Health Worker training in Michigan. CHW certification is the usual way into the paid community data-collection and study-support roles that Detroit health research runs on.",
+      "url": "https://michwa.org/",
+      "location": null,
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 95,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community health",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "No degree required",
+        "Training requirements and approved programmes are set by the alliance"
+      ],
+      "research": {
+        "institution": "Michigan Community Health Worker Alliance",
+        "enrollmentRequired": "none",
+        "citizenship": "us_work_authorized",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "community health",
+          "public health",
+          "health equity"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "A pathway rather than a single opening. Listed because CHW roles are the most realistic paid research-adjacent work for a Detroiter with no degree."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-562d21a061",
+      "kind": "research",
+      "title": "Summer Enrichment Program in Health Management and Policy",
+      "organization": "University of Michigan School of Public Health",
+      "summary": "A summer programme introducing students from underrepresented backgrounds to health management and policy research and practice, run out of the School of Public Health.",
+      "url": "https://sph.umich.edu/admissions/summer-enrichment-program.html",
+      "location": "Ann Arbor",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "E",
+        "S",
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Health policy and management",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "See the programme page; requirements have not been read"
+      ],
+      "research": {
+        "institution": "University of Michigan",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "health policy",
+          "health management",
+          "public health"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "unverified",
+        "urlStatus": "blocked",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Cloudflare-challenged; no facts read off the page."
+        ],
+        "driftNotes": [
+          "the host would not serve an automated request (403); the page was not read this run"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-5a7a056e80",
+      "kind": "research",
+      "title": "CBPR Partnership Academy",
+      "organization": "Detroit Community-Academic Urban Research Center",
+      "summary": "A year-long capacity-building programme in community-based participatory research, run by experienced community and academic partners. Twelve two-person teams are selected per cohort, each pairing a community partner with an academic one.",
+      "url": "https://www.detroiturc.org/programs-expertise/cbpr-partnership-academy",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I",
+        "E"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community-based participatory research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Applications are made as a two-person team: one community partner and one academic partner",
+        "Twelve teams are selected per cohort through competitive review",
+        "Includes attendance at a week-long intensive course",
+        "Partnership development, grant proposal preparation, mentoring and online learning forums follow"
+      ],
+      "research": {
+        "institution": "Detroit Urban Research Center",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "community-based participatory research",
+          "public health",
+          "health equity"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_academic_year",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The community partner side of a team does not need an academic background, which is what makes this a genuine low-barrier route into research."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-62d7dd19ac",
+      "kind": "research",
+      "title": "Karmanos Cancer Advocacy Program (KCAP) advocate",
+      "organization": "Karmanos Cancer Institute",
+      "summary": "Patients, family members and caregivers join the research community as cancer advocates: raising clinical trial awareness across local and state communities and providing a forum for cancer education. No academic background is asked for.",
+      "url": "https://www.karmanos.org/karmanos/karmanos-cancer-advocacy-program",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I",
+        "E"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "high_stakes",
+        "night_shifts"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Cancer research advocacy",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "A patient, family member or caregiver with personal experience of a cancer diagnosis",
+        "Demonstrated effectiveness interacting with groups as a leader or active participant",
+        "Willingness to embrace a broad perspective of cancer research and training"
+      ],
+      "research": {
+        "institution": "Karmanos Cancer Institute",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "patient advocacy",
+          "clinical trials",
+          "community engagement",
+          "cancer research"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page does not say whether advocates are paid, so isPaid is null."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-733fad4040",
+      "kind": "research",
+      "title": "Department of Surgery High School Mentorship summer internship",
+      "organization": "Henry Ford Health",
+      "summary": "A seven-week paid summer internship that pairs a high school student one-to-one with a professional mentor in surgery, the culminating phase of a free three-part mentorship programme.",
+      "url": "https://www.henryford.com/hcp/med-ed/surgery-mentorship/summer-internship",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Surgery and clinical research",
+      "stipendUsd": 1000,
+      "durationWeeks": 7,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "High school students",
+        "Free to take part; a $1,000 stipend is paid to each intern",
+        "Interns are paired one-to-one with a professional mentor aligned to their interests"
+      ],
+      "research": {
+        "institution": "Henry Ford Health",
+        "enrollmentRequired": "high_school",
+        "citizenship": "unstated",
+        "isPaid": true,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "surgery",
+          "medicine",
+          "clinical research"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Highly competitive: the page reports 331 applications for 25 places in 2025. The page carries no application deadline."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-73400efc4e",
+      "kind": "research",
+      "title": "Henry Ford Health research",
+      "organization": "Henry Ford Health",
+      "summary": "The front door to research at one of Detroit's largest health systems, covering the research institute, its centres and the departments that run clinical and population studies.",
+      "url": "https://www.henryford.com/hcp/research",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Health systems research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "A hub page; individual roles and training programmes have their own requirements"
+      ],
+      "research": {
+        "institution": "Henry Ford Health",
+        "enrollmentRequired": "none",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "clinical research",
+          "population health",
+          "health services research"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-7833a97319",
+      "kind": "research",
+      "title": "Discovery to Cure Summer Internship",
+      "organization": "C.S. Mott Center for Human Growth and Development, Wayne State University",
+      "summary": "A summer research internship in reproductive and developmental science, running June to August. Open both to rising high school seniors and to undergraduates from any college or university.",
+      "url": "https://mott.med.wayne.edu/discovery-to-cure-application/",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Reproductive and developmental biology",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "High school students: rising seniors at least 16 years of age, in the summer between junior and senior year",
+        "Undergraduates: open to Wayne State and to any other college or university",
+        "The program runs from June to August",
+        "The program cannot provide housing or transportation"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "high_school",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "reproductive science",
+          "developmental biology",
+          "biomedical science"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "As of the last check the page says both the undergraduate and the high school applications are closed for summer 2026; it recurs each year.",
+          "An acceptance letter can be issued to international students for a visa application, but the program cannot assist further."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-86b9a4b6e5",
+      "kind": "research",
+      "title": "Undergraduate Research Program",
+      "organization": "Eastern Michigan University",
+      "summary": "Eastern Michigan's undergraduate research office, which funds and places students on faculty-mentored projects. The nearest research university to Detroit's western suburbs after U-M.",
+      "url": "https://www.emich.edu/undergraduate-research/",
+      "location": "Ypsilanti",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Any discipline",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Enrolled Eastern Michigan undergraduates"
+      ],
+      "research": {
+        "institution": "Eastern Michigan University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "interdisciplinary"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_academic_year",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "unverified",
+        "urlStatus": "blocked",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Cloudflare-challenged; no facts read off the page."
+        ],
+        "driftNotes": [
+          "the host would not serve an automated request (403); the page was not read this run"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-a5cef4de77",
+      "kind": "research",
+      "title": "Community Health Worker Training Program",
+      "organization": "Detroit Recovery Project",
+      "summary": "Detroit-based Community Health Worker training run by a recovery organisation, aimed at people from the communities the work serves and leading into paid outreach and study-support roles.",
+      "url": "https://www.recovery4detroit.com/rti/chwtp-program/",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 95,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community health",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "No degree required; see the programme page for current cohort requirements"
+      ],
+      "research": {
+        "institution": "Detroit Recovery Project",
+        "enrollmentRequired": "none",
+        "citizenship": "us_work_authorized",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "community health",
+          "behavioural health",
+          "recovery support"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-ba4070c948",
+      "kind": "research",
+      "title": "Undergraduate Research Opportunity Program (UROP)",
+      "organization": "University of Michigan LSA",
+      "summary": "U-M's long-running programme placing undergraduates on faculty research projects during the academic year and over the summer, across every division of the university.",
+      "url": "https://lsa.umich.edu/urop",
+      "location": "Ann Arbor",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "A",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Any discipline",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Enrolled University of Michigan undergraduates"
+      ],
+      "research": {
+        "institution": "University of Michigan",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "interdisciplinary",
+          "sciences",
+          "social sciences",
+          "humanities"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_academic_year",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "unverified",
+        "urlStatus": "blocked",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Cloudflare-challenged; no facts read off the page."
+        ],
+        "driftNotes": [
+          "the host would not serve an automated request (403); the page was not read this run"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-c1a68ff6bc",
+      "kind": "research",
+      "title": "Summer Research Program (SRP)",
+      "organization": "Wayne State University Graduate School",
+      "summary": "A two-week summer program preparing students historically underserved in doctoral education for intensive research and the PhD application, in English, social work or biological sciences.",
+      "url": "https://gradschool.wayne.edu/summer-research",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Doctoral preparation",
+      "stipendUsd": null,
+      "durationWeeks": 2,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Historically underserved in doctoral education, discipline or socioeconomic status",
+        "Attend a historically black college or university, or be an underrepresented minority",
+        "An interest in a PhD in English, social work or biological sciences",
+        "A 3.0 GPA"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "english",
+          "social work",
+          "biological sciences"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "unknown",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page still describes the June 19 - July 1, 2022 cohort and says \"The nomination process is currently closed\". Confirm with the Graduate School that the program is still running before this is shown to anyone."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-c60172d578",
+      "kind": "research",
+      "title": "Building Your Capacity (BYC) Research Training Curriculum",
+      "organization": "Karmanos Cancer Institute",
+      "summary": "A nine-module course teaching community members the basics of research — developing research questions, data collection methods and research ethics — as a route to community advisory boards or to becoming a community co-investigator on a…",
+      "url": "https://www.karmanos.org/karmanos/building-your-capacity-byc-research-training-curri",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Research methods training",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to community members; no prior research experience required",
+        "Nine modules covering research questions, data collection methods and research ethics",
+        "Two cohorts are planned for 2026"
+      ],
+      "research": {
+        "institution": "Karmanos Cancer Institute",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "research methods",
+          "research ethics",
+          "community-based participatory research"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_academic_year",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page names two 2026 cohorts but gives no dates on the part we can read; confirm the cohort calendar before demo."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-c76ce8491b",
+      "kind": "research",
+      "title": "Summer Research Opportunity Program (SROP)",
+      "organization": "Rackham Graduate School, University of Michigan",
+      "summary": "Rackham's summer research programme for undergraduates considering a PhD, pairing them with U-M faculty. Application materials for the following summer are published in the autumn.",
+      "url": "https://rackham.umich.edu/prospective-students/srop/",
+      "location": "Ann Arbor",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 45,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Doctoral preparation",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Undergraduate students considering doctoral study"
+      ],
+      "research": {
+        "institution": "University of Michigan",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "faculty_lab",
+        "disciplines": [
+          "interdisciplinary",
+          "graduate preparation"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "unverified",
+        "urlStatus": "blocked",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "umich.edu serves a Cloudflare challenge to robots, so no fact on this entry has been read off the page. Stipend, dates and deadline must be filled in by a human before demo."
+        ],
+        "driftNotes": [
+          "the host would not serve an automated request (403); the page was not read this run"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-d357517a69",
+      "kind": "research",
+      "title": "Corewell Health student internships",
+      "organization": "Corewell Health",
+      "summary": "Paid internships at Michigan's largest integrated health system, open to undergraduate and graduate students. Most are summer placements, posted on the careers board between October and March.",
+      "url": "https://careers.corewellhealth.org/us/en/student",
+      "location": "Royal Oak",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I",
+        "C"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 60,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "high_stakes"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Health systems research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to undergraduate or graduate students",
+        "Most paid internships are in summer, posted between October and March",
+        "Search the careers page for \"internship\" and set up a search agent for alerts"
+      ],
+      "research": {
+        "institution": "Corewell Health",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_work_authorized",
+        "isPaid": true,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "clinical research",
+          "health administration",
+          "public health"
+        ],
+        "applicationMethod": "job_board",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": "2026-10-01",
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The GROWTH internship on the same page is restricted to Benton Harbor and Niles residents, so it is not a metro Detroit opportunity and is deliberately not listed separately."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-d661b7df68",
+      "kind": "research",
+      "title": "PATH: Preparing Aspiring Translational Hematology/Oncology Fellows",
+      "organization": "Karmanos Cancer Institute",
+      "summary": "A structured ten-week translational research programme for oncology fellows: mentor matching and lab onboarding, then preclinical experiments and correlative assays, then data interpretation, an abstract and a final institutional present…",
+      "url": "https://www.karmanos.org/karmanos/path-program",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "E",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 65,
+        "manager_support": 85,
+        "autonomy": 45
+      },
+      "jobZone": 5,
+      "minEducation": "postgraduate",
+      "suitableStages": [
+        "EarlyCareer",
+        "SteppingUp"
+      ],
+      "demands": [
+        "high_stakes",
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Translational hematology and oncology",
+      "stipendUsd": null,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Limited to current U.S. GME fellows in oncology or closely related specialties",
+        "Third-year fellows are especially encouraged, having the most protected research time"
+      ],
+      "research": {
+        "institution": "Karmanos Cancer Institute",
+        "enrollmentRequired": "postdoc",
+        "citizenship": "us_work_authorized",
+        "isPaid": null,
+        "mentorshipModel": "clinical_team",
+        "disciplines": [
+          "hematology",
+          "oncology",
+          "translational research"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The $3,000-$4,000 figure on this page is a per-fellow lab expense budget for reagents and assays, not pay. stipendUsd is deliberately null."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-d945fa86ad",
+      "kind": "research",
+      "title": "U-M Detroit Center community-engaged research",
+      "organization": "University of Michigan Detroit Center",
+      "summary": "U-M's Detroit base for community-engaged projects, and the front door to its Detroit partnerships including the Detroit Urban Research Center.",
+      "url": "https://detroit.umich.edu/",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community-engaged research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Varies by project"
+      ],
+      "research": {
+        "institution": "University of Michigan",
+        "enrollmentRequired": "none",
+        "citizenship": "unstated",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "community-engaged research",
+          "urban studies",
+          "public health"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "unverified",
+        "urlStatus": "blocked",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Cloudflare-challenged; no facts read off the page."
+        ],
+        "driftNotes": [
+          "the host would not serve an automated request (403); the page was not read this run"
+        ]
+      }
+    },
+    {
+      "id": "research-registry-e2f8842928",
+      "kind": "research",
+      "title": "AmeriCorps Urban Safety (AMUS) member",
+      "organization": "AmeriCorps Urban Safety, Wayne State University Center for Urban Studies",
+      "summary": "Paid AmeriCorps service with Wayne State's Center for Urban Studies: community organising, forming neighbourhood block clubs and citizen patrols, and public health and safety fieldwork across Detroit. Full-time and part-time positions.",
+      "url": "https://amusdetroit.org/employment/",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "R",
+        "I"
+      ],
+      "traits": {
+        "pay_and_security": 60,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "physical_work",
+        "night_shifts"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community health and safety",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Full-time and part-time AmeriCorps positions",
+        "Monthly living allowance, plus an education award on successful completion of service",
+        "Health coverage available with full-time service",
+        "Child care service available for eligible members"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "none",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "community organising",
+          "public health",
+          "urban safety",
+          "field data collection"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "The page describes the living allowance and education award without amounts, so stipendUsd is null."
+        ],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-f1bfd43e0e",
+      "kind": "research",
+      "title": "Community-Academic Research Network (CAR-Net)",
+      "organization": "Detroit Community-Academic Urban Research Center",
+      "summary": "A standing network joining Detroit community organisations to academic researchers who want to run and share collaborative research in the city, with scholarships for community organisations to take a week-long CBPR short course.",
+      "url": "https://www.detroiturc.org/programs-expertise/community-academic-research-network",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "S",
+        "I",
+        "R"
+      ],
+      "traits": {
+        "pay_and_security": 20,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 75,
+        "mission_and_impact": 95,
+        "people_and_team": 75,
+        "manager_support": 65,
+        "autonomy": 55
+      },
+      "jobZone": 1,
+      "minEducation": "none_required",
+      "suitableStages": [
+        "FirstRole",
+        "Pivot",
+        "Returner"
+      ],
+      "demands": [
+        "physical_work",
+        "night_shifts"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Community-based participatory research",
+      "stipendUsd": null,
+      "durationWeeks": null,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Open to Detroit community organisations and to academic researchers",
+        "Scholarships are available for community organisations to attend a week-long CBPR short course",
+        "The short course runs as EPID 783 in the U-M School of Public Health Graduate Summer Session in Epidemiology"
+      ],
+      "research": {
+        "institution": "Detroit Urban Research Center",
+        "enrollmentRequired": "none",
+        "citizenship": "open",
+        "isPaid": null,
+        "mentorshipModel": "community_partnership",
+        "disciplines": [
+          "community-based participatory research",
+          "public health",
+          "health equity"
+        ],
+        "applicationMethod": "contact_program",
+        "recurrence": "rolling",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": true,
+        "lowBarrier": true,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [],
+        "driftNotes": []
+      }
+    },
+    {
+      "id": "research-registry-f399218237",
+      "kind": "research",
+      "title": "NSF REU Site: Summer Academy in Sustainable Manufacturing",
+      "organization": "Wayne State University College of Engineering",
+      "summary": "A 10-week NSF-funded summer research experience in sustainable manufacturing, working with Wayne State faculty and graduate students on projects that weigh the economic, environmental and social side of how things get made.",
+      "url": "https://advancedmaterials.wayne.edu/summer-academy",
+      "location": "Detroit",
+      "arrangement": "Onsite",
+      "hollandCode": [
+        "R",
+        "I",
+        "S"
+      ],
+      "traits": {
+        "pay_and_security": 45,
+        "flexibility_and_balance": 35,
+        "growth_and_learning": 85,
+        "mission_and_impact": 45,
+        "people_and_team": 70,
+        "manager_support": 70,
+        "autonomy": 55
+      },
+      "jobZone": 3,
+      "minEducation": "secondary",
+      "suitableStages": [
+        "FirstRole",
+        "EarlyCareer"
+      ],
+      "demands": [
+        "physical_work"
+      ],
+      "verifiedOn": "2026-09-20",
+      "isSample": false,
+      "field": "Sustainable manufacturing",
+      "stipendUsd": 7000,
+      "durationWeeks": 10,
+      "startsAt": null,
+      "applyBy": null,
+      "eligibility": [
+        "Must be a U.S. citizen or permanent resident",
+        "Undergraduate students from any institution in the country",
+        "Room and board in Wayne State dormitories is covered",
+        "$500 towards travel to and from Wayne State"
+      ],
+      "research": {
+        "institution": "Wayne State University",
+        "enrollmentRequired": "undergraduate",
+        "citizenship": "us_citizen_or_pr",
+        "isPaid": true,
+        "mentorshipModel": "cohort_program",
+        "disciplines": [
+          "manufacturing",
+          "materials science",
+          "mechanical engineering",
+          "sustainability"
+        ],
+        "applicationMethod": "online_form",
+        "recurrence": "annual_summer",
+        "deadlinePassed": false,
+        "nextWindowOpens": null,
+        "annualDeadline": null,
+        "communityBased": false,
+        "lowBarrier": false,
+        "factsFrom": "program_page",
+        "urlStatus": "ok",
+        "lastCheckedAt": "2026-09-20T01:37:46.134Z",
+        "curatorNotes": [
+          "Stipend is stated as $700 per week for 10 weeks ($7,000 total). The page carries no application deadline."
+        ],
+        "driftNotes": []
+      }
+    }
+  ]
+}
