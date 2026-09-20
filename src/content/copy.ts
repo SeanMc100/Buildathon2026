@@ -2,17 +2,17 @@
 
 export const INTRO_COPY = {
   eyebrow: 'Career intake',
-  title: 'Fifteen questions. Then we stop guessing.',
+  title: 'Tell us what you would trade.',
   body:
-    'Most job matching runs on a job title and a location. This asks what you would actually trade away, then hands that to a model that can read thousands of openings.',
+    'Answer a few short questions and we turn them into a profile that finds roles that fit.',
   bullets: [
-    'About four minutes, one question per screen',
-    'You can skip anything and come back',
-    'Nothing leaves your phone until you tap send',
+    'About four minutes',
+    'Skip anything, come back anytime',
+    'Nothing leaves your phone until you send it',
   ],
-  privacyHeading: 'What we never ask',
+  privacyHeading: 'Sensitive answers',
   privacyBody:
-    'No age, no gender, no health, no salary history, no address. Matching on any of those is unlawful in most places and a bad idea everywhere else.',
+    'Age and gender are optional and never affect your matches.',
   start: 'Start',
   resume: 'Pick up where you left off',
   viewProfile: 'View my profile',
@@ -20,10 +20,10 @@ export const INTRO_COPY = {
 
 export const RESULT_COPY = {
   title: 'Your profile',
-  subtitle: 'This is what we would send a matching model on your behalf.',
+  subtitle: 'What we would send to matching.',
   payloadHeading: 'The exact request',
   payloadBody:
-    'Every inferred value carries a confidence score and the question it came from, so any recommendation can be traced back to something you actually said.',
+    'Every inferred value cites the question it came from.',
   retake: 'Change an answer',
   send: 'Send to matching',
 };

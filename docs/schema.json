@@ -190,6 +190,214 @@
         },
         "unmetConstraints": { "type": "array", "items": { "type": "string" } }
       }
+    },
+    "OpportunityBase": {
+      "type": "object",
+      "description": "Fields shared by every kind of opportunity. Tags use the same vocabulary as CareerProfile so one scorer can compare them.",
+      "required": [
+        "id", "kind", "title", "organization", "summary", "url", "location", "arrangement",
+        "hollandCode", "traits", "jobZone", "minEducation", "suitableStages", "demands",
+        "verifiedOn", "isSample"
+      ],
+      "properties": {
+        "id": { "type": "string", "description": "Stable slug, unique across the catalog." },
+        "kind": { "enum": ["job", "program", "event", "research"] },
+        "title": { "type": "string" },
+        "organization": { "type": "string" },
+        "summary": { "type": "string" },
+        "url": { "type": "string" },
+        "location": { "type": ["string", "null"] },
+        "arrangement": { "enum": ["Remote", "Hybrid", "Onsite"] },
+        "hollandCode": {
+          "type": "array",
+          "description": "Top one to three RIASEC codes, ranked.",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": { "enum": ["R", "I", "A", "S", "E", "C"] }
+        },
+        "traits": {
+          "type": "object",
+          "description": "0-100 per PreferenceWeight.trait: how strongly the opportunity delivers it. Not a sum-to-100.",
+          "required": [
+            "pay_and_security", "flexibility_and_balance", "growth_and_learning",
+            "mission_and_impact", "people_and_team", "manager_support", "autonomy"
+          ],
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 100 }
+        },
+        "jobZone": {
+          "enum": [1, 2, 3, 4, 5, null],
+          "description": "Preparation level assumed. Null = open to any level, skip level distance."
+        },
+        "minEducation": {
+          "enum": ["none_required", "secondary", "certificate", "associate", "bachelor", "postgraduate"]
+        },
+        "suitableStages": {
+          "type": "array",
+          "description": "CareerProfile.stage values it is aimed at. Empty = all.",
+          "items": { "enum": ["FirstRole", "EarlyCareer", "MidCareer", "Pivot", "Returner", "SteppingUp"] }
+        },
+        "demands": {
+          "type": "array",
+          "description": "Checked against HardConstraints.exclusions. Same keys as the dealbreakers question.",
+          "items": {
+            "enum": [
+              "night_shifts", "heavy_travel", "on_call", "sales_targets",
+              "managing_people", "physical_work", "high_stakes"
+            ]
+          }
+        },
+        "verifiedOn": { "type": "string", "format": "date", "description": "Last date someone confirmed the listing is real and current." },
+        "isSample": { "type": "boolean", "description": "True for placeholders. The UI must label these as samples." }
+      }
+    },
+    "Opportunity": {
+      "description": "A job or internship, program, event or research program. Discriminated on `kind`. Visibility rules: an event is hidden once its endsAt (or startsAt when endsAt is null) has passed; any opportunity whose applyBy has passed is also hidden. Rule is applied by the matching slice before ranking.",
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "type": "object",
+              "required": ["kind", "employmentType", "payMinUsd", "payMaxUsd", "applyBy"],
+              "properties": {
+                "kind": { "const": "job" },
+                "employmentType": {
+                  "enum": ["FullTime", "PartTime", "Contract", "Freelance", "Internship", "Apprenticeship"]
+                },
+                "payMinUsd": { "type": ["number", "null"] },
+                "payMaxUsd": { "type": ["number", "null"] },
+                "applyBy": { "type": ["string", "null"], "format": "date", "description": "Null = rolling or unknown." }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "type": "object",
+              "required": ["kind", "costUsd", "stipendUsd", "durationWeeks", "startsAt", "applyBy", "eligibility"],
+              "properties": {
+                "kind": { "const": "program" },
+                "costUsd": { "type": ["number", "null"], "description": "0 = free." },
+                "stipendUsd": { "type": ["number", "null"] },
+                "durationWeeks": { "type": ["number", "null"] },
+                "startsAt": { "type": ["string", "null"], "format": "date" },
+                "applyBy": { "type": ["string", "null"], "format": "date" },
+                "eligibility": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "type": "object",
+              "required": ["kind", "format", "startsAt", "endsAt", "costUsd"],
+              "properties": {
+                "kind": { "const": "event" },
+                "format": { "enum": ["workshop", "networking", "talk", "career_fair", "conference"] },
+                "startsAt": { "type": "string", "format": "date-time" },
+                "endsAt": { "type": ["string", "null"], "format": "date-time" },
+                "costUsd": { "type": ["number", "null"] }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/definitions/OpportunityBase" },
+            {
+              "type": "object",
+              "required": ["kind", "field", "stipendUsd", "durationWeeks", "startsAt", "applyBy", "eligibility"],
+              "properties": {
+                "kind": { "const": "research" },
+                "field": { "type": "string" },
+                "stipendUsd": { "type": ["number", "null"] },
+                "durationWeeks": { "type": ["number", "null"] },
+                "startsAt": { "type": ["string", "null"], "format": "date" },
+                "applyBy": { "type": ["string", "null"], "format": "date" },
+                "eligibility": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "OpportunityMatch": {
+      "type": "object",
+      "description": "One scored result from the matching slice. References the catalog by id.",
+      "required": ["opportunityId", "kind", "matchScore", "whyItFits", "gaps", "citedQuestionIds"],
+      "properties": {
+        "opportunityId": { "type": "string" },
+        "kind": { "enum": ["job", "program", "event", "research"] },
+        "matchScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "whyItFits": { "type": "array", "items": { "type": "string" } },
+        "gaps": { "type": "array", "items": { "type": "string" } },
+        "citedQuestionIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "OpportunityResults": {
+      "type": "object",
+      "description": "Everything the results screen renders.",
+      "required": ["profileId", "generatedAt", "byKind", "unmetConstraints"],
+      "properties": {
+        "profileId": { "type": "string" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "byKind": {
+          "type": "object",
+          "description": "Best matches first within each kind.",
+          "required": ["job", "program", "event", "research"],
+          "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/OpportunityMatch" } }
+        },
+        "unmetConstraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Board": {
+      "type": "object",
+      "description": "A Metro Detroit bulletin board. Age boards are one-of per member, job boards many-of. Membership is self-declared, not verified.",
+      "required": ["id", "category", "name", "blurb"],
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "enum": ["age", "job"] },
+        "name": { "type": "string" },
+        "blurb": { "type": "string" },
+        "ageBand": { "type": "string", "description": "Age boards only. The age_band questionnaire answer it lines up with; read locally, never sent." }
+      }
+    },
+    "BoardMessage": {
+      "type": "object",
+      "description": "One chat message on a board.",
+      "required": ["id", "boardId", "authorId", "authorHandle", "postedAt", "isSample", "body"],
+      "properties": {
+        "id": { "type": "string" },
+        "boardId": { "type": "string" },
+        "authorId": { "type": "string", "description": "Stable per-install id. Not a real identity." },
+        "authorHandle": { "type": "string", "description": "Anonymous display name, e.g. 'Member 4821'." },
+        "postedAt": { "type": "string", "format": "date-time" },
+        "isSample": { "type": "boolean", "description": "True for placeholders. The UI must label these." },
+        "body": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "BoardPost": {
+      "type": "object",
+      "description": "A member-shared opportunity that is not in the catalog.",
+      "required": ["id", "boardId", "authorId", "authorHandle", "postedAt", "isSample", "kind", "title", "organization", "city", "url", "details"],
+      "properties": {
+        "id": { "type": "string" },
+        "boardId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorHandle": { "type": "string" },
+        "postedAt": { "type": "string", "format": "date-time" },
+        "isSample": { "type": "boolean" },
+        "kind": { "enum": ["job", "research", "program", "event", "other"] },
+        "title": { "type": "string", "maxLength": 80 },
+        "organization": { "type": "string", "maxLength": 60 },
+        "city": { "type": "string", "description": "A Metro Detroit city, or 'Remote'." },
+        "url": { "type": ["string", "null"], "description": "http(s) only." },
+        "details": { "type": "string", "maxLength": 600 }
+      }
     }
   }
 }

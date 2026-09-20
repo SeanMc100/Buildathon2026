@@ -2,3 +2,5 @@
 // Only Sean edits this file.
 export * from './questionnaire';
 export * from './profile';
+export * from './opportunity';
+export * from './board';

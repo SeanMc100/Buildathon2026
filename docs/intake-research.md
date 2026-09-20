@@ -28,6 +28,13 @@ Ranked by evidence strength, the constructs worth a question each:
    with job satisfaction. `pay_stance` asks about the floor, not the ceiling.
    [Judge et al. 2010](https://www.sciencedirect.com/science/article/abs/pii/S0001879110000722)
 
+Also cut from the current bank to shorten the flow: `experience_band`,
+`autonomy`, `pace`, `deadline_response`, `team_shape`, `manager_support`,
+`dealbreakers` and `extra_context`. The scorer still reads those ids and falls
+back to low-confidence defaults when they are absent, so the profile reports
+them as unknown rather than guessing. The sections above describe the research
+behind them, in case any are restored.
+
 Deliberately cut: separate skill-variety and task-identity items (merged into
 `variety_vs_depth`), separate person-organisation / person-group / person-
 supervisor fit scales (they overlap heavily with person-job fit), full O*NET or
@@ -35,9 +42,9 @@ Schwartz values batteries, and fringe-benefit detail.
 
 ## Format choices
 
-- **14 required items, one per screen.** Completion is flat below ~15 questions
-  and falls sharply past it. Optional and branching items push a typical path to
-  ~17 screens, two of which are one-tap skips.
+- **8 required items, one per screen.** Completion is flat below ~15 questions
+  and falls sharply past it. Optional and branching items put a path at 11 to 14
+  screens.
 - **Never a grid.** Matrix questions are the worst-performing mobile format.
 - **Every scale point is labelled.** Fully-labelled scales are measurably more
   reliable than endpoint-only ones.
@@ -77,10 +84,14 @@ reason against holistically.
 
 ## What we never ask
 
-Race, sex/gender/orientation, religion, national origin or immigration status,
-age or date of birth, disability or health, genetic or family medical history,
+Race, sexual orientation, religion, national origin or immigration status,
+date of birth, disability or health, genetic or family medical history,
 pregnancy/marital/family status, salary history, criminal history, and home
 address or postcode.
+
+Age (as a range) and gender are asked as optional questions. They are kept on
+the profile only: no scoring code reads them and they are not part of the match
+request, so the model still cannot use them.
 
 These are protected characteristics under US Title VII, the ADA, the ADEA and
 GINA; the EEOC has confirmed that algorithmic tools carry disparate-impact

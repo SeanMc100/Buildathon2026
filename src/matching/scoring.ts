@@ -20,7 +20,6 @@ import type {
   ChallengeAppetite,
   EducationLevel,
   EmploymentType,
-  ExperienceBand,
   HardConstraints,
   Inference,
   InterestProfile,
@@ -62,24 +61,6 @@ const EDUCATION_BASE_ZONE: Record<EducationLevel, JobZone> = {
   postgraduate: 5,
 };
 
-const PACE_MAP: Record<string, Pace> = {
-  steady: 'Steady',
-  mixed: 'Mixed',
-  intense: 'Intense',
-};
-
-const CHALLENGE_MAP: Record<string, ChallengeAppetite> = {
-  energised: 'Energised',
-  neutral: 'Neutral',
-  drained: 'Drained',
-};
-
-const TEAM_MAP: Record<string, TeamShape> = {
-  solo: 'Solo',
-  small_team: 'SmallTeam',
-  large_org: 'LargeOrg',
-};
-
 const PRIORITY_LABELS: Record<PreferenceTrait, string> = {
   pay_and_security: 'Pay and security',
   flexibility_and_balance: 'Flexibility and balance',
@@ -98,32 +79,16 @@ function deriveStage(answers: AnswerMap): Inference<CareerStage> {
   const raw = readString(answers, 'stage');
   if (raw && STAGE_MAP[raw]) return inference(STAGE_MAP[raw], 0.95, ['stage']);
 
-  // Fall back on experience alone, and say so with a low confidence.
-  const experience = readString(answers, 'experience_band');
-  const fallback: CareerStage =
-    experience === 'none' || experience === 'under_1' ? 'FirstRole' : 'MidCareer';
-  return inference(fallback, 0.25, ['experience_band']);
+  // Nothing else in the bank says where someone is, so this is a placeholder.
+  return inference('MidCareer' as CareerStage, 0.1, []);
 }
 
+/** Education is the only preparation signal the bank asks for. */
 function deriveJobZone(answers: AnswerMap): Inference<JobZone> {
   const education = readString(answers, 'education') as EducationLevel | null;
-  const experience = readString(answers, 'experience_band') as ExperienceBand | null;
+  if (!education) return inference(3 as JobZone, 0.15, []);
 
-  if (!education && !experience) return inference(3 as JobZone, 0.15, []);
-
-  const base = education ? EDUCATION_BASE_ZONE[education] : 3;
-  let zone: number = base;
-
-  // Long service stands in for formal preparation; no experience pulls it down.
-  if (experience === '6_10' || experience === '10_plus') zone += 1;
-  if (experience === 'none') zone -= 1;
-
-  const clamped = Math.min(5, Math.max(1, zone)) as JobZone;
-  const sources: QuestionId[] = [];
-  if (education) sources.push('education');
-  if (experience) sources.push('experience_band');
-
-  return inference(clamped, education && experience ? 0.7 : 0.4, sources);
+  return inference(EDUCATION_BASE_ZONE[education], 0.4, ['education']);
 }
 
 function deriveInterests(answers: AnswerMap): InterestProfile {
@@ -147,43 +112,31 @@ function deriveInterests(answers: AnswerMap): InterestProfile {
   };
 }
 
+/**
+ * Only variety versus depth is asked. The other four style fields stay in the
+ * profile shape but are never read from answers: they are fixed placeholders
+ * with no source questions and the lowest confidence.
+ */
 function deriveWorkStyle(answers: AnswerMap): WorkStyle {
-  const autonomy = scaleToPercent(answers, 'autonomy', 5);
   const variety = scaleToPercent(answers, 'variety_vs_depth', 5);
-  const pace = readString(answers, 'pace');
-  const challenge = readString(answers, 'deadline_response');
-  const team = readString(answers, 'team_shape');
 
   return {
-    autonomy:
-      autonomy === null
-        ? inference(50, 0.1, [])
-        : inference(autonomy, 0.8, ['autonomy']),
+    autonomy: inference(50, 0.1, []),
     variety:
       variety === null
         ? inference(50, 0.1, [])
         : inference(variety, 0.75, ['variety_vs_depth']),
-    pace:
-      pace && PACE_MAP[pace]
-        ? inference(PACE_MAP[pace], 0.85, ['pace'])
-        : inference('Mixed' as Pace, 0.1, []),
-    challengeAppetite:
-      challenge && CHALLENGE_MAP[challenge]
-        ? inference(CHALLENGE_MAP[challenge], 0.8, ['deadline_response'])
-        : inference('Neutral' as ChallengeAppetite, 0.1, []),
-    teamShape:
-      team && TEAM_MAP[team]
-        ? inference(TEAM_MAP[team], 0.85, ['team_shape'])
-        : inference('SmallTeam' as TeamShape, 0.1, []),
+    pace: inference('Mixed' as Pace, 0.1, []),
+    challengeAppetite: inference('Neutral' as ChallengeAppetite, 0.1, []),
+    teamShape: inference('SmallTeam' as TeamShape, 0.1, []),
   };
 }
 
 /**
- * The spend-100-points answer is the backbone. Manager support and autonomy are
- * folded in from their own items, then the whole list is renormalised to 100 so
- * every weight stays comparable.
+ * The spend-100-points answer is the only source of priorities. The list is
+ * renormalised to 100 so every weight stays comparable.
  */
-function derivePriorities(answers: AnswerMap, style: WorkStyle): PreferenceWeight[] {
+function derivePriorities(answers: AnswerMap): PreferenceWeight[] {
   const budget = readAllocation(answers, 'priority_budget');
   const raw: PreferenceWeight[] = [];
 
@@ -195,29 +148,6 @@ function derivePriorities(answers: AnswerMap, style: WorkStyle): PreferenceWeigh
       weight: amount,
       confidence: 0.9,
       sourceQuestionIds: ['priority_budget'],
-    });
-  }
-
-  const manager = scaleToPercent(answers, 'manager_support', 5);
-  if (manager !== null && manager > 0) {
-    raw.push({
-      trait: 'manager_support',
-      label: PRIORITY_LABELS.manager_support,
-      // Caps at 30 points so a single scale item cannot outrank the budget.
-      weight: Math.round((manager / 100) * 30),
-      confidence: 0.7,
-      sourceQuestionIds: ['manager_support'],
-    });
-  }
-
-  if (style.autonomy.sourceQuestionIds.length > 0 && style.autonomy.value >= 60) {
-    raw.push({
-      trait: 'autonomy',
-      label: PRIORITY_LABELS.autonomy,
-      weight: Math.round(((style.autonomy.value - 50) / 50) * 20),
-      // Inferred from a style question, not stated as a priority. Marked lower.
-      confidence: 0.55,
-      sourceQuestionIds: ['autonomy'],
     });
   }
 
@@ -244,7 +174,6 @@ function derivePriorities(answers: AnswerMap, style: WorkStyle): PreferenceWeigh
 function deriveWorkValues(
   answers: AnswerMap,
   priorities: PreferenceWeight[],
-  style: WorkStyle,
 ): Inference<WorkValue[]> {
   const weightOf = (trait: PreferenceTrait) =>
     priorities.find((item) => item.trait === trait)?.weight ?? 0;
@@ -264,17 +193,6 @@ function deriveWorkValues(
     score.Achievement += growth;
     sources.add('priority_budget');
   }
-  if (style.pace.value === 'Intense') {
-    score.Achievement += 10;
-    sources.add('pace');
-  }
-
-  score.Independence += Math.round(style.autonomy.value / 5);
-  if (style.autonomy.sourceQuestionIds.length > 0) sources.add('autonomy');
-  if (style.teamShape.value === 'Solo') {
-    score.Independence += 12;
-    sources.add('team_shape');
-  }
 
   if (readString(answers, 'pay_stance') === 'top_of_market') {
     score.Recognition += 18;
@@ -290,12 +208,6 @@ function deriveWorkValues(
   if (people > 0 || mission > 0) {
     score.Relationships += people + Math.round(mission / 2);
     sources.add('priority_budget');
-  }
-
-  const manager = weightOf('manager_support');
-  if (manager > 0) {
-    score.Support += manager * 2;
-    sources.add('manager_support');
   }
 
   const conditions = weightOf('flexibility_and_balance') + weightOf('pay_and_security');
@@ -327,7 +239,8 @@ function deriveConstraints(answers: AnswerMap): HardConstraints {
     openToRelocation: commute === 'relocate',
     payStance,
     minSalaryUsd: payStance === 'has_floor' && floorBand ? Number(floorBand) : null,
-    exclusions: readList(answers, 'dealbreakers'),
+    // No deal-breaker question is asked, so nothing is ruled out on demands.
+    exclusions: [],
   };
 }
 
@@ -351,8 +264,8 @@ export function buildProfile(
   const jobZone = deriveJobZone(answers);
   const interests = deriveInterests(answers);
   const workStyle = deriveWorkStyle(answers);
-  const priorities = derivePriorities(answers, workStyle);
-  const workValues = deriveWorkValues(answers, priorities, workStyle);
+  const priorities = derivePriorities(answers);
+  const workValues = deriveWorkValues(answers, priorities);
   const hardConstraints = deriveConstraints(answers);
 
   const profile: CareerProfile = {
@@ -361,7 +274,7 @@ export function buildProfile(
     version: QUESTION_BANK_VERSION,
     narrativeSummary: '',
     stage,
-    experienceBand: readString(answers, 'experience_band') as ExperienceBand | null,
+    experienceBand: null,
     educationLevel: readString(answers, 'education') as EducationLevel | null,
     jobZone,
     focusArea: readString(answers, 'focus_area'),
@@ -370,7 +283,7 @@ export function buildProfile(
     priorities,
     workValues,
     hardConstraints,
-    extraContext: readString(answers, 'extra_context'),
+    extraContext: null,
     skippedQuestionIds,
     completeness: completenessOf(answers),
   };
