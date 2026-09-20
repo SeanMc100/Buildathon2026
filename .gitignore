@@ -42,3 +42,11 @@ yarn-error.*
 
 # ingestion caches (large downloads, never committed)
 .cache/
+
+# secrets and local config
+.env
+.claude/settings.local.json
+
+# logs and coverage
+*.log
+coverage/
