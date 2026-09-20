@@ -28,7 +28,12 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "ingest:events": "tsx scripts/events/ingest.ts",
-    "verify:events": "tsx scripts/events/verify.ts"
+    "ingest:jobs": "tsx scripts/jobs/ingest.ts",
+    "ingest:programs": "tsx scripts/programs/ingest.ts",
+    "ingest:research": "tsx scripts/research/ingest.ts",
+    "verify:events": "tsx scripts/events/verify.ts",
+    "verify:catalog": "tsx scripts/verify-catalog.ts",
+    "ingest:all": "npm run ingest:events && npm run ingest:jobs && npm run ingest:programs && npm run ingest:research"
   },
   "private": true
 }
