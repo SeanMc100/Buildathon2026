@@ -153,7 +153,6 @@ export function assessEvent(raw: RawEvent, now: Date): Assessment {
     summary: summarize(raw, format),
     url: raw.url,
     location: shortLocation(raw),
-    arrangement: raw.isOnline ? 'Remote' : 'Onsite',
     hollandCode: careerRelevant ? chooseHolland(text) : [],
     traits: chooseTraits(signals, format, text, raw.isOnline),
     jobZone: null,

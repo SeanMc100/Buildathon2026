@@ -30,7 +30,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
 
 /** Browser tab titles. Most screens draw their own heading, so the header title is blank. */
 const PAGE_TITLES: Record<keyof RootStackParamList, string> = {
-  Home: 'Buildathon App',
+  Home: 'Day 1 Detroit',
   IntakeIntro: 'Career intake',
   IntakeQuestion: 'Career intake',
   Profile: 'Your profile',
@@ -52,6 +52,7 @@ const LIST_PAGE_TITLES: Record<BrowseKind, string> = {
   internship: 'Internships',
   program: 'Programs',
   research: 'Research programs',
+  mentorship: 'Mentorship programs',
 };
 
 export function documentTitle(route: { name: string; params?: object } | undefined): string {
@@ -59,5 +60,5 @@ export function documentTitle(route: { name: string; params?: object } | undefin
   const kind = (route?.params as { kind?: BrowseKind } | undefined)?.kind;
   const page =
     name === 'OpportunityList' && kind ? LIST_PAGE_TITLES[kind] : name && PAGE_TITLES[name];
-  return !page || page === 'Buildathon App' ? 'Buildathon App' : `${page} · Buildathon App`;
+  return !page || page === 'Day 1 Detroit' ? 'Day 1 Detroit' : `${page} · Day 1 Detroit`;
 }

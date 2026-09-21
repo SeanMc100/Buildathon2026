@@ -5,7 +5,7 @@
 // what is on screen at all. Keeping them apart means the same filters work
 // before the questionnaire has been answered, when there is nothing to rank by.
 
-import type { Opportunity, WorkArrangement } from '../models';
+import type { Opportunity } from '../models';
 import type { BrowseKind } from '../navigation/types';
 
 export type MoneyFilter = 'any' | 'paid' | 'free';
@@ -17,7 +17,6 @@ export type BrowseFilters = {
   /** Free text, matched against the title, organisation, summary and place. */
   query: string;
   kind: BrowseKind;
-  arrangement: 'any' | WorkArrangement;
   /** `paid` means it pays you; `free` means it costs you nothing to take part. */
   money: MoneyFilter;
   entry: EntryFilter;
@@ -29,22 +28,27 @@ export type BrowseFilters = {
 export const DEFAULT_FILTERS: BrowseFilters = {
   query: '',
   kind: 'all',
-  arrangement: 'any',
   money: 'any',
   entry: 'any',
   fit: 'any',
   sort: 'match',
 };
 
-export function isInternship(item: Opportunity): boolean {
-  return item.kind === 'job' && item.employmentType === 'Internship';
+/**
+ * An internship or apprenticeship: an employer's or union's own way in, not a
+ * kind of work. They are jobs in the data (they have pay, a place and an
+ * employer) but they are listed and recommended apart from the occupations.
+ */
+export function isEntryRoute(item: Opportunity): boolean {
+  return item.kind === 'job' && (item.employmentType === 'Internship' || item.employmentType === 'Apprenticeship');
 }
 
-/** Which browse list a catalog item belongs on. Internships are carved out of the jobs. */
+/** Which browse list a catalog item belongs on. Internships and apprenticeships are carved out of the jobs. */
 export function belongsToKind(kind: BrowseKind, item: Opportunity): boolean {
-  if (kind === 'all') return item.kind !== 'event';
-  if (kind === 'internship') return isInternship(item);
-  if (kind === 'job') return item.kind === 'job' && !isInternship(item);
+  // Events and mentorships each have their own page, so the mixed list skips them.
+  if (kind === 'all') return item.kind !== 'event' && item.kind !== 'mentorship';
+  if (kind === 'internship') return isEntryRoute(item);
+  if (kind === 'job') return item.kind === 'job' && !isEntryRoute(item);
   return item.kind === kind;
 }
 
@@ -52,9 +56,10 @@ export function belongsToKind(kind: BrowseKind, item: Opportunity): boolean {
 function haystack(item: Opportunity): string {
   const extra: string[] = [];
   if (item.kind === 'research') extra.push(item.field);
+  if (item.kind === 'mentorship') extra.push(item.format, ...item.eligibility);
   if (item.kind === 'job') extra.push(item.employmentType, item.detroit?.sector ?? '');
   if (item.kind === 'program') extra.push(...(item.program?.credentials ?? []));
-  return [item.title, item.organization, item.summary, item.location ?? '', item.arrangement, ...extra]
+  return [item.title, item.organization, item.summary, item.location ?? '', ...extra]
     .join(' ')
     .toLowerCase();
 }
@@ -77,6 +82,7 @@ export function isPaid(item: Opportunity): boolean {
     case 'research':
       return (item.stipendUsd ?? 0) > 0;
     case 'event':
+    case 'mentorship':
       return false;
   }
 }
@@ -88,6 +94,7 @@ export function isFree(item: Opportunity): boolean {
       return true;
     case 'program':
     case 'event':
+    case 'mentorship':
       return item.costUsd === 0 || item.costUsd === null;
     case 'research':
       return true;
@@ -116,9 +123,9 @@ export function matchesFilters(
   filters: BrowseFilters,
   scored = true,
 ): boolean {
-  if (filters.fit === 'fits' && !scored) return false;
+  // Mentorships are listed by audience and never scored, so the fit filter does not apply.
+  if (filters.fit === 'fits' && !scored && item.kind !== 'mentorship') return false;
   if (!belongsToKind(filters.kind, item)) return false;
-  if (filters.arrangement !== 'any' && item.arrangement !== filters.arrangement) return false;
   if (filters.money === 'paid' && !isPaid(item)) return false;
   if (filters.money === 'free' && !isFree(item)) return false;
   if (filters.entry === 'no_degree' && !isOpenEntry(item)) return false;
@@ -146,7 +153,6 @@ export function activeFilterCount(filters: BrowseFilters): number {
   let count = 0;
   if (filters.query.trim()) count += 1;
   if (filters.kind !== 'all') count += 1;
-  if (filters.arrangement !== 'any') count += 1;
   if (filters.money !== 'any') count += 1;
   if (filters.entry !== 'any') count += 1;
   if (filters.fit !== 'any') count += 1;

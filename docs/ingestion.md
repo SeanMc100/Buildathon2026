@@ -6,7 +6,7 @@ file; `src/content/catalog.ts` reads all four.
 | Kind | Command | Writes | Items now | Sources doc |
 |---|---|---|---|---|
 | Events | `npm run ingest:events` | `data/events.json` | 73 | [event-sources.md](event-sources.md) |
-| Jobs | `npm run ingest:jobs` | `data/jobs.json` | 216 | [job-sources.md](job-sources.md) |
+| Jobs | `npm run ingest:jobs` | `data/jobs.json` | 120 | [job-sources.md](job-sources.md) |
 | Programs | `npm run ingest:programs` | `data/programs.json` | 88 | [program-sources.md](program-sources.md) |
 | Research | `npm run ingest:research` | `data/research.json` | 50 | [research-sources.md](research-sources.md) |
 
@@ -63,14 +63,12 @@ is rather than leaving you to guess:
 
 Known soft spots, worth fixing before this is load-bearing:
 
-- `night_shifts` fires on 108 of 216 occupations. O*NET cannot measure it (a
+- `night_shifts` fires on 46 of 102 occupations. O*NET cannot measure it (a
   permanent night shift reads as a *regular* schedule), so it is a SOC-family
   heuristic and it over-fires. Because `demands` is checked against user
   dealbreakers, this wrongly filters roles out for anyone excluding nights.
 - Six research items are `factsFrom: 'unverified'` — U-M and EMU sit behind
   Cloudflare. The URLs are real; every fact was left null rather than guessed.
-- Job `arrangement` is never `Remote`: no source knows what a Detroit employer
-  allows, so claiming it would be invention.
 
 ## Adding a source
 

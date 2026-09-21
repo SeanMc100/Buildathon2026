@@ -91,7 +91,6 @@
       "summary": "Case-managed employment and training support for people moving off public assistance, delivered in Arabic and English at ACCESS in Dearborn.",
       "url": "https://www.accesscommunity.org/employment-services/access-career-path-self-sufficiency-project",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "R",
         "S"
@@ -157,7 +156,6 @@
       "summary": "Training referrals, job placement and workplace English support for immigrant and Arab American job seekers in metro Detroit.",
       "url": "https://www.accesscommunity.org/employment-services/job-seeker-resources",
       "location": "ACCESS, Dearborn",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "S",
         "A",
@@ -229,7 +227,6 @@
       "summary": "A tuition-free software development programme for women and gender-expansive adults: six months of virtual classroom followed by the option to interview for a five-month paid fellowship at a partner company.",
       "url": "https://adadevelopersacademy.org/ada-core/",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "I",
         "S",
@@ -299,7 +296,6 @@
       "summary": "CDL-A, offered by All Star Truck Driving School Inc. and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/All%20Stars%20Truck%20Driving%20School%20-%20CDL%20A_0.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -361,7 +357,6 @@
       "summary": "A registered apprenticeship into tech roles: unpaid-tuition classroom training followed by a paid apprenticeship with a partner employer, aimed at people with no tech background.",
       "url": "https://apprenticareers.org/career-seeker/",
       "location": "Employer sites across Michigan",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "I",
         "A",
@@ -423,7 +418,6 @@
       "summary": "From ongoing educational workshops to alumni networking events, we know that learning doesn’t stop in the classroom.",
       "url": "https://www.buildinstitute.org/connect/build-alumni-program/",
       "location": "Build Institute, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "R",
@@ -489,7 +483,6 @@
       "summary": "Our core 8-week business and project planning class is designed for aspiring and established entrepreneurs.",
       "url": "https://www.buildinstitute.org/learn/build-basics/",
       "location": "Build Institute, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "R",
@@ -555,7 +548,6 @@
       "summary": "is designed specifically to meet the unique needs of established business owners looking to grow and scale.",
       "url": "https://www.buildinstitute.org/learn/build-grow/",
       "location": "Build Institute, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "R",
@@ -621,7 +613,6 @@
       "summary": "Running a business requires a broad array of expertise in all aspects of your business.",
       "url": "https://www.buildinstitute.org/learn/build-master-class/",
       "location": "Build Institute, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "R"
@@ -686,7 +677,6 @@
       "summary": "trains, develops, and coaches social entrepreneurs in Detroit’s small business community.",
       "url": "https://www.buildinstitute.org/learn/build-social-impact/",
       "location": "Build Institute, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "R",
@@ -752,7 +742,6 @@
       "summary": "Customer Service and Call Center Training Program, offered by Call Center for Hire and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Call%20For%20Hire%20-%20Call%20Center%20For%20Hire%27s%20Customer%20Service%20and%20Call%20Center.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [],
       "traits": {
         "pay_and_security": 55,
@@ -808,7 +797,6 @@
       "summary": "Carpenter Apprenticeship, offered by Carpenter & Millwright Union and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-11/Carpenters%20and%20Millwrights%20Joint%20Apprenticeship%20%28%20Carpenter%29.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -868,7 +856,6 @@
       "summary": "Pre Apprenticeship (Solar), offered by Carpenter & Millwright Union and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-11/Carpenters%20and%20Millwrights%20Joint%20Apprenticeship%20%28%20Build%20MI%20Future%20-%20Solar%29.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -928,7 +915,6 @@
       "summary": "A competitive round-based programme that matches Detroit businesses with buildings, design and business-plan help, and cash grants toward a bricks-and-mortar space.",
       "url": "https://www.motorcitymatch.com/",
       "location": "Detroit",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "E",
         "A",
@@ -993,7 +979,6 @@
       "summary": "A last-dollar scholarship that gives eligible Detroit residents a tuition-free path to an associate degree, a bachelor’s degree or a technical certificate at participating institutions.",
       "url": "https://detroitpromise.com/about/",
       "location": "Participating Michigan colleges and universities",
-      "arrangement": "Onsite",
       "hollandCode": [
         "C",
         "S",
@@ -1058,7 +1043,6 @@
       "summary": "Operator training on excavators, backhoes, skid steers and other heavy equipment, with seat time on real machines.",
       "url": "https://detroittraining.com/heavy-equipment",
       "location": "Detroit Training Center, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "C",
@@ -1125,7 +1109,6 @@
       "summary": "The 60-hour pre-licensure course Michigan requires before you can sit the residential builders licence exam, run live and in the classroom.",
       "url": "https://detroittraining.com/mibuilders",
       "location": "Detroit Training Center, Detroit",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "R",
         "C",
@@ -1191,7 +1174,6 @@
       "summary": "Hands-on welding training at the Detroit Training Center shop, covering the processes employers hire for.",
       "url": "https://detroittraining.com/welding",
       "location": "Detroit Training Center, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "A",
@@ -1259,7 +1241,6 @@
       "summary": "Framing and Structural Carpentry, offered by Emerging Industries Technology Institute and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/EITI%20-%20Framing%20and%20Structural%20Carpentry%20Bio.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1319,7 +1300,6 @@
       "summary": "Renewable Energy (Solar Technician), offered by Emerging Industries Technology Institute and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-01/EITI%20-%20Training%20Bio%20%281%29%20%281%29.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1379,7 +1359,6 @@
       "summary": "Residential Electrical, offered by Emerging Industries Technology Institute and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/EITI%20-%20Residential%20Electrical%20Bio.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1439,7 +1418,6 @@
       "summary": "Multiple Skilled Trades, offered by Fast TRACC and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/detroit-at-work-fast-tracc",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1499,7 +1477,6 @@
       "summary": "Construction Training Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Construction%20Training%20Pathways.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1559,7 +1536,6 @@
       "summary": "Industrial Manufacturing Training Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Industrial%20Manufacturing%20Training%20Pathways.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1619,7 +1595,6 @@
       "summary": "Information Technology Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Information%20Technology%20Pathways.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -1677,7 +1652,6 @@
       "summary": "IT Developer (Information Technology Pathway-Plus), offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Information%20Training%20Pathways%20-Plus%20Developer.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -1735,7 +1709,6 @@
       "summary": "IT Python Developer 2, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5056",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -1793,7 +1766,6 @@
       "summary": "Logistics and Transportation Pathways, offered by Focus Hope and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Focus%20Hope%20-%20Logistics%20%26%20Transportation.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1853,7 +1825,6 @@
       "summary": "DTE Tree Trim Academy, run by Focus: HOPE.",
       "url": "https://www.focushope.edu/programs/job-training/dte-tree-trim-academy/",
       "location": "Focus: HOPE, 1400 Oakman Blvd, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -1916,7 +1887,6 @@
       "summary": "Nurse Aide Training Program, offered by Gentle Hands of Integrity and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Gentle%20Hands%20of%20Integrity%20-%20Nurse%20Aid.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R"
@@ -1977,7 +1947,6 @@
       "summary": "At A Place of Our Own Clubhouse, we are dedicated to supporting the recovery and well-being of individuals living with mental illness.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/a-place-of-our-own/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I",
         "S",
@@ -2045,7 +2014,6 @@
       "summary": "At the Goodwill of Greater Detroit Career Academy, we recognize the increasing need for high demand careers in southeast Michigan and the crucial role they play in fueling economic mobility for individuals and families.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/career-academy/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "S",
@@ -2121,7 +2089,6 @@
       "summary": "For 23 years, Goodwill of Greater Detroit’s award winning Flip the Script program has been dedicated to fostering second chances for individuals who are or have been justice-involved.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/flip-the-script/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "S",
@@ -2198,7 +2165,6 @@
       "summary": "Green Works, run by Goodwill Industries of Greater Detroit.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/green-works/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [],
       "traits": {
         "pay_and_security": 35,
@@ -2260,7 +2226,6 @@
       "summary": "Goodwill of Greater Detroit’s Life Skills program empowers adults with intellectual and developmental disabilities through a comprehensive range of supportive services that promote growth and independence.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/life-skills/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I",
         "S",
@@ -2329,7 +2294,6 @@
       "summary": "Goodwill offers additional services to help prepare for a job.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/supported-employment/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "S"
@@ -2400,7 +2364,6 @@
       "summary": "Reaching peak performance during work hours is critical to your company’s productivity and profitability.",
       "url": "https://www.goodwilldetroit.org/the-good-we-do/surge-center/",
       "location": "Goodwill Industries of Greater Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "A",
         "S",
@@ -2468,7 +2431,6 @@
       "summary": "Welding Skills Trades, offered by Goodwill Industries of Greater Detroit and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/Training%20Bio%20-%20Goodwill%202025%20Welding%201.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -2528,7 +2490,6 @@
       "summary": "Detroit's citywide summer jobs programme: six weeks of paid work experience with a local employer for residents aged 14 to 24, with far more applicants than places.",
       "url": "https://gdyt.org/youth",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [],
       "traits": {
         "pay_and_security": 55,
@@ -2590,7 +2551,6 @@
       "summary": "Operation Next CNC Machining Program, offered by LIFT Learning Lab and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5146",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -2652,7 +2612,6 @@
       "summary": "Operation Next Robotics Program, offered by LIFT Learning Lab and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5141",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -2712,7 +2671,6 @@
       "summary": "Operation Next Welding Program, offered by LIFT Learning Lab and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5161",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -2772,7 +2730,6 @@
       "summary": "LISC Detroit runs funding rounds, business coaching and construction workforce initiatives for Detroit neighbourhoods.",
       "url": "https://www.lisc.org/detroit/",
       "location": "Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "S",
@@ -2837,7 +2794,6 @@
       "summary": "Michigan Central runs mobility and technology programming out of Corktown, including community training, fellowships and studio residencies.",
       "url": "https://michigancentral.com/community/",
       "location": "Michigan Central, Corktown, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I",
         "S",
@@ -2902,7 +2858,6 @@
       "summary": "State grants that pay for employees to be trained on the job. Employers apply through their local Michigan Works! agency, so ask your employer rather than applying yourself.",
       "url": "https://www.michigan.gov/leo/bureaus-agencies/wd/programs-services/going-pro-talent-fund",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "E",
         "A",
@@ -2962,7 +2917,6 @@
       "summary": "The state's directory of registered apprenticeships: paid, employer-sponsored training that combines on-the-job hours with classroom instruction and ends in a nationally recognised credential.",
       "url": "https://www.michigan.gov/leo/bureaus-agencies/wd/apprenticeships",
       "location": "Sponsors across Michigan",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "A",
@@ -3027,7 +2981,6 @@
       "summary": "Pre-Apprentice Pharmacy Tech Program, offered by Michigan Technology & Trade Institute and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/Training%20Bio_TEMPLATE%20MTTI%20PRE%20APPRENTICESHIP%20PHARMACY%20TECH%20%281%29.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R"
@@ -3088,7 +3041,6 @@
       "summary": "Pre-Apprenticeship Carpentry, offered by Michigan Technology & Trade Institute and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/MTTI%20-%20Pre-Apprenticeship%20Carpentry.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -3148,7 +3100,6 @@
       "summary": "Healthcare Foundations for Pharmacy Tech, offered by Michigan Technology and Trades Institute and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/MTTI%20-%20Healthcare%20Foundations%20for%20Pharmacy%20Tech.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R"
@@ -3209,7 +3160,6 @@
       "summary": "Tech Fundamentals I, offered by NPower Michigan and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/NPower%20-%20Tech%20Fundamentals.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -3267,7 +3217,6 @@
       "summary": "AI-Enabled Healthcare IT Technician Training in Detroit, run by Per Scholas Detroit.",
       "url": "https://perscholas.org/courses/ai-enabled-healthcare-it-technician/ai-enabled-healthcare-it-technician-detroit/",
       "location": "Per Scholas Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -3327,7 +3276,6 @@
       "summary": "AI-Enabled IT Support Training In Detroit, run by Per Scholas Detroit.",
       "url": "https://perscholas.org/courses/it-support/it-support-detroit/",
       "location": "Per Scholas Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -3387,7 +3335,6 @@
       "summary": "Cybersecurity with AI Tools Training in Detroit, run by Per Scholas Detroit.",
       "url": "https://perscholas.org/courses/cybersecurity-ai-tools/cybersecurity-detroit/",
       "location": "Per Scholas Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],
@@ -3447,7 +3394,6 @@
       "summary": "This opportunity is made possible through our partnership with the City of Hamtramck and support from the National League of Cities.",
       "url": "https://prosperusdetroit.org/amanah/",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "E",
         "S",
@@ -3520,7 +3466,6 @@
       "summary": "A business growth program for Detroit’s creative entrepreneurs.",
       "url": "https://prosperusdetroit.org/detroit-creative-futures/",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "E",
         "A",
@@ -3591,7 +3536,6 @@
       "summary": "We build trusted relationships that strengthen financial health, build readiness, and expand access to opportunity.",
       "url": "https://prosperusdetroit.org/financial-coaching/",
       "location": "ProsperUS Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "R",
@@ -3660,7 +3604,6 @@
       "summary": "We will be accepting applications for the Spring 2027 Entrepreneur Training Program soon!",
       "url": "https://prosperusdetroit.org/training/",
       "location": "ProsperUS Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "S",
@@ -3729,7 +3672,6 @@
       "summary": "SER Metro provides adult education services to residents 18 years old+, in partnership with Ford Philanthropy, to community members at SER’s Main Office on Michigan Avenue and the Ford Community Center on the east side of Detroit.",
       "url": "https://sermetro.org/program-service/adult-programs-services/adult-education-services/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "I",
         "S",
@@ -3796,7 +3738,6 @@
       "summary": "SER Center for Working Families: A Holistic Approach to Empowering Detroit’s Workforce",
       "url": "https://sermetro.org/program-service/adult-programs-services/center-for-working-families/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "S",
@@ -3865,7 +3806,6 @@
       "summary": "SER offers programs and services focused on helping the formerly incarcerated gain access to training and career services.",
       "url": "https://sermetro.org/program-service/justice-impacted-services/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "S",
@@ -3935,7 +3875,6 @@
       "summary": "Minimum 6th-grade reading/math level (assessed via CASAS test)",
       "url": "https://sermetro.org/program-service/adult-programs-services/ser-construction-talent-hub/rebuild-detroit-a-ser-skilled/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R",
         "A",
@@ -4010,7 +3949,6 @@
       "summary": "In partnership with Detroit Public Schools Community District (DPSCD), SER YouthBuild Learning Academy (SYLA) East & Southwest offers a chance for learners to gain the knowledge, skills, and self-discipline needed to succeed in the world.",
       "url": "https://sermetro.org/program-service/youth-programs-services/ser-youthbuild-learning-academy/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R",
@@ -4084,7 +4022,6 @@
       "summary": "SER Metro–Detroit’s Year Round Youth Program is funded by DetroitAtWork under the Workforce Innovation and Opportunity Act (WIOA).",
       "url": "https://sermetro.org/program-service/youth-programs-services/year-round-youth/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "C"
@@ -4150,7 +4087,6 @@
       "summary": "SER’s YouthBuild program follows the established YouthBuild national model, combining personalized GED instruction with hands-on construction training to boost employability.",
       "url": "https://sermetro.org/program-service/youth-programs-services/youthbuild-ged/",
       "location": "SER Metro-Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R",
@@ -4224,7 +4160,6 @@
       "summary": "Medical Assistant, offered by Skill Trade Inc and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2025-09/Training%20Bio_TEMPLATE_Hybrid%20SS%20%28003%29.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R"
@@ -4285,7 +4220,6 @@
       "summary": "Medical Assistant Hybrid Program, offered by Skill Trade Inc and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5156",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "S",
         "R"
@@ -4346,7 +4280,6 @@
       "summary": "Adult basic education, high school completion and English language classes in southwest Detroit.",
       "url": "https://swsol.org/economics/adult-literacy",
       "location": "Southwest Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "C",
         "I",
@@ -4413,7 +4346,6 @@
       "summary": "Job readiness coaching, placement help and training referrals for adults in southwest Detroit, offered in English and Spanish.",
       "url": "https://swsol.org/economics/career-center",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "S"
       ],
@@ -4478,7 +4410,6 @@
       "summary": "A programme that pairs paid work experience with classroom learning for adults in southwest Detroit.",
       "url": "https://swsol.org/economics/earn-learn",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "S",
         "A",
@@ -4549,7 +4480,6 @@
       "summary": "Employment services, training and housing support for veterans in Detroit who are homeless or at risk of it.",
       "url": "https://swsol.org/economics/homeless-veterans-reintegration-program-hvrp",
       "location": "Southwest Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "A"
@@ -4617,7 +4547,6 @@
       "summary": "Work readiness, education and employment support for young people in southwest Detroit.",
       "url": "https://swsol.org/economics/youth-programs",
       "location": "Southwest Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R",
@@ -4689,7 +4618,6 @@
       "summary": "A state scholarship that pays tuition for Michigan residents aged 25 and over to earn an associate degree or a skills certificate at their in-district community college.",
       "url": "https://www.michigan.gov/reconnect",
       "location": "Any participating Michigan community college",
-      "arrangement": "Onsite",
       "hollandCode": [
         "C",
         "S",
@@ -4761,7 +4689,6 @@
       "summary": "CDL - A, offered by Suburban Truck Driving Training School and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Suburban%20Truck%20Driving%20Training%20School%20-%20%20CDL%20A.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -4821,7 +4748,6 @@
       "summary": "CDL - B, offered by Suburban Truck Driving Training School and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Suburban%20Truck%20Driver%20Training%20School%20-%20CDL%20B.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "R"
       ],
@@ -4881,7 +4807,6 @@
       "summary": "The Business Accelerator Fund (BAF) is available to participating business accelerators in Michigan’s statewide SmartZone network.",
       "url": "https://techtowndetroit.org/what-we-do/tech-programs/baf/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "A",
@@ -4946,7 +4871,6 @@
       "summary": "Whether you are navigating a grand opening, pivoting your strategy, or seeking long-term stability, Coaching Up provides the expert, one-on-one guidance you need to thrive.",
       "url": "https://techtowndetroit.org/what-we-do/small-business-programs/coaching-up/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "S",
@@ -5013,7 +4937,6 @@
       "summary": "MAIN is one of the components of the Global Epicenter of Mobility (GEM), a $52.2M grant awarded to a broad coalition of partners.",
       "url": "https://techtowndetroit.org/what-we-do/tech-programs/main/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "A",
@@ -5078,7 +5001,6 @@
       "summary": "Retail isn't just about selling — it's about surviving and scaling.",
       "url": "https://techtowndetroit.org/what-we-do/small-business-programs/rbc/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "E",
         "A",
@@ -5143,7 +5065,6 @@
       "summary": "Designed to help early-stage founders and small business leaders turn artificial intelligence into real business solutions.",
       "url": "https://techtowndetroit.org/what-we-do/tech-programs/scale-studio/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "A",
@@ -5208,7 +5129,6 @@
       "summary": "Through the Small Business Support Hub Grant, funded by the Michigan Economic Development Corporation, TechTown Detroit, ProsperUs Detroit, Eastern Market Partnership, Michigan SBDC, and BUILD Institute have partnered to…",
       "url": "https://techtowndetroit.org/what-we-do/business-support/sbsh/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "E",
         "A",
@@ -5275,7 +5195,6 @@
       "summary": "helps aspiring founders test tech ideas through three tracks: ID (Ideation), MT (Market Testing), and IP (Initial Product).",
       "url": "https://techtowndetroit.org/what-we-do/tech-programs/start-studio/",
       "location": null,
-      "arrangement": "Remote",
       "hollandCode": [
         "E",
         "S",
@@ -5340,7 +5259,6 @@
       "summary": "is TechTown Detroit’s world-class pop-up that allows entrepreneurs at a variety of business stages to test their ideas in a retail environment while offering in-the-moment coaching from retail experts.",
       "url": "https://techtowndetroit.org/what-we-do/small-business-programs/the-shop/",
       "location": "TechTown, 440 Burroughs St, Detroit",
-      "arrangement": "Onsite",
       "hollandCode": [
         "E",
         "S",
@@ -5405,7 +5323,6 @@
       "summary": "Walker - Miller Clean Energy Academy, offered by Walker - Miller Energy Services and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/Walker-Miller%20Energy%20Services%20-%20Clean%20Energy%20Academy.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [],
       "traits": {
         "pay_and_security": 55,
@@ -5461,7 +5378,6 @@
       "summary": "WCCCD's workforce arm: short-cycle training and industry certifications built with local employers, sitting alongside the college's credit programmes.",
       "url": "https://www.wcccd.edu/center-for-workforce-and-economic-development",
       "location": "WCCCD campuses across Wayne County",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R",
@@ -5523,7 +5439,6 @@
       "summary": "Non-credit courses and certificate tracks for adults returning to study, including healthcare and trade certifications.",
       "url": "https://www.wcccd.edu/continuing-education",
       "location": "WCCCD campuses across Wayne County",
-      "arrangement": "Hybrid",
       "hollandCode": [
         "C",
         "S"
@@ -5582,7 +5497,6 @@
       "summary": "Dental Assisting, offered by WCCCD-NW and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5201",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R"
@@ -5643,7 +5557,6 @@
       "summary": "Pharmacy Technician, offered by WCCCD-NW and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/media/5206",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "S",
         "R"
@@ -5704,7 +5617,6 @@
       "summary": "CompTIA A+ IT Support Specialist, offered by XA Talent and paid for by Detroit at Work for eligible Detroiters.",
       "url": "https://detroitatwork.com/sites/detroitatwork/files/2026-09/xa%20talent%20training%20bio%20corrected.pdf",
       "location": "Through a Detroit at Work career center",
-      "arrangement": "Onsite",
       "hollandCode": [
         "I"
       ],

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Buildathon App data contracts",
+  "title": "Day 1 Detroit data contracts",
   "description": "Source of truth for data shapes shared across slices. Changes must be announced to the team. Mirror in src/models.",
   "definitions": {
     "AnswerMap": {
@@ -56,44 +56,10 @@
       "type": "object",
       "description": "Must-satisfy filters. Applied before anything is ranked.",
       "required": [
-        "arrangements",
-        "employmentTypes",
         "payStance",
         "exclusions"
       ],
       "properties": {
-        "arrangements": {
-          "type": "array",
-          "items": {
-            "enum": [
-              "Remote",
-              "Hybrid",
-              "Onsite"
-            ]
-          }
-        },
-        "employmentTypes": {
-          "type": "array",
-          "items": {
-            "enum": [
-              "FullTime",
-              "PartTime",
-              "Contract",
-              "Freelance",
-              "Internship",
-              "Apprenticeship"
-            ]
-          }
-        },
-        "maxCommuteMinutes": {
-          "type": [
-            "number",
-            "null"
-          ]
-        },
-        "openToRelocation": {
-          "type": "boolean"
-        },
         "payStance": {
           "enum": [
             "flexible",
@@ -224,17 +190,51 @@
             "null"
           ]
         },
+        "causes": {
+          "$ref": "#/definitions/Inference",
+          "description": "Inference<CauseTheme[]>. What the person wants their work to serve, in the order picked. CauseTheme is one of health, education, community, technology, business, trades, creative, environment."
+        },
         "interests": {
           "type": "object",
           "properties": {
             "scores": {
               "type": "object",
+              "description": "Blend of what they enjoy (interest_pull) and what they are good at (strengths).",
               "additionalProperties": {
                 "type": "number"
               }
             },
             "hollandCode": {
               "type": "array",
+              "description": "Top three of the blended scores, ranked.",
+              "items": {
+                "enum": [
+                  "R",
+                  "I",
+                  "A",
+                  "S",
+                  "E",
+                  "C"
+                ]
+              }
+            },
+            "enjoys": {
+              "type": "array",
+              "description": "Holland letters from interest_pull, in the order picked.",
+              "items": {
+                "enum": [
+                  "R",
+                  "I",
+                  "A",
+                  "S",
+                  "E",
+                  "C"
+                ]
+              }
+            },
+            "strengths": {
+              "type": "array",
+              "description": "Holland letters from strengths, in the order picked.",
               "items": {
                 "enum": [
                   "R",
@@ -348,7 +348,12 @@
           "type": "array"
         },
         "interests": {
-          "type": "object"
+          "type": "object",
+          "description": "holland_code, enjoys, strengths, scores_0_100, confidence, source_question_ids."
+        },
+        "purpose": {
+          "type": "object",
+          "description": "themes (CauseTheme[]), confidence, source_question_ids. What the person wants their work to serve."
         },
         "derivedWorkValues": {
           "type": "object"
@@ -455,7 +460,6 @@
         "summary",
         "url",
         "location",
-        "arrangement",
         "hollandCode",
         "traits",
         "jobZone",
@@ -475,7 +479,8 @@
             "job",
             "program",
             "event",
-            "research"
+            "research",
+            "mentorship"
           ]
         },
         "title": {
@@ -494,13 +499,6 @@
           "type": [
             "string",
             "null"
-          ]
-        },
-        "arrangement": {
-          "enum": [
-            "Remote",
-            "Hybrid",
-            "Onsite"
           ]
         },
         "hollandCode": {
@@ -599,7 +597,7 @@
       }
     },
     "Opportunity": {
-      "description": "A job or internship, program, event or research program. Discriminated on `kind`. Visibility rules: an event is hidden once its endsAt (or startsAt when endsAt is null) has passed; any opportunity whose applyBy has passed is also hidden. Rule is applied by the matching slice before ranking. Ingested items carry an extra per-kind context block (detroit / program / research); these are optional because the hand-written samples do not have them.",
+      "description": "A job or internship, program, event, research program or mentorship program. Discriminated on `kind`. Visibility rules: an event is hidden once its endsAt (or startsAt when endsAt is null) has passed; any opportunity whose applyBy has passed is also hidden. Rule is applied by the matching slice before ranking. Ingested items carry an extra per-kind context block (detroit / program / research); these are optional because the hand-written samples do not have them. Mentorships are hand-curated pointers to a provider's own program: they are listed and filtered by audience, never scored, so they do not appear in OpportunityMatch or byKind.",
       "oneOf": [
         {
           "allOf": [
@@ -831,6 +829,74 @@
               }
             }
           ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/OpportunityBase"
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "audiences",
+                "eligibility",
+                "format",
+                "schedule",
+                "costUsd"
+              ],
+              "properties": {
+                "kind": {
+                  "const": "mentorship"
+                },
+                "audiences": {
+                  "type": "array",
+                  "description": "Who the provider says can join. Empty = open to anyone. The visitor's own picks stay on the device.",
+                  "items": {
+                    "enum": [
+                      "youth",
+                      "young_adults",
+                      "returning_citizens",
+                      "women",
+                      "immigrants",
+                      "veterans",
+                      "older_workers",
+                      "detroit_residents",
+                      "low_income",
+                      "disability_support",
+                      "spanish_speakers",
+                      "students",
+                      "first_gen",
+                      "underrepresented_pros"
+                    ]
+                  }
+                },
+                "eligibility": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "format": {
+                  "type": "string",
+                  "description": "How mentoring happens."
+                },
+                "schedule": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Length or cadence in the provider's words. Null = not stated."
+                },
+                "costUsd": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -904,6 +970,7 @@
           "description": "Best matches first within each kind.",
           "required": [
             "job",
+            "internship",
             "program",
             "event",
             "research"
@@ -1051,7 +1118,7 @@
         },
         "city": {
           "type": "string",
-          "description": "A Metro Detroit city, or 'Remote'."
+          "description": "A Metro Detroit city."
         },
         "url": {
           "type": [

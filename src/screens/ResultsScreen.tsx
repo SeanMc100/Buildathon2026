@@ -11,7 +11,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CATALOG } from '../content';
 import { useIntake } from '../intake';
 import { OPPORTUNITY_KINDS, matchOpportunities, rankKind } from '../matching';
-import type { Opportunity, OpportunityKind, OpportunityMatch } from '../models';
+import type { MatchedKind, Opportunity, OpportunityMatch } from '../models';
 import type { BrowseKind, RootStackParamList } from '../navigation/types';
 import { colors, spacing, typography } from '../theme';
 import { GRID_GAP, useLayout } from '../web/layout';
@@ -24,16 +24,18 @@ type Nav = NativeStackNavigationProp<RootStackParamList>;
 
 const CATALOG_BY_ID = new Map<string, Opportunity>(CATALOG.map((item) => [item.id, item]));
 
-const SECTION_TITLES: Record<OpportunityKind, string> = {
-  job: 'Jobs and internships',
+const SECTION_TITLES: Record<MatchedKind, string> = {
+  job: 'Jobs',
+  internship: 'Internships and apprenticeships',
   program: 'Programs',
   event: 'Events',
   research: 'Research places',
 };
 
 /** Where "see all" goes for each kind. Events have their own screen. */
-const SECTION_BROWSE: Record<Exclude<OpportunityKind, 'event'>, BrowseKind> = {
+const SECTION_BROWSE: Record<Exclude<MatchedKind, 'event'>, BrowseKind> = {
   job: 'job',
+  internship: 'internship',
   program: 'program',
   research: 'research',
 };
@@ -72,7 +74,7 @@ export function ResultsScreen() {
           kind,
           profile ? rankKind(kind, profile, CATALOG).length : 0,
         ]),
-      ) as Record<OpportunityKind, number>,
+      ) as Record<MatchedKind, number>,
     [profile],
   );
 
@@ -120,7 +122,7 @@ export function ResultsScreen() {
       {results.unmetConstraints.length > 0 ? (
         <EmptyState
           tone="caution"
-          title="Some kinds came back empty"
+          title="A note on your limits"
           body={results.unmetConstraints.join(' ')}
           action={{ label: 'Change an answer', onPress: () => navigation.navigate('Profile') }}
           secondaryAction={{
@@ -175,6 +177,31 @@ export function ResultsScreen() {
               ) : null}
             </View>
 
+            {/* Right after the jobs: what suits you today, then what you could
+                grow into. */}
+            {kind === 'job' && results.growthPaths.length > 0 ? (
+              <View style={[styles.section, styles.growth]}>
+                <SectionHeading
+                  title="Where you could grow"
+                  count={results.growthPaths.length}
+                  help="Roles that suit your interests and strengths but need more preparation than you have today, with the way in."
+                />
+                <View style={styles.grid}>
+                  {results.growthPaths.slice(0, perSection).map((match) => {
+                    const item = CATALOG_BY_ID.get(match.opportunityId);
+                    return item ? (
+                      <OpportunityCard
+                        key={match.opportunityId}
+                        match={match}
+                        item={item}
+                        width={columns > 1 ? layout.cardWidth : undefined}
+                      />
+                    ) : null;
+                  })}
+                </View>
+              </View>
+            ) : null}
+
             {/* After the first section, so the page opens on matches rather than
                 on the community, but still well above the fold. */}
             {index === 0 ? <BulletinBoardSection /> : null}
@@ -196,5 +223,6 @@ const styles = StyleSheet.create({
   headerActions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.xs },
 
   section: { gap: spacing.md },
+  growth: { marginTop: spacing.xl },
   grid: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'stretch', gap: GRID_GAP },
 });

@@ -25,7 +25,7 @@ import type {
   SingleChoiceQuestion,
   TextQuestion,
 } from '../../models';
-import { TOUCH_TARGET, colors, radius, spacing, typography } from '../../theme';
+import { TOUCH_TARGET, colors, gradient, radius, spacing, typography } from '../../theme';
 import { focusRing, isFocused } from '../../web/focus';
 import { isHovered } from '../../web/hover';
 
@@ -519,7 +519,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.border,
     overflow: 'hidden',
   },
-  meterFill: { height: 6, backgroundColor: colors.primary, borderRadius: radius.pill },
+  meterFill: { height: 6, ...gradient.horizontal, borderRadius: radius.pill },
 
   stepper: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   stepperButton: {

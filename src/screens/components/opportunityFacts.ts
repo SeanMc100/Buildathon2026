@@ -43,17 +43,19 @@ export const KIND_LABELS = {
   program: 'Program',
   event: 'Event',
   research: 'Research',
+  mentorship: 'Mentorship',
 } as const;
 
-/** 'Job', or 'Internship' where that is the more useful word. */
+/** 'Job', or 'Internship' / 'Apprenticeship' where that is the more useful word. */
 export function kindLabel(item: Opportunity): string {
   if (item.kind === 'job' && item.employmentType === 'Internship') return 'Internship';
+  if (item.kind === 'job' && item.employmentType === 'Apprenticeship') return 'Apprenticeship';
   return KIND_LABELS[item.kind];
 }
 
 /** Where it is, in one string. */
 export function placeLine(item: Opportunity): string {
-  return [item.location, item.arrangement].filter(Boolean).join(' · ');
+  return item.location ?? '';
 }
 
 /**
@@ -81,6 +83,8 @@ export function headlineFact(item: Opportunity): string | null {
       if (item.costUsd === 0) return 'Free to attend';
       return item.costUsd !== null ? `${money(item.costUsd)} to attend` : null;
     }
+    case 'mentorship':
+      return item.costUsd === 0 ? 'Free to join' : null;
   }
 }
 
@@ -101,6 +105,8 @@ export function supportingFacts(item: Opportunity): string[] {
       return [item.field, item.durationWeeks ? `${item.durationWeeks} weeks` : ''].filter(Boolean);
     case 'event':
       return [timeFormat.format(new Date(item.startsAt)), humanize(item.format)].filter(Boolean);
+    case 'mentorship':
+      return [item.format, item.schedule ?? ''].filter(Boolean);
   }
 }
 

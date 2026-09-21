@@ -21,6 +21,7 @@ import eventsFile from '../../data/events.json';
 import jobsFile from '../../data/jobs.json';
 import programsFile from '../../data/programs.json';
 import researchFile from '../../data/research.json';
+import { MENTORSHIPS } from './mentorships';
 import { OPPORTUNITIES } from './opportunities';
 
 /** One line per source from an ingest run. `kept` is how many of its items made it in. */
@@ -53,7 +54,10 @@ const jobs = snapshot<JobOpportunity>(jobsFile, 'items');
 const programs = snapshot<ProgramOpportunity>(programsFile, 'items');
 const research = snapshot<ResearchOpportunity>(researchFile, 'items');
 
-const SNAPSHOTS: Record<OpportunityKind, Snapshot<Opportunity>> = {
+// Mentorships are a hand-curated list with no ingest run, so they have no snapshot.
+type IngestedKind = Exclude<OpportunityKind, 'mentorship'>;
+
+const SNAPSHOTS: Record<IngestedKind, Snapshot<Opportunity>> = {
   event: events as Snapshot<Opportunity>,
   job: jobs as Snapshot<Opportunity>,
   program: programs as Snapshot<Opportunity>,
@@ -61,7 +65,7 @@ const SNAPSHOTS: Record<OpportunityKind, Snapshot<Opportunity>> = {
 };
 
 /** When each kind was last pulled, and which sources fed it. Shown in the UI. */
-export const INGEST_RUNS: Record<OpportunityKind, { pulledAt: string | null; sources: SourceSummary[] }> = {
+export const INGEST_RUNS: Record<IngestedKind, { pulledAt: string | null; sources: SourceSummary[] }> = {
   event: { pulledAt: events.generatedAt || null, sources: events.sources.filter((s) => s.kept > 0) },
   job: { pulledAt: jobs.generatedAt || null, sources: jobs.sources.filter((s) => s.kept > 0) },
   program: { pulledAt: programs.generatedAt || null, sources: programs.sources.filter((s) => s.kept > 0) },
@@ -84,11 +88,12 @@ function isLive(item: Opportunity, now: Date): boolean {
  * labels "(sample)") rather than show an empty row; re-run the ingest to refresh.
  */
 export function buildCatalog(now: Date = new Date()): Opportunity[] {
-  const kinds: OpportunityKind[] = ['job', 'program', 'event', 'research'];
-  return kinds.flatMap((kind) => {
+  const kinds: IngestedKind[] = ['job', 'program', 'event', 'research'];
+  const ingested = kinds.flatMap((kind) => {
     const live = SNAPSHOTS[kind].items.filter((item) => isLive(item, now));
     return live.length > 0 ? live : OPPORTUNITIES.filter((item) => item.kind === kind);
   });
+  return [...ingested, ...MENTORSHIPS];
 }
 
 export const CATALOG: Opportunity[] = buildCatalog();

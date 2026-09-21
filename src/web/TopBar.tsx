@@ -9,7 +9,7 @@
 import { Link } from '@react-navigation/native';
 import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 import { useIntake } from '../intake';
 import { useSaved } from '../saved';
@@ -138,8 +138,15 @@ export function TopBar({ navigation, route, back }: NativeStackHeaderProps) {
               <Text style={styles.backText}>‹</Text>
             </Pressable>
           ) : null}
-          <Link screen="Home" style={styles.brand} accessibilityLabel="Buildathon App home">
-            Buildathon App
+          <Link screen="Home" accessibilityLabel="Day 1 Detroit home">
+            <View style={styles.brand}>
+              <Image
+                source={require('../../assets/logo-mark.png')}
+                style={styles.logo}
+                accessibilityIgnoresInvertColors
+              />
+              <Text style={styles.brandText}>Day 1 Detroit</Text>
+            </View>
           </Link>
         </View>
 
@@ -241,7 +248,9 @@ const styles = StyleSheet.create({
   iconHover: { backgroundColor: colors.surface },
   backText: { fontSize: 28, lineHeight: 30, color: colors.text },
 
-  brand: { ...typography.heading, color: colors.primary },
+  brand: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  logo: { width: 42, height: 28 },
+  brandText: { ...typography.heading, color: colors.primary },
 
   links: { flexDirection: 'row', alignItems: 'center', gap: spacing.xxs, flexShrink: 1 },
   divider: {

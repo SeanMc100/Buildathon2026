@@ -46,7 +46,7 @@ export type BoardPost = BoardAuthored & {
   kind: BoardPostKind;
   title: string;
   organization: string;
-  /** A Metro Detroit city, or 'Remote'. */
+  /** A Metro Detroit city. */
   city: string;
   /** http(s) only. Null when the member had no link. */
   url: string | null;

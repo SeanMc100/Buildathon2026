@@ -193,7 +193,6 @@ export function assessResearch(raw: RawResearch, now: Date, urlStatus: UrlStatus
     summary: summarize(raw),
     url: raw.url,
     location: shortLocation(raw),
-    arrangement: raw.isOnline ? 'Remote' : 'Onsite',
 
     hollandCode: chooseHolland(raw),
     traits: chooseTraits(raw),

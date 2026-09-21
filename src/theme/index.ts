@@ -7,7 +7,12 @@
 //      for WCAG AA (4.5:1 at our text sizes). The ratios are noted below, so a
 //      future change can be checked the same way.
 
-export const colors = {
+/**
+ * Two palettes live here so the accent can be swapped back in one line.
+ * `brand` is the green / blue of the app icon; `indigo` is the palette we
+ * started with. Change ACTIVE_PALETTE to switch; nothing else needs touching.
+ */
+const indigoColors = {
   /** The page itself, and the fill of a raised card. */
   background: '#ffffff',
   /** Quiet panels and rows inside a page. */
@@ -47,6 +52,81 @@ export const colors = {
   /** A neutral highlight for counts and metadata chips. */
   neutralSoft: '#eeeef3',
 } as const;
+
+const brandColors = {
+  /** The page itself, and the fill of a raised card. */
+  background: '#ffffff',
+  /** Quiet panels and rows inside a page. */
+  surface: '#f6f8fa',
+  /** A panel one step quieter still: toggles, code blocks, table stripes. */
+  surfaceAlt: '#edf3f8',
+  /** Outside the content column on a wide window, so the page reads as a page. */
+  surfaceSunken: '#f1f4f7',
+
+  border: '#e0e5ea',
+  borderStrong: '#c6ced6',
+
+  /** 18.9:1 on white. */
+  text: '#111111',
+  /** 6.6:1 on white, 6.2:1 on surface. Safe down to our smallest text. */
+  textMuted: '#5c5c66',
+  textInverse: '#ffffff',
+
+  /** 5.0:1 on white. The blue end of the icon gradient, and the colour used for "this is the action". */
+  primary: '#0076b6',
+  /** Hover and pressed states of a primary surface. */
+  primaryHover: '#00609a',
+  /** 4.6:1 for primary text on top of it. */
+  primarySoft: '#e6f2f9',
+  primaryBorder: '#b3d6ea',
+
+  /** Something that fits, a match strength, a success. 6.2:1 on white. */
+  positive: '#0a7040',
+  positiveSoft: '#e6f4ec',
+  /** A gap, a caveat, a deadline closing in. 6.6:1 on white. */
+  caution: '#845209',
+  cautionSoft: '#fdf3e2',
+  /** An error, a destructive action. 6.5:1 on white. */
+  danger: '#b3261e',
+  dangerSoft: '#fdeceb',
+
+  /** A neutral highlight for counts and metadata chips. */
+  neutralSoft: '#eceff2',
+} as const;
+
+type Palette = typeof indigoColors | typeof brandColors;
+
+const ACTIVE_PALETTE: 'brand' | 'indigo' = 'brand';
+
+export const colors: Palette = ACTIVE_PALETTE === 'brand' ? brandColors : indigoColors;
+
+/**
+ * The icon's gradient, for fills that carry no text: progress bars, meters,
+ * bars in a chart, and the primary button. The green end is only 2.3:1 under
+ * white text, so a button label has to sit over the middle of the fill; text
+ * on the page itself uses `colors.primary` instead.
+ */
+export const gradient = {
+  from: '#63be5f',
+  to: '#0076b6',
+  /** Left to right. Spread onto a style of a View that has no text on it. */
+  horizontal:
+    ACTIVE_PALETTE === 'brand'
+      ? { backgroundImage: 'linear-gradient(90deg, #63be5f, #0076b6)' }
+      : { backgroundColor: indigoColors.primary },
+  /** The same, one step darker, for a button under the pointer. */
+  horizontalHover:
+    ACTIVE_PALETTE === 'brand'
+      ? { backgroundImage: 'linear-gradient(90deg, #4fa54b, #00609a)' }
+      : { backgroundColor: indigoColors.primaryHover },
+  /** Clears a gradient, for a disabled state that sets its own flat fill. */
+  none: { backgroundImage: 'none' },
+  /** Top to bottom, as in the icon. */
+  vertical:
+    ACTIVE_PALETTE === 'brand'
+      ? { backgroundImage: 'linear-gradient(180deg, #63be5f, #0076b6)' }
+      : { backgroundColor: indigoColors.primary },
+};
 
 export const spacing = {
   xxs: 2,

@@ -20,7 +20,7 @@ import { colors, radius, shadow, spacing, typography } from '../theme';
 import { focusRing, isFocused } from '../web/focus';
 import { isHovered } from '../web/hover';
 import { useIsCompact } from '../web/layout';
-import { isInternship } from '../catalog';
+import { audiencesFromAnswers, fitsAudience, isEntryRoute } from '../catalog';
 import { formatDay } from './components/opportunityFacts';
 import { Button, Pill } from './components/ui';
 
@@ -61,23 +61,28 @@ function DestinationCard({ destination }: { destination: Destination }) {
 
 export function HomeScreen() {
   const navigation = useNavigation<Nav>();
-  const { profile, state } = useIntake();
+  const { profile, state, answers } = useIntake();
   const { count: savedCount } = useSaved();
   const compact = useIsCompact();
 
   const counts = useMemo(() => {
     const now = new Date();
     const live = CATALOG.filter((item) => isVisible(item, now));
+    const audiences = audiencesFromAnswers(answers);
     const jobs = live.filter((item) => item.kind === 'job');
     return {
-      jobs: jobs.filter((item) => !isInternship(item)).length,
-      internships: jobs.filter(isInternship).length,
+      jobs: jobs.filter((item) => !isEntryRoute(item)).length,
+      internships: jobs.filter(isEntryRoute).length,
       programs: live.filter((item) => item.kind === 'program').length,
       research: live.filter((item) => item.kind === 'research').length,
+      // The same audience rule the mentorship list applies, so the two counts agree.
+      mentorships: live.filter(
+        (item) => item.kind === 'mentorship' && fitsAudience(item, audiences),
+      ).length,
       events: live.filter((item) => item.kind === 'event').length,
       total: live.length,
     };
-  }, []);
+  }, [answers]);
 
   const started = state.status !== 'not_started';
 
@@ -85,8 +90,14 @@ export function HomeScreen() {
     {
       title: 'Browse everything',
       count: `${counts.jobs + counts.internships + counts.programs + counts.research} openings`,
-      body: `${counts.jobs} job types, ${counts.internships} internships, ${counts.programs} training programs and ${counts.research} research places. Search and filter the lot.`,
+      body: `${counts.jobs} job types, ${counts.internships} internships and apprenticeships, ${counts.programs} training programs and ${counts.research} research places. Search and filter the lot.`,
       onPress: () => navigation.navigate('OpportunityList'),
+    },
+    {
+      title: 'Mentorship programs',
+      count: `${counts.mentorships} programs`,
+      body: 'Programs run by other organisations, listed by who can join. Each one links to its own site.',
+      onPress: () => navigation.navigate('OpportunityList', { kind: 'mentorship' }),
     },
     {
       title: 'Detroit events',
@@ -155,13 +166,13 @@ export function HomeScreen() {
           </View>
 
           {profile || savedCount > 0 ? (
-            <View style={styles.returning}>
+            <View style={[styles.returning, compact && styles.returningCompact]}>
               <Text style={styles.returningText}>
                 {savedCount > 0
                   ? `You have ${savedCount} saved ${savedCount === 1 ? 'opportunity' : 'opportunities'}.`
                   : 'Your profile is saved on this device.'}
               </Text>
-              <View style={styles.returningActions}>
+              <View style={[styles.returningActions, compact && styles.returningActionsCompact]}>
                 {savedCount > 0 ? (
                   <Button
                     label="Open my shortlist"
@@ -260,4 +271,8 @@ const styles = StyleSheet.create({
   },
   returningText: { ...typography.caption, color: colors.text, fontWeight: '600' },
   returningActions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+  // On a phone the card is a plain column, so its buttons fill it edge to edge
+  // rather than sizing against a group that is only as wide as its content.
+  returningCompact: { flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap' },
+  returningActionsCompact: { flexDirection: 'column', flexWrap: 'nowrap', alignItems: 'stretch' },
 });

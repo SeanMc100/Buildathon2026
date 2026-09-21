@@ -2,7 +2,7 @@ import type { OpportunityKind } from '../models';
 
 /**
  * A slice of the catalog you can browse. Internships are jobs whose employment
- * type is Internship, so 'job' here means every other job, and 'all' is the
+ * type is Internship or Apprenticeship, so 'job' here means every other job, and 'all' is the
  * unfiltered list the Browse tab opens on.
  */
 export type ListKind = Exclude<OpportunityKind, 'event'> | 'internship';

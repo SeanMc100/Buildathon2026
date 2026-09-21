@@ -178,18 +178,19 @@ export function IntakeQuestionScreen() {
         <View style={styles.footerRow}>
           <View style={styles.footerSide}>
             {previous ? (
-              <Button label="Back" variant="ghost" onPress={() => goTo(previous.id)} />
+              <Button label="Back" variant="ghost" width="auto" onPress={() => goTo(previous.id)} />
             ) : null}
           </View>
           <View style={styles.footerMain}>
             {question.optional && !wasAnswered ? (
-              <Button label="Skip" variant="ghost" onPress={handleSkip} />
+              <Button label="Skip" variant="ghost" width="auto" onPress={handleSkip} />
             ) : null}
             <Button
               label={isLast ? 'See my profile' : 'Next'}
               onPress={() => advance(question.id)}
               disabled={!ready}
               size="lg"
+              width="auto"
             />
           </View>
         </View>

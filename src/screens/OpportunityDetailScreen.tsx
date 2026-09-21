@@ -12,7 +12,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { CATALOG } from '../content';
 import { useIntake } from '../intake';
-import { rankKind } from '../matching';
+import { matchedKindOf, rankKind } from '../matching';
 import type { Opportunity, OpportunityMatch } from '../models';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, radius, spacing, typography } from '../theme';
@@ -102,6 +102,15 @@ function factsFor(item: Opportunity): Fact[] {
       }
       break;
     }
+    case 'mentorship': {
+      facts.push({ label: 'Format', value: item.format });
+      if (item.schedule) facts.push({ label: 'Runs', value: item.schedule });
+      if (item.costUsd !== null) {
+        facts.push({ label: 'Cost', value: item.costUsd === 0 ? 'Free' : money(item.costUsd) });
+      }
+      // Providers set their own entry rules, listed under "Who it is for".
+      return facts;
+    }
     case 'event': {
       const when = eventWhen(item);
       if (when) facts.push({ label: 'When', value: when });
@@ -120,7 +129,9 @@ function factsFor(item: Opportunity): Fact[] {
 }
 
 function eligibilityFor(item: Opportunity): string[] {
-  return item.kind === 'program' || item.kind === 'research' ? item.eligibility : [];
+  return item.kind === 'program' || item.kind === 'research' || item.kind === 'mentorship'
+    ? item.eligibility
+    : [];
 }
 
 export function OpportunityDetailScreen() {
@@ -133,8 +144,10 @@ export function OpportunityDetailScreen() {
   // The matcher is the single source of a score, so this asks it rather than
   // scoring again here and risking a different number from the card.
   const match = useMemo<OpportunityMatch | null>(() => {
-    if (!profile || !item) return null;
-    return rankKind(item.kind, profile, CATALOG).find((row) => row.opportunityId === item.id) ?? null;
+    // Mentorships are listed by audience, never scored.
+    const kind = item ? matchedKindOf(item) : null;
+    if (!profile || !item || !kind) return null;
+    return rankKind(kind, profile, CATALOG).find((row) => row.opportunityId === item.id) ?? null;
   }, [profile, item]);
 
   if (!item) {
@@ -176,9 +189,11 @@ export function OpportunityDetailScreen() {
 
       <View style={styles.actions}>
         <Button
-          label="Open the full listing"
+          label={item.kind === 'mentorship' ? 'Visit the program website' : 'Open the full listing'}
           onPress={() => openExternal(item.url)}
-          accessibilityLabel={`Open the full listing for ${item.title} in a new tab`}
+          accessibilityLabel={`${
+            item.kind === 'mentorship' ? 'Visit the website for' : 'Open the full listing for'
+          } ${item.title} in a new tab`}
         />
         <SaveButton id={item.id} title={item.title} />
       </View>
@@ -219,7 +234,7 @@ export function OpportunityDetailScreen() {
             </View>
           ) : null}
         </Card>
-      ) : profile ? (
+      ) : profile && item.kind !== 'mentorship' ? (
         <Card style={styles.clashCard}>
           <Text style={styles.clashTitle}>This one clashes with a deal-breaker</Text>
           <Text style={styles.clashBody}>

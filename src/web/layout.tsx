@@ -62,10 +62,24 @@ function columnsFor(frame: Frame, width: number): 1 | 2 | 3 {
   return 1;
 }
 
+/** The framed column's 1px border either side (columnFramed). */
+const FRAME_BORDER = 2;
+/**
+ * Room left over in every grid row. The container's real width can come out a
+ * pixel or two under the arithmetic (borders, scrollbar, rounding at a zoomed
+ * page), and a row sized to the pixel then drops its last card onto a new row.
+ */
+const GRID_SLACK = 12;
+
 function layoutFor(frame: Frame, windowWidth: number): Layout {
-  const width = Math.min(windowWidth, FRAME_WIDTH[frame]) - scrollbarWidth();
+  const framed = windowWidth > FRAME_WIDTH[frame];
+  const width =
+    Math.min(windowWidth, FRAME_WIDTH[frame]) - scrollbarWidth() - (framed ? FRAME_BORDER : 0);
   const columns = columnsFor(frame, width);
-  const cardWidth = Math.floor((width - GUTTER * 2 - GRID_GAP * (columns - 1)) / columns);
+  const slack = columns > 1 ? GRID_SLACK : 0;
+  const cardWidth = Math.floor(
+    (width - GUTTER * 2 - GRID_GAP * (columns - 1) - slack) / columns,
+  );
   return { width, isCompact: windowWidth < BREAKPOINTS.tablet, columns, cardWidth };
 }
 

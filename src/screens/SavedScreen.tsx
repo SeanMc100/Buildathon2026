@@ -35,7 +35,7 @@ export function SavedScreen() {
     // same numbers the cards showed on the page they were saved from.
     const scores = new Map<string, OpportunityMatch>();
     if (profile) {
-      for (const kind of ['job', 'program', 'research', 'event'] as const) {
+      for (const kind of ['job', 'internship', 'program', 'research', 'event'] as const) {
         for (const match of rankKind(kind, profile, CATALOG)) {
           scores.set(match.opportunityId, match);
         }

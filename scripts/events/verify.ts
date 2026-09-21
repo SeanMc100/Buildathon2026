@@ -26,7 +26,6 @@ const PERSONAS: Persona[] = [
         pay_and_security: 10,
         flexibility_and_balance: 10,
       },
-      arrangement: ['Remote', 'Hybrid', 'Onsite'],
     },
   },
   {
@@ -42,7 +41,6 @@ const PERSONAS: Persona[] = [
         growth_and_learning: 5,
         pay_and_security: 5,
       },
-      arrangement: ['Remote', 'Hybrid', 'Onsite'],
     },
   },
   {
@@ -58,7 +56,6 @@ const PERSONAS: Persona[] = [
         mission_and_impact: 5,
         flexibility_and_balance: 5,
       },
-      arrangement: ['Hybrid', 'Onsite'],
     },
   },
 ];

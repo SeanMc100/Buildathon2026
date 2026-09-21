@@ -6,9 +6,10 @@
 
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 
-import { TOUCH_TARGET, colors, radius, shadow, spacing, typography } from '../../theme';
+import { TOUCH_TARGET, colors, gradient, radius, shadow, spacing, typography } from '../../theme';
 import { focusRing, isFocused } from '../../web/focus';
 import { isHovered } from '../../web/hover';
+import { useIsCompact } from '../../web/layout';
 
 /* ---------------------------------------------------------------- progress */
 
@@ -35,11 +36,12 @@ type ButtonProps = {
   disabled?: boolean;
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
   /**
-   * `auto` sizes the button to its label, which is what a button should do on a
-   * wide screen. `block` fills the row, for the single main action at the foot
-   * of a form or a phone screen.
+   * `adaptive` (the default) sizes the button to its label on a wide screen and
+   * fills the row on a phone, so a stack of buttons is one clean column rather
+   * than a ragged set of widths. `auto` always sizes to the label, for buttons
+   * that share a row that must not wrap. `block` always fills the row.
    */
-  width?: 'auto' | 'block';
+  width?: 'adaptive' | 'auto' | 'block';
   size?: 'md' | 'lg';
   /** Read out instead of the label, when the label alone is not explicit. */
   accessibilityLabel?: string;
@@ -50,11 +52,13 @@ export function Button({
   onPress,
   disabled,
   variant = 'primary',
-  width = 'auto',
+  width = 'adaptive',
   size = 'md',
   accessibilityLabel,
 }: ButtonProps) {
   const isGhost = variant === 'ghost';
+  const compact = useIsCompact();
+  const fills = width === 'block' || (width === 'adaptive' && compact);
 
   return (
     <Pressable
@@ -66,7 +70,7 @@ export function Button({
       style={(state) => [
         styles.button,
         size === 'lg' && styles.buttonLg,
-        width === 'block' ? styles.buttonBlock : styles.buttonAuto,
+        fills ? styles.buttonBlock : styles.buttonAuto,
         variant === 'primary' && styles.buttonPrimary,
         variant === 'secondary' && styles.buttonSecondary,
         variant === 'danger' && styles.buttonDanger,
@@ -279,7 +283,7 @@ export function EmptyState({
 /* ------------------------------------------------------------------ styles */
 
 const HOVER = {
-  primary: { backgroundColor: colors.primaryHover },
+  primary: gradient.horizontalHover,
   secondary: { backgroundColor: colors.surface, borderColor: colors.borderStrong },
   danger: { backgroundColor: colors.dangerSoft },
   ghost: { backgroundColor: colors.surface },
@@ -306,7 +310,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.border,
     overflow: 'hidden',
   },
-  progressFill: { height: 6, borderRadius: radius.pill, backgroundColor: colors.primary },
+  progressFill: { height: 6, borderRadius: radius.pill, ...gradient.horizontal },
 
   button: {
     minHeight: TOUCH_TARGET,
@@ -317,8 +321,10 @@ const styles = StyleSheet.create({
   },
   buttonLg: { minHeight: 52, paddingHorizontal: spacing.xl },
   buttonAuto: { alignSelf: 'flex-start' },
-  buttonBlock: { alignSelf: 'stretch' },
-  buttonPrimary: { backgroundColor: colors.primary },
+  // `width: '100%'` as well as `stretch`: inside a wrapping row, stretch alone
+  // does nothing, and the buttons would keep their ragged label widths.
+  buttonBlock: { alignSelf: 'stretch', width: '100%' },
+  buttonPrimary: gradient.horizontal,
   buttonSecondary: {
     backgroundColor: colors.background,
     borderWidth: 1,
@@ -326,7 +332,11 @@ const styles = StyleSheet.create({
   },
   buttonDanger: { backgroundColor: colors.background, borderWidth: 1, borderColor: colors.danger },
   buttonGhost: { backgroundColor: 'transparent', paddingHorizontal: spacing.md },
-  buttonDisabled: { backgroundColor: colors.border, borderColor: colors.border },
+  buttonDisabled: {
+    backgroundColor: colors.border,
+    ...gradient.none,
+    borderColor: colors.border,
+  },
   buttonGhostDisabled: { opacity: 0.45 },
   pressed: { opacity: 0.85 },
 
@@ -391,5 +401,13 @@ const styles = StyleSheet.create({
   emptyCaution: { borderColor: colors.cautionSoft, backgroundColor: colors.cautionSoft },
   emptyTitle: { ...typography.heading, color: colors.text },
   emptyBody: { ...typography.body, color: colors.textMuted, lineHeight: 24 },
-  emptyActions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.xs },
+  // `stretch` because the panel aligns its children to the start, which would
+  // shrink this row to its content and let a full-width button spill out.
+  emptyActions: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+    marginTop: spacing.xs,
+  },
 });

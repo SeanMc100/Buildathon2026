@@ -18,7 +18,9 @@
 import type { Question, Section, SectionId } from '../models';
 
 // Bumped to 2 when age, gender and the age branches were added, so saved v1 answers reset.
-export const QUESTION_BANK_VERSION = 2;
+// Bumped to 3 for the Ikigai rework: strengths and cause questions added, work
+// arrangement and commute dropped.
+export const QUESTION_BANK_VERSION = 3;
 
 export const SECTIONS: Record<SectionId, Section> = {
   situation: {
@@ -28,8 +30,18 @@ export const SECTIONS: Record<SectionId, Section> = {
   },
   interests: {
     id: 'interests',
-    title: 'What pulls you in',
+    title: 'What you love',
     blurb: 'Work that holds your attention.',
+  },
+  strengths: {
+    id: 'strengths',
+    title: 'What you are good at',
+    blurb: 'What people already come to you for.',
+  },
+  purpose: {
+    id: 'purpose',
+    title: 'What the world needs',
+    blurb: 'The kind of problem you would want to point your work at.',
   },
   work_style: {
     id: 'work_style',
@@ -38,8 +50,8 @@ export const SECTIONS: Record<SectionId, Section> = {
   },
   values: {
     id: 'values',
-    title: 'What you would trade',
-    blurb: 'What separates a good job from your job.',
+    title: 'What it has to give you',
+    blurb: 'Money, time, growth, meaning: what your next role has to get right.',
   },
   constraints: {
     id: 'constraints',
@@ -54,19 +66,24 @@ export const SECTIONS: Record<SectionId, Section> = {
   about_you: {
     id: 'about_you',
     title: 'About you',
-    blurb: 'Optional, and never used to match.',
+    blurb: 'Optional. Nothing here changes your match scores.',
   },
 };
 
 export const SECTION_ORDER: SectionId[] = [
   'situation',
   'interests',
+  'strengths',
+  'purpose',
   'work_style',
   'values',
   'constraints',
   'narrative',
   'about_you',
 ];
+
+/** The optional "which describe you" question. Read on the device by src/catalog/audience.ts. */
+export const AUDIENCE_QUESTION_ID = 'audiences';
 
 export const QUESTION_BANK: Question[] = [
   // ---------------------------------------------------------------- situation
@@ -94,7 +111,7 @@ export const QUESTION_BANK: Question[] = [
     placeholder: 'e.g. nursing, data analysis, still working it out',
     maxLength: 120,
     optional: true,
-    why: 'Gives the model something specific to anchor on. Skip it and we lean on your other answers.',
+    why: 'Your words are matched against each listing, so this is the most direct signal you give. Skip it and we lean on your other answers.',
   },
   {
     id: 'education',
@@ -122,7 +139,7 @@ export const QUESTION_BANK: Question[] = [
     help: 'Pick two or three.',
     min: 2,
     max: 3,
-    why: 'A hint about what holds your attention, not a personality test.',
+    why: 'What you enjoy, in the order you tap. Your first pick counts most. A hint, not a personality test.',
     options: [
       { value: 'R', label: 'Building, fixing or working with your hands', hint: 'tools, machines, outdoors, physical craft' },
       { value: 'I', label: 'Digging into a problem until it cracks', hint: 'research, data, figuring out why' },
@@ -130,6 +147,51 @@ export const QUESTION_BANK: Question[] = [
       { value: 'S', label: 'Helping someone get somewhere', hint: 'teaching, care, coaching, support' },
       { value: 'E', label: 'Selling an idea and getting people moving', hint: 'pitching, leading, starting things' },
       { value: 'C', label: 'Bringing order to a mess', hint: 'organising, systems, getting details right' },
+    ],
+  },
+
+  // ---------------------------------------------------------------- strengths
+  // Enjoying something and being good at it are different things, and the
+  // overlap is the strongest signal we can get from two taps. Same six
+  // dimensions as interest_pull, phrased as what other people see in you.
+  {
+    id: 'strengths',
+    section: 'strengths',
+    kind: 'multi',
+    prompt: 'What do people come to you for?',
+    help: 'Pick two or three. Think of what friends, family or coworkers ask you to do.',
+    min: 2,
+    max: 3,
+    why: 'Where what you enjoy and what you are good at overlap is where we look first. Your first pick counts most.',
+    options: [
+      { value: 'R', label: 'Getting practical things done', hint: 'fixing, building, setting up, making it work' },
+      { value: 'I', label: 'Working out how or why something happens', hint: 'analysing, researching, troubleshooting' },
+      { value: 'A', label: 'Coming up with original ideas', hint: 'a way to say it, show it or design it' },
+      { value: 'S', label: 'Listening and helping people through something', hint: 'patient, easy to talk to, good at explaining' },
+      { value: 'E', label: 'Persuading people and getting a group moving', hint: 'confident, organised, comfortable in charge' },
+      { value: 'C', label: 'Keeping things accurate and on schedule', hint: 'careful, reliable, good with details and systems' },
+    ],
+  },
+
+  // ------------------------------------------------------------------ purpose
+  {
+    id: 'cause_pull',
+    section: 'purpose',
+    kind: 'multi',
+    prompt: 'What would you most like your work to improve?',
+    help: 'Pick one to three.',
+    min: 1,
+    max: 3,
+    why: 'Matched against what each listing actually does, so a role in a field you care about ranks above an identical one you do not.',
+    options: [
+      { value: 'health', label: 'People’s health and care', hint: 'clinics, hospitals, mental health, wellbeing' },
+      { value: 'education', label: 'Learning and young people’s futures', hint: 'schools, tutoring, youth programs' },
+      { value: 'community', label: 'Neighborhoods, housing and fairness', hint: 'nonprofits, public service, advocacy' },
+      { value: 'technology', label: 'How technology works for people', hint: 'software, data, security, automation' },
+      { value: 'business', label: 'Local businesses and good jobs', hint: 'starting, running, finance, sales, marketing' },
+      { value: 'trades', label: 'Things that get built, made and moved', hint: 'construction, manufacturing, auto, logistics' },
+      { value: 'creative', label: 'Culture, stories and design', hint: 'media, arts, brand, entertainment' },
+      { value: 'environment', label: 'The environment and energy', hint: 'clean energy, water, sustainability' },
     ],
   },
 
@@ -177,7 +239,7 @@ export const QUESTION_BANK: Question[] = [
     help: 'Spend all 100.',
     total: 100,
     step: 5,
-    why: 'A fixed budget shows what you would actually trade away. It is the biggest input to your match.',
+    why: 'A fixed budget shows what you would actually trade away. It is one of the biggest inputs to your match.',
     options: [
       { value: 'pay_and_security', label: 'Pay and security', hint: 'money stops being a worry' },
       { value: 'flexibility_and_balance', label: 'Flexibility and balance', hint: 'the job fits around your life' },
@@ -188,51 +250,6 @@ export const QUESTION_BANK: Question[] = [
   },
 
   // -------------------------------------------------------------- constraints
-  {
-    id: 'arrangement',
-    section: 'constraints',
-    kind: 'multi',
-    prompt: 'Which of these would you take?',
-    help: 'Pick all you would accept.',
-    min: 1,
-    why: 'A hard filter. Applied before ranking.',
-    options: [
-      { value: 'Remote', label: 'Fully remote' },
-      { value: 'Hybrid', label: 'Hybrid, a few days in' },
-      { value: 'Onsite', label: 'On site, most days' },
-    ],
-  },
-  {
-    id: 'commute_limit',
-    section: 'constraints',
-    kind: 'single',
-    prompt: 'How far is too far to travel in?',
-    showIf: [{ questionId: 'arrangement', includes: 'Onsite' }],
-    optional: true,
-    why: 'Used only as a distance filter.',
-    options: [
-      { value: '20', label: 'Under 20 minutes' },
-      { value: '45', label: 'Up to 45 minutes' },
-      { value: '60', label: 'Up to an hour' },
-      { value: '90', label: 'Over an hour is fine' },
-      { value: 'relocate', label: 'I would move for the right thing' },
-    ],
-  },
-  {
-    id: 'employment_type',
-    section: 'constraints',
-    kind: 'multi',
-    prompt: 'What type of opportunity are you searching for?',
-    min: 1,
-    options: [
-      { value: 'FullTime', label: 'Full time' },
-      { value: 'PartTime', label: 'Part time' },
-      { value: 'Contract', label: 'Contract' },
-      { value: 'Freelance', label: 'Freelance or self-employed' },
-      { value: 'Internship', label: 'Internship or placement' },
-      { value: 'Apprenticeship', label: 'Apprenticeship or trainee' },
-    ],
-  },
   {
     id: 'pay_stance',
     section: 'constraints',
@@ -399,7 +416,28 @@ export const QUESTION_BANK: Question[] = [
       { value: 'balance', label: 'Better balance at the same standard of work' },
     ],
   },
-
+  // The one "about you" answer that does something: it decides which mentorship
+  // programs are listed. It is read on the device by the mentorship list and is
+  // not part of the profile, so it never reaches the match request.
+  {
+    id: AUDIENCE_QUESTION_ID,
+    section: 'about_you',
+    kind: 'multi',
+    prompt: 'Do any of these describe you?',
+    help: 'Optional. Pick all that apply.',
+    optional: true,
+    why: 'Many mentorship programs are only open to certain groups. If you pick any, the mentorship list shows programs you can join. Stays on this device. Not scored, not sent to matching.',
+    options: [
+      { value: 'youth', label: 'In high school or under 18' },
+      { value: 'students', label: 'A college or trade-school student' },
+      { value: 'first_gen', label: 'First in my family to go to college' },
+      { value: 'underrepresented_pros', label: 'An underrepresented early-career professional' },
+      { value: 'women', label: 'A woman' },
+      { value: 'veterans', label: 'A veteran' },
+      { value: 'returning_citizens', label: 'Returning from incarceration' },
+      { value: 'immigrants', label: 'An immigrant or new to the U.S.' },
+    ],
+  },
 ];
 
 /**
@@ -408,6 +446,9 @@ export const QUESTION_BANK: Question[] = [
  * These are protected characteristics under US employment law (Title VII, ADA,
  * ADEA, GINA) and handling them here would make a high-risk system under the
  * EU AI Act. Salary history is separately restricted in many jurisdictions.
+ *
+ * "Not given" means never scored and never sent. The optional audience question
+ * does ask about some of these, but only on the device, to filter mentorships.
  */
 export const EXCLUDED_ATTRIBUTES = [
   'race_or_ethnicity',

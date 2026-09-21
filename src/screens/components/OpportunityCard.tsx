@@ -15,6 +15,7 @@ import type { RootStackParamList } from '../../navigation/types';
 import { useSaved } from '../../saved';
 import { colors, radius, spacing, typography } from '../../theme';
 import { focusRing, isFocused } from '../../web/focus';
+import { openExternal } from '../../web/links';
 import { isHovered } from '../../web/hover';
 import {
   deadlineLine,
@@ -93,14 +94,19 @@ export function OpportunityCard({
   // The date has moved to its own line above the title, so drop it from the
   // supporting facts rather than printing it twice.
   const facts = item.kind === 'event' ? supportingFacts(item).slice(1) : supportingFacts(item);
+  // A mentorship is only a pointer to someone else's program, so the card goes
+  // straight to their site. There is no fit story to read on a page of our own.
+  const external = item.kind === 'mentorship';
 
   return (
     <PressableCard
-      onPress={() => navigation.navigate('OpportunityDetail', { id: item.id })}
+      onPress={() =>
+        external ? openExternal(item.url) : navigation.navigate('OpportunityDetail', { id: item.id })
+      }
       accessibilityLabel={`${item.title} at ${item.organization}${
         match ? `, ${scoreBand(match.matchScore).label}, ${match.matchScore} out of 100` : ''
-      }`}
-      style={[styles.card, width !== undefined && { width }]}
+      }${external ? ', opens their website in a new tab' : ''}`}
+      style={[styles.card, { width: width ?? '100%' }]}
     >
       <View style={styles.top}>
         <View style={styles.titleBlock}>
@@ -152,6 +158,7 @@ export function OpportunityCard({
 
         <View style={styles.actions}>
           <SaveButton id={item.id} title={item.title} />
+          {external ? <Text style={styles.visit}>Visit website ↗</Text> : null}
           {deadline ? (
             <Text style={[styles.deadline, soon && styles.deadlineSoon]}>{deadline}</Text>
           ) : null}
@@ -229,6 +236,7 @@ const styles = StyleSheet.create({
     borderTopColor: colors.border,
   },
   deadline: { ...typography.caption, color: colors.textMuted },
+  visit: { ...typography.caption, fontWeight: '600', color: colors.primary },
   deadlineSoon: { color: colors.caution, fontWeight: '600' },
 
   save: {

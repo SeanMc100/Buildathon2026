@@ -289,7 +289,6 @@ export function assessProgram(raw: RawProgram, now: Date): Assessment {
     summary: summarize(raw, raw.summary ?? `${raw.title}, run by ${raw.organization}.`),
     url: raw.url,
     location: delivery === 'online' ? null : raw.location,
-    arrangement: delivery === 'online' ? 'Remote' : delivery === 'hybrid' ? 'Hybrid' : 'Onsite',
     hollandCode: chooseHolland(text, sector),
     traits: chooseTraits(text, { sector, delivery, funding, supports, credentials }),
     jobZone: chooseJobZone(text),

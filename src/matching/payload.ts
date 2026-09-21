@@ -73,9 +73,16 @@ export function buildMatchRequest(profile: CareerProfile): MatchRequest {
     ].filter((item) => item.source_question_ids.length > 0),
     interests: {
       holland_code: profile.interests.hollandCode,
+      enjoys: profile.interests.enjoys,
+      strengths: profile.interests.strengths,
       scores_0_100: profile.interests.scores,
       confidence: profile.interests.confidence,
       source_question_ids: profile.interests.sourceQuestionIds,
+    },
+    purpose: {
+      themes: profile.causes.value,
+      confidence: profile.causes.confidence,
+      source_question_ids: profile.causes.sourceQuestionIds,
     },
     derivedWorkValues: {
       values: profile.workValues.value,
@@ -108,8 +115,10 @@ Rules:
 2. Rank what survives using softPreferences. The weights are a budget the person
    actually spent, so treat a low weight as a real willingness to give that up.
 3. Respect confidence. Anything below 0.5 is a hint, not a fact. The interests
-   field in particular comes from a single question and is not a measured
-   Holland code.
+   field in particular comes from two questions (what they enjoy, what they are
+   good at) and is not a measured Holland code. Prefer roles where the two
+   overlap. purpose.themes are the kinds of problem they want their work to
+   serve, and candidateContext.focusArea is what they said they do or want to do.
 4. Cite source_question_ids for every claim you make about the person.
 5. Return at most responseContract.max_recommendations items. For each: title,
    one-paragraph summary, matchScore 0-100, whyItFits (2-3 short reasons, each

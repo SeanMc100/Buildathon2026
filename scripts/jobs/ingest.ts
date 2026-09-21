@@ -20,7 +20,7 @@ import { isReachable } from './cache';
 import { buildEntryRoute, buildOccupation, type EnrichContext } from './enrich';
 import { OUTPUT_PATH } from './paths';
 import { inRegion, REGION_LABEL } from './region';
-import { buildCandidates, demandRanks, indexOnetBySoc, selectCandidates } from './select';
+import { buildCandidates, demandRanks, indexOnetBySoc, missingRoles } from './select';
 import { blsSource, careerOneStopSource, entryRoutesSource, onetSource, projectionsSource } from './sources';
 import type {
   DetroitJobOpportunity,
@@ -110,7 +110,7 @@ async function main() {
 
   const candidates = buildCandidates(wageRows, onetIndex, outlookIndex);
   const ranks = demandRanks(candidates);
-  const { kept: selected, droppedBySector } = selectCandidates(candidates);
+  const selected = candidates;
 
   const context: EnrichContext = {
     wageScale: selected
@@ -137,8 +137,8 @@ async function main() {
   setKept(blsSource.name, wages.length === 0 ? 0 : items.filter((item) => item.detroit.wage !== null).length);
   setKept(projectionsSource.name, items.filter((item) => item.detroit.outlook !== null).length);
 
-  for (const [sector, count] of droppedBySector) {
-    if (count > 0) dropped.push({ title: `${count} more ${sector} occupations`, source: 'select', reason: 'over the sector quota' });
+  for (const title of missingRoles(candidates)) {
+    dropped.push({ title, source: 'select', reason: 'on the common-roles list but missing from BLS or O*NET this run' });
   }
 
   // ---- Entry routes ---------------------------------------------------------

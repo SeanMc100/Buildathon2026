@@ -182,37 +182,6 @@ const SECTOR_EMPLOYERS: Record<string, string[]> = {
   ],
 };
 
-/**
- * Roughly how many occupations each sector should contribute. Set by hand so
- * the catalog reads like Detroit's economy rather than like a tech job board:
- * the sectors that employ the most people here get the most room, and no sector
- * that a user might come from is left with nothing.
- */
-export const SECTOR_QUOTAS: Record<string, number> = {
-  'Manufacturing and automotive': 18,
-  Healthcare: 18,
-  'Transportation and logistics': 14,
-  'Office and administration': 12,
-  'Sales and retail': 10,
-  'Skilled trades': 12,
-  Construction: 12,
-  'Hospitality and food': 10,
-  Education: 10,
-  'Healthcare support': 9,
-  'Finance and business': 9,
-  Technology: 9,
-  'Engineering and design': 8,
-  'Social and community services': 8,
-  'Facilities and grounds': 7,
-  'Personal care and service': 6,
-  'Public safety': 6,
-  'Creative and media': 6,
-  Management: 6,
-  'Science and research': 4,
-  Legal: 3,
-  'Farming and grounds production': 2,
-};
-
 export function sectorFor(socCode: string): string {
   const override = SOC_SECTOR_OVERRIDES[socCode];
   if (override) return override;
@@ -222,5 +191,3 @@ export function sectorFor(socCode: string): string {
 export function employersFor(sector: string): string[] {
   return SECTOR_EMPLOYERS[sector] ?? ['Employers across metro Detroit'];
 }
-
-export const ALL_SECTORS = Object.keys(SECTOR_QUOTAS);

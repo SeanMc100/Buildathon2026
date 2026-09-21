@@ -13,7 +13,8 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import {
   DEFAULT_FILTERS,
   activeFilterCount,
-  belongsToKind,
+  audiencesFromAnswers,
+  fitsAudience,
   matchesFilters,
   sortRows,
   type BrowseFilters,
@@ -36,37 +37,43 @@ type Row = { match: OpportunityMatch | null; item: Opportunity };
 export const KIND_TITLES: Record<BrowseKind, string> = {
   all: 'Everything',
   job: 'Jobs',
-  internship: 'Internships',
+  internship: 'Internships and apprenticeships',
   program: 'Programs',
   research: 'Research',
+  mentorship: 'Mentorship',
 };
 
-const KIND_ORDER: BrowseKind[] = ['all', 'job', 'internship', 'program', 'research'];
+const KIND_ORDER: BrowseKind[] = ['all', 'job', 'internship', 'program', 'research', 'mentorship'];
 
 /**
  * Every listing, always. The profile changes the order and adds a score; it
- * never decides what exists. Hiding whatever clashed with a deal-breaker meant
+ * never decides what exists. The one exception is mentorship, which is limited
+ * to programs the visitor can join (with a way to see the rest). Hiding whatever clashed with a deal-breaker meant
  * Browse silently dropped most of the catalog and left people staring at a
  * short list with no way to find out what was missing.
  */
-function useRows(): Row[] {
-  const { profile } = useIntake();
+function useRows(everyAudience: boolean): { rows: Row[]; hiddenMentorships: number } {
+  const { profile, answers } = useIntake();
   return useMemo(() => {
     const now = new Date();
-    const live = CATALOG.filter((item) => item.kind !== 'event' && isVisible(item, now));
-    if (!profile) return live.map((item) => ({ match: null, item }));
+    const audiences = audiencesFromAnswers(answers);
+    const visible = CATALOG.filter((item) => item.kind !== 'event' && isVisible(item, now));
+    const live = everyAudience ? visible : visible.filter((item) => fitsAudience(item, audiences));
+    const hiddenMentorships = visible.length - live.length;
+    if (!profile) return { rows: live.map((item) => ({ match: null, item })), hiddenMentorships };
 
     // The matcher only scores what clears the hard constraints, so anything
     // missing from this map is shown unscored rather than dropped.
     const scores = new Map<string, OpportunityMatch>();
-    for (const kind of ['job', 'program', 'research'] as const) {
+    for (const kind of ['job', 'internship', 'program', 'research'] as const) {
       for (const match of rankKind(kind, profile, CATALOG)) scores.set(match.opportunityId, match);
     }
 
-    return live
+    const rows = live
       .map((item) => ({ item, match: scores.get(item.id) ?? null }))
       .sort((a, b) => (b.match?.matchScore ?? -1) - (a.match?.matchScore ?? -1));
-  }, [profile]);
+    return { rows, hiddenMentorships };
+  }, [profile, answers, everyAudience]);
 }
 
 export function OpportunityListScreen() {
@@ -75,7 +82,8 @@ export function OpportunityListScreen() {
   const { profile } = useIntake();
   const { columns, cardWidth, isCompact } = useLayout();
 
-  const rows = useRows();
+  const [everyAudience, setEveryAudience] = useState(false);
+  const { rows, hiddenMentorships } = useRows(everyAudience);
   const [filters, setFilters] = useState<BrowseFilters>({
     ...DEFAULT_FILTERS,
     kind: params?.kind ?? 'all',
@@ -88,14 +96,13 @@ export function OpportunityListScreen() {
   // Counts are of what the other filters allow, so a chip never promises rows
   // that the current search would hide.
   const kindOptions = useMemo<ChipOption<BrowseKind>[]>(() => {
-    const withoutKind = { ...filters, kind: 'all' as BrowseKind };
-    const allowed = rows.filter((row) => matchesFilters(row.item, withoutKind, row.match !== null));
     return KIND_ORDER.map((kind) => ({
       value: kind,
       label: KIND_TITLES[kind],
-      count: allowed.filter((row) => belongsToKind(kind, row.item)).length,
+      count: rows.filter((row) => matchesFilters(row.item, { ...filters, kind }, row.match !== null))
+        .length,
     }));
-  }, [rows, filters.query, filters.arrangement, filters.money, filters.entry, filters.fit]);
+  }, [rows, filters.query, filters.money, filters.entry, filters.fit]);
 
   const visible = useMemo(
     () =>
@@ -107,6 +114,23 @@ export function OpportunityListScreen() {
   );
 
   const active = activeFilterCount(filters);
+  // The mixed list leaves mentorships out, so "all" counts everything else.
+  const inMentorship = filters.kind === 'mentorship';
+  const scopeTotal = rows.filter((row) => (row.item.kind === 'mentorship') === inMentorship).length;
+  const audienceNote =
+    inMentorship && (hiddenMentorships > 0 || everyAudience) ? (
+      <View style={styles.audienceNote}>
+        <Text style={styles.audienceText}>
+          {everyAudience
+            ? 'Showing every program, including ones with eligibility rules you may not meet.'
+            : `Showing programs open to you. ${hiddenMentorships} hidden because of who they are for.`}
+        </Text>
+        <LinkButton
+          label={everyAudience ? 'Only programs open to me' : 'Show all'}
+          onPress={() => setEveryAudience((current) => !current)}
+        />
+      </View>
+    ) : null;
   const clearAll = () =>
     setFilters({ ...DEFAULT_FILTERS, sort: profile ? 'match' : 'az', kind: 'all' });
 
@@ -124,7 +148,7 @@ export function OpportunityListScreen() {
         <OpportunityCard
           match={item.match}
           item={item.item}
-          clash={profile !== null && item.match === null}
+          clash={profile !== null && item.match === null && item.item.kind !== 'mentorship'}
           width={columns > 1 ? cardWidth : undefined}
         />
       )}
@@ -144,7 +168,9 @@ export function OpportunityListScreen() {
               Browse opportunities
             </Text>
             <Text style={styles.subtitle}>
-              {rows.length} jobs, internships, programs and research places across metro Detroit.
+              {rows.filter((row) => row.item.kind !== 'mentorship').length} jobs, internships,
+              programs and research places across metro Detroit, plus mentorship programs run by
+              other organisations.
               {profile ? ` ${SCORE_HELP} Anything that clashes with a deal-breaker is shown without a score.` : ''}
             </Text>
           </View>
@@ -164,17 +190,6 @@ export function OpportunityListScreen() {
           />
 
           <View style={[styles.controls, isCompact && styles.controlsStacked]}>
-            <Segmented
-              label="Where"
-              value={filters.arrangement}
-              onChange={(next) => set('arrangement', next)}
-              options={[
-                { value: 'any', label: 'Any' },
-                { value: 'Remote', label: 'Remote' },
-                { value: 'Hybrid', label: 'Hybrid' },
-                { value: 'Onsite', label: 'On site' },
-              ]}
-            />
             <Segmented
               label="Money"
               value={filters.money}
@@ -219,13 +234,15 @@ export function OpportunityListScreen() {
 
           <View style={styles.resultBar}>
             <Text style={styles.resultCount}>
-              {visible.length === rows.length
-                ? `Showing all ${rows.length}`
-                : `${visible.length} of ${rows.length}`}
+              {visible.length === scopeTotal
+                ? `Showing all ${scopeTotal}`
+                : `${visible.length} of ${scopeTotal}`}
               {profile && filters.sort === 'match' ? ', best fit first' : ''}
             </Text>
             {active > 0 ? <LinkButton label="Clear filters" onPress={clearAll} /> : null}
           </View>
+
+          {audienceNote}
 
           {profile ? null : (
             <View style={styles.prompt}>
@@ -275,6 +292,15 @@ const styles = StyleSheet.create({
     borderTopColor: colors.border,
   },
   resultCount: { ...typography.caption, fontWeight: '600', color: colors.text },
+
+  audienceNote: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+  },
+  audienceText: { ...typography.caption, color: colors.textMuted, flexShrink: 1, lineHeight: 21 },
 
   prompt: {
     gap: spacing.sm,
