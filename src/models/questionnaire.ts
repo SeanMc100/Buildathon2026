@@ -7,10 +7,16 @@ export type QuestionId = string;
 export type SectionId =
   | 'situation'
   | 'interests'
+  /** Ikigai: what you are good at. */
+  | 'strengths'
+  /** Ikigai: what the world needs, in the person's own terms. */
+  | 'purpose'
   | 'work_style'
   | 'values'
   | 'constraints'
-  | 'narrative';
+  | 'narrative'
+  /** Optional, never scored. Asked last, once the profile already exists. */
+  | 'about_you';
 
 export type Section = {
   id: SectionId;

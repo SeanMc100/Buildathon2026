@@ -2,7 +2,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useBoard } from '../board';
 import { BOARDS, BOARD_COPY, BOARD_REGION, ageBoardFor } from '../content';
@@ -10,7 +10,7 @@ import { useIntake } from '../intake';
 import type { Board } from '../models';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, spacing, typography } from '../theme';
-import { Button, Card, Pill } from './components/ui';
+import { Button, Card, LinkButton, Pill } from './components/ui';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -31,21 +31,25 @@ function BoardRow({ board, suggested }: { board: Board; suggested: boolean }) {
       <View style={styles.rowActions}>
         {joined ? (
           <>
-            <Pressable
+            <Button
+              label="Open"
               onPress={() => navigation.navigate('Board', { boardId: board.id })}
-              hitSlop={8}
-              accessibilityRole="button"
-            >
-              <Text style={styles.action}>Open</Text>
-            </Pressable>
-            <Pressable onPress={() => leave(board.id)} hitSlop={8} accessibilityRole="button">
-              <Text style={styles.actionMuted}>Leave</Text>
-            </Pressable>
+              accessibilityLabel={`Open ${board.name}`}
+            />
+            <LinkButton
+              label="Leave"
+              tone="muted"
+              onPress={() => leave(board.id)}
+              accessibilityLabel={`Leave ${board.name}`}
+            />
           </>
         ) : (
-          <Pressable onPress={() => join(board.id)} hitSlop={8} accessibilityRole="button">
-            <Text style={styles.action}>Join</Text>
-          </Pressable>
+          <Button
+            label="Join"
+            variant="secondary"
+            onPress={() => join(board.id)}
+            accessibilityLabel={`Join ${board.name}`}
+          />
         )}
       </View>
     </Card>
@@ -86,7 +90,11 @@ export function BoardsScreen() {
         ))}
       </View>
 
-      <Button label="Done" variant="secondary" onPress={() => navigation.goBack()} />
+      <Button
+        label="Back to my matches"
+        variant="secondary"
+        onPress={() => navigation.navigate('Results')}
+      />
     </ScrollView>
   );
 }
@@ -108,7 +116,5 @@ const styles = StyleSheet.create({
   rowTitleLine: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: spacing.sm },
   rowTitle: { ...typography.heading, color: colors.text },
   rowBlurb: { ...typography.caption, color: colors.textMuted, lineHeight: 18 },
-  rowActions: { alignItems: 'flex-end', gap: spacing.sm },
-  action: { ...typography.body, color: colors.primary, fontWeight: '600' },
-  actionMuted: { ...typography.caption, color: colors.textMuted },
+  rowActions: { alignItems: 'center', gap: spacing.sm },
 });

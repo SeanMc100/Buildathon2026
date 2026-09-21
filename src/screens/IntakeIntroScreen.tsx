@@ -58,7 +58,10 @@ export function IntakeIntroScreen() {
 
       {inProgress ? (
         <View style={styles.resumeBlock}>
-          <ProgressBar ratio={answeredCount / Math.max(1, path.length)} />
+          <ProgressBar
+            ratio={answeredCount / Math.max(1, path.length)}
+            label={`${answeredCount} of ${path.length} answered`}
+          />
           <Text style={styles.resumeText}>
             {answeredCount} of {path.length} answered
           </Text>
@@ -70,6 +73,7 @@ export function IntakeIntroScreen() {
           <>
             <Button
               label={INTRO_COPY.resume}
+              size="lg"
               onPress={() => firstUnanswered && open(firstUnanswered.id)}
               disabled={!hydrated || !firstUnanswered}
             />
@@ -77,13 +81,14 @@ export function IntakeIntroScreen() {
               <Button
                 label={INTRO_COPY.viewProfile}
                 variant="secondary"
+                size="lg"
                 onPress={() => navigation.navigate('Profile')}
               />
             ) : null}
             <Button label="Start over" variant="ghost" onPress={startFresh} />
           </>
         ) : (
-          <Button label={INTRO_COPY.start} onPress={startFresh} disabled={!hydrated} />
+          <Button label={INTRO_COPY.start} size="lg" onPress={startFresh} disabled={!hydrated} />
         )}
       </View>
     </ScrollView>
@@ -113,5 +118,5 @@ const styles = StyleSheet.create({
   resumeBlock: { gap: spacing.xs, marginTop: spacing.sm },
   resumeText: { ...typography.caption, color: colors.textMuted },
 
-  actions: { gap: spacing.sm, marginTop: spacing.md },
+  actions: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: spacing.sm, marginTop: spacing.md },
 });

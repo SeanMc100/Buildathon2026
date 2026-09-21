@@ -1,20 +1,135 @@
-export const colors = {
+// The design tokens every screen builds from. Sean owns this file.
+//
+// Two rules keep the app looking like one product:
+//   1. No screen hard-codes a colour, a font size or a shadow. If something is
+//      missing here, add it here.
+//   2. Every colour that carries text has been checked against its background
+//      for WCAG AA (4.5:1 at our text sizes). The ratios are noted below, so a
+//      future change can be checked the same way.
+
+/**
+ * Two palettes live here so the accent can be swapped back in one line.
+ * `brand` is the green / blue of the app icon; `indigo` is the palette we
+ * started with. Change ACTIVE_PALETTE to switch; nothing else needs touching.
+ */
+const indigoColors = {
+  /** The page itself, and the fill of a raised card. */
   background: '#ffffff',
+  /** Quiet panels and rows inside a page. */
   surface: '#f7f7fb',
+  /** A panel one step quieter still: toggles, code blocks, table stripes. */
   surfaceAlt: '#eef0fb',
+  /** Outside the content column on a wide window, so the page reads as a page. */
+  surfaceSunken: '#f2f2f7',
+
   border: '#e2e3ec',
   borderStrong: '#c9cbdb',
+
+  /** 18.9:1 on white. */
   text: '#111111',
-  textMuted: '#666666',
+  /** 6.6:1 on white, 6.2:1 on surface. Safe down to our smallest text. */
+  textMuted: '#5c5c66',
   textInverse: '#ffffff',
+
+  /** 6.3:1 on white. The brand, and the only colour used for "this is the action". */
   primary: '#4f46e5',
+  /** Hover and pressed states of a primary surface. */
+  primaryHover: '#4338ca',
+  /** 5.3:1 for primary text on top of it. */
   primarySoft: '#eceafd',
-  success: '#0f9d58',
-  warning: '#b7791f',
-  danger: '#c0392b',
+  primaryBorder: '#c7c2f5',
+
+  /** Something that fits, a match strength, a success. 6.2:1 on white. */
+  positive: '#0a7040',
+  positiveSoft: '#e6f4ec',
+  /** A gap, a caveat, a deadline closing in. 6.6:1 on white. */
+  caution: '#845209',
+  cautionSoft: '#fdf3e2',
+  /** An error, a destructive action. 6.5:1 on white. */
+  danger: '#b3261e',
+  dangerSoft: '#fdeceb',
+
+  /** A neutral highlight for counts and metadata chips. */
+  neutralSoft: '#eeeef3',
 } as const;
 
+const brandColors = {
+  /** The page itself, and the fill of a raised card. */
+  background: '#ffffff',
+  /** Quiet panels and rows inside a page. */
+  surface: '#f6f8fa',
+  /** A panel one step quieter still: toggles, code blocks, table stripes. */
+  surfaceAlt: '#edf3f8',
+  /** Outside the content column on a wide window, so the page reads as a page. */
+  surfaceSunken: '#f1f4f7',
+
+  border: '#e0e5ea',
+  borderStrong: '#c6ced6',
+
+  /** 18.9:1 on white. */
+  text: '#111111',
+  /** 6.6:1 on white, 6.2:1 on surface. Safe down to our smallest text. */
+  textMuted: '#5c5c66',
+  textInverse: '#ffffff',
+
+  /** 5.0:1 on white. The blue end of the icon gradient, and the colour used for "this is the action". */
+  primary: '#0076b6',
+  /** Hover and pressed states of a primary surface. */
+  primaryHover: '#00609a',
+  /** 4.6:1 for primary text on top of it. */
+  primarySoft: '#e6f2f9',
+  primaryBorder: '#b3d6ea',
+
+  /** Something that fits, a match strength, a success. 6.2:1 on white. */
+  positive: '#0a7040',
+  positiveSoft: '#e6f4ec',
+  /** A gap, a caveat, a deadline closing in. 6.6:1 on white. */
+  caution: '#845209',
+  cautionSoft: '#fdf3e2',
+  /** An error, a destructive action. 6.5:1 on white. */
+  danger: '#b3261e',
+  dangerSoft: '#fdeceb',
+
+  /** A neutral highlight for counts and metadata chips. */
+  neutralSoft: '#eceff2',
+} as const;
+
+type Palette = typeof indigoColors | typeof brandColors;
+
+const ACTIVE_PALETTE: 'brand' | 'indigo' = 'brand';
+
+export const colors: Palette = ACTIVE_PALETTE === 'brand' ? brandColors : indigoColors;
+
+/**
+ * The icon's gradient, for fills that carry no text: progress bars, meters,
+ * bars in a chart, and the primary button. The green end is only 2.3:1 under
+ * white text, so a button label has to sit over the middle of the fill; text
+ * on the page itself uses `colors.primary` instead.
+ */
+export const gradient = {
+  from: '#63be5f',
+  to: '#0076b6',
+  /** Left to right. Spread onto a style of a View that has no text on it. */
+  horizontal:
+    ACTIVE_PALETTE === 'brand'
+      ? { backgroundImage: 'linear-gradient(90deg, #63be5f, #0076b6)' }
+      : { backgroundColor: indigoColors.primary },
+  /** The same, one step darker, for a button under the pointer. */
+  horizontalHover:
+    ACTIVE_PALETTE === 'brand'
+      ? { backgroundImage: 'linear-gradient(90deg, #4fa54b, #00609a)' }
+      : { backgroundColor: indigoColors.primaryHover },
+  /** Clears a gradient, for a disabled state that sets its own flat fill. */
+  none: { backgroundImage: 'none' },
+  /** Top to bottom, as in the icon. */
+  vertical:
+    ACTIVE_PALETTE === 'brand'
+      ? { backgroundImage: 'linear-gradient(180deg, #63be5f, #0076b6)' }
+      : { backgroundColor: indigoColors.primary },
+};
+
 export const spacing = {
+  xxs: 2,
   xs: 4,
   sm: 8,
   md: 16,
@@ -30,11 +145,44 @@ export const radius = {
   pill: 999,
 } as const;
 
+/**
+ * One step per level of importance, with no gap wide enough that two levels
+ * have to share a size. `body` and `caption` carry real information — pay,
+ * dates, why something fits — so neither drops below 14.
+ */
 export const typography = {
+  /** Page titles. */
   display: { fontSize: 30, fontWeight: '700' },
+  /** Section titles within a page. */
   title: { fontSize: 22, fontWeight: '700' },
-  heading: { fontSize: 17, fontWeight: '600' },
-  body: { fontSize: 15, fontWeight: '400' },
-  caption: { fontSize: 13, fontWeight: '400' },
+  /** Card titles, button labels, the heading of a panel. */
+  heading: { fontSize: 18, fontWeight: '600' },
+  /** A label above a group, or a card title in a dense list. */
+  subheading: { fontSize: 15, fontWeight: '600' },
+  /** Default running text. */
+  body: { fontSize: 16, fontWeight: '400' },
+  /** Supporting facts. Small, never decorative. */
+  caption: { fontSize: 14, fontWeight: '400' },
+  /** Uppercase micro-labels and chips. */
   label: { fontSize: 12, fontWeight: '600' },
 } as const;
+
+/**
+ * Depth separates what you can act on from what you can only read: a raised
+ * card is clickable, a flat panel is not. `boxShadow` works on every platform
+ * we ship to.
+ */
+export const shadow = {
+  /** A card at rest. */
+  sm: { boxShadow: '0 1px 2px rgba(17, 17, 27, 0.06)' },
+  /** A card under the pointer. */
+  md: { boxShadow: '0 4px 12px rgba(17, 17, 27, 0.10)' },
+  /** Something floating over the page: a menu, a sheet. */
+  lg: { boxShadow: '0 12px 28px rgba(17, 17, 27, 0.14)' },
+} as const;
+
+/**
+ * Smallest comfortable target for a finger. Anything a person taps gets at
+ * least this in both directions, with `hitSlop` if the paint is smaller.
+ */
+export const TOUCH_TARGET = 44;

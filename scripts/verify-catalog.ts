@@ -1,23 +1,25 @@
 import { matchOpportunities } from '../src/matching/opportunities';
 import { buildProfile } from '../src/matching/scoring';
 import { CATALOG, INGEST_RUNS } from '../src/content/catalog';
-import type { AnswerMap, OpportunityKind } from '../src/models';
+import type { AnswerMap, MatchedKind, OpportunityKind } from '../src/models';
 
-const KINDS: OpportunityKind[] = ['job', 'program', 'event', 'research'];
+const KINDS: Array<Exclude<OpportunityKind, 'mentorship'>> = ['job', 'program', 'event', 'research'];
+// Internships and apprenticeships are jobs in the catalog but their own ranked section.
+const SECTIONS: MatchedKind[] = ['job', 'internship', 'program', 'event', 'research'];
 const byKind = (k: OpportunityKind) => CATALOG.filter((o) => o.kind === k).length;
 console.log('catalog:', KINDS.map((k) => `${k} ${byKind(k)}`).join(' · '), '=', CATALOG.length);
 console.log('samples remaining:', CATALOG.filter((o) => o.isSample).length, '\n');
 
 const PERSONAS: Array<{ name: string; answers: AnswerMap }> = [
-  { name: 'No diploma, needs pay + stability', answers: { stage: 'first_role', education: 'secondary', interest_pull: ['R', 'C'], priority_budget: { pay_and_security: 50, people_and_team: 20, growth_and_learning: 20, flexibility_and_balance: 10 }, arrangement: ['Onsite', 'Hybrid'] } },
-  { name: 'Career changer into healthcare', answers: { stage: 'pivot', education: 'certificate', interest_pull: ['S', 'I'], priority_budget: { mission_and_impact: 40, growth_and_learning: 30, people_and_team: 20, pay_and_security: 10 }, arrangement: ['Onsite', 'Hybrid', 'Remote'] } },
-  { name: 'Curious student, research-leaning', answers: { stage: 'first_role', education: 'bachelor', interest_pull: ['I', 'A'], priority_budget: { growth_and_learning: 45, mission_and_impact: 25, people_and_team: 20, pay_and_security: 10 }, arrangement: ['Onsite', 'Hybrid', 'Remote'] } },
+  { name: 'No diploma, needs pay + stability', answers: { stage: 'first_role', education: 'secondary', focus_area: 'welding or electrician', interest_pull: ['R', 'C'], strengths: ['R', 'C'], cause_pull: ['trades'], priority_budget: { pay_and_security: 50, people_and_team: 20, growth_and_learning: 20, flexibility_and_balance: 10 } } },
+  { name: 'Career changer into healthcare', answers: { stage: 'pivot', education: 'certificate', focus_area: 'nursing', interest_pull: ['S', 'I'], strengths: ['S', 'C'], cause_pull: ['health'], priority_budget: { mission_and_impact: 40, growth_and_learning: 30, people_and_team: 20, pay_and_security: 10 } } },
+  { name: 'Curious student, research-leaning', answers: { stage: 'first_role', education: 'bachelor', focus_area: 'data analysis', interest_pull: ['I', 'A'], strengths: ['I', 'C'], cause_pull: ['technology', 'education'], priority_budget: { growth_and_learning: 45, mission_and_impact: 25, people_and_team: 20, pay_and_security: 10 } } },
 ];
 
 for (const persona of PERSONAS) {
   const results = matchOpportunities(buildProfile(persona.answers), CATALOG);
   console.log(`■ ${persona.name}`);
-  for (const kind of KINDS) {
+  for (const kind of SECTIONS) {
     const top = results.byKind[kind]?.[0];
     const n = results.byKind[kind]?.length ?? 0;
     const title = top ? CATALOG.find((o) => o.id === top.opportunityId)?.title ?? '?' : '— nothing passed constraints';

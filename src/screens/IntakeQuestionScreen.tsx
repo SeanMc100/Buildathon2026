@@ -19,7 +19,14 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { QUESTION_BANK, SECTIONS, questionById } from '../content';
-import { canAdvance, isAnswered, nextQuestion, previousQuestion, progressFor, useIntake } from '../intake';
+import {
+  canAdvance,
+  isAnswered,
+  nextQuestion,
+  previousQuestion,
+  sectionProgressFor,
+  useIntake,
+} from '../intake';
 import type { AnswerValue } from '../models';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, radius, spacing, typography } from '../theme';
@@ -91,7 +98,7 @@ export function IntakeQuestionScreen() {
   const value = answers[question.id];
   const wasAnswered = isAnswered(question, value);
   const section = SECTIONS[question.section];
-  const progress = progressFor(QUESTION_BANK, answers, question.id);
+  const progress = sectionProgressFor(QUESTION_BANK, answers, question.id);
   const previous = previousQuestion(QUESTION_BANK, answers, question.id);
   const ready = canAdvance(question, value, state.skipped);
   const isLast = nextQuestion(QUESTION_BANK, answers, question.id) === null;
@@ -123,11 +130,14 @@ export function IntakeQuestionScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.header}>
-        <ProgressBar ratio={progress.ratio} />
+        <ProgressBar
+          ratio={progress.ratio}
+          label={`Step ${progress.step} of ${progress.steps}, ${section.title}`}
+        />
         <View style={styles.headerRow}>
-          <Text style={styles.sectionLabel}>{section.title.toUpperCase()}</Text>
+          <Text style={styles.sectionLabel}>{section.title}</Text>
           <Text style={styles.counter}>
-            {progress.index} of {progress.total}
+            Step {progress.step} of {progress.steps}
           </Text>
         </View>
       </View>
@@ -168,20 +178,23 @@ export function IntakeQuestionScreen() {
         <View style={styles.footerRow}>
           <View style={styles.footerSide}>
             {previous ? (
-              <Button label="Back" variant="ghost" onPress={() => goTo(previous.id)} />
+              <Button label="Back" variant="ghost" width="auto" onPress={() => goTo(previous.id)} />
             ) : null}
           </View>
-          <View style={styles.footerSide}>
+          <View style={styles.footerMain}>
             {question.optional && !wasAnswered ? (
-              <Button label="Skip" variant="ghost" onPress={handleSkip} />
+              <Button label="Skip" variant="ghost" width="auto" onPress={handleSkip} />
             ) : null}
+            <Button
+              label={isLast ? 'See my profile' : 'Next'}
+              onPress={() => advance(question.id)}
+              disabled={!ready}
+              size="lg"
+              width="auto"
+            />
           </View>
         </View>
-        <Button
-          label={isLast ? 'See my profile' : 'Next'}
-          onPress={() => advance(question.id)}
-          disabled={!ready}
-        />
+        {!ready ? <Text style={styles.hint}>Pick an answer to carry on.</Text> : null}
       </View>
     </KeyboardAvoidingView>
   );
@@ -192,7 +205,7 @@ const styles = StyleSheet.create({
 
   header: { paddingHorizontal: spacing.lg, paddingTop: spacing.md, gap: spacing.sm },
   headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  sectionLabel: { ...typography.label, color: colors.primary, letterSpacing: 0.8 },
+  sectionLabel: { ...typography.subheading, color: colors.text },
   counter: { ...typography.caption, color: colors.textMuted },
 
   scroll: { flex: 1 },
@@ -221,8 +234,15 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
     backgroundColor: colors.background,
   },
-  footerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  footerSide: { minHeight: 40, justifyContent: 'center' },
+  footerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: spacing.sm,
+  },
+  footerSide: { minHeight: 44, justifyContent: 'center' },
+  footerMain: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  hint: { ...typography.caption, color: colors.textMuted, textAlign: 'right' },
 
   missing: {
     flex: 1,

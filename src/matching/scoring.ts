@@ -17,9 +17,9 @@ import type {
   AnswerMap,
   CareerProfile,
   CareerStage,
+  CauseTheme,
   ChallengeAppetite,
   EducationLevel,
-  EmploymentType,
   HardConstraints,
   Inference,
   InterestProfile,
@@ -31,12 +31,12 @@ import type {
   QuestionId,
   RiasecCode,
   TeamShape,
-  WorkArrangement,
   WorkStyle,
   WorkValue,
 } from '../models';
 import { readAllocation, readList, readString, scaleToPercent } from './answers';
 import { buildNarrative } from './narrative';
+import { CAUSE_THEMES } from './topics';
 
 const RIASEC: RiasecCode[] = ['R', 'I', 'A', 'S', 'E', 'C'];
 
@@ -91,25 +91,91 @@ function deriveJobZone(answers: AnswerMap): Inference<JobZone> {
   return inference(EDUCATION_BASE_ZONE[education], 0.4, ['education']);
 }
 
-function deriveInterests(answers: AnswerMap): InterestProfile {
-  const picks = readList(answers, 'interest_pull').filter((code): code is RiasecCode =>
-    (RIASEC as string[]).includes(code),
-  );
+/** How much of the blended interest score comes from what someone enjoys vs what they are good at. */
+const ENJOY_SHARE = 0.55;
+const STRENGTH_SHARE = 0.45;
+
+/**
+ * 0-100 per Holland letter from two ranked pick lists. The shares are
+ * renormalised over whichever lists are non-empty, so skipping one question does
+ * not shrink the other. The growth-path ranking calls this with a heavier
+ * strengths share: what you are good at says more about where you can go than
+ * what you like doing today.
+ */
+export function blendInterestScores(
+  enjoys: RiasecCode[],
+  strengths: RiasecCode[],
+  enjoyWeight: number,
+  strengthWeight: number,
+): Record<RiasecCode, number> {
+  const enjoyShare = enjoys.length > 0 ? enjoyWeight : 0;
+  const strengthShare = strengths.length > 0 ? strengthWeight : 0;
+  const shareTotal = enjoyShare + strengthShare;
 
   const scores = Object.fromEntries(RIASEC.map((code) => [code, 0])) as Record<RiasecCode, number>;
-  picks.forEach((code, index) => {
-    scores[code] = INTEREST_RANK_WEIGHTS[index] ?? 40;
-  });
+  if (shareTotal > 0) {
+    enjoys.forEach((code, index) => {
+      scores[code] += (enjoyShare / shareTotal) * (INTEREST_RANK_WEIGHTS[index] ?? 40);
+    });
+    strengths.forEach((code, index) => {
+      scores[code] += (strengthShare / shareTotal) * (INTEREST_RANK_WEIGHTS[index] ?? 40);
+    });
+  }
+  for (const code of RIASEC) scores[code] = Math.round(scores[code]);
+  return scores;
+}
+
+function readCodes(answers: AnswerMap, id: QuestionId): RiasecCode[] {
+  return readList(answers, id).filter((code): code is RiasecCode => (RIASEC as string[]).includes(code));
+}
+
+/**
+ * Two taps of the same six dimensions: what someone would happily lose an
+ * afternoon to, and what people come to them for. A letter picked on both sides
+ * is the strongest signal we get. The blend is renormalised when only one of the
+ * two was answered, so skipping one does not shrink the other.
+ */
+function deriveInterests(answers: AnswerMap): InterestProfile {
+  const enjoys = readCodes(answers, 'interest_pull');
+  const strengths = readCodes(answers, 'strengths');
+
+  const scores = blendInterestScores(enjoys, strengths, ENJOY_SHARE, STRENGTH_SHARE);
+
+  // Ties go to the letter the person tapped first as something they enjoy.
+  const order = [...enjoys, ...strengths, ...RIASEC];
+  const hollandCode = RIASEC.filter((code) => scores[code] > 0)
+    .sort((a, b) => scores[b] - scores[a] || order.indexOf(a) - order.indexOf(b))
+    .slice(0, 3);
+
+  const sourceQuestionIds: QuestionId[] = [];
+  if (enjoys.length > 0) sourceQuestionIds.push('interest_pull');
+  if (strengths.length > 0) sourceQuestionIds.push('strengths');
 
   return {
     scores,
-    hollandCode: picks.slice(0, 3),
-    // One multi-select is a hint, not the 60-item Interest Profiler. The low
-    // ceiling here is deliberate: the model should not treat this as a
-    // measured Holland code.
-    confidence: picks.length === 0 ? 0 : 0.45,
-    sourceQuestionIds: picks.length === 0 ? [] : ['interest_pull'],
+    hollandCode,
+    enjoys,
+    strengths,
+    // Two multi-selects are a hint, not the 60-item Interest Profiler. The low
+    // ceiling is deliberate: the model should not treat this as a measured
+    // Holland code. Answering both, and agreeing with yourself, earns a little more.
+    confidence:
+      sourceQuestionIds.length === 0
+        ? 0
+        : sourceQuestionIds.length === 1
+          ? 0.45
+          : enjoys.some((code) => strengths.includes(code))
+            ? 0.65
+            : 0.55,
+    sourceQuestionIds,
   };
+}
+
+function deriveCauses(answers: AnswerMap): Inference<CauseTheme[]> {
+  const themes = readList(answers, 'cause_pull').filter((theme): theme is CauseTheme =>
+    (CAUSE_THEMES as string[]).includes(theme),
+  );
+  return inference(themes, themes.length === 0 ? 0 : 0.6, themes.length === 0 ? [] : ['cause_pull']);
 }
 
 /**
@@ -226,17 +292,10 @@ function deriveWorkValues(
 }
 
 function deriveConstraints(answers: AnswerMap): HardConstraints {
-  const arrangements = readList(answers, 'arrangement') as WorkArrangement[];
-  const employmentTypes = readList(answers, 'employment_type') as EmploymentType[];
-  const commute = readString(answers, 'commute_limit');
   const payStance = (readString(answers, 'pay_stance') ?? 'flexible') as PayStance;
   const floorBand = readString(answers, 'pay_floor_band');
 
   return {
-    arrangements: arrangements.length > 0 ? arrangements : ['Remote', 'Hybrid', 'Onsite'],
-    employmentTypes: employmentTypes.length > 0 ? employmentTypes : ['FullTime'],
-    maxCommuteMinutes: commute && commute !== 'relocate' ? Number(commute) : null,
-    openToRelocation: commute === 'relocate',
     payStance,
     minSalaryUsd: payStance === 'has_floor' && floorBand ? Number(floorBand) : null,
     // No deal-breaker question is asked, so nothing is ruled out on demands.
@@ -263,6 +322,7 @@ export function buildProfile(
   const stage = deriveStage(answers);
   const jobZone = deriveJobZone(answers);
   const interests = deriveInterests(answers);
+  const causes = deriveCauses(answers);
   const workStyle = deriveWorkStyle(answers);
   const priorities = derivePriorities(answers);
   const workValues = deriveWorkValues(answers, priorities);
@@ -279,6 +339,7 @@ export function buildProfile(
     jobZone,
     focusArea: readString(answers, 'focus_area'),
     interests,
+    causes,
     workStyle,
     priorities,
     workValues,

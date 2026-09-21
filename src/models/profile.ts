@@ -37,8 +37,6 @@ export type EducationLevel =
 /** O*NET Job Zone: 1 little/no prep ... 5 extensive prep. Derived, never asked. */
 export type JobZone = 1 | 2 | 3 | 4 | 5;
 
-export type WorkArrangement = 'Remote' | 'Hybrid' | 'Onsite';
-
 export type EmploymentType =
   | 'FullTime'
   | 'PartTime'
@@ -85,12 +83,23 @@ export type PreferenceTrait =
   | 'manager_support'
   | 'autonomy';
 
+/**
+ * The "what the world needs" side of Ikigai: the kinds of problem a person
+ * wants their work pointed at. Each maps to a keyword vocabulary in
+ * src/matching/topics.ts, which tags every opportunity with the same themes.
+ */
+export type CauseTheme =
+  | 'health'
+  | 'education'
+  | 'community'
+  | 'technology'
+  | 'business'
+  | 'trades'
+  | 'creative'
+  | 'environment';
+
 /** Must-satisfy filters. Kept structurally separate from soft preferences. */
 export type HardConstraints = {
-  arrangements: WorkArrangement[];
-  employmentTypes: EmploymentType[];
-  maxCommuteMinutes: number | null;
-  openToRelocation: boolean;
   payStance: PayStance;
   minSalaryUsd: number | null;
   /** Things the user ruled out, e.g. 'night_shifts'. */
@@ -108,10 +117,17 @@ export type WorkStyle = {
 };
 
 export type InterestProfile = {
-  /** 0-100 leaning per dimension. Not a validated Interest Profiler score. */
+  /**
+   * 0-100 leaning per dimension, blending what the person enjoys with what they
+   * are good at. Not a validated Interest Profiler score.
+   */
   scores: Record<RiasecCode, number>;
-  /** Top three, ranked. Empty when the user skipped the interest question. */
+  /** Top three of the blend, ranked. Empty when both questions were skipped. */
   hollandCode: RiasecCode[];
+  /** What they would happily lose an afternoon to, in the order picked. */
+  enjoys: RiasecCode[];
+  /** What people come to them for, in the order picked. */
+  strengths: RiasecCode[];
   confidence: number;
   sourceQuestionIds: QuestionId[];
 };
@@ -130,6 +146,8 @@ export type CareerProfile = {
   /** Free text the user typed about what they do or want to do. */
   focusArea: string | null;
   interests: InterestProfile;
+  /** What they want their work to improve. Empty when skipped. */
+  causes: Inference<CauseTheme[]>;
   workStyle: WorkStyle;
   /** Soft preferences, highest weight first. Weights sum to ~100. */
   priorities: PreferenceWeight[];
@@ -173,7 +191,14 @@ export type MatchRequest = {
   }>;
   interests: {
     holland_code: RiasecCode[];
+    enjoys: RiasecCode[];
+    strengths: RiasecCode[];
     scores_0_100: Record<RiasecCode, number>;
+    confidence: number;
+    source_question_ids: QuestionId[];
+  };
+  purpose: {
+    themes: CauseTheme[];
     confidence: number;
     source_question_ids: QuestionId[];
   };

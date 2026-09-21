@@ -113,7 +113,7 @@ export function ageBoardFor(ageBand: unknown): Board | null {
   return BOARDS.find((board) => board.ageBand === ageBand) ?? null;
 }
 
-/** Where a shared opportunity is. Metro Detroit cities plus remote. */
+/** Where a shared opportunity is. Metro Detroit cities. */
 export const DETROIT_CITIES = [
   'Detroit',
   'Dearborn',
@@ -127,7 +127,6 @@ export const DETROIT_CITIES = [
   'Auburn Hills',
   'Ann Arbor',
   'Other Metro Detroit',
-  'Remote',
 ] as const;
 
 export const POST_KINDS: { value: BoardPostKind; label: string }[] = [

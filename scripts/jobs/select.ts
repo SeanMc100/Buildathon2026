@@ -1,25 +1,24 @@
 // Which occupations make the catalog.
 //
 // BLS publishes about 700 detailed occupations for the Detroit metro. All 700
-// would drown the app, and the top 150 by pay would be a list of doctors and
-// executives — useless to most of the people this is for. So the cut is made
-// per sector, with a quota each (scripts/jobs/sectors.ts), and inside a sector
-// by local demand: how many of these jobs exist here, how many open up each
-// year, and how concentrated the work is in Detroit compared with the country.
+// would drown the app, and any cut by headcount or pay surfaces the wrong
+// things: the top by pay is a list of doctors and executives, and the top by
+// demand still lets in Allergists and Regulatory Affairs Managers. So the cut is
+// editorial: `COMMON_ROLES` names the roles a person would recognise, and only
+// those are kept. Local demand then orders them (`demandRank`), it does not
+// decide whether they exist.
 //
-// Two guardrails on top of that: every sector that a user might be coming from
-// keeps a place even if it is small, and a floor of low-barrier occupations is
-// held back so a person with no diploma never opens the app to a wall of
-// bachelor's degrees.
+// The list spans every sector and every level of preparation on purpose, so a
+// person with no diploma and a person with a graduate degree both open the app
+// to roles they have heard of.
 
-import { SECTOR_QUOTAS, sectorFor } from './sectors';
+import { COMMON_ROLES } from './common-roles';
+import { sectorFor } from './sectors';
 import type { LocalWages, OnetOccupation, StateOutlook } from './types';
 
-/** Below this many jobs in the metro, an occupation is not really a local option. */
+/** Below this many jobs in the metro, even a common role is not really a local option. */
 const MIN_LOCAL_EMPLOYMENT = 300;
 
-/** At least this many of the kept occupations must be open at job zone 1 or 2. */
-const LOW_BARRIER_FLOOR = 45;
 
 export type Candidate = {
   socCode: string;
@@ -77,7 +76,11 @@ export function buildCandidates(
   outlooks: Map<string, StateOutlook>,
 ): Candidate[] {
   const eligible = wages.filter(
-    (row) => (row.employment ?? 0) >= MIN_LOCAL_EMPLOYMENT && onetIndex.has(row.socCode) && row.socCode !== '00-0000',
+    (row) =>
+      (row.employment ?? 0) >= MIN_LOCAL_EMPLOYMENT &&
+      onetIndex.has(row.socCode) &&
+      row.socCode !== '00-0000' &&
+      row.socCode in COMMON_ROLES,
   );
 
   const employmentScores = rankScores(eligible.map((row) => row.employment));
@@ -109,48 +112,10 @@ export function demandRanks(candidates: Candidate[]): Map<string, number> {
   return ranks;
 }
 
-export type Selection = { kept: Candidate[]; droppedBySector: Map<string, number> };
-
-export function selectCandidates(candidates: Candidate[]): Selection {
-  const bySector = new Map<string, Candidate[]>();
-  for (const candidate of candidates) {
-    const list = bySector.get(candidate.sector);
-    if (list) list.push(candidate);
-    else bySector.set(candidate.sector, [candidate]);
-  }
-
-  const kept: Candidate[] = [];
-  const droppedBySector = new Map<string, number>();
-  const taken = new Set<string>();
-
-  for (const [sector, list] of bySector) {
-    const quota = SECTOR_QUOTAS[sector] ?? 3;
-    const ordered = [...list].sort((a, b) => b.demandScore - a.demandScore);
-    for (const candidate of ordered.slice(0, quota)) {
-      kept.push(candidate);
-      taken.add(candidate.socCode);
-    }
-    droppedBySector.set(sector, Math.max(0, list.length - quota));
-  }
-
-  // Top up the low-barrier end. The quotas are set by sector, not by job zone,
-  // so a run where every sector's busiest occupations happen to need a degree
-  // would leave a first-jobber with nothing. Fill from the strongest remaining
-  // job-zone-1-and-2 occupations until the floor is met.
-  const lowBarrier = (candidate: Candidate) => (candidate.occupation.jobZone ?? 3) <= 2;
-  let lowBarrierCount = kept.filter(lowBarrier).length;
-  if (lowBarrierCount < LOW_BARRIER_FLOOR) {
-    const spare = candidates
-      .filter((candidate) => !taken.has(candidate.socCode) && lowBarrier(candidate))
-      .sort((a, b) => b.demandScore - a.demandScore);
-    for (const candidate of spare) {
-      if (lowBarrierCount >= LOW_BARRIER_FLOOR) break;
-      kept.push(candidate);
-      taken.add(candidate.socCode);
-      lowBarrierCount += 1;
-      droppedBySector.set(candidate.sector, Math.max(0, (droppedBySector.get(candidate.sector) ?? 0) - 1));
-    }
-  }
-
-  return { kept, droppedBySector };
+/** Roles on the common list that the sources did not produce this run, so a drop is noticed. */
+export function missingRoles(candidates: Candidate[]): string[] {
+  const found = new Set(candidates.map((candidate) => candidate.socCode));
+  return Object.entries(COMMON_ROLES)
+    .filter(([socCode]) => !found.has(socCode))
+    .map(([socCode, title]) => `${title} (${socCode})`);
 }

@@ -9,11 +9,10 @@ import type {
   CareerProfile,
   CareerStage,
   EducationLevel,
-  EmploymentType,
   ExperienceBand,
   RiasecCode,
-  WorkArrangement,
 } from '../models';
+import { CAUSE_LABELS } from './topics';
 
 const STAGE_PHRASE: Record<CareerStage, string> = {
   FirstRole: 'looking for a first real role',
@@ -51,19 +50,13 @@ const INTEREST_PHRASE: Record<RiasecCode, string> = {
   C: 'bringing order to a mess',
 };
 
-const ARRANGEMENT_PHRASE: Record<WorkArrangement, string> = {
-  Remote: 'remote',
-  Hybrid: 'hybrid',
-  Onsite: 'on site',
-};
-
-const EMPLOYMENT_PHRASE: Record<EmploymentType, string> = {
-  FullTime: 'full time',
-  PartTime: 'part time',
-  Contract: 'contract',
-  Freelance: 'freelance',
-  Internship: 'internships',
-  Apprenticeship: 'apprenticeships',
+const STRENGTH_PHRASE: Record<RiasecCode, string> = {
+  R: 'getting practical things done',
+  I: 'working out how and why things happen',
+  A: 'original ideas',
+  S: 'listening and helping them through something',
+  E: 'persuading people and getting a group moving',
+  C: 'keeping things accurate and on schedule',
 };
 
 const EXCLUSION_PHRASE: Record<string, string> = {
@@ -111,10 +104,20 @@ export function buildNarrative(profile: CareerProfile): string {
     background.length > 0 ? `${opener}, with ${joinList(background)}.` : `${opener}.`,
   );
 
-  // 2. What holds their attention.
-  if (profile.interests.hollandCode.length > 0) {
-    const pulls = profile.interests.hollandCode.map((code) => INTEREST_PHRASE[code]);
-    sentences.push(`Drawn to ${joinList(pulls)}.`);
+  // 2. What they love, what they are good at, and what they want it to serve.
+  // Three of the four Ikigai circles, in their own words; the fourth (what pays)
+  // is the priority budget below.
+  const { enjoys, strengths } = profile.interests;
+  if (enjoys.length > 0) {
+    sentences.push(`Drawn to ${joinList(enjoys.map((code) => INTEREST_PHRASE[code]))}.`);
+  }
+  if (strengths.length > 0) {
+    sentences.push(`People come to them for ${joinList(strengths.map((code) => STRENGTH_PHRASE[code]))}.`);
+  }
+  if (profile.causes.value.length > 0) {
+    sentences.push(
+      `They want their work to serve ${joinList(profile.causes.value.map((theme) => CAUSE_LABELS[theme]))}.`,
+    );
   }
 
   // 3. The shape of the working day.
@@ -165,16 +168,6 @@ export function buildNarrative(profile: CareerProfile): string {
   // 6. The lines a match has to respect.
   const constraints = profile.hardConstraints;
   const hardParts: string[] = [];
-  if (constraints.arrangements.length > 0 && constraints.arrangements.length < 3) {
-    hardParts.push(joinList(constraints.arrangements.map((a) => ARRANGEMENT_PHRASE[a]), 'or'));
-  }
-  if (constraints.employmentTypes.length > 0 && constraints.employmentTypes.length < 6) {
-    hardParts.push(joinList(constraints.employmentTypes.map((t) => EMPLOYMENT_PHRASE[t]), 'or'));
-  }
-  if (constraints.maxCommuteMinutes !== null) {
-    hardParts.push(`no more than ${constraints.maxCommuteMinutes} minutes of travel`);
-  }
-  if (constraints.openToRelocation) hardParts.push('willing to relocate');
   if (constraints.minSalaryUsd !== null) {
     hardParts.push(`a floor of about ${formatMoney(constraints.minSalaryUsd)}`);
   } else if (constraints.payStance === 'top_of_market') {

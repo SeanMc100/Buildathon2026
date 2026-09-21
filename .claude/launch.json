@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "expo-web",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "npx expo start --web --port ${PORT:-8083}"],
+      "port": 8083,
+      "autoPort": true
+    }
+  ]
+}

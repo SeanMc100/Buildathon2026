@@ -7,6 +7,7 @@ import type {
   AnswerValue,
   Question,
   QuestionId,
+  SectionId,
   VisibilityRule,
 } from '../models';
 
@@ -103,6 +104,53 @@ export function progressFor(
     total: path.length,
     ratio: Math.min(1, answered / total),
     answered,
+  };
+}
+
+export type SectionProgress = {
+  /** 1-based position of this question's section among the sections in play. */
+  step: number;
+  /** How many sections the path actually visits. Does not move as branches open. */
+  steps: number;
+  /** 0..1, for the bar. */
+  ratio: number;
+  /** Position within this section, for people who want the finer grain. */
+  indexInSection: number;
+  questionsInSection: number;
+};
+
+/**
+ * Progress measured in sections rather than questions.
+ *
+ * A question count cannot be honest here: answering "under 25" opens three more
+ * screens, so a bar labelled "1 of 11" became "3 of 14" and the finish line
+ * moved away from the person walking towards it. Sections are fixed, they are
+ * what the heading already names, and the bar underneath still moves on every
+ * answer.
+ */
+export function sectionProgressFor(
+  bank: Question[],
+  answers: AnswerMap,
+  questionId: QuestionId,
+): SectionProgress {
+  const path = visibleQuestions(bank, answers);
+
+  const order: SectionId[] = [];
+  for (const question of path) {
+    if (!order.includes(question.section)) order.push(question.section);
+  }
+
+  const current = path.find((question) => question.id === questionId);
+  const section = current?.section;
+  const inSection = path.filter((question) => question.section === section);
+  const answered = path.filter((question) => isAnswered(question, answers[question.id])).length;
+
+  return {
+    step: section ? order.indexOf(section) + 1 : 1,
+    steps: order.length || 1,
+    ratio: Math.min(1, answered / (path.length || 1)),
+    indexInSection: current ? inSection.findIndex((question) => question.id === questionId) + 1 : 1,
+    questionsInSection: inSection.length || 1,
   };
 }
 

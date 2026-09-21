@@ -18,7 +18,9 @@
 import type { Question, Section, SectionId } from '../models';
 
 // Bumped to 2 when age, gender and the age branches were added, so saved v1 answers reset.
-export const QUESTION_BANK_VERSION = 2;
+// Bumped to 3 for the Ikigai rework: strengths and cause questions added, work
+// arrangement and commute dropped.
+export const QUESTION_BANK_VERSION = 3;
 
 export const SECTIONS: Record<SectionId, Section> = {
   situation: {
@@ -28,8 +30,18 @@ export const SECTIONS: Record<SectionId, Section> = {
   },
   interests: {
     id: 'interests',
-    title: 'What pulls you in',
+    title: 'What you love',
     blurb: 'Work that holds your attention.',
+  },
+  strengths: {
+    id: 'strengths',
+    title: 'What you are good at',
+    blurb: 'What people already come to you for.',
+  },
+  purpose: {
+    id: 'purpose',
+    title: 'What the world needs',
+    blurb: 'The kind of problem you would want to point your work at.',
   },
   work_style: {
     id: 'work_style',
@@ -38,8 +50,8 @@ export const SECTIONS: Record<SectionId, Section> = {
   },
   values: {
     id: 'values',
-    title: 'What you would trade',
-    blurb: 'What separates a good job from your job.',
+    title: 'What it has to give you',
+    blurb: 'Money, time, growth, meaning: what your next role has to get right.',
   },
   constraints: {
     id: 'constraints',
@@ -51,148 +63,30 @@ export const SECTIONS: Record<SectionId, Section> = {
     title: 'In your words',
     blurb: 'Anything the questions missed.',
   },
+  about_you: {
+    id: 'about_you',
+    title: 'About you',
+    blurb: 'Optional. Nothing here changes your match scores.',
+  },
 };
 
 export const SECTION_ORDER: SectionId[] = [
   'situation',
   'interests',
+  'strengths',
+  'purpose',
   'work_style',
   'values',
   'constraints',
   'narrative',
+  'about_you',
 ];
+
+/** The optional "which describe you" question. Read on the device by src/catalog/audience.ts. */
+export const AUDIENCE_QUESTION_ID = 'audiences';
 
 export const QUESTION_BANK: Question[] = [
   // ---------------------------------------------------------------- situation
-  {
-    id: 'gender',
-    section: 'situation',
-    kind: 'single',
-    prompt: 'How do you describe your gender?',
-    help: 'Optional.',
-    optional: true,
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'woman', label: 'Woman' },
-      { value: 'man', label: 'Man' },
-      { value: 'non_binary', label: 'Non-binary' },
-      { value: 'self_describe', label: 'Something else' },
-      { value: 'prefer_not_to_say', label: 'Prefer not to say' },
-    ],
-  },
-  {
-    id: 'age_band',
-    section: 'situation',
-    kind: 'single',
-    prompt: 'Which age range are you in?',
-    help: 'Optional.',
-    optional: true,
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'under_25', label: 'Under 25' },
-      { value: '25_34', label: '25 to 34' },
-      { value: '35_44', label: '35 to 44' },
-      { value: '45_54', label: '45 to 54' },
-      { value: '55_plus', label: '55 or over' },
-      { value: 'prefer_not_to_say', label: 'Prefer not to say' },
-    ],
-  },
-  // Age branch, under 25: same three-question shape as the 25 to 34 branch.
-  {
-    id: 'under25_now',
-    section: 'situation',
-    kind: 'single',
-    prompt: 'What are you mostly doing right now?',
-    optional: true,
-    showIf: [{ questionId: 'age_band', equals: 'under_25' }],
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'studying', label: 'Studying full time' },
-      { value: 'studying_working', label: 'Studying and working' },
-      { value: 'working', label: 'Working' },
-      { value: 'looking', label: 'Looking for a first start' },
-    ],
-  },
-  {
-    id: 'under25_evidence',
-    section: 'situation',
-    kind: 'multi',
-    prompt: 'What can you already point to?',
-    help: 'Pick any.',
-    optional: true,
-    showIf: [{ questionId: 'age_band', equals: 'under_25' }],
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'part_time_job', label: 'A part-time or summer job' },
-      { value: 'internship', label: 'An internship or placement' },
-      { value: 'volunteering', label: 'Volunteering, clubs or teams' },
-      { value: 'projects', label: 'Projects or coursework' },
-      { value: 'nothing_yet', label: 'Nothing yet' },
-    ],
-  },
-  {
-    id: 'under25_next',
-    section: 'situation',
-    kind: 'single',
-    prompt: 'What do you want from your first few roles?',
-    optional: true,
-    showIf: [{ questionId: 'age_band', equals: 'under_25' }],
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'learn', label: 'Good training and room to learn' },
-      { value: 'earn', label: 'Steady pay while I work things out' },
-      { value: 'try_things', label: 'A chance to try different things' },
-      { value: 'commit', label: 'One path I can commit to' },
-    ],
-  },
-  // Age branch, 25 to 34.
-  {
-    id: 'age25_now',
-    section: 'situation',
-    kind: 'single',
-    prompt: 'What are you mostly doing right now?',
-    optional: true,
-    showIf: [{ questionId: 'age_band', equals: '25_34' }],
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'in_field', label: 'Working in the field I want' },
-      { value: 'want_out', label: 'Working, but ready for a change' },
-      { value: 'retraining', label: 'Working while I retrain or study' },
-      { value: 'between', label: 'Between jobs' },
-    ],
-  },
-  {
-    id: 'age25_evidence',
-    section: 'situation',
-    kind: 'multi',
-    prompt: 'What can you already point to?',
-    help: 'Pick any.',
-    optional: true,
-    showIf: [{ questionId: 'age_band', equals: '25_34' }],
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'led', label: 'Leading a project or people' },
-      { value: 'promoted', label: 'Growth or a promotion in a role' },
-      { value: 'specialism', label: 'A specialist skill or certification' },
-      { value: 'switched', label: 'A change of field I have already made' },
-      { value: 'nothing_stands_out', label: 'Nothing that stands out yet' },
-    ],
-  },
-  {
-    id: 'age25_next',
-    section: 'situation',
-    kind: 'single',
-    prompt: 'What do you want from the next few years?',
-    optional: true,
-    showIf: [{ questionId: 'age_band', equals: '25_34' }],
-    why: 'Kept on your profile only. Not scored, not sent to matching.',
-    options: [
-      { value: 'step_up', label: 'More responsibility' },
-      { value: 'deepen', label: 'Deeper expertise in what I do' },
-      { value: 'change_field', label: 'A new field without starting over' },
-      { value: 'balance', label: 'Better balance at the same standard of work' },
-    ],
-  },
   {
     id: 'stage',
     section: 'situation',
@@ -217,7 +111,7 @@ export const QUESTION_BANK: Question[] = [
     placeholder: 'e.g. nursing, data analysis, still working it out',
     maxLength: 120,
     optional: true,
-    why: 'Gives the model something specific to anchor on. Skip it and we lean on your other answers.',
+    why: 'Your words are matched against each listing, so this is the most direct signal you give. Skip it and we lean on your other answers.',
   },
   {
     id: 'education',
@@ -245,7 +139,7 @@ export const QUESTION_BANK: Question[] = [
     help: 'Pick two or three.',
     min: 2,
     max: 3,
-    why: 'A hint about what holds your attention, not a personality test.',
+    why: 'What you enjoy, in the order you tap. Your first pick counts most. A hint, not a personality test.',
     options: [
       { value: 'R', label: 'Building, fixing or working with your hands', hint: 'tools, machines, outdoors, physical craft' },
       { value: 'I', label: 'Digging into a problem until it cracks', hint: 'research, data, figuring out why' },
@@ -253,6 +147,51 @@ export const QUESTION_BANK: Question[] = [
       { value: 'S', label: 'Helping someone get somewhere', hint: 'teaching, care, coaching, support' },
       { value: 'E', label: 'Selling an idea and getting people moving', hint: 'pitching, leading, starting things' },
       { value: 'C', label: 'Bringing order to a mess', hint: 'organising, systems, getting details right' },
+    ],
+  },
+
+  // ---------------------------------------------------------------- strengths
+  // Enjoying something and being good at it are different things, and the
+  // overlap is the strongest signal we can get from two taps. Same six
+  // dimensions as interest_pull, phrased as what other people see in you.
+  {
+    id: 'strengths',
+    section: 'strengths',
+    kind: 'multi',
+    prompt: 'What do people come to you for?',
+    help: 'Pick two or three. Think of what friends, family or coworkers ask you to do.',
+    min: 2,
+    max: 3,
+    why: 'Where what you enjoy and what you are good at overlap is where we look first. Your first pick counts most.',
+    options: [
+      { value: 'R', label: 'Getting practical things done', hint: 'fixing, building, setting up, making it work' },
+      { value: 'I', label: 'Working out how or why something happens', hint: 'analysing, researching, troubleshooting' },
+      { value: 'A', label: 'Coming up with original ideas', hint: 'a way to say it, show it or design it' },
+      { value: 'S', label: 'Listening and helping people through something', hint: 'patient, easy to talk to, good at explaining' },
+      { value: 'E', label: 'Persuading people and getting a group moving', hint: 'confident, organised, comfortable in charge' },
+      { value: 'C', label: 'Keeping things accurate and on schedule', hint: 'careful, reliable, good with details and systems' },
+    ],
+  },
+
+  // ------------------------------------------------------------------ purpose
+  {
+    id: 'cause_pull',
+    section: 'purpose',
+    kind: 'multi',
+    prompt: 'What would you most like your work to improve?',
+    help: 'Pick one to three.',
+    min: 1,
+    max: 3,
+    why: 'Matched against what each listing actually does, so a role in a field you care about ranks above an identical one you do not.',
+    options: [
+      { value: 'health', label: 'People’s health and care', hint: 'clinics, hospitals, mental health, wellbeing' },
+      { value: 'education', label: 'Learning and young people’s futures', hint: 'schools, tutoring, youth programs' },
+      { value: 'community', label: 'Neighborhoods, housing and fairness', hint: 'nonprofits, public service, advocacy' },
+      { value: 'technology', label: 'How technology works for people', hint: 'software, data, security, automation' },
+      { value: 'business', label: 'Local businesses and good jobs', hint: 'starting, running, finance, sales, marketing' },
+      { value: 'trades', label: 'Things that get built, made and moved', hint: 'construction, manufacturing, auto, logistics' },
+      { value: 'creative', label: 'Culture, stories and design', hint: 'media, arts, brand, entertainment' },
+      { value: 'environment', label: 'The environment and energy', hint: 'clean energy, water, sustainability' },
     ],
   },
 
@@ -300,7 +239,7 @@ export const QUESTION_BANK: Question[] = [
     help: 'Spend all 100.',
     total: 100,
     step: 5,
-    why: 'A fixed budget shows what you would actually trade away. It is the biggest input to your match.',
+    why: 'A fixed budget shows what you would actually trade away. It is one of the biggest inputs to your match.',
     options: [
       { value: 'pay_and_security', label: 'Pay and security', hint: 'money stops being a worry' },
       { value: 'flexibility_and_balance', label: 'Flexibility and balance', hint: 'the job fits around your life' },
@@ -311,51 +250,6 @@ export const QUESTION_BANK: Question[] = [
   },
 
   // -------------------------------------------------------------- constraints
-  {
-    id: 'arrangement',
-    section: 'constraints',
-    kind: 'multi',
-    prompt: 'Which of these would you take?',
-    help: 'Pick all you would accept.',
-    min: 1,
-    why: 'A hard filter. Applied before ranking.',
-    options: [
-      { value: 'Remote', label: 'Fully remote' },
-      { value: 'Hybrid', label: 'Hybrid, a few days in' },
-      { value: 'Onsite', label: 'On site, most days' },
-    ],
-  },
-  {
-    id: 'commute_limit',
-    section: 'constraints',
-    kind: 'single',
-    prompt: 'How far is too far to travel in?',
-    showIf: [{ questionId: 'arrangement', includes: 'Onsite' }],
-    optional: true,
-    why: 'Used only as a distance filter.',
-    options: [
-      { value: '20', label: 'Under 20 minutes' },
-      { value: '45', label: 'Up to 45 minutes' },
-      { value: '60', label: 'Up to an hour' },
-      { value: '90', label: 'Over an hour is fine' },
-      { value: 'relocate', label: 'I would move for the right thing' },
-    ],
-  },
-  {
-    id: 'employment_type',
-    section: 'constraints',
-    kind: 'multi',
-    prompt: 'What type of opportunity are you searching for?',
-    min: 1,
-    options: [
-      { value: 'FullTime', label: 'Full time' },
-      { value: 'PartTime', label: 'Part time' },
-      { value: 'Contract', label: 'Contract' },
-      { value: 'Freelance', label: 'Freelance or self-employed' },
-      { value: 'Internship', label: 'Internship or placement' },
-      { value: 'Apprenticeship', label: 'Apprenticeship or trainee' },
-    ],
-  },
   {
     id: 'pay_stance',
     section: 'constraints',
@@ -387,6 +281,163 @@ export const QUESTION_BANK: Question[] = [
       { value: '160000', label: '160k or above' },
     ],
   },
+
+  // --------------------------------------------------------------- about you
+  // Asked last, on purpose. These are the most personal questions in the bank
+  // and the only ones matching never reads, so asking them first spent a
+  // visitor's patience on answers that do nothing for them. By the time they
+  // appear, every question that shapes a match has been answered.
+  {
+    id: 'gender',
+    section: 'about_you',
+    kind: 'single',
+    prompt: 'How do you describe your gender?',
+    help: 'Optional.',
+    optional: true,
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'woman', label: 'Woman' },
+      { value: 'man', label: 'Man' },
+      { value: 'non_binary', label: 'Non-binary' },
+      { value: 'self_describe', label: 'Something else' },
+      { value: 'prefer_not_to_say', label: 'Prefer not to say' },
+    ],
+  },
+  {
+    id: 'age_band',
+    section: 'about_you',
+    kind: 'single',
+    prompt: 'Which age range are you in?',
+    help: 'Optional.',
+    optional: true,
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'under_25', label: 'Under 25' },
+      { value: '25_34', label: '25 to 34' },
+      { value: '35_44', label: '35 to 44' },
+      { value: '45_54', label: '45 to 54' },
+      { value: '55_plus', label: '55 or over' },
+      { value: 'prefer_not_to_say', label: 'Prefer not to say' },
+    ],
+  },
+  // Age branch, under 25: same three-question shape as the 25 to 34 branch.
+  {
+    id: 'under25_now',
+    section: 'about_you',
+    kind: 'single',
+    prompt: 'What are you mostly doing right now?',
+    optional: true,
+    showIf: [{ questionId: 'age_band', equals: 'under_25' }],
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'studying', label: 'Studying full time' },
+      { value: 'studying_working', label: 'Studying and working' },
+      { value: 'working', label: 'Working' },
+      { value: 'looking', label: 'Looking for a first start' },
+    ],
+  },
+  {
+    id: 'under25_evidence',
+    section: 'about_you',
+    kind: 'multi',
+    prompt: 'What can you already point to?',
+    help: 'Pick any.',
+    optional: true,
+    showIf: [{ questionId: 'age_band', equals: 'under_25' }],
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'part_time_job', label: 'A part-time or summer job' },
+      { value: 'internship', label: 'An internship or placement' },
+      { value: 'volunteering', label: 'Volunteering, clubs or teams' },
+      { value: 'projects', label: 'Projects or coursework' },
+      { value: 'nothing_yet', label: 'Nothing yet' },
+    ],
+  },
+  {
+    id: 'under25_next',
+    section: 'about_you',
+    kind: 'single',
+    prompt: 'What do you want from your first few roles?',
+    optional: true,
+    showIf: [{ questionId: 'age_band', equals: 'under_25' }],
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'learn', label: 'Good training and room to learn' },
+      { value: 'earn', label: 'Steady pay while I work things out' },
+      { value: 'try_things', label: 'A chance to try different things' },
+      { value: 'commit', label: 'One path I can commit to' },
+    ],
+  },
+  // Age branch, 25 to 34.
+  {
+    id: 'age25_now',
+    section: 'about_you',
+    kind: 'single',
+    prompt: 'What are you mostly doing right now?',
+    optional: true,
+    showIf: [{ questionId: 'age_band', equals: '25_34' }],
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'in_field', label: 'Working in the field I want' },
+      { value: 'want_out', label: 'Working, but ready for a change' },
+      { value: 'retraining', label: 'Working while I retrain or study' },
+      { value: 'between', label: 'Between jobs' },
+    ],
+  },
+  {
+    id: 'age25_evidence',
+    section: 'about_you',
+    kind: 'multi',
+    prompt: 'What can you already point to?',
+    help: 'Pick any.',
+    optional: true,
+    showIf: [{ questionId: 'age_band', equals: '25_34' }],
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'led', label: 'Leading a project or people' },
+      { value: 'promoted', label: 'Growth or a promotion in a role' },
+      { value: 'specialism', label: 'A specialist skill or certification' },
+      { value: 'switched', label: 'A change of field I have already made' },
+      { value: 'nothing_stands_out', label: 'Nothing that stands out yet' },
+    ],
+  },
+  {
+    id: 'age25_next',
+    section: 'about_you',
+    kind: 'single',
+    prompt: 'What do you want from the next few years?',
+    optional: true,
+    showIf: [{ questionId: 'age_band', equals: '25_34' }],
+    why: 'Kept on your profile only. Not scored, not sent to matching.',
+    options: [
+      { value: 'step_up', label: 'More responsibility' },
+      { value: 'deepen', label: 'Deeper expertise in what I do' },
+      { value: 'change_field', label: 'A new field without starting over' },
+      { value: 'balance', label: 'Better balance at the same standard of work' },
+    ],
+  },
+  // The one "about you" answer that does something: it decides which mentorship
+  // programs are listed. It is read on the device by the mentorship list and is
+  // not part of the profile, so it never reaches the match request.
+  {
+    id: AUDIENCE_QUESTION_ID,
+    section: 'about_you',
+    kind: 'multi',
+    prompt: 'Do any of these describe you?',
+    help: 'Optional. Pick all that apply.',
+    optional: true,
+    why: 'Many mentorship programs are only open to certain groups. If you pick any, the mentorship list shows programs you can join. Stays on this device. Not scored, not sent to matching.',
+    options: [
+      { value: 'youth', label: 'In high school or under 18' },
+      { value: 'students', label: 'A college or trade-school student' },
+      { value: 'first_gen', label: 'First in my family to go to college' },
+      { value: 'underrepresented_pros', label: 'An underrepresented early-career professional' },
+      { value: 'women', label: 'A woman' },
+      { value: 'veterans', label: 'A veteran' },
+      { value: 'returning_citizens', label: 'Returning from incarceration' },
+      { value: 'immigrants', label: 'An immigrant or new to the U.S.' },
+    ],
+  },
 ];
 
 /**
@@ -395,6 +446,9 @@ export const QUESTION_BANK: Question[] = [
  * These are protected characteristics under US employment law (Title VII, ADA,
  * ADEA, GINA) and handling them here would make a high-risk system under the
  * EU AI Act. Salary history is separately restricted in many jurisdictions.
+ *
+ * "Not given" means never scored and never sent. The optional audience question
+ * does ask about some of these, but only on the device, to filter mentorships.
  */
 export const EXCLUDED_ATTRIBUTES = [
   'race_or_ethnicity',

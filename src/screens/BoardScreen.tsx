@@ -7,7 +7,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   FlatList,
   KeyboardAvoidingView,
-  Linking,
   Platform,
   Pressable,
   StyleSheet,
@@ -21,7 +20,8 @@ import { LIMITS, useBoard } from '../board';
 import { BOARDS_BY_ID, BOARD_COPY, POST_KINDS } from '../content';
 import type { BoardMessage, BoardPost } from '../models';
 import type { RootStackParamList } from '../navigation/types';
-import { colors, radius, spacing, typography } from '../theme';
+import { colors, gradient, radius, spacing, typography } from '../theme';
+import { openExternal } from '../web/links';
 import { timeAgo } from './components/BoardParts';
 import { Button, Card, Pill } from './components/ui';
 
@@ -62,7 +62,7 @@ function PostCard({ post }: { post: BoardPost }) {
         </Text>
         {post.url ? (
           <Pressable
-            onPress={() => Linking.openURL(post.url as string)}
+            onPress={() => openExternal(post.url as string)}
             hitSlop={8}
             accessibilityRole="link"
           >
@@ -293,9 +293,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: spacing.md,
     borderRadius: radius.lg,
-    backgroundColor: colors.primary,
+    ...gradient.horizontal,
   },
-  sendDisabled: { backgroundColor: colors.border },
+  sendDisabled: { backgroundColor: colors.border, ...gradient.none },
   sendText: { ...typography.heading, color: colors.textInverse },
   sendTextDisabled: { color: colors.textMuted },
 

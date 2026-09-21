@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Buildathon App",
-    "slug": "buildathon-app",
+    "name": "Day 1 Detroit",
+    "slug": "day1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,10 +19,18 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Day 1 Detroit",
+      "shortName": "Day 1 Detroit",
+      "themeColor": "#0076b6",
+      "backgroundColor": "#ffffff"
     },
     "extra": {
-      "matchingEndpoint": ""
-    }
+      "matchingEndpoint": "",
+      "eas": {
+        "projectId": "8d69652c-f01e-40ed-b05c-1fb16a29dbf1"
+      }
+    },
+    "owner": "seanmc23"
   }
 }

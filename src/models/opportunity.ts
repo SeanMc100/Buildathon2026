@@ -13,11 +13,17 @@ import type {
   JobZone,
   PreferenceTrait,
   RiasecCode,
-  WorkArrangement,
 } from './profile';
 import type { QuestionId } from './questionnaire';
 
-export type OpportunityKind = 'job' | 'program' | 'event' | 'research';
+export type OpportunityKind = 'job' | 'program' | 'event' | 'research' | 'mentorship';
+
+/**
+ * Sections the matcher ranks. Mentorship is listed and filtered by audience,
+ * never ranked. 'internship' is not a catalog kind: internships and
+ * apprenticeships are jobs in the data, ranked apart from the occupations.
+ */
+export type MatchedKind = Exclude<OpportunityKind, 'mentorship'> | 'internship';
 
 /**
  * Things an opportunity asks of the person. Same keys as the "dealbreakers"
@@ -43,9 +49,8 @@ type OpportunityBase = {
   /** One or two sentences, shown on the result card. */
   summary: string;
   url: string;
-  /** City or venue. Null for fully remote or location-free items. */
+  /** City or venue. Null for location-free items. */
   location: string | null;
-  arrangement: WorkArrangement;
 
   // ---- Match tags -------------------------------------------------------
   /** Top one to three RIASEC codes, ranked. */
@@ -119,6 +124,24 @@ export type ResearchOpportunity = OpportunityBase & {
 };
 
 /**
+ * A mentorship program run by someone else. The app only points at it: the
+ * listing carries who it is for and a link to the provider's own page, and the
+ * provider handles applications.
+ */
+export type MentorshipOpportunity = OpportunityBase & {
+  kind: 'mentorship';
+  /** Who the provider says can join. Empty = open to anyone. */
+  audiences: MentorshipAudience[];
+  /** Plain-language requirements, e.g. 'Current Ilitch School undergraduates'. */
+  eligibility: string[];
+  /** How mentoring happens, e.g. 'One-on-one with an industry mentor'. */
+  format: string;
+  /** Length or cadence in the provider's words, e.g. 'January to May'. Null = not stated. */
+  schedule: string | null;
+  costUsd: number | null;
+};
+
+/**
  * Visibility rule, applied by the matching slice before ranking: an event is
  * hidden once endsAt (or startsAt when endsAt is null) has passed, and any
  * opportunity whose applyBy has passed is hidden too.
@@ -127,7 +150,8 @@ export type Opportunity =
   | JobOpportunity
   | ProgramOpportunity
   | EventOpportunity
-  | ResearchOpportunity;
+  | ResearchOpportunity
+  | MentorshipOpportunity;
 
 /**
  * One scored result, produced by the matching slice and read by the results
@@ -150,8 +174,15 @@ export type OpportunityResults = {
   profileId: string;
   generatedAt: string;
   /** Best matches first within each kind. */
-  byKind: Record<OpportunityKind, OpportunityMatch[]>;
-  /** Hard-constraint conflicts worth telling the user about, e.g. an empty kind. */
+  byKind: Record<MatchedKind, OpportunityMatch[]>;
+  /**
+   * Jobs the person could grow into: a fit for their interests and strengths
+   * that need more preparation than they have today. Ranked on aptitude, not on
+   * where they are now. Not in `byKind.job`, and never empty while the catalog
+   * has jobs.
+   */
+  growthPaths: OpportunityMatch[];
+  /** Lines the person set that were stretched rather than met, worth telling them about. */
   unmetConstraints: string[];
 };
 
@@ -223,6 +254,17 @@ export type ProgramSector =
 export type ProgramAudience =
   | 'youth' | 'young_adults' | 'returning_citizens' | 'women' | 'immigrants' | 'veterans'
   | 'older_workers' | 'detroit_residents' | 'low_income' | 'disability_support' | 'spanish_speakers';
+
+/**
+ * Who a mentorship program is open to. The program audiences plus three that
+ * only mentorships use. A visitor picks theirs in the optional "which describe
+ * you" question; it stays on the device and never reaches the match request.
+ */
+export type MentorshipAudience =
+  | ProgramAudience
+  | 'students'
+  | 'first_gen'
+  | 'underrepresented_pros';
 
 export type ProgramSupport =
   | 'childcare' | 'transport' | 'stipend' | 'tools_or_equipment' | 'job_placement' | 'housing' | 'meals';

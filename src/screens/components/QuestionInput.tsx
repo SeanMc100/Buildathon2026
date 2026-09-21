@@ -4,8 +4,16 @@
 // grid/matrix questions are the worst-performing format on a phone, and a
 // fully-labelled row list is more reliable than an endpoint-labelled slider.
 
-import { useMemo } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useMemo, useRef } from 'react';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  type GestureResponderEvent,
+  type LayoutChangeEvent,
+} from 'react-native';
 
 import type {
   AllocationQuestion,
@@ -17,7 +25,9 @@ import type {
   SingleChoiceQuestion,
   TextQuestion,
 } from '../../models';
-import { colors, radius, spacing, typography } from '../../theme';
+import { TOUCH_TARGET, colors, gradient, radius, spacing, typography } from '../../theme';
+import { focusRing, isFocused } from '../../web/focus';
+import { isHovered } from '../../web/hover';
 
 type InputProps = {
   question: Question;
@@ -61,11 +71,13 @@ function OptionRow({
       disabled={disabled}
       accessibilityRole={indicator === 'radio' ? 'radio' : 'checkbox'}
       accessibilityState={{ selected, disabled: !!disabled }}
-      style={({ pressed }) => [
+      style={(state) => [
         styles.row,
         selected && styles.rowSelected,
         disabled && !selected && styles.rowDisabled,
-        pressed && styles.rowPressed,
+        !selected && !disabled && isHovered(state) && styles.rowHover,
+        state.pressed && styles.rowPressed,
+        isFocused(state) && focusRing,
       ]}
     >
       <View
@@ -165,7 +177,15 @@ function ScaleInput({
 }) {
   return (
     <View style={styles.stack}>
-      {question.minLabel ? <Text style={styles.anchor}>{question.minLabel}</Text> : null}
+      {/* Both ends on one line, so the rows below read as points on a scale
+          rather than as a list with two captions floating around it. */}
+      {question.minLabel || question.maxLabel ? (
+        <View style={styles.anchorRow}>
+          <Text style={styles.anchor}>{question.minLabel ?? ''}</Text>
+          <View style={styles.anchorRule} />
+          <Text style={[styles.anchor, styles.anchorEnd]}>{question.maxLabel ?? ''}</Text>
+        </View>
+      ) : null}
       {question.labels.map((label, index) => {
         const point = index + 1;
         const selected = value === point;
@@ -175,20 +195,24 @@ function ScaleInput({
             onPress={() => onChange(point)}
             accessibilityRole="radio"
             accessibilityState={{ selected }}
-            style={({ pressed }) => [
+            style={(state) => [
               styles.row,
               selected && styles.rowSelected,
-              pressed && styles.rowPressed,
+              !selected && isHovered(state) && styles.rowHover,
+              state.pressed && styles.rowPressed,
+              isFocused(state) && focusRing,
             ]}
           >
             <View style={[styles.indicator, selected && styles.indicatorSelected]}>
               {selected ? <View style={styles.indicatorInner} /> : null}
             </View>
             <Text style={[styles.rowLabel, selected && styles.rowLabelSelected]}>{label}</Text>
+            <Text style={[styles.scalePoint, selected && styles.scalePointSelected]}>
+              {point}
+            </Text>
           </Pressable>
         );
       })}
-      {question.maxLabel ? <Text style={styles.anchor}>{question.maxLabel}</Text> : null}
     </View>
   );
 }
@@ -209,17 +233,63 @@ function AllocationInput({
     return Object.fromEntries(question.options.map((option) => [option.value, 0]));
   }, [value, question.options]);
 
-  const spent = Object.values(allocation).reduce((sum, amount) => sum + amount, 0);
+  const spent = Object.values(allocation).reduce(
+    (sum, amount) => sum + (typeof amount === 'number' && Number.isFinite(amount) ? amount : 0),
+    0,
+  );
   const remaining = question.total - spent;
+  // Measured once per meter so a tap can be read as a share of the bar.
+  const trackWidths = useRef<Record<string, number>>({});
+
+  /** Reads a stored amount defensively, so one bad write cannot poison the row. */
+  const amountOf = (optionValue: string) => {
+    const value = allocation[optionValue];
+    return typeof value === 'number' && Number.isFinite(value) ? value : 0;
+  };
 
   const adjust = (optionValue: string, delta: number) => {
-    const current = allocation[optionValue] ?? 0;
+    const current = amountOf(optionValue);
     const next = Math.max(0, Math.min(question.total, current + delta));
     // Never let the total run over the budget - that is the whole point of
     // the format.
     if (delta > 0 && next - current > remaining) return;
     onChange({ ...allocation, [optionValue]: next });
   };
+
+  /**
+   * Tapping along a meter sets that option directly. Without it, spending 100
+   * points five at a time took twenty taps before the question would let you
+   * move on, which is the sort of thing people abandon a form over.
+   */
+  const setFromTap = (optionValue: string, event: GestureResponderEvent) => {
+    const width = trackWidths.current[optionValue];
+    if (!width) return;
+
+    // React Native reports the tap as locationX. A mouse click on the web
+    // arrives without it, so fall back to the DOM's offsetX; both are measured
+    // from the left edge of an element that spans the full width of the bar.
+    const native = event.nativeEvent as { locationX?: number; offsetX?: number };
+    const x = [native.locationX, native.offsetX].find((value) => Number.isFinite(value));
+    if (x === undefined) return;
+
+    const share = Math.max(0, Math.min(1, x / width));
+    const raw = Math.round((share * question.total) / question.step) * question.step;
+    const ceiling = amountOf(optionValue) + remaining;
+    onChange({ ...allocation, [optionValue]: Math.max(0, Math.min(ceiling, raw)) });
+  };
+
+  /** An even split, as a starting point people can then pull about. */
+  const spreadEvenly = () => {
+    const count = question.options.length;
+    const each = Math.floor(question.total / count / question.step) * question.step;
+    const even = Object.fromEntries(question.options.map((option) => [option.value, each]));
+    const first = question.options[0];
+    if (first) even[first.value] = question.total - each * (count - 1);
+    onChange(even);
+  };
+
+  const clearAll = () =>
+    onChange(Object.fromEntries(question.options.map((option) => [option.value, 0])));
 
   return (
     <View style={styles.stack}>
@@ -229,8 +299,32 @@ function AllocationInput({
         </Text>
       </View>
 
+      <View style={styles.budgetHints}>
+        <Text style={styles.budgetHint}>Tap along a bar to set it, or use − and +.</Text>
+        <View style={styles.budgetShortcuts}>
+          <Pressable
+            onPress={spreadEvenly}
+            accessibilityRole="button"
+            hitSlop={8}
+            style={({ pressed }) => [styles.shortcut, pressed && styles.rowPressed]}
+          >
+            <Text style={styles.shortcutText}>Spread evenly</Text>
+          </Pressable>
+          {spent > 0 ? (
+            <Pressable
+              onPress={clearAll}
+              accessibilityRole="button"
+              hitSlop={8}
+              style={({ pressed }) => [styles.shortcut, pressed && styles.rowPressed]}
+            >
+              <Text style={styles.shortcutText}>Start again</Text>
+            </Pressable>
+          ) : null}
+        </View>
+      </View>
+
       {question.options.map((option) => {
-        const amount = allocation[option.value] ?? 0;
+        const amount = amountOf(option.value);
         return (
           <View key={option.value} style={[styles.allocRow, amount > 0 && styles.rowSelected]}>
             <View style={styles.rowTextWrap}>
@@ -238,9 +332,22 @@ function AllocationInput({
                 {option.label}
               </Text>
               {option.hint ? <Text style={styles.rowHint}>{option.hint}</Text> : null}
-              <View style={styles.meterTrack}>
-                <View style={[styles.meterFill, { width: `${(amount / question.total) * 100}%` }]} />
-              </View>
+              <Pressable
+                onPress={(event) => setFromTap(option.value, event)}
+                onLayout={(event: LayoutChangeEvent) => {
+                  trackWidths.current[option.value] = event.nativeEvent.layout.width;
+                }}
+                accessibilityRole="adjustable"
+                accessibilityLabel={`${option.label}, ${amount} of ${question.total} points`}
+                accessibilityValue={{ now: amount, min: 0, max: question.total }}
+                style={styles.meterTouch}
+              >
+                <View style={styles.meterTrack}>
+                  <View
+                    style={[styles.meterFill, { width: `${(amount / question.total) * 100}%` }]}
+                  />
+                </View>
+              </Pressable>
             </View>
             <View style={styles.stepper}>
               <Pressable
@@ -315,6 +422,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    minHeight: TOUCH_TARGET + 8,
     gap: spacing.sm + 4,
     paddingVertical: spacing.md - 2,
     paddingHorizontal: spacing.md,
@@ -324,6 +432,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   rowSelected: { borderColor: colors.primary, backgroundColor: colors.primarySoft },
+  rowHover: { borderColor: colors.borderStrong, backgroundColor: colors.surface },
   rowDisabled: { opacity: 0.5 },
   rowPressed: { opacity: 0.7 },
   rowTextWrap: { flex: 1, gap: 2 },
@@ -349,7 +458,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
 
-  anchor: { ...typography.caption, color: colors.textMuted, marginLeft: spacing.xs },
+  anchorRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginBottom: spacing.xs,
+  },
+  anchor: { ...typography.label, color: colors.textMuted, letterSpacing: 0.4 },
+  anchorEnd: { textAlign: 'right' },
+  anchorRule: { flex: 1, height: 1, backgroundColor: colors.border },
+  scalePoint: { ...typography.label, color: colors.textMuted, marginLeft: 'auto' },
+  scalePointSelected: { color: colors.primary },
   helper: { ...typography.caption, color: colors.textMuted, marginTop: spacing.xs },
 
   budgetBanner: {
@@ -362,6 +481,24 @@ const styles = StyleSheet.create({
   budgetText: { ...typography.heading, color: colors.textMuted },
   budgetTextDone: { color: colors.primary },
 
+  budgetHints: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+    marginBottom: spacing.xs,
+  },
+  budgetHint: { ...typography.caption, color: colors.textMuted, flexShrink: 1 },
+  budgetShortcuts: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  shortcut: {
+    minHeight: 32,
+    justifyContent: 'center',
+    paddingHorizontal: spacing.sm,
+    borderRadius: radius.sm,
+  },
+  shortcutText: { ...typography.caption, fontWeight: '600', color: colors.primary },
+
   allocRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -373,19 +510,21 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     backgroundColor: colors.background,
   },
+  // A taller touch area than the 6px bar it draws, so the tap target clears the
+  // minimum without a fat line across the row.
+  meterTouch: { paddingVertical: spacing.sm, marginTop: spacing.xs },
   meterTrack: {
-    height: 4,
-    marginTop: spacing.xs + 2,
+    height: 6,
     borderRadius: radius.pill,
     backgroundColor: colors.border,
     overflow: 'hidden',
   },
-  meterFill: { height: 4, backgroundColor: colors.primary, borderRadius: radius.pill },
+  meterFill: { height: 6, ...gradient.horizontal, borderRadius: radius.pill },
 
   stepper: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   stepperButton: {
-    width: 36,
-    height: 36,
+    width: TOUCH_TARGET,
+    height: TOUCH_TARGET,
     borderRadius: radius.sm,
     borderWidth: 1,
     borderColor: colors.borderStrong,

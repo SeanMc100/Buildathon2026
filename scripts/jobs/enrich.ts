@@ -13,7 +13,8 @@
 // Same shape as assessEvent: one input, one opportunity out, and swapping this
 // for something smarter later leaves everything around it untouched.
 
-import type { CareerStage, EducationLevel, PreferenceTrait, WorkArrangement, WorkDemand } from '../../src/models';
+import type { CareerStage, EducationLevel, PreferenceTrait, WorkDemand } from '../../src/models';
+import { COMMON_ROLES } from './common-roles';
 import { employersFor } from './sectors';
 import { onetOnlineUrl, OEWS_VINTAGE } from './sources';
 import type { DetroitJobOpportunity, EntryRouteSeed, LocalWages, OnetOccupation, StateOutlook, WageBand } from './types';
@@ -224,17 +225,6 @@ function chooseDemands(occupation: OnetOccupation): WorkDemand[] {
   return demands;
 }
 
-/**
- * Onsite unless the work is plainly a desk and a computer. Never Remote: no
- * source here knows whether a given Detroit employer allows it, and claiming it
- * would send someone to an interview under a false idea of the job.
- */
-function chooseArrangement(occupation: OnetOccupation, demands: WorkDemand[]): WorkArrangement {
-  const deskBound =
-    (occupation.context['Spend Time Sitting'] ?? 0) >= 4.0 && (occupation.activities['Working with Computers'] ?? 0) >= 4.0;
-  return deskBound && !demands.includes('physical_work') ? 'Hybrid' : 'Onsite';
-}
-
 function chooseStages(occupation: OnetOccupation, demands: WorkDemand[]): CareerStage[] {
   const zone = occupation.jobZone ?? 3;
   const stages: CareerStage[] =
@@ -340,12 +330,11 @@ export function buildOccupation(input: OccupationInput, context: EnrichContext):
   return {
     id: `job-onet-${occupation.socCode}`,
     kind: 'job',
-    title: occupation.title,
+    title: COMMON_ROLES[occupation.socCode] ?? occupation.title,
     organization: 'Metro Detroit employers',
     summary: [leadSentence(occupation.description), local].filter(Boolean).join(' '),
     url: onetOnlineUrl(occupation.onetSocCode),
     location: 'Detroit metro',
-    arrangement: chooseArrangement(occupation, demands),
     hollandCode: occupation.hollandCode,
     traits,
     jobZone: occupation.jobZone,
@@ -429,7 +418,6 @@ export function buildEntryRoute(input: EntryRouteInput, context: EnrichContext):
     summary: seed.summary,
     url: seed.url,
     location: seed.city ?? 'Detroit metro',
-    arrangement: 'Onsite',
     hollandCode: occupation?.hollandCode ?? [],
     traits,
     // The door, not the destination: an apprenticeship is open to someone with

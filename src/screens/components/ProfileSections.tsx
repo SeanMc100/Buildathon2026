@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { questionById } from '../../content';
+import { CAUSE_LABELS } from '../../matching/topics';
 import type {
   CareerProfile,
   Inference,
@@ -14,7 +15,7 @@ import type {
   QuestionId,
   RiasecCode,
 } from '../../models';
-import { colors, radius, spacing, typography } from '../../theme';
+import { colors, gradient, radius, spacing, typography } from '../../theme';
 import { Card, ConfidenceDot } from './ui';
 
 const RIASEC_LABELS: Record<RiasecCode, string> = {
@@ -204,42 +205,53 @@ export function FactRow({
   );
 }
 
+function ChipGroup({ label, chips }: { label: string; chips: string[] }) {
+  return (
+    <>
+      <Text style={styles.label}>{label}</Text>
+      <View style={styles.chipWrap}>
+        {chips.map((chip, index) => (
+          <View key={chip} style={[styles.chip, index === 0 && styles.chipLead]}>
+            <Text style={[styles.chipText, index === 0 && styles.chipTextLead]}>{chip}</Text>
+          </View>
+        ))}
+      </View>
+    </>
+  );
+}
+
+/** The three answerable Ikigai circles: what you love, what you are good at, what you want it to serve. */
 export function InterestRow({ profile }: { profile: CareerProfile }) {
-  const { interests } = profile;
-  if (interests.hollandCode.length === 0) {
+  const { interests, causes } = profile;
+  if (interests.hollandCode.length === 0 && causes.value.length === 0) {
     return <Text style={styles.empty}>Interests were skipped.</Text>;
   }
 
   return (
     <Explainable
-      confidence={interests.confidence}
-      sources={interests.sourceQuestionIds}
-      note="From one question, sent to the model as a hint."
+      confidence={Math.max(interests.confidence, causes.confidence)}
+      sources={[...interests.sourceQuestionIds, ...causes.sourceQuestionIds]}
+      note="From what you enjoy, what you are good at and what you want your work to serve. Used to rank matches."
     >
-      <Text style={styles.label}>What pulls you in</Text>
-      <View style={styles.chipWrap}>
-        {interests.hollandCode.map((code, index) => (
-          <View key={code} style={[styles.chip, index === 0 && styles.chipLead]}>
-            <Text style={[styles.chipText, index === 0 && styles.chipTextLead]}>
-              {RIASEC_LABELS[code]}
-            </Text>
-          </View>
-        ))}
-      </View>
+      {interests.enjoys.length > 0 ? (
+        <ChipGroup label="What you love" chips={interests.enjoys.map((code) => RIASEC_LABELS[code])} />
+      ) : null}
+      {interests.strengths.length > 0 ? (
+        <ChipGroup
+          label="What you are good at"
+          chips={interests.strengths.map((code) => RIASEC_LABELS[code])}
+        />
+      ) : null}
+      {causes.value.length > 0 ? (
+        <ChipGroup label="What you want to serve" chips={causes.value.map((theme) => CAUSE_LABELS[theme])} />
+      ) : null}
     </Explainable>
   );
 }
 
 export function ConstraintList({ profile }: { profile: CareerProfile }) {
   const c = profile.hardConstraints;
-  const rows: Array<{ label: string; value: string }> = [
-    { label: 'Work setup', value: c.arrangements.map(humanize).join(', ') },
-    { label: 'Employment', value: c.employmentTypes.map(humanize).join(', ') },
-  ];
-  if (c.maxCommuteMinutes !== null) {
-    rows.push({ label: 'Travel limit', value: `${c.maxCommuteMinutes} minutes` });
-  }
-  if (c.openToRelocation) rows.push({ label: 'Relocation', value: 'Open to it' });
+  const rows: Array<{ label: string; value: string }> = [];
   rows.push(
     c.minSalaryUsd !== null
       ? { label: 'Pay floor', value: `$${Math.round(c.minSalaryUsd / 1000)}k` }
@@ -303,7 +315,7 @@ const styles = StyleSheet.create({
   rankBody: { flex: 1, gap: 6 },
   rankLabel: { ...typography.body, color: colors.text, fontWeight: '600' },
   barTrack: { height: 6, borderRadius: radius.pill, backgroundColor: colors.border },
-  barFill: { height: 6, borderRadius: radius.pill, backgroundColor: colors.primary },
+  barFill: { height: 6, borderRadius: radius.pill, ...gradient.horizontal },
 
   dialTrack: {
     height: 8,
